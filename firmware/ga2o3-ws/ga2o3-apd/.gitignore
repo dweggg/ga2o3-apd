@@ -1,0 +1,5 @@
+.settings/
+__ccs_2_generatedBinaries/
+LAUNCHPAD_FLASH/
+.clangd
+project.log
