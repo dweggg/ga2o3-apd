@@ -1,4 +1,12 @@
 [ProjectGroup]
 Version=1.0
 [Project1]
+ProjectPath=Control_Board\Control_Board.PrjPcb
+[Project2]
 ProjectPath=ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
+[Project3]
+ProjectPath=..\..\..\..\..\..\ti\c2000\C2000Ware_6_00_01_00\boards\LaunchPads\LAUNCHXL-F28379D\R2.0\design files\LAUNCHXL-F28379D_REV2.0.PrjPcb
+[Project4]
+ProjectPath=..\..\..\..\..\..\ti\c2000\C2000Ware_6_00_01_00\boards\LaunchPads\LAUNCHXL-F28379D\R2.0\design files\LAUNCHXL-F28379D_REV2.01\LAUNCHXL-F28379D_REV2.0.LibPkg
+[Project5]
+ProjectPath=..\..\..\..\OneDrive - Aalborg Universitet\CoBAT\Hardware\Design Files\CAN_TRANSCEIVER_COBAT\CAN_TRANSCEIVER_COBAT.PrjPcb
