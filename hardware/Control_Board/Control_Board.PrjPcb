@@ -56,7 +56,7 @@ AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=-1
+AnnotateOrder=0
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -67,40 +67,6 @@ GenerateClassCluster=0
 DocumentUniqueId=QVENZRSS
 
 [Document2]
-DocumentPath=..\ga2o3.PcbLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document3]
-DocumentPath=..\ga2o3.SchLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=VKSZBJEV
-
-[Document4]
 DocumentPath=ga2o3_temp_cb.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -117,7 +83,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=DBIPIGJT
 
-[Document5]
+[Document3]
 DocumentPath=ga2o3_temp_cb.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -134,14 +100,14 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=BISVYJRM
 
-[Document6]
+[Document4]
 DocumentPath=Microcontroller.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=-1
+AnnotateOrder=1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -151,8 +117,42 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=GPFGYNVH
 
+[Document5]
+DocumentPath=Mechanical.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=2
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=FUQTISGG
+
+[Document6]
+DocumentPath=Power.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=3
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=RBOOROHE
+
 [Document7]
-DocumentPath=..\..\..\..\altium-lib\MasterLibrary_FP.PcbLib
+DocumentPath=Control_Board.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -166,16 +166,16 @@ ClassGenCCAutoRoomEnabled=0
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=JGKMMDDD
 
 [Document8]
-DocumentPath=..\..\..\..\altium-lib\MasterLibrary_SCH.SchLib
+DocumentPath=Gate_Driver.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=-1
+AnnotateOrder=4
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -183,7 +183,24 @@ ClassGenCCAutoRoomEnabled=0
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=IGFYAGAD
+
+[Document9]
+DocumentPath=Gate_Driver_Supply.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=5
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=LANRYCUS
 
 [Configuration1]
 Name=Sources
@@ -1149,10 +1166,16 @@ NetClassManualEnabled=1
 NetClassSeparateForBusSections=0
 
 [LibraryUpdateOptions]
-SelectedOnly=0
+SelectedOnly=1
 UpdateVariants=1
 UpdateToLatestRevision=1
 PartTypes=0
+ComponentLibIdentifierKind0=Library Name And Type
+ComponentLibraryIdentifier0=MasterLibrary_SCH.SchLib
+ComponentDesignItemID0=IC: UCC21710QDWRQ1
+ComponentSymbolReference0=IC: UCC21710QDWRQ1
+ComponentUpdate0=1
+ComponentIsDeviceSheet0=0
 FullReplace=1
 UpdateDesignatorLock=1
 UpdatePartIDLock=1
@@ -1166,6 +1189,69 @@ RemoveParameters=0
 AddModels=1
 RemoveModels=1
 UpdateCurrentModels=1
+ParameterName0=Case/Package
+ParameterUpdate0=1
+ParameterName1=Category
+ParameterUpdate1=1
+ParameterName2=Comment
+ParameterUpdate2=1
+ParameterName3=Component Kind
+ParameterUpdate3=1
+ParameterName4=ComponentLink1Description
+ParameterUpdate4=1
+ParameterName5=ComponentLink1URL
+ParameterUpdate5=1
+ParameterName6=ComponentLink2Description
+ParameterUpdate6=1
+ParameterName7=ComponentLink2URL
+ParameterUpdate7=1
+ParameterName8=ComponentLink3Description
+ParameterUpdate8=1
+ParameterName9=ComponentLink3URL
+ParameterUpdate9=1
+ParameterName10=ComponentLink4Description
+ParameterUpdate10=1
+ParameterName11=ComponentLink4URL
+ParameterUpdate11=1
+ParameterName12=Description
+ParameterUpdate12=1
+ParameterName13=Height
+ParameterUpdate13=1
+ParameterName14=Length
+ParameterUpdate14=1
+ParameterName15=Library Reference
+ParameterUpdate15=1
+ParameterName16=Lifecycle Status
+ParameterUpdate16=1
+ParameterName17=Manufacturer
+ParameterUpdate17=1
+ParameterName18=Manufacturer Lifecycle Status
+ParameterUpdate18=1
+ParameterName19=Manufacturer Part Number
+ParameterUpdate19=1
+ParameterName20=Pins
+ParameterUpdate20=1
+ParameterName21=Pricing
+ParameterUpdate21=1
+ParameterName22=RoHS
+ParameterUpdate22=1
+ParameterName23=Schedule B
+ParameterUpdate23=1
+ParameterName24=Stock
+ParameterUpdate24=1
+ParameterName25=Supplier
+ParameterUpdate25=1
+ParameterName26=Supplier Part Number
+ParameterUpdate26=1
+ParameterName27=Thickness
+ParameterUpdate27=1
+ParameterName28=Width
+ParameterUpdate28=1
+ModelTypeGroup0=PCBLIB
+ModelTypeUpdate0=1
+ModelType0=PCBLIB
+ModelName0=SOIC127P1030X265-16N
+ModelUpdate0=1
 
 [DatabaseUpdateOptions]
 SelectedOnly=0
