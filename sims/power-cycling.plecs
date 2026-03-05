@@ -67,6 +67,7 @@ Plecs {
   InvalidNetlistFunctionEvaluationMsg "1"
   IncompatibleInitialConditionMsg "2"
   Schematic {
+<<<<<<< Updated upstream
 <<<<<<< HEAD:sims/interleaved.plecs
     Location      [0, 23; 1600, 910]
     ZoomFactor    1.23109
@@ -76,6 +77,11 @@ Plecs {
     ZoomFactor    0.921243
     SliderPosition [0, 233]
 >>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
+=======
+    Location      [0, 24; 1283, 681]
+    ZoomFactor    1.05424
+    SliderPosition [-1, -1]
+>>>>>>> Stashed changes
     ShowBrowser   on
     BrowserWidth  158
     Component {
@@ -323,6 +329,7 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -20; 15, 20]
+<<<<<<< Updated upstream
 <<<<<<< HEAD:sims/interleaved.plecs
       Location      [0, 24; 1600, 969]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAAClPwCAAAAA/sAAAAQAFoAbwBvA"
@@ -336,6 +343,13 @@ Plecs {
 "///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAArIAAABjAP///wAAAAMAAAYAAAAAV/w"
 "BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAKyAAAA"
 >>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
+=======
+      Location      [0, 24; 1283, 703]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACK/wCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAAIAA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAisAAABiAP///wAAAAMAAAUDAAAAV/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABQMAAABEAP///wAABEkAAAIrAAAA"
+>>>>>>> Stashed changes
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -5601,11 +5615,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [514, 28; 1533, 654]
+      Location      [261, 28; 1280, 663]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAP7AAAAW/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAA/sAAABEAP///wAAA/sAAAHyAAAA"
+"G0AQQByAGUAYQAAAAAA/////wAAAFgA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABiAP///wAAAAMAAAP7AAAAW/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAA/sAAABEAP///wAAA/sAAAH7AAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -9371,17 +9385,22 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [0, 28; 1536, 842]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACQvwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAkIAAABjAP///wAAAAMAAAYAAAAAx/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAJCAAAA"
+      Location      [0, 24; 1283, 703]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACIvwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAAFgA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAiIAAABiAP///wAAAAMAAAUDAAAAYPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABQMAAABEAP///wAABEkAAAIiAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
+<<<<<<< Updated upstream
       HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":109,\"Labels\":["
 "\"Delta\"],\"VisualIdxs\":[3]}"
 >>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
+=======
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":109,\"Labels\":[\""
+"Delta\"],\"VisualIdxs\":[3]}"
+>>>>>>> Stashed changes
       PlotPalettes  "AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
       Axes          "2"
@@ -9940,14 +9959,14 @@ Plecs {
       Type          SignalMux
       Name          "Mux15"
       Show          off
-      Position      [1425, 430]
+      Position      [1435, 435]
       Direction     right
       Flipped       off
       LabelPosition south
-      Frame         [-2, -10; 7, 10]
+      Frame         [-2, -15; 7, 15]
       Parameter {
         Variable      "Width"
-        Value         "2"
+        Value         "3"
         Show          off
       }
     }
@@ -10340,6 +10359,7 @@ Plecs {
       }
     }
     Component {
+<<<<<<< Updated upstream
 <<<<<<< HEAD:sims/interleaved.plecs
       Type          Product
       Name          "Product5"
@@ -10384,6 +10404,8 @@ Plecs {
       }
     }
     Component {
+=======
+>>>>>>> Stashed changes
       Type          Scope
 <<<<<<< HEAD:sims/interleaved.plecs
       Name          "Scope9"
@@ -10410,20 +10432,20 @@ Plecs {
 =======
       Name          "Scope1"
       Show          off
-      Position      [935, 455]
+      Position      [1010, 470]
       Direction     up
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [593, 317; 943, 604]
+      Location      [0, 23; 1280, 699]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAEAAAAA"
+"G0AQQByAGUAYQAAAAAA/////wAAADAA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABiAP///wAAAAMAAAAAAAAAAPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAABQAAAAKFAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":160,\"Labels\":[],"
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":163,\"Labels\":[],"
 "\"VisualIdxs\":[]}"
       PlotPalettes  "AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       Axes          "1"
@@ -10515,20 +10537,6 @@ Plecs {
         Type          Output
         Position      [19, 0]
         Direction     right
-      }
-    }
-    Component {
-      Type          PeriodicAverage
-      Name          "Periodic Average9"
-      Show          off
-      Position      [870, 455]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "T_average"
-        Value         "1/fsw"
-        Show          off
       }
     }
     Component {
@@ -10892,11 +10900,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -45; 15, 45]
-      Location      [0, 28; 1536, 842]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADD/wCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAKkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAw8AAABjAP///wAAAAMAAAYAAAABB/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAABgAAAABEAP///wAABUYAAAMPAAAA"
+      Location      [0, 24; 1283, 703]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACiPwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAAKgA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAogAAABiAP///wAAAAMAAAYAAAABB/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAABgAAAABEAP///wAABEkAAAKIAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -10910,7 +10918,7 @@ Plecs {
       TimeRange     "0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-      Open          "1"
+      Open          "0"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    "Time / s"
@@ -11318,6 +11326,147 @@ Plecs {
 =======
         Value         "10"
 >>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
+        Show          off
+      }
+    }
+    Component {
+      Type          SignalMux
+      Name          "Mux18"
+      Show          off
+      Position      [865, 470]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Frame         [-2, -10; 7, 10]
+      Parameter {
+        Variable      "Width"
+        Value         "2"
+        Show          off
+      }
+    }
+    Component {
+      Type          PeriodicAverage
+      Name          "Periodic Average9"
+      Show          off
+      Position      [930, 470]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "1/fsw"
+        Show          off
+      }
+    }
+    Component {
+      Type          From
+      Name          "From45"
+      Show          off
+      Position      [1215, 445]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "Tag"
+        Value         "vAC"
+        Show          off
+      }
+      Parameter {
+        Variable      "Visibility"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "NoMatchingCounterpartAction"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "CustomMessage"
+        Value         ""
+        Show          off
+        Evaluate      on
+      }
+      Parameter {
+        Variable      "HighlightLevel"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Sum
+      Name          "Sum2"
+      Show          off
+      Position      [1285, 445]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "IconShape"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "Inputs"
+        Value         "-+|"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataType"
+        Value         "11"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataTypeOverflowMode"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          PeriodicAverage
+      Name          "Periodic Average10"
+      Show          off
+      Position      [1340, 445]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "1/fsw"
+        Show          off
+      }
+    }
+    Component {
+      Type          Gain
+      Name          "Gain5"
+      Show          off
+      Position      [1395, 445]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "K"
+        Value         "0.1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Multiplication"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "OutputDataType"
+        Value         "11"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataTypeOverflowMode"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "GainDataType"
+        Value         "11"
         Show          off
       }
     }
@@ -13293,7 +13442,6 @@ Plecs {
       Type          Signal
       SrcComponent  "Mux15"
       SrcTerminal   1
-      Points        [1445, 430]
       DstComponent  "Scope3"
       DstTerminal   2
     }
@@ -13348,14 +13496,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-      SrcComponent  "Gain2"
-      SrcTerminal   2
-      Points        [1275, 390]
-      DstComponent  "Sum1"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
       SrcComponent  "Divide1"
       SrcTerminal   1
       Points        [840, 635]
@@ -13382,34 +13522,6 @@ Plecs {
       SrcTerminal   1
       DstComponent  "Symmetrical PWM3"
       DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "From43"
-      SrcTerminal   1
-      DstComponent  "Sum2"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "From44"
-      SrcTerminal   1
-      DstComponent  "Sum2"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Sum2"
-      SrcTerminal   1
-      DstComponent  "Periodic Average9"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Periodic Average9"
-      SrcTerminal   1
-      DstComponent  "Scope1"
-      DstTerminal   1
     }
     Connection {
       Type          Signal
@@ -13705,6 +13817,79 @@ Plecs {
 >>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   1
     }
+    Connection {
+      Type          Signal
+      SrcComponent  "From44"
+      SrcTerminal   1
+      Points        [805, 480; 805, 475]
+      DstComponent  "Mux18"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "From43"
+      SrcTerminal   1
+      Points        [820, 455; 820, 465]
+      DstComponent  "Mux18"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Mux18"
+      SrcTerminal   1
+      DstComponent  "Periodic Average9"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Periodic Average9"
+      SrcTerminal   1
+      DstComponent  "Scope1"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "From45"
+      SrcTerminal   1
+      DstComponent  "Sum2"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Gain2"
+      SrcTerminal   2
+      Points        [1275, 390]
+      Branch {
+        DstComponent  "Sum1"
+        DstTerminal   2
+      }
+      Branch {
+        Points        [1285, 390]
+        DstComponent  "Sum2"
+        DstTerminal   2
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Sum2"
+      SrcTerminal   1
+      DstComponent  "Periodic Average10"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Periodic Average10"
+      SrcTerminal   1
+      DstComponent  "Gain5"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Gain5"
+      SrcTerminal   2
+      DstComponent  "Mux15"
+      DstTerminal   4
+    }
     RectangleAnnotation {
       Position     [1670, 160]
       Width        390
@@ -13860,7 +14045,7 @@ Plecs {
       Height       320
 =======
 "ht:700;\">id-iq and V/I</span></p></body></html>"
-      Position      [1340, 470]
+      Position      [1470, 330]
     } 
     RectangleAnnotation {
       Position     [1375, 590]
