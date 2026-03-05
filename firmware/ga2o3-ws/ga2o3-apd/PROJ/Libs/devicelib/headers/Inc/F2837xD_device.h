@@ -43,6 +43,8 @@
 #ifndef F2837xD_DEVICE_H
 #define F2837xD_DEVICE_H
 
+#include "stdint.h"
+
 #if (!defined(CPU1) && !defined(CPU2))
 #error "You must define CPU1 or CPU2 in your project properties.  Otherwise, the offsets in your header files will be inaccurate."
 #endif
@@ -69,8 +71,8 @@ extern "C" {
 #define __cregister
 #endif  //__TMS320C28xx__
 
-extern __cregister volatile unsigned int IFR;
-extern __cregister volatile unsigned int IER;
+extern __cregister volatile uint16_t IFR;
+extern __cregister volatile uint16_t IER;
 
 #define  EINT   __asm(" clrc INTM")
 #define  DINT   __asm(" setc INTM")

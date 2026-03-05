@@ -2,19 +2,16 @@
 
 StateMachineTypeDef  GlobalStateMachineHandle;
 
-void StateMachineInit(void)
+void InitStateMachine(void)
 {
     GlobalStateMachineHandle = STATE_INIT;
 }
 
-void StateMacineLoop(void)
+void StateMachineLoop(void)
 {
-    while (TRUE) 
+    switch (GlobalStateMachineHandle) 
     {
-        switch (GlobalStateMachineHandle) 
-        {
-            case STATE_INIT:
-                break;
-        }
-    };
+        case STATE_INIT:
+        break;
+    }
 }

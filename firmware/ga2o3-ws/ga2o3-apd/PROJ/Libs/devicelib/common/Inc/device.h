@@ -230,13 +230,13 @@ a single CPU should be defined."
 //*****************************************************************************
 #ifdef _FLASH
 #include <stddef.h>
-
-extern uint16_t RamfuncsLoadStart;
-extern uint16_t RamfuncsLoadEnd;
-extern uint16_t RamfuncsLoadSize;
-extern uint16_t RamfuncsRunStart;
-extern uint16_t RamfuncsRunEnd;
-extern uint16_t RamfuncsRunSize;
+#include "F2837xD_device.h"
+extern Uint16 RamfuncsLoadStart;
+extern Uint16 RamfuncsLoadEnd;
+extern Uint16 RamfuncsLoadSize;
+extern Uint16 RamfuncsRunStart;
+extern Uint16 RamfuncsRunEnd;
+extern Uint16 RamfuncsRunSize;
 
 #define DEVICE_FLASH_WAITSTATES 3
 

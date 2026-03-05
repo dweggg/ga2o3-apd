@@ -52,7 +52,7 @@ extern "C" {
 //
 struct CPUTIMER_VARS {
    volatile struct  CPUTIMER_REGS  *RegsAddr;
-   Uint32    InterruptCount;
+   uint32_t    InterruptCount;
    float   CPUFreqInMHz;
    float   PeriodInUSec;
 };
