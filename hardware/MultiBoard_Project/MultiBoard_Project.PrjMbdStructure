@@ -1,2 +1,8 @@
 Record=DiagramHierarchy|SourceDocument=Schematic.MbsDoc|Kind=Multi-board Schematic Module|Designator=1|Source=..\Control_Board\Control_Board.PrjPcb
 Record=SubProject|SourceDocument=Schematic.MbsDoc|ProjectPath=..\Control_Board\Control_Board.PrjPcb
+Record=DiagramHierarchy|SourceDocument=Schematic.MbsDoc|Kind=Multi-board Schematic Module|Designator=4|Source=..\ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
+Record=SubProject|SourceDocument=Schematic.MbsDoc|ProjectPath=..\ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
+Record=DiagramHierarchy|SourceDocument=Schematic.MbsDoc|Kind=Multi-board Schematic Module|Designator=3|Source=..\ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
+Record=SubProject|SourceDocument=Schematic.MbsDoc|ProjectPath=..\ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
+Record=DiagramHierarchy|SourceDocument=Schematic.MbsDoc|Kind=Multi-board Schematic Module|Designator=2|Source=..\ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
+Record=SubProject|SourceDocument=Schematic.MbsDoc|ProjectPath=..\ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
