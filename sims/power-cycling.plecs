@@ -68,8 +68,8 @@ Plecs {
   IncompatibleInitialConditionMsg "2"
   Schematic {
     Location      [0, 28; 1536, 820]
-    ZoomFactor    0.760185
-    SliderPosition [0, 56]
+    ZoomFactor    0.79335
+    SliderPosition [14, 9]
     ShowBrowser   on
     BrowserWidth  158
     Component {
@@ -6768,7 +6768,7 @@ Plecs {
       }
       Parameter {
         Variable      "thermal"
-        Value         ""
+        Value         "file:VS-HFA06PB120-N3"
         Show          off
       }
       Parameter {
@@ -6788,7 +6788,7 @@ Plecs {
       }
       Parameter {
         Variable      "SwitchModel"
-        Value         "1"
+        Value         "2"
         Show          off
       }
       Parameter {
@@ -6817,7 +6817,7 @@ Plecs {
       }
       Parameter {
         Variable      "thermal"
-        Value         ""
+        Value         "file:VS-HFA06PB120-N3"
         Show          off
       }
       Parameter {
@@ -6837,7 +6837,7 @@ Plecs {
       }
       Parameter {
         Variable      "SwitchModel"
-        Value         "1"
+        Value         "2"
         Show          off
       }
       Parameter {
@@ -6866,7 +6866,7 @@ Plecs {
       }
       Parameter {
         Variable      "thermal"
-        Value         ""
+        Value         "file:VS-HFA06PB120-N3"
         Show          off
       }
       Parameter {
@@ -6886,7 +6886,7 @@ Plecs {
       }
       Parameter {
         Variable      "SwitchModel"
-        Value         "1"
+        Value         "2"
         Show          off
       }
       Parameter {
@@ -6915,7 +6915,7 @@ Plecs {
       }
       Parameter {
         Variable      "thermal"
-        Value         ""
+        Value         "file:VS-HFA06PB120-N3"
         Show          off
       }
       Parameter {
@@ -6935,7 +6935,7 @@ Plecs {
       }
       Parameter {
         Variable      "SwitchModel"
-        Value         "1"
+        Value         "2"
         Show          off
       }
       Parameter {
@@ -6964,7 +6964,7 @@ Plecs {
       }
       Parameter {
         Variable      "thermal"
-        Value         ""
+        Value         "file:VS-HFA06PB120-N3"
         Show          off
       }
       Parameter {
@@ -6984,7 +6984,7 @@ Plecs {
       }
       Parameter {
         Variable      "SwitchModel"
-        Value         "1"
+        Value         "2"
         Show          off
       }
       Parameter {
@@ -7013,7 +7013,7 @@ Plecs {
       }
       Parameter {
         Variable      "thermal"
-        Value         ""
+        Value         "file:VS-HFA06PB120-N3"
         Show          off
       }
       Parameter {
@@ -7033,7 +7033,7 @@ Plecs {
       }
       Parameter {
         Variable      "SwitchModel"
-        Value         "1"
+        Value         "2"
         Show          off
       }
       Parameter {
@@ -7105,7 +7105,7 @@ Plecs {
           AutoScale     1
           MinValue      0
           MaxValue      1
-          Signals       {}
+          Signals       {"id_ref", "iq_ref", "id_meas", "iq_meas"}
           Untangle      0
           KeepBaseline  off
           BaselineValue 0
@@ -7115,7 +7115,7 @@ Plecs {
           AutoScale     1
           MinValue      0
           MaxValue      1
-          Signals       {}
+          Signals       {"vAC / 10", "iAC"}
           Untangle      0
           KeepBaseline  off
           BaselineValue 0
@@ -7756,11 +7756,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [593, 317; 943, 604]
+      Location      [593, 317; 943, 636]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
 "///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAEAAAAA"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAEgAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -7919,10 +7919,10 @@ Plecs {
       Type          Scope
       Name          "Scope4"
       Show          off
-      Position      [695, 570]
-      Direction     up
+      Position      [545, 575]
+      Direction     down
       Flipped       off
-      LabelPosition south
+      LabelPosition north
       Frame         [-15, -15; 15, 15]
       Location      [593, 317; 943, 564]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
@@ -8007,59 +8007,16 @@ Plecs {
       Type          ThermalGround
       Name          "Ground"
       Show          off
-      Position      [1135, 225]
+      Position      [1115, 225]
       Direction     up
       Flipped       off
       LabelPosition east
     }
     Component {
-      Type          ThermalResistor
-      Name          "Rth"
-      Show          off
-      Position      [1105, 200]
-      Direction     right
-      Flipped       on
-      LabelPosition south
-      Parameter {
-        Variable      "Rth"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          PlecsProbe
-      Name          "Probe"
-      Show          off
-      Position      [1205, 575]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Probe {
-        Component     "D1"
-        Path          ""
-        Signals       {"Diode switching loss", "Diode conduction loss"}
-      }
-      Probe {
-        Component     "D2"
-        Path          ""
-        Signals       {"Diode conduction loss", "Diode switching loss"}
-      }
-      Probe {
-        Component     "D3"
-        Path          ""
-        Signals       {"Diode conduction loss", "Diode switching loss"}
-      }
-      Probe {
-        Component     "D4"
-        Path          ""
-        Signals       {"Diode conduction loss", "Diode switching loss"}
-      }
-    }
-    Component {
       Type          SignalMux
       Name          "Mux12"
       Show          off
-      Position      [1475, 545]
+      Position      [1405, 575]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -8074,7 +8031,7 @@ Plecs {
       Type          SignalMux
       Name          "Mux13"
       Show          off
-      Position      [1475, 565]
+      Position      [1405, 595]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -8089,7 +8046,7 @@ Plecs {
       Type          SignalMux
       Name          "Mux16"
       Show          off
-      Position      [1475, 585]
+      Position      [1405, 615]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -8104,7 +8061,7 @@ Plecs {
       Type          SignalMux
       Name          "Mux17"
       Show          off
-      Position      [1475, 605]
+      Position      [1405, 635]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -8118,22 +8075,22 @@ Plecs {
     Component {
       Type          Scope
       Name          "Scope6"
-      Show          on
-      Position      [1550, 575]
+      Show          off
+      Position      [1480, 605]
       Direction     up
       Flipped       off
       LabelPosition south
       Frame         [-15, -45; 15, 45]
       Location      [0, 28; 1536, 842]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADD/wCAAAAA/sAAAAQAFoAbwBvA"
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACAvwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAKkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAw8AAABjAP///wAAAAMAAAYAAAABB/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAABgAAAABEAP///wAABUYAAAMPAAAA"
+"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAgIAAABjAP///wAAAAMAAAYAAAABB/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAICAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":160,\"Labels\":[\""
-"Delta\",\"Mean\",\"RMS\"],\"VisualIdxs\":[3,8,9]}"
+      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":304,\"Labels\":["
+"\"Delta\",\"Mean\",\"RMS\"],\"VisualIdxs\":[3,8,9]}"
       PlotPalettes  "AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -8239,57 +8196,6 @@ Plecs {
       }
     }
     Component {
-      Type          SignalDemux
-      Name          "Demux8"
-      Show          off
-      Position      [1350, 575]
-      Direction     right
-      Flipped       on
-      LabelPosition south
-      Frame         [-7, -40; 2, 40]
-      Parameter {
-        Variable      "Width"
-        Value         "8"
-        Show          off
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Filters/Moving Average"
-      Name          "Moving Average"
-      Show          off
-      Position      [1285, 575]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Parameter {
-        Variable      "x0"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_period"
-        Value         "10/50"
-        Show          off
-      }
-      Parameter {
-        Variable      "buffer_size"
-        Value         "256"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [19, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-15, 0]
-        Direction     left
-      }
-    }
-    Component {
       Type          Resistor
       Name          "R2"
       Show          off
@@ -8363,6 +8269,262 @@ Plecs {
       Parameter {
         Variable      "DataType"
         Value         "10"
+        Show          off
+      }
+    }
+    Component {
+      Type          SwitchLossCalculator
+      Name          "Switch Loss\nCalculator"
+      Show          off
+      Position      [1225, 530]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "0.1"
+        Show          off
+      }
+      Parameter {
+        Variable      "ConductionLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "SwitchingLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOnLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOffLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TotalLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "GroupTypes"
+        Value         "2"
+        Show          off
+      }
+      Probe {
+        Component     "D1"
+        Path          ""
+        Signals       {}
+      }
+    }
+    Component {
+      Type          SwitchLossCalculator
+      Name          "Switch Loss\nCalculator1"
+      Show          off
+      Position      [1225, 580]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "0.1"
+        Show          off
+      }
+      Parameter {
+        Variable      "ConductionLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "SwitchingLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOnLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOffLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TotalLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "GroupTypes"
+        Value         "2"
+        Show          off
+      }
+      Probe {
+        Component     "D3"
+        Path          ""
+        Signals       {}
+      }
+    }
+    Component {
+      Type          SwitchLossCalculator
+      Name          "Switch Loss\nCalculator2"
+      Show          off
+      Position      [1225, 630]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "0.1"
+        Show          off
+      }
+      Parameter {
+        Variable      "ConductionLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "SwitchingLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOnLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOffLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TotalLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "GroupTypes"
+        Value         "2"
+        Show          off
+      }
+      Probe {
+        Component     "D2"
+        Path          ""
+        Signals       {}
+      }
+    }
+    Component {
+      Type          SwitchLossCalculator
+      Name          "Switch Loss\nCalculator3"
+      Show          off
+      Position      [1225, 680]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "0.1"
+        Show          off
+      }
+      Parameter {
+        Variable      "ConductionLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "SwitchingLoss"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOnLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TurnOffLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "TotalLoss"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "GroupTypes"
+        Value         "2"
+        Show          off
+      }
+      Probe {
+        Component     "D4"
+        Path          ""
+        Signals       {}
+      }
+    }
+    Component {
+      Type          SignalDemux
+      Name          "Demux8"
+      Show          off
+      Position      [1310, 530]
+      Direction     right
+      Flipped       on
+      LabelPosition south
+      Frame         [-7, -10; 2, 10]
+      Parameter {
+        Variable      "Width"
+        Value         "2"
+        Show          off
+      }
+    }
+    Component {
+      Type          SignalDemux
+      Name          "Demux11"
+      Show          off
+      Position      [1310, 580]
+      Direction     right
+      Flipped       on
+      LabelPosition south
+      Frame         [-7, -10; 2, 10]
+      Parameter {
+        Variable      "Width"
+        Value         "2"
+        Show          off
+      }
+    }
+    Component {
+      Type          SignalDemux
+      Name          "Demux12"
+      Show          off
+      Position      [1310, 630]
+      Direction     right
+      Flipped       on
+      LabelPosition south
+      Frame         [-7, -10; 2, 10]
+      Parameter {
+        Variable      "Width"
+        Value         "2"
+        Show          off
+      }
+    }
+    Component {
+      Type          SignalDemux
+      Name          "Demux13"
+      Show          off
+      Position      [1310, 680]
+      Direction     right
+      Flipped       on
+      LabelPosition south
+      Frame         [-7, -10; 2, 10]
+      Parameter {
+        Variable      "Width"
+        Value         "2"
         Show          off
       }
     }
@@ -9769,13 +9931,13 @@ Plecs {
       Type          Signal
       SrcComponent  "Polar->rect"
       SrcTerminal   2
-      Points        [575, 630]
+      Points        [580, 630]
       Branch {
         DstComponent  "Demux10"
         DstTerminal   1
       }
       Branch {
-        Points        [575, 570]
+        Points        [580, 575]
         DstComponent  "Scope4"
         DstTerminal   1
       }
@@ -9800,91 +9962,6 @@ Plecs {
       SrcTerminal   2
       DstComponent  "Mux15"
       DstTerminal   2
-    }
-    Connection {
-      Type          HeatPipe
-      SrcComponent  "Rth"
-      SrcTerminal   2
-      Points        [1135, 200]
-      DstComponent  "Ground"
-      DstTerminal   1
-    }
-    Connection {
-      Type          HeatPipe
-      SrcComponent  "Rth"
-      SrcTerminal   1
-      DstComponent  "Heat Sink"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   2
-      DstComponent  "Mux12"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   4
-      DstComponent  "Mux13"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   3
-      DstComponent  "Mux12"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   5
-      DstComponent  "Mux13"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   6
-      DstComponent  "Mux16"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   7
-      DstComponent  "Mux16"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   8
-      DstComponent  "Mux17"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux8"
-      SrcTerminal   9
-      DstComponent  "Mux17"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Probe"
-      SrcTerminal   1
-      DstComponent  "Moving Average"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Moving Average"
-      SrcTerminal   1
-      DstComponent  "Demux8"
-      DstTerminal   1
     }
     Connection {
       Type          Signal
@@ -9964,6 +10041,106 @@ Plecs {
       DstComponent  "S2"
       DstTerminal   1
     }
+    Connection {
+      Type          HeatPipe
+      SrcComponent  "Ground"
+      SrcTerminal   1
+      Points        [1115, 200]
+      DstComponent  "Heat Sink"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Switch Loss\nCalculator3"
+      SrcTerminal   1
+      DstComponent  "Demux13"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Switch Loss\nCalculator2"
+      SrcTerminal   1
+      DstComponent  "Demux12"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Switch Loss\nCalculator1"
+      SrcTerminal   1
+      DstComponent  "Demux11"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Switch Loss\nCalculator"
+      SrcTerminal   1
+      DstComponent  "Demux8"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux8"
+      SrcTerminal   2
+      Points        [1365, 525; 1365, 570]
+      DstComponent  "Mux12"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux8"
+      SrcTerminal   3
+      Points        [1355, 535; 1355, 580]
+      DstComponent  "Mux12"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux11"
+      SrcTerminal   2
+      Points        [1345, 575; 1345, 590]
+      DstComponent  "Mux13"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux11"
+      SrcTerminal   3
+      Points        [1335, 585; 1335, 600]
+      DstComponent  "Mux13"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux12"
+      SrcTerminal   2
+      Points        [1335, 625; 1335, 610]
+      DstComponent  "Mux16"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux12"
+      SrcTerminal   3
+      Points        [1345, 635; 1345, 620]
+      DstComponent  "Mux16"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux13"
+      SrcTerminal   2
+      Points        [1355, 675; 1355, 630]
+      DstComponent  "Mux17"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux13"
+      SrcTerminal   3
+      Points        [1365, 685; 1365, 640]
+      DstComponent  "Mux17"
+      DstTerminal   3
+    }
     RectangleAnnotation {
       Position     [1670, 160]
       Width        390
@@ -10010,7 +10187,7 @@ Plecs {
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
 "ht:700;\">Plant</span></p></body></html>"
-      Position      [475, 500]
+      Position      [485, 485]
     } 
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
@@ -10087,9 +10264,9 @@ Plecs {
       Position      [1340, 470]
     } 
     RectangleAnnotation {
-      Position     [1375, 590]
+      Position     [1375, 615]
       Width        410
-      Height       180
+      Height       240
       CornerRadius 3
       Thickness    2
       PenColor     4278190080
@@ -10099,8 +10276,8 @@ Plecs {
     } 
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
-"ht:700;\">id-iq and V/I</span></p></body></html>"
-      Position      [1340, 660]
+"ht:700;\">losses</span></p></body></html>"
+      Position      [1360, 720]
     } 
   }
 }
