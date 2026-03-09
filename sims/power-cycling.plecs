@@ -67,32 +67,16 @@ Plecs {
   InvalidNetlistFunctionEvaluationMsg "1"
   IncompatibleInitialConditionMsg "2"
   Schematic {
-<<<<<<< Updated upstream
-<<<<<<< HEAD:sims/interleaved.plecs
-    Location      [0, 23; 1600, 910]
-    ZoomFactor    1.23109
-    SliderPosition [112, -1]
-=======
     Location      [0, 28; 1536, 820]
-    ZoomFactor    0.921243
-    SliderPosition [0, 233]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
-=======
-    Location      [0, 24; 1283, 681]
-    ZoomFactor    1.05424
-    SliderPosition [-1, -1]
->>>>>>> Stashed changes
+    ZoomFactor    0.760185
+    SliderPosition [0, 56]
     ShowBrowser   on
     BrowserWidth  158
     Component {
       Type          DCVoltageSource
       Name          "V_dc"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [25, 250]
-=======
       Position      [35, 250]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     down
       Flipped       on
       LabelPosition east
@@ -281,11 +265,7 @@ Plecs {
       Type          From
       Name          "From5"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [860, 330]
-=======
       Position      [850, 325]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -320,41 +300,21 @@ Plecs {
       Type          Scope
       Name          "Scope"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1420, 190]
-=======
       Position      [1420, 165]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
       Frame         [-15, -20; 15, 20]
-<<<<<<< Updated upstream
-<<<<<<< HEAD:sims/interleaved.plecs
-      Location      [0, 24; 1600, 969]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAAClPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAH8A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAApQAAABhAP///wAAAAMAAAZAAAAA+Pw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABkAAAABEAP///wAABYYAAAKUAAAA"
-=======
       Location      [0, 28; 1536, 842]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACsvwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAIEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
 "///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAArIAAABjAP///wAAAAMAAAYAAAAAV/w"
 "BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAKyAAAA"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
-=======
-      Location      [0, 24; 1283, 703]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACK/wCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAIAA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAisAAABiAP///wAAAAMAAAUDAAAAV/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABQMAAABEAP///wAABEkAAAIrAAAA"
->>>>>>> Stashed changes
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":187,\"Labels\":["
-"\"Delta\",\"Mean\",\"RMS\"],\"VisualIdxs\":[3,8,9]}"
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":185,\"Labels\":[\""
+"Delta\",\"Mean\",\"RMS\"],\"VisualIdxs\":[3,8,9]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA"
 "AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 "=="
@@ -442,11 +402,7 @@ Plecs {
       Type          SignalMux
       Name          "Mux"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1335, 155]
-=======
       Position      [1335, 130]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -461,11 +417,7 @@ Plecs {
       Type          SignalMux
       Name          "Mux1"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1335, 190]
-=======
       Position      [1335, 165]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -480,11 +432,7 @@ Plecs {
       Type          From
       Name          "From6"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1215, 215]
-=======
       Position      [1215, 185]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -519,11 +467,7 @@ Plecs {
       Type          From
       Name          "From7"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1305, 185]
-=======
       Position      [1305, 160]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -558,11 +502,7 @@ Plecs {
       Type          From
       Name          "From8"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1305, 195]
-=======
       Position      [1305, 170]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -597,11 +537,7 @@ Plecs {
       Type          From
       Name          "From9"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1305, 140]
-=======
       Position      [1305, 115]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -636,11 +572,7 @@ Plecs {
       Type          From
       Name          "From10"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1305, 150]
-=======
       Position      [1305, 125]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -675,11 +607,7 @@ Plecs {
       Type          From
       Name          "From11"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1305, 160]
-=======
       Position      [1305, 135]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -714,11 +642,7 @@ Plecs {
       Type          From
       Name          "From12"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1305, 170]
-=======
       Position      [1305, 145]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -764,45 +688,10 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Resistor
-      Name          "R2"
-      Show          off
-      Position      [575, 230]
-      Direction     right
-      Flipped       off
-      LabelPosition north
-      Parameter {
-        Variable      "R"
-        Value         "R1"
-        Show          on
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "R3"
-      Show          off
-      Position      [575, 250]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "R"
-        Value         "R1"
-        Show          on
-      }
-    }
-    Component {
-      Type          SignalMux
-      Name          "Mux2"
-      Show          off
-      Position      [1335, 230]
-=======
       Type          SignalMux
       Name          "Mux2"
       Show          off
       Position      [1335, 205]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -817,11 +706,7 @@ Plecs {
       Type          Goto
       Name          "Goto4"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [600, 970]
-=======
       Position      [615, 970]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -856,11 +741,7 @@ Plecs {
       Type          Goto
       Name          "Goto5"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [600, 980]
-=======
       Position      [615, 980]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -894,247 +775,9 @@ Plecs {
     Component {
       Type          Reference
       SrcComponent  "Components/Control/Modulators/Symmetrical PWM"
-<<<<<<< HEAD:sims/interleaved.plecs
-      Name          "Symmetrical PWM1"
-      Show          off
-      Position      [855, 635]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-20, -20; 20, 20]
-      Parameter {
-        Variable      "sampling"
-        Value         "3"
-        Show          off
-      }
-      Parameter {
-        Variable      "fc"
-        Value         "fsw"
-        Show          off
-      }
-      Parameter {
-        Variable      "carrier_phaseshift"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "carrier_limits"
-        Value         "[-0.5 0.5]"
-        Show          off
-      }
-      Parameter {
-        Variable      "output_values"
-        Value         "[ 0 1]"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [24, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-20, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Modulators/Symmetrical PWM"
-      Name          "Symmetrical PWM2"
-      Show          off
-      Position      [855, 695]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-20, -20; 20, 20]
-      Parameter {
-        Variable      "sampling"
-        Value         "3"
-        Show          off
-      }
-      Parameter {
-        Variable      "fc"
-        Value         "fsw"
-        Show          off
-      }
-      Parameter {
-        Variable      "carrier_phaseshift"
-        Value         "0.5"
-        Show          off
-      }
-      Parameter {
-        Variable      "carrier_limits"
-        Value         "[-0.5 0.5]"
-        Show          off
-      }
-      Parameter {
-        Variable      "output_values"
-        Value         "[ 0 1]"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [24, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-20, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto"
-      Show          off
-      Position      [1100, 635]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "AH"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto1"
-      Show          off
-      Position      [1100, 645]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "AL"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto2"
-      Show          off
-      Position      [1100, 695]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "BH"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto3"
-      Show          off
-      Position      [1100, 705]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "BL"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Modulators/Symmetrical PWM"
-      Name          "Symmetrical PWM3"
-      Show          off
-      Position      [355, 970]
-=======
       Name          "Symmetrical PWM3"
       Show          off
       Position      [365, 970]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
@@ -1151,11 +794,7 @@ Plecs {
       }
       Parameter {
         Variable      "carrier_phaseshift"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "0"
-=======
         Value         "0.25"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
@@ -1219,11 +858,7 @@ Plecs {
       SrcComponent  "Components/Control/Modulators/Blanking Time"
       Name          "Blanking Time2"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [500, 975]
-=======
       Position      [540, 975]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
@@ -1248,11 +883,7 @@ Plecs {
       Type          LogicalOperator
       Name          "Logical\nOperator2"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [420, 995]
-=======
       Position      [455, 995]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       on
       LabelPosition north
@@ -1271,11 +902,7 @@ Plecs {
       Type          SignalMux
       Name          "Mux3"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [455, 975]
-=======
       Position      [490, 975]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -1290,161 +917,7 @@ Plecs {
       Type          SignalDemux
       Name          "Demux"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [555, 975]
-      Direction     right
-      Flipped       on
-      LabelPosition south
-      Frame         [-7, -10; 2, 10]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Modulators/Blanking Time"
-      Name          "Blanking Time3"
-      Show          off
-      Position      [1000, 640]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-20, -20; 20, 20]
-      Parameter {
-        Variable      "tb"
-        Value         "dt"
-        Show          on
-      }
-      Terminal {
-        Type          Output
-        Position      [24, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-20, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          LogicalOperator
-      Name          "Logical\nOperator3"
-      Show          off
-      Position      [915, 660]
-      Direction     up
-      Flipped       on
-      LabelPosition north
-      Parameter {
-        Variable      "Operator"
-        Value         "6"
-        Show          off
-      }
-      Parameter {
-        Variable      "Inputs"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          SignalMux
-      Name          "Mux4"
-      Show          off
-      Position      [955, 640]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Frame         [-2, -10; 7, 10]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          SignalDemux
-      Name          "Demux1"
-      Show          off
-      Position      [1055, 640]
-      Direction     right
-      Flipped       on
-      LabelPosition south
-      Frame         [-7, -10; 2, 10]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Modulators/Blanking Time"
-      Name          "Blanking Time4"
-      Show          off
-      Position      [1000, 700]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-20, -20; 20, 20]
-      Parameter {
-        Variable      "tb"
-        Value         "dt"
-        Show          on
-      }
-      Terminal {
-        Type          Output
-        Position      [24, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-20, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          LogicalOperator
-      Name          "Logical\nOperator4"
-      Show          off
-      Position      [915, 720]
-      Direction     up
-      Flipped       on
-      LabelPosition north
-      Parameter {
-        Variable      "Operator"
-        Value         "6"
-        Show          off
-      }
-      Parameter {
-        Variable      "Inputs"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          SignalMux
-      Name          "Mux5"
-      Show          off
-      Position      [955, 700]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Frame         [-2, -10; 7, 10]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          SignalDemux
-      Name          "Demux2"
-      Show          off
-      Position      [1055, 700]
-=======
       Position      [590, 975]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       on
       LabelPosition south
@@ -1575,11 +1048,7 @@ Plecs {
       Type          From
       Name          "From17"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1215, 225]
-=======
       Position      [1215, 195]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -1796,11 +1265,7 @@ Plecs {
       Type          Gain
       Name          "Gain"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [135, 970]
-=======
       Position      [155, 970]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -1863,11 +1328,7 @@ Plecs {
       Type          Voltmeter
       Name          "Vm2"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [85, 250]
-=======
       Position      [95, 250]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition west
@@ -1876,11 +1337,7 @@ Plecs {
       Type          Goto
       Name          "Goto10"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [115, 250]
-=======
       Position      [150, 250]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -1944,11 +1401,7 @@ Plecs {
       Type          From
       Name          "From14"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [105, 930]
-=======
       Position      [120, 930]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -2014,67 +1467,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Scope
-      Name          "Scope1"
-      Show          off
-      Position      [385, 920]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Location      [320, 120; 670, 521]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAFyAAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":104,\"Labels\":[],"
-"\"VisualIdxs\":[]}"
-      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      Axes          "1"
-      TimeRange     "0.0"
-      ScrollingMode "1"
-      SingleTimeAxis "1"
-      Open          "0"
-      Ts            "-1"
-      SampleLimit   "0"
-      XAxisLabel    "Time / s"
-      ShowLegend    "1"
-      Axis {
-        Name          ""
-        AutoScale     1
-        MinValue      0
-        MaxValue      1
-        Signals       {}
-        SignalTypes   [ ]
-        Untangle      0
-        KeepBaseline  off
-        BaselineValue 0
-      }
-      Fourier {
-        SingleXAxis       on
-        AxisLabel         "Frequency / Hz"
-        Scaling           0
-        PhaseDisplay      0
-        ShowFourierLegend off
-        Axis {
-          Name          ""
-          AutoScale     1
-          MinValue      0
-          MaxValue      1
-          Signals       {}
-          Untangle      0
-          KeepBaseline  off
-          BaselineValue 0
-        }
-      }
-    }
-    Component {
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Type          Sum
       Name          "Sum"
       Show          off
@@ -2107,11 +1499,7 @@ Plecs {
       Type          Constant
       Name          "frequency1"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [250, 995]
-=======
       Position      [155, 1010]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -2331,21 +1719,13 @@ Plecs {
       Type          CScript
       Name          "dq-alphaBeta"
       Show          on
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [615, 640]
-=======
       Position      [695, 640]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
       Parameter {
         Variable      "DialogGeometry"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "[403 207 474 319]"
-=======
         Value         "[488 395 474 319]"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
@@ -2465,11 +1845,7 @@ Plecs {
       Type          SignalMux
       Name          "Mux8"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [555, 640]
-=======
       Position      [635, 640]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -2484,11 +1860,7 @@ Plecs {
       Type          SignalDemux
       Name          "Demux6"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [675, 640]
-=======
       Position      [745, 640]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       on
       LabelPosition south
@@ -2503,11 +1875,7 @@ Plecs {
       Type          SignalDemux
       Name          "Demux7"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [505, 650]
-=======
       Position      [600, 650]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       on
       LabelPosition south
@@ -2522,11 +1890,7 @@ Plecs {
       Type          From
       Name          "From18"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [475, 650]
-=======
       Position      [570, 650]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -2561,11 +1925,7 @@ Plecs {
       Type          SignalDemux
       Name          "Demux4"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [275, 800]
-=======
       Position      [290, 800]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     left
       Flipped       on
       LabelPosition north
@@ -2577,367 +1937,10 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Reference
-      SrcComponent  "Components/Control/Continuous/Continuous PID\\nController"
-      Name          "Continuous PID\nController"
-      Show          off
-      Position      [345, 605]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-40, -25; 40, 25]
-      Parameter {
-        Variable      "cont_type"
-        Value         "3"
-        Show          off
-      }
-      Parameter {
-        Variable      "par_source"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "kp"
-        Value         "L1*log(9)/tr"
-        Show          off
-      }
-      Parameter {
-        Variable      "ki"
-        Value         "R1*log(9)/tr"
-        Show          off
-      }
-      Parameter {
-        Variable      "kd"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "kf"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "ex_reset"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "x0_source"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "x0"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "ex_sat"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "sat_lim"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "up_limit"
-        Value         "400/2"
-        Show          off
-      }
-      Parameter {
-        Variable      "low_limit"
-        Value         "-400/2"
-        Show          off
-      }
-      Parameter {
-        Variable      "aw_method"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "kbc"
-        Value         "1/(L1*log(9)/tr)"
-        Show          off
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, 0]
-        Direction     left
-      }
-      Terminal {
-        Type          Output
-        Position      [44, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-5, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [5, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [15, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, -15]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, 10]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [25, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [35, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, -20]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, -10]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, 20]
-        Direction     left
-      }
-    }
-    Component {
-      Type          Sum
-      Name          "Sum1"
-      Show          off
-      Position      [185, 605]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "IconShape"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "Inputs"
-        Value         "|+-"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "11"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataTypeOverflowMode"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          Sum
-      Name          "Sum2"
-      Show          off
-      Position      [255, 660]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "IconShape"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "Inputs"
-        Value         "|+-"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "11"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataTypeOverflowMode"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Continuous/Continuous PID\\nController"
-      Name          "Continuous PID\nController1"
-      Show          off
-      Position      [345, 660]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-40, -25; 40, 25]
-      Parameter {
-        Variable      "cont_type"
-        Value         "3"
-        Show          off
-      }
-      Parameter {
-        Variable      "par_source"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "kp"
-        Value         "L1*log(9)/tr"
-        Show          off
-      }
-      Parameter {
-        Variable      "ki"
-        Value         "R1*log(9)/tr"
-        Show          off
-      }
-      Parameter {
-        Variable      "kd"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "kf"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "ex_reset"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "x0_source"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "x0"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "ex_sat"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "sat_lim"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "up_limit"
-        Value         "400/2"
-        Show          off
-      }
-      Parameter {
-        Variable      "low_limit"
-        Value         "-400/2"
-        Show          off
-      }
-      Parameter {
-        Variable      "aw_method"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "kbc"
-        Value         "1/(L1*log(9)/tr)"
-        Show          off
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, 0]
-        Direction     left
-      }
-      Terminal {
-        Type          Output
-        Position      [44, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-5, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [5, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [15, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, -15]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, 10]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [25, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [35, -25]
-        Direction     up
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, -20]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, -10]
-        Direction     left
-      }
-      Terminal {
-        Type          Input
-        Position      [-40, 20]
-        Direction     left
-      }
-    }
-    Component {
-      Type          Product
-      Name          "Divide1"
-      Show          off
-      Position      [770, 635]
-=======
       Type          Product
       Name          "Divide1"
       Show          off
       Position      [775, 635]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
@@ -2963,102 +1966,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          From
-      Name          "From20"
-      Show          off
-      Position      [165, 565]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "vDC"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Scope
-      Name          "Scope3"
-      Show          off
-      Position      [345, 720]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Location      [74, 162; 988, 774]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAACCAAACRfwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAC8A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAkUAAABhAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAwoAAAJFAAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":145,\"Labels\":[],"
-"\"VisualIdxs\":[]}"
-      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      Axes          "1"
-      TimeRange     "0.0"
-      ScrollingMode "1"
-      SingleTimeAxis "1"
-      Open          "0"
-      Ts            "-1"
-      SampleLimit   "0"
-      XAxisLabel    "Time / s"
-      ShowLegend    "1"
-      Axis {
-        Name          ""
-        AutoScale     1
-        MinValue      0
-        MaxValue      1
-        Signals       {}
-        SignalTypes   [ ]
-        Untangle      0
-        KeepBaseline  off
-        BaselineValue 0
-      }
-      Fourier {
-        SingleXAxis       on
-        AxisLabel         "Frequency / Hz"
-        Scaling           0
-        PhaseDisplay      0
-        ShowFourierLegend off
-        Axis {
-          Name          ""
-          AutoScale     1
-          MinValue      0
-          MaxValue      1
-          Signals       {}
-          Untangle      0
-          KeepBaseline  off
-          BaselineValue 0
-        }
-      }
-    }
-    Component {
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Type          Ammeter
       Name          "Am4"
       Show          off
@@ -3106,11 +2013,7 @@ Plecs {
       Type          From
       Name          "From21"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1215, 235]
-=======
       Position      [1215, 205]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -3142,135 +2045,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Scope
-      Name          "Scope4"
-      Show          off
-      Position      [855, 580]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Location      [2918, 469; 3268, 933]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAGxAAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":103,\"Labels\":[],"
-"\"VisualIdxs\":[]}"
-      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      Axes          "1"
-      TimeRange     "0.0"
-      ScrollingMode "1"
-      SingleTimeAxis "1"
-      Open          "0"
-      Ts            "-1"
-      SampleLimit   "0"
-      XAxisLabel    "Time / s"
-      ShowLegend    "1"
-      Axis {
-        Name          ""
-        AutoScale     1
-        MinValue      0
-        MaxValue      1
-        Signals       {}
-        SignalTypes   [ ]
-        Untangle      0
-        KeepBaseline  off
-        BaselineValue 0
-      }
-      Fourier {
-        SingleXAxis       on
-        AxisLabel         "Frequency / Hz"
-        Scaling           0
-        PhaseDisplay      0
-        ShowFourierLegend off
-        Axis {
-          Name          ""
-          AutoScale     1
-          MinValue      0
-          MaxValue      1
-          Signals       {}
-          Untangle      0
-          KeepBaseline  off
-          BaselineValue 0
-        }
-      }
-    }
-    Component {
-      Type          Gain
-      Name          "Gain2"
-      Show          off
-      Position      [245, 585]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "K"
-        Value         "0.5"
-        Show          off
-      }
-      Parameter {
-        Variable      "Multiplication"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "OutputDataType"
-        Value         "11"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataTypeOverflowMode"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "GainDataType"
-        Value         "11"
-        Show          off
-      }
-    }
-    Component {
-      Type          Gain
-      Name          "Gain3"
-      Show          off
-      Position      [245, 625]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "K"
-        Value         "-0.5"
-        Show          off
-      }
-      Parameter {
-        Variable      "Multiplication"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "OutputDataType"
-        Value         "11"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataTypeOverflowMode"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "GainDataType"
-        Value         "11"
-        Show          off
-      }
-    }
-    Component {
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Type          From
       Name          "From19"
       Show          off
@@ -3306,110 +2080,10 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Scope
-      Name          "Scope6"
-      Show          off
-      Position      [490, 750]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Location      [508, 101; 2094, 996]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAC8A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABhAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAABjIAAANgAAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":147,\"Labels\":[],"
-"\"VisualIdxs\":[]}"
-      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      Axes          "1"
-      TimeRange     "0.0"
-      ScrollingMode "1"
-      SingleTimeAxis "1"
-      Open          "0"
-      Ts            "-1"
-      SampleLimit   "0"
-      XAxisLabel    "Time / s"
-      ShowLegend    "1"
-      Axis {
-        Name          ""
-        AutoScale     1
-        MinValue      0
-        MaxValue      1
-        Signals       {}
-        SignalTypes   [ ]
-        Untangle      0
-        KeepBaseline  off
-        BaselineValue 0
-      }
-      Fourier {
-        SingleXAxis       on
-        AxisLabel         "Frequency / Hz"
-        Scaling           0
-        PhaseDisplay      0
-        ShowFourierLegend off
-        Axis {
-          Name          ""
-          AutoScale     1
-          MinValue      0
-          MaxValue      1
-          Signals       {}
-          Untangle      0
-          KeepBaseline  off
-          BaselineValue 0
-        }
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto12"
-      Show          off
-      Position      [310, 900]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "test"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Sum
-      Name          "Sum3"
-      Show          off
-      Position      [1275, 245]
-=======
       Type          Sum
       Name          "Sum3"
       Show          off
       Position      [1275, 215]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
@@ -3542,24 +2216,16 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-<<<<<<< HEAD:sims/interleaved.plecs
-      Location      [0, 23; 1600, 932]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACy/wCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAA1AAABpwAAAC8A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAssAAABhAP///wAAAAMAAAZAAAAAnfw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABkAAAABEAP///wAABYYAAALLAAAA"
-=======
       Location      [0, 28; 1536, 842]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACbPwCAAAAA/sAAAAQAFoAbwBvA"
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACt/wCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAA1AAABpwAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAmwAAABjAP///wAAAAMAAAYAAAAAnfw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAJsAAAA"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
+"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAArcAAABjAP///wAAAAMAAAYAAAAAUvw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAK3AAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":101,\"Labels\":["
-"\"Delta\",\"Mean\",\"RMS\"],\"VisualIdxs\":[3,8,9]}"
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":101,\"Labels\":[\""
+"Delta\",\"Mean\",\"RMS\"],\"VisualIdxs\":[3,8,9]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       Axes          "1"
       TimeRange     "0.0"
@@ -3592,7 +2258,7 @@ Plecs {
           AutoScale     1
           MinValue      0
           MaxValue      1
-          Signals       {"DC", "PhC", "PhA", "PhB", "PhABC"}
+          Signals       {}
           Untangle      0
           KeepBaseline  off
           BaselineValue 0
@@ -3745,11 +2411,7 @@ Plecs {
       Type          Goto
       Name          "Goto13"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1075, 305]
-=======
       Position      [1075, 330]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -3793,11 +2455,7 @@ Plecs {
       Type          Goto
       Name          "Goto14"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [560, 325]
-=======
       Position      [575, 325]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -3841,11 +2499,7 @@ Plecs {
       Type          Goto
       Name          "Goto15"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [495, 325]
-=======
       Position      [505, 325]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -4135,11 +2789,7 @@ Plecs {
       Type          Subsystem
       Name          "SOGI PLL"
       Show          on
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [710, 805]
-=======
       Position      [715, 805]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     down
       Flipped       off
       LabelPosition none
@@ -4171,17 +2821,8 @@ Plecs {
         Position      [-60, 0]
         Direction     left
       }
-      Terminal {
-        Type          Input
-        Position      [-55, 0]
-        Direction     left
-      }
       Schematic {
-<<<<<<< HEAD:sims/interleaved.plecs
-        Location      [192, 248; 1169, 727]
-=======
         Location      [192, 248; 1169, 780]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         ZoomFactor    2.03215
         SliderPosition [0, 0]
         ShowBrowser   off
@@ -4485,15 +3126,10 @@ Plecs {
           Type          Input
           Name          "omega"
           Show          on
-<<<<<<< HEAD:sims/interleaved.plecs
-          Position      [20, 215]
-          Direction     right
-=======
           Position      [355, 135]
           Direction     left
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           Flipped       off
-          LabelPosition south
+          LabelPosition north
           Parameter {
             Variable      "Index"
             Value         "4"
@@ -4587,11 +3223,7 @@ Plecs {
           Type          Signal
           SrcComponent  "omega"
           SrcTerminal   1
-<<<<<<< HEAD:sims/interleaved.plecs
-          Points        [295, 215; 295, 135]
-=======
           Points        [295, 135]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           Branch {
             Points        [295, 65]
             DstComponent  "Product"
@@ -4608,11 +3240,7 @@ Plecs {
       Type          Gain
       Name          "Gain4"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [805, 815]
-=======
       Position      [840, 815]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     left
       Flipped       off
       LabelPosition north
@@ -4643,72 +3271,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          RateLimiter
-      Name          "Rate Limiter"
-      Show          off
-      Position      [130, 660]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "RisingRateLimit"
-        Value         "1000"
-        Show          off
-      }
-      Parameter {
-        Variable      "FallingRateLimit"
-        Value         "-1000"
-        Show          off
-      }
-      Parameter {
-        Variable      "SampleTimeMode"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          RateLimiter
-      Name          "Rate Limiter1"
-      Show          off
-      Position      [130, 605]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "RisingRateLimit"
-        Value         "100"
-        Show          off
-      }
-      Parameter {
-        Variable      "FallingRateLimit"
-        Value         "-100"
-        Show          off
-      }
-      Parameter {
-        Variable      "SampleTimeMode"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          SignalMux
-      Name          "Mux10"
-      Show          off
-      Position      [295, 720]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Frame         [-2, -20; 7, 20]
-      Parameter {
-        Variable      "Width"
-        Value         "4"
-        Show          off
-      }
-    }
-    Component {
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Type          Goto
       Name          "Goto16"
       Show          off
@@ -4744,173 +3306,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          RateLimiter
-      Name          "Rate Limiter2"
-      Show          off
-      Position      [765, 935]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "RisingRateLimit"
-        Value         "1000"
-        Show          off
-      }
-      Parameter {
-        Variable      "FallingRateLimit"
-        Value         "-1000"
-        Show          off
-      }
-      Parameter {
-        Variable      "SampleTimeMode"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          Step
-      Name          "Step2"
-      Show          off
-      Position      [710, 935]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Time"
-        Value         "0.01"
-        Show          on
-      }
-      Parameter {
-        Variable      "Before"
-        Value         "0"
-        Show          on
-      }
-      Parameter {
-        Variable      "After"
-        Value         "2*pi*20"
-        Show          on
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "10"
-        Show          off
-      }
-    }
-    Component {
-      Type          Step
-      Name          "Step"
-      Show          off
-      Position      [55, 660]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Time"
-        Value         "1"
-        Show          on
-      }
-      Parameter {
-        Variable      "Before"
-        Value         "0"
-        Show          on
-      }
-      Parameter {
-        Variable      "After"
-        Value         "10"
-        Show          on
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "10"
-        Show          off
-      }
-    }
-    Component {
-      Type          Step
-      Name          "Step1"
-      Show          off
-      Position      [55, 575]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Time"
-        Value         "1"
-        Show          on
-      }
-      Parameter {
-        Variable      "Before"
-        Value         "0"
-        Show          on
-      }
-      Parameter {
-        Variable      "After"
-        Value         "0"
-        Show          on
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "10"
-        Show          off
-      }
-    }
-    Component {
-      Type          RateLimiter
-      Name          "Rate Limiter3"
-      Show          off
-      Position      [175, 890]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "RisingRateLimit"
-        Value         "1000"
-        Show          off
-      }
-      Parameter {
-        Variable      "FallingRateLimit"
-        Value         "-1000"
-        Show          off
-      }
-      Parameter {
-        Variable      "SampleTimeMode"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          Step
-      Name          "Step3"
-      Show          off
-      Position      [50, 890]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Time"
-        Value         "0.01"
-        Show          on
-      }
-      Parameter {
-        Variable      "Before"
-        Value         "0"
-        Show          on
-      }
-      Parameter {
-        Variable      "After"
-        Value         "150"
-        Show          on
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "10"
-        Show          off
-      }
-    }
-    Component {
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Type          Scope
       Name          "Scope2"
       Show          off
@@ -4919,19 +3314,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-<<<<<<< HEAD:sims/interleaved.plecs
-      Location      [593, 317; 943, 589]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAC8A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABhAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAADxAAAA"
-=======
-      Location      [593, 317; 943, 645]
+      Location      [593, 317; 943, 653]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
 "///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAEpAAAA"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAExAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -5043,19 +3430,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -20; 15, 20]
-<<<<<<< HEAD:sims/interleaved.plecs
-      Location      [0, 24; 1600, 960]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADifwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAH8A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAA4kAAABhAP///wAAAAMAAAYAAAAA+Pw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAABgAAAABEAP///wAABYYAAAOJAAAA"
-=======
       Location      [0, 28; 1536, 842]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADD/wCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAIEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
 "///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAw8AAABjAP///wAAAAMAAAYAAAAA+Pw"
 "BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAABgAAAABEAP///wAABUYAAAMPAAAA"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -5299,8 +3678,6 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition east
-<<<<<<< HEAD:sims/interleaved.plecs
-=======
       Parameter {
         Variable      "Vf"
         Value         "0"
@@ -5615,11 +3992,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [261, 28; 1280, 663]
+      Location      [514, 28; 1533, 654]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFgA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABiAP///wAAAAMAAAP7AAAAW/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAA/sAAABEAP///wAAA/sAAAH7AAAA"
+"G0AQQByAGUAYQAAAAAA/////wAAAFkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAP7AAAAW/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAA/sAAABEAP///wAAA/sAAAHyAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -6111,714 +4488,23 @@ Plecs {
       Direction     left
       Flipped       on
       LabelPosition north
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "s_init"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-    }
-    Component {
-      Type          Diode
-      Name          "D1"
-      Show          on
-      Position      [950, 145]
-      Direction     down
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "1.1"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Np"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "SwitchModel"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "f_grid"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Igbt
-      Name          "IGBT2"
-      Show          on
-      Position      [900, 330]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "s_init"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-    }
-    Component {
-      Type          Diode
-      Name          "D2"
-      Show          on
-      Position      [950, 330]
-      Direction     down
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "1.1"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Np"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "SwitchModel"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "f_grid"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Igbt
-      Name          "IGBT3"
-      Show          on
-      Position      [210, 145]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "s_init"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-    }
-    Component {
-      Type          Igbt
-      Name          "IGBT4"
-      Show          on
-      Position      [365, 145]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "s_init"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-    }
-    Component {
-      Type          Igbt
-      Name          "IGBT5"
-      Show          on
-      Position      [210, 325]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "s_init"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-    }
-    Component {
-      Type          Igbt
-      Name          "IGBT6"
-      Show          on
-      Position      [365, 325]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "s_init"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-    }
-    Component {
-      Type          Diode
-      Name          "D3"
-      Show          on
-      Position      [420, 145]
-      Direction     down
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Np"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "SwitchModel"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "f_grid"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Diode
-      Name          "D4"
-      Show          on
-      Position      [420, 325]
-      Direction     down
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Np"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "SwitchModel"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "f_grid"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Diode
-      Name          "D5"
-      Show          on
-      Position      [260, 145]
-      Direction     down
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Np"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "SwitchModel"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "f_grid"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Diode
-      Name          "D6"
-      Show          on
-      Position      [260, 325]
-      Direction     down
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "Vf"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Rth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Np"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "SwitchModel"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "f_grid"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Ammeter
-      Name          "Am5"
-      Show          off
-      Position      [950, 380]
-      Direction     up
-      Flipped       on
-      LabelPosition west
-    }
-    Component {
-      Type          Ammeter
-      Name          "Am6"
-      Show          off
-      Position      [950, 190]
-      Direction     up
-      Flipped       on
-      LabelPosition west
-    }
-    Component {
-      Type          Voltmeter
-      Name          "Vm6"
-      Show          off
-      Position      [1030, 145]
-      Direction     up
-      Flipped       off
-      LabelPosition west
-    }
-    Component {
-      Type          Goto
-      Name          "Goto17"
-      Show          off
-      Position      [1075, 355]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "vBottom"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
+        Variable      "Windings"
         Value         "2"
         Show          off
       }
       Parameter {
-<<<<<<< HEAD:sims/interleaved.plecs
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-=======
         Variable      "L"
         Value         "[2 1; 1 2]*L1*0.1"
         Show          on
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       }
       Parameter {
-        Variable      "HighlightLevel"
+        Variable      "i_init"
         Value         "0"
         Show          off
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Goto
-      Name          "Goto18"
-      Show          off
-      Position      [1075, 145]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "vTop"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto19"
-      Show          off
-      Position      [1075, 190]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "iTop"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto20"
-      Show          off
-      Position      [1075, 380]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "iBoottom"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          PlecsProbe
-      Name          "Probe"
-      Show          on
-      Position      [1215, 380]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Probe {
-        Component     "D2"
-        Path          ""
-        Signals       {"Diode conduction loss"}
-=======
       Type          Subsystem
       Name          "idRef"
       Show          on
@@ -9354,30 +7040,10 @@ Plecs {
         Variable      "f_grid"
         Value         "0"
         Show          off
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       }
     }
     Component {
       Type          Scope
-<<<<<<< HEAD:sims/interleaved.plecs
-      Name          "Scope11"
-      Show          on
-      Position      [1470, 485]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -50; 15, 50]
-      Location      [7, 30; 1593, 925]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAAC//wCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFcA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAv8AAABhAP///wAAAAMAAAYyAAAAW/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABjIAAABEAP///wAABXgAAAL/AAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":159,\"Labels\":[\""
-"Delta\",\"Mean\",\"RMS\"],\"VisualIdxs\":[3,8,9]}"
-=======
       Name          "Scope3"
       Show          off
       Position      [1475, 400]
@@ -9385,51 +7051,33 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [0, 24; 1283, 703]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACIvwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFgA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAiIAAABiAP///wAAAAMAAAUDAAAAYPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABQMAAABEAP///wAABEkAAAIiAAAA"
+      Location      [0, 28; 1536, 842]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACqPwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAAFkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAqgAAABjAP///wAAAAMAAAYAAAAAYfw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAKoAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-<<<<<<< Updated upstream
-      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":109,\"Labels\":["
-"\"Delta\"],\"VisualIdxs\":[3]}"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
-=======
       HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":109,\"Labels\":[\""
 "Delta\"],\"VisualIdxs\":[3]}"
->>>>>>> Stashed changes
       PlotPalettes  "AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
       Axes          "2"
       TimeRange     "0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-<<<<<<< HEAD:sims/interleaved.plecs
       Open          "0"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    "Time / s"
-      ShowLegend    "1"
-=======
-      Open          "1"
-      Ts            "-1"
-      SampleLimit   "0"
-      XAxisLabel    "Time / s"
       ShowLegend    "2"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Axis {
         Name          ""
         AutoScale     1
         MinValue      0
         MaxValue      1
-<<<<<<< HEAD:sims/interleaved.plecs
-        Signals       {}
-=======
         Signals       {"id_ref", "iq_ref", "id_meas", "iq_meas"}
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         SignalTypes   [ ]
         Untangle      0
         KeepBaseline  off
@@ -9440,11 +7088,7 @@ Plecs {
         AutoScale     1
         MinValue      0
         MaxValue      1
-<<<<<<< HEAD:sims/interleaved.plecs
-        Signals       {}
-=======
         Signals       {"vAC / 10", "iAC"}
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         SignalTypes   [ ]
         Untangle      0
         KeepBaseline  off
@@ -9461,11 +7105,7 @@ Plecs {
           AutoScale     1
           MinValue      0
           MaxValue      1
-<<<<<<< HEAD:sims/interleaved.plecs
           Signals       {}
-=======
-          Signals       {"id_ref", "iq_ref", "id_meas", "iq_meas"}
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           Untangle      0
           KeepBaseline  off
           BaselineValue 0
@@ -9475,11 +7115,7 @@ Plecs {
           AutoScale     1
           MinValue      0
           MaxValue      1
-<<<<<<< HEAD:sims/interleaved.plecs
           Signals       {}
-=======
-          Signals       {"vAC / 10", "iAC"}
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           Untangle      0
           KeepBaseline  off
           BaselineValue 0
@@ -9487,230 +7123,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          HeatSink
-      Name          "Heat Sink"
-      Show          on
-      Position      [905, 240]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Frame         [-67, -162; 67, 162]
-      Parameter {
-        Variable      "Cth"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         ""
-        Show          off
-      }
-      Parameter {
-        Variable      "Width"
-        Value         "1"
-        Show          off
-      }
-      Terminal {
-        Type          HeatPort
-        Position      [100, -72]
-        Direction     up
-      }
-    }
-    Component {
-      Type          ThermalResistor
-      Name          "Rth"
-      Show          on
-      Position      [1000, 450]
-      Direction     down
-      Flipped       on
-      LabelPosition west
-      Parameter {
-        Variable      "Rth"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          ThermalGround
-      Name          "Ground"
-      Show          on
-      Position      [1000, 480]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Filters/Moving Average"
-      Name          "Moving Average"
-      Show          on
-      Position      [1325, 380]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Parameter {
-        Variable      "x0"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_period"
-        Value         "1/fsw"
-        Show          off
-      }
-      Parameter {
-        Variable      "buffer_size"
-        Value         "256"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [19, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-15, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Filters/Moving Average"
-      Name          "Moving Average1"
-      Show          on
-      Position      [1325, 450]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Parameter {
-        Variable      "x0"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_period"
-        Value         "0.1"
-        Show          off
-      }
-      Parameter {
-        Variable      "buffer_size"
-        Value         "256"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [19, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-15, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          PlecsProbe
-      Name          "Probe1"
-      Show          on
-      Position      [1215, 520]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Probe {
-        Component     "D1"
-        Path          ""
-        Signals       {"Diode conduction loss"}
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Filters/Moving Average"
-      Name          "Moving Average2"
-      Show          on
-      Position      [1325, 520]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Parameter {
-        Variable      "x0"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_period"
-        Value         "1/fsw"
-        Show          off
-      }
-      Parameter {
-        Variable      "buffer_size"
-        Value         "256"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [19, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-15, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          Reference
-      SrcComponent  "Components/Control/Filters/Moving Average"
-      Name          "Moving Average3"
-      Show          on
-      Position      [1325, 590]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Parameter {
-        Variable      "x0"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_period"
-        Value         "0.1"
-        Show          off
-      }
-      Parameter {
-        Variable      "buffer_size"
-        Value         "256"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [19, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-15, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          SignalMux
-      Name          "Mux12"
-      Show          off
-      Position      [1415, 450]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Frame         [-2, -25; 7, 25]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-=======
       Type          SignalMux
       Name          "Mux10"
       Show          off
@@ -9722,54 +7134,19 @@ Plecs {
       Parameter {
         Variable      "Width"
         Value         "4"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          SignalMux
-      Name          "Mux13"
-      Show          off
-      Position      [1415, 520]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Frame         [-2, -25; 7, 25]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          Voltmeter
-      Name          "vAC"
-      Show          on
-      Position      [690, 325]
-      Direction     up
-      Flipped       off
-      LabelPosition west
-    }
-    Component {
-      Type          Goto
-      Name          "Goto21"
-      Show          off
-      Position      [730, 325]
-=======
       Type          Goto
       Name          "Goto23"
       Show          off
       Position      [205, 725]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
       Parameter {
         Variable      "Tag"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "vAC"
-=======
         Value         "id_ref"
         Show          off
       }
@@ -9876,7 +7253,6 @@ Plecs {
       Parameter {
         Variable      "Tag"
         Value         "iq_meas"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
@@ -9903,11 +7279,6 @@ Plecs {
     }
     Component {
       Type          From
-<<<<<<< HEAD:sims/interleaved.plecs
-      Name          "From32"
-      Show          off
-      Position      [1215, 730]
-=======
       Name          "From36"
       Show          off
       Position      [1215, 425]
@@ -9959,14 +7330,14 @@ Plecs {
       Type          SignalMux
       Name          "Mux15"
       Show          off
-      Position      [1435, 435]
+      Position      [1425, 430]
       Direction     right
       Flipped       off
       LabelPosition south
-      Frame         [-2, -15; 7, 15]
+      Frame         [-2, -10; 7, 10]
       Parameter {
         Variable      "Width"
-        Value         "3"
+        Value         "2"
         Show          off
       }
     }
@@ -10282,7 +7653,6 @@ Plecs {
       Name          "From43"
       Show          off
       Position      [745, 455]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
@@ -10315,25 +7685,15 @@ Plecs {
     }
     Component {
       Type          From
-<<<<<<< HEAD:sims/interleaved.plecs
-      Name          "From33"
-      Show          off
-      Position      [1215, 740]
-=======
       Name          "From44"
       Show          off
       Position      [745, 480]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     right
       Flipped       off
       LabelPosition south
       Parameter {
         Variable      "Tag"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "iLC"
-=======
         Value         "vAC"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
@@ -10359,37 +7719,21 @@ Plecs {
       }
     }
     Component {
-<<<<<<< Updated upstream
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Product
-      Name          "Product5"
-      Show          off
-      Position      [1275, 735]
-=======
       Type          Sum
       Name          "Sum2"
       Show          off
       Position      [795, 455]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
       Parameter {
         Variable      "IconShape"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "1"
-=======
         Value         "2"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
         Variable      "Inputs"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "**"
-=======
         Value         "|+-"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
@@ -10404,53 +7748,27 @@ Plecs {
       }
     }
     Component {
-=======
->>>>>>> Stashed changes
       Type          Scope
-<<<<<<< HEAD:sims/interleaved.plecs
-      Name          "Scope9"
-      Show          on
-      Position      [1545, 855]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -50; 15, 50]
-      Location      [7, 29; 1593, 930]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFcA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABhAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAABjIAAANmAAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":114,\"Labels\":[],"
-"\"VisualIdxs\":[]}"
-      PlotPalettes  "AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-      Axes          "2"
-      TimeRange     "0"
-=======
       Name          "Scope1"
       Show          off
-      Position      [1010, 470]
+      Position      [935, 455]
       Direction     up
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [0, 23; 1280, 699]
+      Location      [593, 317; 943, 604]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAADAA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABiAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAABQAAAAKFAAAA"
+"G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAAAAAAAAPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAAV4AAAEAAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":163,\"Labels\":[],"
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":160,\"Labels\":[],"
 "\"VisualIdxs\":[]}"
       PlotPalettes  "AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       Axes          "1"
       TimeRange     "0.0"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       ScrollingMode "1"
       SingleTimeAxis "1"
       Open          "0"
@@ -10469,20 +7787,6 @@ Plecs {
         KeepBaseline  off
         BaselineValue 0
       }
-<<<<<<< HEAD:sims/interleaved.plecs
-      Axis {
-        Name          ""
-        AutoScale     1
-        MinValue      0
-        MaxValue      1
-        Signals       {}
-        SignalTypes   [ ]
-        Untangle      0
-        KeepBaseline  off
-        BaselineValue 0
-      }
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Fourier {
         SingleXAxis       on
         AxisLabel         "Frequency / Hz"
@@ -10499,8 +7803,6 @@ Plecs {
           KeepBaseline  off
           BaselineValue 0
         }
-<<<<<<< HEAD:sims/interleaved.plecs
-=======
       }
     }
     Component {
@@ -10537,6 +7839,20 @@ Plecs {
         Type          Output
         Position      [19, 0]
         Direction     right
+      }
+    }
+    Component {
+      Type          PeriodicAverage
+      Name          "Periodic Average9"
+      Show          off
+      Position      [870, 455]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "1/fsw"
+        Show          off
       }
     }
     Component {
@@ -10645,7 +7961,6 @@ Plecs {
         Scaling           0
         PhaseDisplay      0
         ShowFourierLegend off
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Axis {
           Name          ""
           AutoScale     1
@@ -10659,19 +7974,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Reference
-      SrcComponent  "Components/Control/Filters/Moving Average"
-      Name          "Moving Average4"
-      Show          on
-      Position      [1325, 735]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Parameter {
-        Variable      "x0"
-=======
       Type          HeatSink
       Name          "Heat Sink"
       Show          off
@@ -10682,65 +7984,10 @@ Plecs {
       Frame         [-412, -162; 412, 162]
       Parameter {
         Variable      "Cth"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Value         "0"
         Show          off
       }
       Parameter {
-<<<<<<< HEAD:sims/interleaved.plecs
-        Variable      "T_period"
-        Value         "0.1"
-        Show          off
-      }
-      Parameter {
-        Variable      "buffer_size"
-        Value         "256"
-        Show          off
-      }
-      Terminal {
-        Type          Output
-        Position      [19, 0]
-        Direction     right
-      }
-      Terminal {
-        Type          Input
-        Position      [-15, 0]
-        Direction     left
-      }
-    }
-    Component {
-      Type          From
-      Name          "From35"
-      Show          off
-      Position      [840, 785]
-      Direction     left
-      Flipped       off
-      LabelPosition north
-      Parameter {
-        Variable      "Tag"
-        Value         "omega"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-=======
         Variable      "T_init"
         Value         ""
         Show          off
@@ -10865,34 +8112,11 @@ Plecs {
       Parameter {
         Variable      "Width"
         Value         "2"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
     }
     Component {
       Type          Scope
-<<<<<<< HEAD:sims/interleaved.plecs
-      Name          "Scope10"
-      Show          on
-      Position      [940, 760]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Frame         [-15, -15; 15, 15]
-      Location      [0, 24; 1600, 942]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFcA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGEA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABhAP///wAAAAMAAAZAAAAAi/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABkAAAABEAP///wAABkAAAALmAAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":195,\"Labels\":["
-"\"Delta\"],\"VisualIdxs\":[3]}"
-      PlotPalettes  "AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-      Axes          "2"
-=======
       Name          "Scope6"
       Show          on
       Position      [1550, 575]
@@ -10900,11 +8124,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -45; 15, 45]
-      Location      [0, 24; 1283, 703]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACiPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAKgA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGIA////+wAAAAwAVAByAGEAYwBlAHMBAAAANAAAAogAAABiAP///wAAAAMAAAYAAAABB/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAABgAAAABEAP///wAABEkAAAKIAAAA"
+      Location      [0, 28; 1536, 842]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADD/wCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAAKkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAw8AAABjAP///wAAAAMAAAYAAAABB/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAABgAAAABEAP///wAABUYAAAMPAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -10914,7 +8138,6 @@ Plecs {
 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       Axes          "4"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       TimeRange     "0"
       ScrollingMode "1"
       SingleTimeAxis "1"
@@ -10945,8 +8168,6 @@ Plecs {
         KeepBaseline  off
         BaselineValue 0
       }
-<<<<<<< HEAD:sims/interleaved.plecs
-=======
       Axis {
         Name          ""
         AutoScale     1
@@ -10969,7 +8190,6 @@ Plecs {
         KeepBaseline  off
         BaselineValue 0
       }
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Fourier {
         SingleXAxis       on
         AxisLabel         "Frequency / Hz"
@@ -10996,78 +8216,6 @@ Plecs {
           KeepBaseline  off
           BaselineValue 0
         }
-<<<<<<< HEAD:sims/interleaved.plecs
-      }
-    }
-    Component {
-      Type          Goto
-      Name          "Goto22"
-      Show          off
-      Position      [330, 825]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "id_iq"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          From
-      Name          "From34"
-      Show          off
-      Position      [1215, 940]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "id_iq"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-=======
         Axis {
           Name          ""
           AutoScale     1
@@ -11088,23 +8236,12 @@ Plecs {
           KeepBaseline  off
           BaselineValue 0
         }
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       }
     }
     Component {
       Type          SignalDemux
       Name          "Demux8"
       Show          off
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1245, 940]
-      Direction     right
-      Flipped       on
-      LabelPosition south
-      Frame         [-7, -10; 2, 10]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-=======
       Position      [1350, 575]
       Direction     right
       Flipped       on
@@ -11113,36 +8250,10 @@ Plecs {
       Parameter {
         Variable      "Width"
         Value         "8"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Trigonometry
-      Name          "Trigonometric\nFunction2"
-      Show          on
-      Position      [1305, 940]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Operator"
-        Value         "7"
-        Show          off
-      }
-      Parameter {
-        Variable      "Unit"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          Product
-      Name          "Product6"
-      Show          off
-      Position      [1480, 820]
-=======
       Type          Reference
       SrcComponent  "Components/Control/Filters/Moving Average"
       Name          "Moving Average"
@@ -11211,26 +8322,17 @@ Plecs {
       Name          "Sum5"
       Show          off
       Position      [1305, 225]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Direction     up
       Flipped       off
       LabelPosition south
       Parameter {
         Variable      "IconShape"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "1"
-=======
         Value         "2"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
         Variable      "Inputs"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "**"
-=======
         Value         "|+-"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
@@ -11245,61 +8347,6 @@ Plecs {
       }
     }
     Component {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Trigonometry
-      Name          "Trigonometric\nFunction3"
-      Show          on
-      Position      [1290, 790]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Operator"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "Unit"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          Trigonometry
-      Name          "Trigonometric\nFunction4"
-      Show          on
-      Position      [1290, 860]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Operator"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "Unit"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          Product
-      Name          "Product7"
-      Show          off
-      Position      [1480, 890]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "IconShape"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "Inputs"
-        Value         "**"
-=======
       Type          Constant
       Name          "Constant"
       Show          off
@@ -11311,162 +8358,11 @@ Plecs {
       Parameter {
         Variable      "Value"
         Value         "0"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         Show          off
       }
       Parameter {
         Variable      "DataType"
-<<<<<<< HEAD:sims/interleaved.plecs
-        Value         "11"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataTypeOverflowMode"
-        Value         "1"
-=======
         Value         "10"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
-        Show          off
-      }
-    }
-    Component {
-      Type          SignalMux
-      Name          "Mux18"
-      Show          off
-      Position      [865, 470]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Frame         [-2, -10; 7, 10]
-      Parameter {
-        Variable      "Width"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
-      Type          PeriodicAverage
-      Name          "Periodic Average9"
-      Show          off
-      Position      [930, 470]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "T_average"
-        Value         "1/fsw"
-        Show          off
-      }
-    }
-    Component {
-      Type          From
-      Name          "From45"
-      Show          off
-      Position      [1215, 445]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "vAC"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "CustomMessage"
-        Value         ""
-        Show          off
-        Evaluate      on
-      }
-      Parameter {
-        Variable      "HighlightLevel"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Sum
-      Name          "Sum2"
-      Show          off
-      Position      [1285, 445]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "IconShape"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "Inputs"
-        Value         "-+|"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "11"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataTypeOverflowMode"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          PeriodicAverage
-      Name          "Periodic Average10"
-      Show          off
-      Position      [1340, 445]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "T_average"
-        Value         "1/fsw"
-        Show          off
-      }
-    }
-    Component {
-      Type          Gain
-      Name          "Gain5"
-      Show          off
-      Position      [1395, 445]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "K"
-        Value         "0.1"
-        Show          off
-      }
-      Parameter {
-        Variable      "Multiplication"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "OutputDataType"
-        Value         "11"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataTypeOverflowMode"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "GainDataType"
-        Value         "11"
         Show          off
       }
     }
@@ -11482,36 +8378,17 @@ Plecs {
       Branch {
         Points        [950, 240]
         Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-          DstComponent  "Am6"
-          DstTerminal   1
-        }
-        Branch {
-          DstComponent  "D2"
-=======
           DstComponent  "D5"
           DstTerminal   1
         }
         Branch {
           DstComponent  "D6"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           DstTerminal   2
         }
         Branch {
           Points        [1030, 240]
-<<<<<<< HEAD:sims/interleaved.plecs
-          Branch {
-            DstComponent  "Vm3"
-            DstTerminal   1
-          }
-          Branch {
-            DstComponent  "Vm6"
-            DstTerminal   2
-          }
-=======
           DstComponent  "Vm3"
           DstTerminal   1
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         }
       }
       Branch {
@@ -11535,19 +8412,11 @@ Plecs {
           DstTerminal   1
         }
         Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-          DstComponent  "D5"
-          DstTerminal   1
-        }
-        Branch {
-          DstComponent  "D6"
-=======
           DstComponent  "D1"
           DstTerminal   1
         }
         Branch {
           DstComponent  "D3"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           DstTerminal   2
         }
       }
@@ -11571,28 +8440,12 @@ Plecs {
               }
               Branch {
                 Points        [950, 60]
-<<<<<<< HEAD:sims/interleaved.plecs
-                Branch {
-                  DstComponent  "D1"
-                  DstTerminal   2
-                }
-                Branch {
-                  Points        [1030, 60]
-                  DstComponent  "Vm6"
-                  DstTerminal   1
-                }
-              }
-            }
-            Branch {
-              DstComponent  "D3"
-=======
                 DstComponent  "D5"
                 DstTerminal   2
               }
             }
             Branch {
               DstComponent  "D2"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
               DstTerminal   2
             }
           }
@@ -11602,11 +8455,7 @@ Plecs {
           }
         }
         Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-          DstComponent  "D5"
-=======
           DstComponent  "D1"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           DstTerminal   2
         }
       }
@@ -11641,11 +8490,7 @@ Plecs {
                     Branch {
                       Points        [950, 415]
                       Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-                        DstComponent  "Am5"
-=======
                         DstComponent  "D6"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
                         DstTerminal   1
                       }
                       Branch {
@@ -11681,24 +8526,14 @@ Plecs {
           }
         }
         Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-          DstComponent  "D6"
-=======
           DstComponent  "D3"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           DstTerminal   1
         }
       }
       Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-        Points        [85, 415]
-        Branch {
-          Points        [25, 415]
-=======
         Points        [95, 415]
         Branch {
           Points        [35, 415]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
           DstComponent  "V_dc"
           DstTerminal   2
         }
@@ -11747,11 +8582,7 @@ Plecs {
       Type          Signal
       SrcComponent  "Mux"
       SrcTerminal   1
-<<<<<<< HEAD:sims/interleaved.plecs
-      Points        [1375, 155; 1375, 180]
-=======
       Points        [1370, 130; 1370, 155]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstComponent  "Scope"
       DstTerminal   1
     }
@@ -11805,15 +8636,6 @@ Plecs {
       DstTerminal   4
     }
     Connection {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Wire
-      Points        [605, 250]
-      DstComponent  "R3"
-      DstTerminal   1
-    }
-    Connection {
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Type          Signal
       SrcComponent  "From6"
       SrcTerminal   1
@@ -11824,11 +8646,7 @@ Plecs {
       Type          Signal
       SrcComponent  "Mux2"
       SrcTerminal   1
-<<<<<<< HEAD:sims/interleaved.plecs
-      Points        [1375, 230; 1375, 200]
-=======
       Points        [1370, 205; 1370, 175]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstComponent  "Scope"
       DstTerminal   3
     }
@@ -11836,14 +8654,8 @@ Plecs {
       Type          Signal
       SrcComponent  "Symmetrical PWM3"
       SrcTerminal   1
-<<<<<<< HEAD:sims/interleaved.plecs
-      Points        [380, 970]
-      Branch {
-        Points        [380, 995]
-=======
       Points        [425, 970]
       Branch {
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         DstComponent  "Logical\nOperator2"
         DstTerminal   2
       }
@@ -11889,109 +8701,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Logical\nOperator3"
-      SrcTerminal   1
-      Points        [940, 660]
-      DstComponent  "Mux4"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Mux4"
-      SrcTerminal   1
-      DstComponent  "Blanking Time3"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Blanking Time3"
-      SrcTerminal   1
-      DstComponent  "Demux1"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux1"
-      SrcTerminal   3
-      DstComponent  "Goto1"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Symmetrical PWM1"
-      SrcTerminal   1
-      Points        [885, 635]
-      Branch {
-        DstComponent  "Logical\nOperator3"
-        DstTerminal   2
-      }
-      Branch {
-        DstComponent  "Mux4"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux1"
-      SrcTerminal   2
-      DstComponent  "Goto"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Logical\nOperator4"
-      SrcTerminal   1
-      Points        [940, 720]
-      DstComponent  "Mux5"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Mux5"
-      SrcTerminal   1
-      DstComponent  "Blanking Time4"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Blanking Time4"
-      SrcTerminal   1
-      DstComponent  "Demux2"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux2"
-      SrcTerminal   3
-      DstComponent  "Goto3"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Symmetrical PWM2"
-      SrcTerminal   1
-      Points        [885, 695]
-      Branch {
-        DstComponent  "Logical\nOperator4"
-        DstTerminal   2
-      }
-      Branch {
-        DstComponent  "Mux5"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux2"
-      SrcTerminal   2
-      DstComponent  "Goto2"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "Am2"
       SrcTerminal   3
       Points        [115, 40]
@@ -12059,7 +8768,7 @@ Plecs {
       SrcTerminal   1
       Points        [95, 60]
       Branch {
-        Points        [25, 60]
+        Points        [35, 60]
         DstComponent  "V_dc"
         DstTerminal   1
       }
@@ -12099,24 +8808,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Sum"
-      SrcTerminal   1
-      Points        [315, 970]
-      Branch {
-        DstComponent  "Symmetrical PWM3"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [315, 920]
-        DstComponent  "Scope1"
-        DstTerminal   1
-      }
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "dq-alphaBeta"
       SrcTerminal   2
       DstComponent  "Demux6"
@@ -12138,99 +8829,6 @@ Plecs {
       DstTerminal   1
     }
     Connection {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Type          Signal
-      SrcComponent  "Divide1"
-      SrcTerminal   1
-      Points        [800, 635]
-      Branch {
-        DstComponent  "Symmetrical PWM1"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [800, 580]
-        DstComponent  "Scope4"
-        DstTerminal   1
-      }
-      Branch {
-        Points        [800, 695]
-        DstComponent  "Symmetrical PWM2"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Continuous PID\nController"
-      SrcTerminal   2
-      Points        [415, 605; 415, 625]
-      DstComponent  "Mux8"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Continuous PID\nController1"
-      SrcTerminal   2
-      Points        [415, 660; 415, 635]
-      DstComponent  "Mux8"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "From20"
-      SrcTerminal   1
-      Points        [210, 565]
-      Branch {
-        Points        [770, 565]
-        DstComponent  "Divide1"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [210, 585]
-        Branch {
-          DstComponent  "Gain2"
-          DstTerminal   1
-        }
-        Branch {
-          Points        [210, 625]
-          DstComponent  "Gain3"
-          DstTerminal   1
-        }
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Gain2"
-      SrcTerminal   2
-      Points        [270, 585]
-      Branch {
-        DstComponent  "Continuous PID\nController"
-        DstTerminal   10
-      }
-      Branch {
-        Points        [270, 640]
-        DstComponent  "Continuous PID\nController1"
-        DstTerminal   10
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Gain3"
-      SrcTerminal   2
-      Points        [280, 625]
-      Branch {
-        Points        [280, 650]
-        DstComponent  "Continuous PID\nController1"
-        DstTerminal   11
-      }
-      Branch {
-        Points        [280, 595]
-        DstComponent  "Continuous PID\nController"
-        DstTerminal   11
-      }
-    }
-    Connection {
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Type          Signal
       SrcComponent  "Divide"
       SrcTerminal   1
@@ -12240,24 +8838,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Product"
-      SrcTerminal   1
-      Points        [260, 970]
-      Branch {
-        DstComponent  "Sum"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [260, 900]
-        DstComponent  "Goto12"
-        DstTerminal   1
-      }
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "Sum3"
       SrcTerminal   1
       DstComponent  "Mux2"
@@ -12267,21 +8847,12 @@ Plecs {
       Type          Signal
       SrcComponent  "From17"
       SrcTerminal   1
-<<<<<<< HEAD:sims/interleaved.plecs
-      Points        [1240, 225]
-=======
       Points        [1240, 195]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Branch {
         DstComponent  "Mux2"
         DstTerminal   3
       }
       Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-        Points        [1240, 245]
-        DstComponent  "Sum3"
-        DstTerminal   2
-=======
         Points        [1240, 215]
         Branch {
           DstComponent  "Sum3"
@@ -12292,28 +8863,18 @@ Plecs {
           DstComponent  "Sum5"
           DstTerminal   2
         }
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       }
     }
     Connection {
       Type          Signal
       SrcComponent  "From21"
       SrcTerminal   1
-<<<<<<< HEAD:sims/interleaved.plecs
-      Points        [1230, 235]
-=======
       Points        [1230, 205]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Branch {
         DstComponent  "Mux2"
         DstTerminal   4
       }
       Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-        Points        [1230, 270]
-        DstComponent  "Sum3"
-        DstTerminal   3
-=======
         Points        [1230, 250; 1275, 250]
         Branch {
           DstComponent  "Sum3"
@@ -12323,7 +8884,6 @@ Plecs {
           DstComponent  "Sum5"
           DstTerminal   3
         }
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       }
     }
     Connection {
@@ -12526,16 +9086,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Demux6"
-      SrcTerminal   2
-      DstComponent  "Divide1"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "Gain4"
       SrcTerminal   2
       DstComponent  "SOGI PLL"
@@ -12550,134 +9100,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Mux10"
-      SrcTerminal   1
-      DstComponent  "Scope3"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Rate Limiter1"
-      SrcTerminal   2
-      Points        [155, 605]
-      Branch {
-        DstComponent  "Sum1"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [155, 705]
-        DstComponent  "Mux10"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux4"
-      SrcTerminal   2
-      Points        [185, 805; 185, 715]
-      Branch {
-        DstComponent  "Sum1"
-        DstTerminal   3
-      }
-      Branch {
-        DstComponent  "Mux10"
-        DstTerminal   3
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Rate Limiter"
-      SrcTerminal   2
-      Points        [195, 660]
-      Branch {
-        DstComponent  "Sum2"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [195, 725]
-        DstComponent  "Mux10"
-        DstTerminal   4
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Demux4"
-      SrcTerminal   3
-      Points        [255, 795; 255, 735]
-      Branch {
-        DstComponent  "Sum2"
-        DstTerminal   3
-      }
-      Branch {
-        DstComponent  "Mux10"
-        DstTerminal   5
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Step"
-      SrcTerminal   1
-      DstComponent  "Rate Limiter"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Step1"
-      SrcTerminal   1
-      Points        [95, 575; 95, 605]
-      DstComponent  "Rate Limiter1"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Step2"
-      SrcTerminal   1
-      DstComponent  "Rate Limiter2"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Rate Limiter3"
-      SrcTerminal   2
-      Points        [205, 890]
-      DstComponent  "Divide"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Step3"
-      SrcTerminal   1
-      DstComponent  "Rate Limiter3"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Rate Limiter2"
-      SrcTerminal   2
-      Points        [795, 935]
-      Branch {
-        Points        [825, 935]
-        Branch {
-          DstComponent  "Integrator"
-          DstTerminal   1
-        }
-        Branch {
-          Points        [825, 895]
-          DstComponent  "Goto16"
-          DstTerminal   1
-        }
-      }
-      Branch {
-        Points        [795, 985]
-        DstComponent  "Scope2"
-        DstTerminal   1
-      }
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "From29"
       SrcTerminal   1
       DstComponent  "Periodic Average5"
@@ -12727,11 +9149,7 @@ Plecs {
     }
     Connection {
       Type          Wire
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "D3"
-=======
       SrcComponent  "D2"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcTerminal   1
       Points        [420, 250]
       Branch {
@@ -12756,23 +9174,6 @@ Plecs {
     }
     Connection {
       Type          Wire
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "D2"
-      SrcTerminal   1
-      DstComponent  "Am5"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "D1"
-      SrcTerminal   1
-      DstComponent  "Am6"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "Am3"
       SrcTerminal   2
       Points        [470, 230]
@@ -12801,152 +9202,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Vm3"
-      SrcTerminal   3
-      Points        [1050, 330]
-      Branch {
-        Points        [1050, 305]
-        DstComponent  "Goto13"
-        DstTerminal   1
-      }
-      Branch {
-        Points        [1050, 355]
-        DstComponent  "Goto17"
-        DstTerminal   1
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Vm6"
-      SrcTerminal   3
-      DstComponent  "Goto18"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Am6"
-      SrcTerminal   3
-      DstComponent  "Goto19"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Am5"
-      SrcTerminal   3
-      DstComponent  "Goto20"
-      DstTerminal   1
-    }
-    Connection {
-      Type          HeatPipe
-      SrcComponent  "Heat Sink"
-      SrcTerminal   1
-      Points        [1000, 340]
-      DstComponent  "Rth"
-      DstTerminal   1
-    }
-    Connection {
-      Type          HeatPipe
-      SrcComponent  "Rth"
-      SrcTerminal   2
-      DstComponent  "Ground"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Probe"
-      SrcTerminal   1
-      Points        [1250, 380]
-      Branch {
-        DstComponent  "Moving Average"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [1250, 450]
-        DstComponent  "Moving Average1"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Probe1"
-      SrcTerminal   1
-      Points        [1250, 520]
-      Branch {
-        DstComponent  "Moving Average2"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [1250, 590]
-        DstComponent  "Moving Average3"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Mux12"
-      SrcTerminal   1
-      DstComponent  "Scope11"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Moving Average"
-      SrcTerminal   1
-      Points        [1375, 380; 1375, 430]
-      DstComponent  "Mux12"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Moving Average2"
-      SrcTerminal   1
-      Points        [1370, 520; 1370, 470]
-      DstComponent  "Mux12"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Mux13"
-      SrcTerminal   1
-      DstComponent  "Scope11"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Moving Average1"
-      SrcTerminal   1
-      Points        [1385, 450; 1385, 500]
-      DstComponent  "Mux13"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Moving Average3"
-      SrcTerminal   1
-      Points        [1375, 590; 1375, 540]
-      DstComponent  "Mux13"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "vAC"
-      SrcTerminal   1
-      Points        [690, 240]
-      Branch {
-        Points        [650, 240; 650, 230]
-        DstComponent  "R2"
-        DstTerminal   1
-      }
-      Branch {
-        DstComponent  "L1"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "vAC"
       SrcTerminal   3
       DstComponent  "Goto21"
@@ -12954,16 +9209,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Product5"
-      SrcTerminal   1
-      DstComponent  "Moving Average4"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "From35"
       SrcTerminal   1
       Points        [795, 785; 795, 805]
@@ -12972,24 +9217,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "From16"
-      SrcTerminal   1
-      Points        [590, 790]
-      Branch {
-        DstComponent  "Demux5"
-        DstTerminal   1
-      }
-      Branch {
-        Points        [590, 755]
-        DstComponent  "Scope10"
-        DstTerminal   1
-      }
-    }
-    Connection {
-      Type          Signal
-=======
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcComponent  "From19"
       SrcTerminal   1
       Points        [890, 815]
@@ -12998,11 +9225,7 @@ Plecs {
         DstTerminal   1
       }
       Branch {
-<<<<<<< HEAD:sims/interleaved.plecs
-        Points        [890, 765]
-=======
         Points        [890, 775]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         DstComponent  "Scope10"
         DstTerminal   2
       }
@@ -13016,26 +9239,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "alphaBeta-dq"
-      SrcTerminal   2
-      Points        [345, 800]
-      Branch {
-        Points        [305, 800]
-        Branch {
-          DstComponent  "Demux4"
-          DstTerminal   1
-        }
-        Branch {
-          Points        [305, 825]
-          DstComponent  "Goto22"
-          DstTerminal   1
-        }
-      }
-      Branch {
-        Points        [345, 750]
-        DstComponent  "Scope6"
-=======
       SrcComponent  "Logical\nOperator3"
       SrcTerminal   1
       DstComponent  "Mux4"
@@ -13158,17 +9361,11 @@ Plecs {
       Branch {
         Points        [640, 765]
         DstComponent  "Scope10"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
         DstTerminal   1
       }
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "From33"
-      SrcTerminal   1
-      DstComponent  "Product5"
-=======
       SrcComponent  "From18"
       SrcTerminal   1
       DstComponent  "Demux7"
@@ -13222,16 +9419,10 @@ Plecs {
       SrcComponent  "Demux6"
       SrcTerminal   2
       DstComponent  "Divide1"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   3
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "From32"
-      SrcTerminal   1
-      DstComponent  "Product5"
-=======
       SrcComponent  "alphaBeta-dq"
       SrcTerminal   2
       Points        [325, 800]
@@ -13273,16 +9464,10 @@ Plecs {
       SrcTerminal   1
       Points        [320, 600; 320, 625]
       DstComponent  "Mux11"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   2
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Demux8"
-      SrcTerminal   2
-      DstComponent  "Trigonometric\nFunction2"
-=======
       SrcComponent  "Mux14"
       SrcTerminal   1
       DstComponent  "Polar->rect"
@@ -13442,6 +9627,7 @@ Plecs {
       Type          Signal
       SrcComponent  "Mux15"
       SrcTerminal   1
+      Points        [1445, 430]
       DstComponent  "Scope3"
       DstTerminal   2
     }
@@ -13496,6 +9682,14 @@ Plecs {
     }
     Connection {
       Type          Signal
+      SrcComponent  "Gain2"
+      SrcTerminal   2
+      Points        [1275, 390]
+      DstComponent  "Sum1"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
       SrcComponent  "Divide1"
       SrcTerminal   1
       Points        [840, 635]
@@ -13522,6 +9716,34 @@ Plecs {
       SrcTerminal   1
       DstComponent  "Symmetrical PWM3"
       DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "From43"
+      SrcTerminal   1
+      DstComponent  "Sum2"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "From44"
+      SrcTerminal   1
+      DstComponent  "Sum2"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Sum2"
+      SrcTerminal   1
+      DstComponent  "Periodic Average9"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Periodic Average9"
+      SrcTerminal   1
+      DstComponent  "Scope1"
+      DstTerminal   1
     }
     Connection {
       Type          Signal
@@ -13592,16 +9814,11 @@ Plecs {
       SrcComponent  "Rth"
       SrcTerminal   1
       DstComponent  "Heat Sink"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   1
     }
     Connection {
       Type          Signal
       SrcComponent  "Demux8"
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcTerminal   3
-      DstComponent  "Trigonometric\nFunction2"
-=======
       SrcTerminal   2
       DstComponent  "Mux12"
       DstTerminal   2
@@ -13618,14 +9835,10 @@ Plecs {
       SrcComponent  "Demux8"
       SrcTerminal   3
       DstComponent  "Mux12"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   3
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "From34"
-=======
       SrcComponent  "Demux8"
       SrcTerminal   5
       DstComponent  "Mux13"
@@ -13669,91 +9882,26 @@ Plecs {
     Connection {
       Type          Signal
       SrcComponent  "Moving Average"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       SrcTerminal   1
       DstComponent  "Demux8"
       DstTerminal   1
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Product6"
-      SrcTerminal   1
-      DstComponent  "Scope9"
-=======
       SrcComponent  "Mux12"
       SrcTerminal   1
       DstComponent  "Scope6"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   1
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Trigonometric\nFunction2"
-      SrcTerminal   2
-      Points        [1325, 910; 1240, 910; 1240, 860]
-      Branch {
-        DstComponent  "Trigonometric\nFunction4"
-        DstTerminal   1
-      }
-      Branch {
-        Points        [1240, 790]
-        DstComponent  "Trigonometric\nFunction3"
-        DstTerminal   1
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Product7"
-      SrcTerminal   1
-      DstComponent  "Scope9"
-=======
       SrcComponent  "Mux13"
       SrcTerminal   1
       DstComponent  "Scope6"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   2
     }
     Connection {
       Type          Signal
-<<<<<<< HEAD:sims/interleaved.plecs
-      SrcComponent  "Trigonometric\nFunction3"
-      SrcTerminal   2
-      Points        [1385, 790; 1385, 825]
-      DstComponent  "Product6"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Moving Average4"
-      SrcTerminal   1
-      Points        [1400, 735; 1400, 815]
-      Branch {
-        DstComponent  "Product6"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [1400, 885]
-        DstComponent  "Product7"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Trigonometric\nFunction4"
-      SrcTerminal   2
-      Points        [1380, 860; 1380, 895]
-      DstComponent  "Product7"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Am4"
-      SrcTerminal   2
-      Points        [535, 250]
-      DstComponent  "Vm4"
-=======
       SrcComponent  "Mux16"
       SrcTerminal   1
       DstComponent  "Scope6"
@@ -13814,81 +9962,7 @@ Plecs {
       SrcComponent  "Am4"
       SrcTerminal   2
       DstComponent  "S2"
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "From44"
-      SrcTerminal   1
-      Points        [805, 480; 805, 475]
-      DstComponent  "Mux18"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "From43"
-      SrcTerminal   1
-      Points        [820, 455; 820, 465]
-      DstComponent  "Mux18"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Mux18"
-      SrcTerminal   1
-      DstComponent  "Periodic Average9"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Periodic Average9"
-      SrcTerminal   1
-      DstComponent  "Scope1"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "From45"
-      SrcTerminal   1
-      DstComponent  "Sum2"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Gain2"
-      SrcTerminal   2
-      Points        [1275, 390]
-      Branch {
-        DstComponent  "Sum1"
-        DstTerminal   2
-      }
-      Branch {
-        Points        [1285, 390]
-        DstComponent  "Sum2"
-        DstTerminal   2
-      }
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Sum2"
-      SrcTerminal   1
-      DstComponent  "Periodic Average10"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Periodic Average10"
-      SrcTerminal   1
-      DstComponent  "Gain5"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Gain5"
-      SrcTerminal   2
-      DstComponent  "Mux15"
-      DstTerminal   4
     }
     RectangleAnnotation {
       Position     [1670, 160]
@@ -13920,11 +9994,7 @@ Plecs {
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
 "ht:700;\">Current measurement</span></p></body></html>"
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [1320, 285]
-=======
       Position      [1320, 290]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
     } 
     RectangleAnnotation {
       Position     [580, 265]
@@ -13945,17 +10015,10 @@ Plecs {
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
 "ht:700;\">Open loop grid emulation</span></p></body></html>"
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [165, 1030]
-    } 
-    RectangleAnnotation {
-      Position     [900, 950]
-=======
       Position      [165, 1070]
     } 
     RectangleAnnotation {
       Position     [900, 970]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Width        490
       Height       240
       CornerRadius 3
@@ -13968,11 +10031,7 @@ Plecs {
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
 "ht:700;\">Angle generation</span></p></body></html>"
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position      [760, 1030]
-=======
       Position      [760, 1070]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
     } 
     RectangleAnnotation {
       Position     [580, 685]
@@ -13991,11 +10050,7 @@ Plecs {
       Position      [125, 825]
     } 
     RectangleAnnotation {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Position     [330, 950]
-=======
       Position     [330, 970]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       Width        630
       Height       240
       CornerRadius 3
@@ -14010,12 +10065,6 @@ Plecs {
 "ht:700;\">Voltage measurement</span></p></body></html>"
       Position      [1320, 30]
     } 
-<<<<<<< HEAD:sims/interleaved.plecs
-    RectangleAnnotation {
-      Position     [1380, 845]
-      Width        410
-      Height       320
-=======
     Annotation {
       Name          "<html><body>\n<p>Q=Active</p>\n<p>D=Reactive</p></body></"
 "html>"
@@ -14025,7 +10074,6 @@ Plecs {
       Position     [1375, 400]
       Width        410
       Height       180
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       CornerRadius 3
       Thickness    2
       PenColor     4278190080
@@ -14035,23 +10083,13 @@ Plecs {
     } 
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
-<<<<<<< HEAD:sims/interleaved.plecs
-"ht:700;\">Loss measurement</span></p></body></html>"
-      Position      [1340, 650]
-    } 
-    RectangleAnnotation {
-      Position     [1340, 510]
-      Width        340
-      Height       320
-=======
 "ht:700;\">id-iq and V/I</span></p></body></html>"
-      Position      [1470, 330]
+      Position      [1340, 470]
     } 
     RectangleAnnotation {
       Position     [1375, 590]
       Width        410
       Height       180
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
       CornerRadius 3
       Thickness    2
       PenColor     4278190080
@@ -14060,15 +10098,9 @@ Plecs {
       BrushAlpha   0
     } 
     Annotation {
-<<<<<<< HEAD:sims/interleaved.plecs
-      Name          "<html><body>\n<p>Q=Active</p>\n<p>D=Reactive</p></body></"
-"html>"
-      Position      [60, 755]
-=======
       Name          "<html><body>\n<p><span style=\" font-size:22px; font-weig"
 "ht:700;\">id-iq and V/I</span></p></body></html>"
       Position      [1340, 660]
->>>>>>> adedfca3c4386c7b7ebfcba4fe12316eface753e:sims/power-cycling.plecs
     } 
   }
 }
