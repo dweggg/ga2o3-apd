@@ -1,4 +1,6 @@
 #include "bsp_cputimer.h"
+#include "device.h"
+#include "interrupt.h"
 
 extern struct CPUTIMER_VARS CpuTimer0;
 
@@ -8,7 +10,7 @@ HAL_StatusTypeDef bspInitCpuTimers()
 //LAUNCHPAD SYSCLK 200MHz
 //We only use timer 0 connected to PIE
 //CPU timer is a counter-down timer, from MAX to 0.
-    Interrupt_register(INT_TIMER0, &_bspTimerIsr);
+    //Interrupt_register(INT_TIMER0, &_bspTimerIsr);
     CPUTimer_setPeriod(CPUTIMER0_BASE, 0xFFFFFFFF);
     CPUTimer_setPreScaler(CPUTIMER0_BASE, 0);
     CPUTimer_stopTimer(CPUTIMER0_BASE);
@@ -16,8 +18,8 @@ HAL_StatusTypeDef bspInitCpuTimers()
     CPUTimer_setPreScaler(CPUTIMER0_BASE, 0);
     CPUTimer_setEmulationMode(CPUTIMER0_BASE,
                               CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT);
-    CPUTimer_enableInterrupt(CPUTIMER0_BASE);
-    Interrupt_enable(INT_TIMER0);
+    //CPUTimer_enableInterrupt(CPUTIMER0_BASE);
+    //Interrupt_enable(INT_TIMER0);
     CPUTimer_startTimer(CPUTIMER0_BASE);
     if(UINT32_MAX != CPUTimer_getTimerCount(CPUTIMER0_BASE))
     {

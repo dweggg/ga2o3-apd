@@ -6,8 +6,7 @@ extern "C"
 {
 #endif
 
-#include "main.h"
-#include "params.h"
+#include "bsp_hal.h"
 
 HAL_StatusTypeDef bspInitSCI(void);
 
