@@ -50,7 +50,6 @@ void main(void)
 
     bspInitCpuTimers();
     bspInitSCI();
-    Interrupt_enable(INT_SCIA_RX);
 
     EINT;
     ERTM;
