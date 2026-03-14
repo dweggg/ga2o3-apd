@@ -1,0 +1,6 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=Control_Board\Control_Board.PrjPcb
+[Project2]
+ProjectPath=ga2o3-apd-half-bridge\ga2o3-apd-half-bridge.PrjPcb
