@@ -4,6 +4,8 @@
 #include "bsp_hal.h"
 #include "serialDriver.h"
 
+#pragma CODE_SECTION(SciaTxFIFOIsr, ".TI.ramfunc");
+#pragma CODE_SECTION(SciaRxFIFOIsr, ".TI.ramfunc");
 
 __interrupt void SciaTxFIFOIsr(void)
 {
@@ -47,7 +49,7 @@ HAL_StatusTypeDef bspInitSCI(void)
     //
     // 8 char bits, 1 stop bit, no parity. Baud rate 115200.
     //
-    SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 2000000, (SCI_CONFIG_WLEN_8 |
+    SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 115200, (SCI_CONFIG_WLEN_8 |
                                                         SCI_CONFIG_STOP_ONE |
                                                         SCI_CONFIG_PAR_NONE));
 

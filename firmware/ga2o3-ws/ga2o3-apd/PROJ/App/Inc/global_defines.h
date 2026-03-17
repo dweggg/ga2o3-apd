@@ -19,10 +19,9 @@ extern "C"
 #include "device.h"
 
 #define PARAMS_SYS_CLOCK                (DEVICE_SYSCLK_FREQ)
-#define PARAMS_TICKS_PER_US             (PARAMS_SYS_CLOCK / 1000000)
-#define PARAMS_CTRL_FREQUENCY           (5000U)
-
 #define PARAMS_SCHEDULER_MAX_TASKS_LIMIT    (32) //max 32 tasks are allowed
+
+#define PI2 (3.1415926535 * 2)
 
 #ifdef __cplusplus
 }

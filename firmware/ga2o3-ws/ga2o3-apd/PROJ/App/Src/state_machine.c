@@ -2,6 +2,8 @@
 
 StateMachineTypeDef  state_machine_handle;
 
+#pragma CODE_SECTION(TaskStateMachine, ".TI.ramfunc");
+
 void InitStateMachine(void)
 {
     state_machine_handle = STATE_INIT;

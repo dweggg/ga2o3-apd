@@ -196,6 +196,8 @@ static inline void ____serialDriverHandleFrame(void)
 	}
 }
 
+#pragma CODE_SECTION(serialDriverReceiveByte, ".TI.ramfunc");
+
 static inline void serialDriverReceiveByte(____SerialDriverDataType byte)
 {
 	extern ____SerialDriver ____serialDriver;

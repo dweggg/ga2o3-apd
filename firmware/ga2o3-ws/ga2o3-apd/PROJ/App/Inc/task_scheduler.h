@@ -37,10 +37,10 @@ void LoopTaskScheduler(void);
  * @brief Create a Task to task scheduler
  * 
  * @param task_handler [in] the task function
- * @param ticks_period [in] the period that task will be executed in micro seconds
+ * @param hertz [in] the frequency that task will be executed
  * @return @sa HAL_StatusTypeDef,
  */
-HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t us_period);
+HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t hertz);
 
 /**
  * @brief The idle task

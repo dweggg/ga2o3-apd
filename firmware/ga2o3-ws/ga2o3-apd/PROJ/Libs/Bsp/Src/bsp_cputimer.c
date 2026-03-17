@@ -4,6 +4,8 @@
 
 extern struct CPUTIMER_VARS CpuTimer0;
 
+#pragma CODE_SECTION(bspGetCpuTimerTicks, ".TI.ramfunc");
+
 HAL_StatusTypeDef bspInitCpuTimers()
 {
 #ifdef _LAUNCHXL_F28379D

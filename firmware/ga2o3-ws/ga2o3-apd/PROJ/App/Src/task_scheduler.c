@@ -4,6 +4,9 @@
 #include "global_defines.h"
 #include "stdlib.h"
 
+#pragma CODE_SECTION(LoopTaskScheduler, ".TI.ramfunc");
+#pragma CODE_SECTION(TaskIdle, ".TI.ramfunc");
+
 typedef struct 
 {
     uint32_t last_tick;
@@ -72,7 +75,7 @@ void LoopTaskScheduler(void)
     }
 }
 
-HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t us_period)
+HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t hertz)
 {
     if(scheduler_core.tasks_in_list > PARAMS_SCHEDULER_MAX_TASKS_LIMIT) //we assume the tasks number will not reach 32 
     {
@@ -82,7 +85,7 @@ HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t us_period)
     {
         return HAL_ERROR;
     }
-    us_period *= PARAMS_TICKS_PER_US;
+    uint32_t us_period = PARAMS_SYS_CLOCK / hertz;
     TaskControlBlockTypeDef *this_task = malloc(sizeof(TaskControlBlockTypeDef));
     this_task->callback = task_handler;
     this_task->last_tick = 0;
@@ -118,7 +121,7 @@ HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t us_period)
             scheduler_core.task_list_idle->pointer_to_next_task = this_task;
         }
         return HAL_OK;
-    }    
+    }
 }
 
 void TaskIdle(void)
