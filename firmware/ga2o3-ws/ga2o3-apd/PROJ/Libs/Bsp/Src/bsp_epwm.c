@@ -1,6 +1,6 @@
 /*
-bsp_pwm_driverlib.c
-DriverLib version of PWM HAL for F28379D LAUNCH-XL
+bsp_pwm.c
+PWM HAL for F28379D LAUNCH-XL
 Author: David Redondo - 2026
 */
 
