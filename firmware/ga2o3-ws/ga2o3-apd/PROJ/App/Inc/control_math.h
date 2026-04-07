@@ -1,5 +1,5 @@
 /**
- * @file control.h
+ * @file control_math.h
  * @author Arnold
  * @brief implement control task
  * @version 1.0
@@ -27,10 +27,9 @@ typedef struct
     float kp;
     float ki;
     float integral;
-    float min_integral;
-    float max_integral;
+    float limit;
     float output;
-} PidTypeDef;
+} PiTypeDef;
 
 typedef struct
 {
@@ -48,7 +47,7 @@ typedef struct
 {
     float alpha;
     float beta;
-} AlphabetaTypeDef;
+} AlphaBetaTypeDef;
 
 typedef struct
 {
@@ -81,22 +80,21 @@ typedef struct
  * @brief Initialize PID controller to zero and set gains
  *
  * @param [in,out] pid_var        PID struct to initialize
- * @param [in]     set_point      target reference value
  * @param [in]     kp             proportional gain
  * @param [in]     ki             integral gain
  * @param [in]     limit          integral clamp value, applied as +/- limit
  * @param [in]     sampling_time  loop period in seconds
  */
-void InitPidControl(PidTypeDef *pid_var, float set_point, float kp,
-                    float ki, float limit, float sampling_time);
+void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float limit, float sampling_time);
 
 /**
  * @brief Run one PID cycle, call at fixed sampling_time interval
  *
  * @param [in,out] pid_var          PID struct
+ * @param [in]     set_point        target reference value
  * @param [in]     measured_value   current process measurement
  */
-void RunPidControl(PidTypeDef *pid_var, float measured_value);
+void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value);
 
 
 /* -----------------------------------------------------------------------
@@ -109,7 +107,7 @@ void RunPidControl(PidTypeDef *pid_var, float measured_value);
  * @param [in] p    polar input (r, theta)
  * @return          cartesian output (x, y)
  */
-CartTypeDef ConvertPolarToCartesian(PolarTypeDef p);
+CartTypeDef PolarToCartesian(PolarTypeDef p);
 
 /**
  * @brief Convert cartesian coordinates to polar
@@ -117,7 +115,7 @@ CartTypeDef ConvertPolarToCartesian(PolarTypeDef p);
  * @param [in] c    cartesian input (x, y)
  * @return          polar output (r, theta)
  */
-PolarTypeDef ConvertCartesianToPolar(CartTypeDef c);
+PolarTypeDef CartesianToPolar(CartTypeDef c);
 
 
 /* -----------------------------------------------------------------------
@@ -131,7 +129,7 @@ PolarTypeDef ConvertCartesianToPolar(CartTypeDef c);
  * @param [in] theta            rotor electrical angle in radians
  * @return                      dq frame output
  */
-DqTypeDef ConvertAlphabetaToDq(AlphabetaTypeDef alphabeta_var, float theta);
+DqTypeDef ConvertAlphabetaToDq(AlphaBetaTypeDef alphabeta_var, float theta);
 
 /**
  * @brief Inverse Park transform — rotating dq frame to stationary alphabeta frame
@@ -140,7 +138,7 @@ DqTypeDef ConvertAlphabetaToDq(AlphabetaTypeDef alphabeta_var, float theta);
  * @param [in] theta    rotor electrical angle in radians
  * @return              alphabeta frame output
  */
-AlphabetaTypeDef ConvertDqToAlphabeta(DqTypeDef dq_var, float theta);
+AlphaBetaTypeDef ConvertDqToAlphabeta(DqTypeDef dq_var, float theta);
 
 
 /* -----------------------------------------------------------------------

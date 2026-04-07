@@ -1,4 +1,4 @@
-// @file control.c
+// @file control_math.c
 // @author Arnold
 // @brief implement control task
 // @version 1.0
@@ -6,44 +6,45 @@
 //
 // @copyright Copyright (c) 2026
 
-#include "control.h"
+#include "control_math.h"
 #include <math.h>
 
 // @brief Initialize PID controller to zero and set gains
 // @param [in,out] pid_var       PID struct to initialize
-// @param [in]     set_point     target reference value
 // @param [in]     kp            proportional gain
 // @param [in]     ki            integral gain
 // @param [in]     limit         integral clamp value, applied as +/- limit
 // @param [in]     sampling_time loop period in seconds
 // @return none
-void InitPIDControl(PidTypeDef *pid_var,float set_point,float kp, float ki,float limit, float sampling_time)
+void InitPiControl(PiTypeDef *pid_var,float kp, float ki,float limit, float sampling_time)
 {
     // Initialize outputs and state to zero
     pid_var->error         = 0.0f;
     pid_var->integral      = 0.0f;
     pid_var->output        = 0.0f;
+    pid_var->set_point     = 0.0f;
 
     // Store gains
     pid_var->kp            = kp;
     pid_var->ki            = ki;
 
     // Store setpoint and timing
-    pid_var->set_point     = set_point;
+    
     pid_var->sampling_time = sampling_time;
 
     // Apply integral clamp symmetrically around zero
-    pid_var->min_integral  = -limit;
-    pid_var->max_integral  =  limit;
+    pid_var->limit  = limit;
 }
 
 
 // @brief Run one PID cycle, call at fixed sampling_time interval
 // @param [in,out] pid_var         PID struct
+// @param [in]     set_point        target reference value
 // @param [in]     measured_value  current process measurement
 // @return none
-void PIDControl(PidTypeDef *pid_var, float measured_value)
+void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value)
 {    
+    pid_var->set_point     = set_point;
     // Calculate error between target and measured
     pid_var->error = pid_var->set_point - measured_value;
 
@@ -51,13 +52,13 @@ void PIDControl(PidTypeDef *pid_var, float measured_value)
     pid_var->integral += pid_var->error * pid_var->sampling_time;
 
     // Clamp integral to prevent windup
-    if (pid_var->integral > pid_var->max_integral)
+    if (pid_var->integral > pid_var->limit)
     {
-        pid_var->integral = pid_var->max_integral;
+        pid_var->integral = pid_var->limit;
     }
-    else if (pid_var->integral < pid_var->min_integral)
+    else if (pid_var->integral < -(pid_var->limit))
     {
-        pid_var->integral = pid_var->min_integral;
+        pid_var->integral = -(pid_var->limit);
     }
 
     // Sum P and I contributions to produce output
@@ -74,7 +75,7 @@ void PIDControl(PidTypeDef *pid_var, float measured_value)
 // @brief Convert polar coordinates to cartesian
 // @param [in] p    polar input (r, theta)
 // @return          cartesian output (x, y)
-CartTypeDef ConvertPolarToCartesian(PolarTypeDef p)
+CartTypeDef PolarToCartesian(PolarTypeDef p)
 {
     CartTypeDef c ={0};
 
@@ -87,7 +88,7 @@ CartTypeDef ConvertPolarToCartesian(PolarTypeDef p)
 // @brief Convert cartesian coordinates to polar
 // @param [in] c    cartesian input (x, y)
 // @return          polar output (r, theta)
-PolarTypeDef ConvertCartesianToPolar(CartTypeDef c)
+PolarTypeDef CartesianToPolar(CartTypeDef c)
 {
     PolarTypeDef p = {0};
 
@@ -109,7 +110,7 @@ PolarTypeDef ConvertCartesianToPolar(CartTypeDef c)
 // @param [in] alphabeta_var    alphabeta frame input
 // @param [in] theta            rotor electrical angle in radians
 // @return                      dq frame output
-DqTypeDef ConvertAlphabetaToDq(AlphabetaTypeDef alphabeta_var, float theta)
+DqTypeDef ConvertAlphabetaToDq(AlphaBetaTypeDef alphabeta_var, float theta)
 {
     DqTypeDef dq_var = {0};
 
@@ -124,9 +125,9 @@ DqTypeDef ConvertAlphabetaToDq(AlphabetaTypeDef alphabeta_var, float theta)
 // @param [in] dq_var   dq frame input
 // @param [in] theta    rotor electrical angle in radians
 // @return              alphabeta frame output
-AlphabetaTypeDef ConvertDqToAlphabeta(DqTypeDef dq_var, float theta)
+AlphaBetaTypeDef ConvertDqToAlphabeta(DqTypeDef dq_var, float theta)
 {
-    AlphabetaTypeDef alphabeta_var = {0};
+    AlphaBetaTypeDef alphabeta_var = {0};
 
     
     alphabeta_var.alpha = dq_var.d * cosf(theta) - dq_var.q * sinf(theta);
