@@ -5,6 +5,7 @@
 #include "state_machine.h"
 #include "task_scheduler.h"
 #include "math.h"
+#include "board_test.h"
 
 #define BLINKY_LED_GPIO    31
 
@@ -78,5 +79,6 @@ void main(void)
     CreateTask(CreateSineWaveTest, 10000);
     //CreateTask(SendUartTest, 300000);
     LoopTaskScheduler();
+    EnableVoltageSen();
 }
 
