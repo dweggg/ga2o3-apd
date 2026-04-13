@@ -3,10 +3,12 @@
 #include "device.h"
 #include "bsp_hal.h"
 #include "serialDriver.h"
+#include "bsp_cputimer.h"
 
 #pragma CODE_SECTION(SciaTxFIFOIsr, ".TI.ramfunc");
 #pragma CODE_SECTION(SciaRxFIFOIsr, ".TI.ramfunc");
-
+uint32_t _tmp;
+uint32_t _t;
 __interrupt void SciaTxFIFOIsr(void)
 {
     SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_TXFF);
@@ -15,12 +17,15 @@ __interrupt void SciaTxFIFOIsr(void)
 
 __interrupt void SciaRxFIFOIsr(void)
 {
+    _tmp = bspGetCpuTimerTicks();
     char rxChar = SCI_readCharBlockingFIFO(SCIA_BASE);
     SCI_clearOverflowStatus(SCIA_BASE);
     SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_RXFF);
 
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
+    
     serialDriverReceiveByte(rxChar);
+    _t = bspGetCpuTimerTicks() - _tmp;
 }
 
 
@@ -49,7 +54,7 @@ HAL_StatusTypeDef bspInitSCI(void)
     //
     // 8 char bits, 1 stop bit, no parity. Baud rate 115200.
     //
-    SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 115200, (SCI_CONFIG_WLEN_8 |
+    SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 2000000, (SCI_CONFIG_WLEN_8 |
                                                         SCI_CONFIG_STOP_ONE |
                                                         SCI_CONFIG_PAR_NONE));
 
