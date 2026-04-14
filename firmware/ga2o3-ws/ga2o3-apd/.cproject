@@ -389,7 +389,7 @@
                         </toolChain>
                     </folderInfo>
                     <sourceEntries>
-                        <entry excluding="PROJ/Libs/devicelib/common/Src/F2837xD_SWPrioritizedPieVect.c|F2837xD_CodeStartBranch.asm" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="PROJ/Libs/driverlib/Src/usb.c|PROJ/Libs/driverlib/Src/can.c|PROJ/Libs/devicelib/common/Src/F2837xD_SWPrioritizedPieVect.c|F2837xD_CodeStartBranch.asm" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                     </sourceEntries>
                 </configuration>
             </storageModule>
