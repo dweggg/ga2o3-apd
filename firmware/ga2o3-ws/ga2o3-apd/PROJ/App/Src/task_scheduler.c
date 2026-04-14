@@ -122,6 +122,7 @@ HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t hertz)
         }
         return HAL_OK;
     }
+    return HAL_ERROR;
 }
 
 void TaskIdle(void)

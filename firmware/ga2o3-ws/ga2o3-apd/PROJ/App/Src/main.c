@@ -5,8 +5,9 @@
 #include "state_machine.h"
 #include "task_scheduler.h"
 #include "math.h"
+#include "board_test.h"
 
-#define BLINKY_LED_GPIO    31
+
 
 void ToggleLED(void)
 {
@@ -53,7 +54,7 @@ void main(void)
     GPIO_setPadConfig(BLINKY_LED_GPIO, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(BLINKY_LED_GPIO, GPIO_DIR_MODE_OUT);
     GPIO_writePin(BLINKY_LED_GPIO, 0); // LED off
-
+    
 
     Interrupt_initModule();
     Interrupt_initVectorTable();
@@ -68,15 +69,22 @@ void main(void)
 
     bspInitCpuTimers();
     bspInitSCI();
-
+    InitGateDriverTest();
     EINT;
     ERTM;
     InitStateMachine();
     InitTaskScheduler();
 
-    CreateTask(ToggleLED, 2);
+   //CreateTask(ToggleLED, 2);
+
+    CreateTask(EnableGateDriver,1);
+    CreateTask(EnableVoltageSen,1);
+   
+
+    
     CreateTask(CreateSineWaveTest, 10000);
     //CreateTask(SendUartTest, 300000);
     LoopTaskScheduler();
+    EnableVoltageSen();
 }
 
