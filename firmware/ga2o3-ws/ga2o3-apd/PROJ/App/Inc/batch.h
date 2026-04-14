@@ -8,10 +8,6 @@
 #ifndef __BATCH_H__
 #define __BATCH_H__
 
-// PWM channel assignments
-#define CHANNEL_A  1U   // EPWM1
-#define CHANNEL_B  2U   // EPWM2
-#define CHANNEL_C  3U   // EPWM3
 
 // Default test parameters
 #define VOLTAGE_C             185.0F   // Peak voltage (Vpk)

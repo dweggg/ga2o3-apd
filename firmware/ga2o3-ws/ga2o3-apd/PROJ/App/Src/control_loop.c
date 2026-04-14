@@ -71,6 +71,7 @@ void     ControlLoop_Disable(void)                       { control_enabled     =
 uint16_t ControlLoop_IsEnabled(void)                     { return control_enabled;   }
 void     ControlLoop_SetIdRef(float id_amps)         { control_params.idq_ref_amps.d = id_amps; }
 void     ControlLoop_SetIqRef(float iq_amps)         { control_params.idq_ref_amps.q = iq_amps; }
+void     ControlLoop_SetOpenLoopVoltage(float voltage, float fundamental_frequency) { control_params.voltage_open_loop_pk = voltage; control_params.omega_rad = TWO_PI*fundamental_frequency; }
 void     ControlLoop_SetInterleavedMode(uint16_t enabled){ control_interleaved = enabled; }
 
 /* -------------------------------------------------------------------------- */
@@ -85,15 +86,12 @@ void TaskControlLoop(void)
     /* --- Angle generation ------------------------------------------------- */
     GenerateAngle(&control_params.angle_generation);
 
-    /* --- Mode-specific PWM modulation placeholder ------------------------- */
-    if (control_interleaved)
-    {
-        /* interleaved: phase-shift carrier between channels */
-    }
-    else
-    {
-        /* non-interleaved: single carrier */
-    }
+    control_params.cos_theta = cosf(control_params.angle_generation.theta);
+    control_params.sin_theta = sinf(control_params.angle_generation.theta);
+    
+    /* --- Open loop voltage ------------------------------------------------- */
+    control_params.voltage_open_loop_ac = control_params.voltage_open_loop_pk*control_params.sin_theta;
+    control_params.duty_open_loop = control_params.voltage_open_loop_ac / (GetVoltageDC() * 0.5f);
 
     /* --- SOGI: single-phase current -> alpha-beta ---------------------------------- */
     float i_fb = GetCurrentC();
@@ -134,6 +132,22 @@ void TaskControlLoop(void)
     /* --- dq -> alpha-beta -> normalised duty cycle --------------------------------- */
     control_params.voltage_ab = ConvertDqToAlphabeta(control_params.pi_output_dq_sat, control_params.angle_generation.theta);
 
-    control_params.output_duty = control_params.voltage_ab.alpha / (GetVoltageDC() * 0.5f);
-    /* SetDuty(CHANNEL_A, control_params.output_duty); */
+    control_params.duty_closed_loop = control_params.voltage_ab.alpha / (GetVoltageDC() * 0.5f);
+    
+    
+        /* --- Mode-specific PWM modulation placeholder ------------------------- */
+    if (control_interleaved)
+    {
+        SetPhaseShift(CHANNEL_A, CHANNEL_B, 0.5F);   // 180 deg
+        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(CHANNEL_B, control_params.duty_closed_loop);
+        SetDuty(CHANNEL_C, control_params.duty_open_loop);
+    }
+    else
+    {
+        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(CHANNEL_C, control_params.duty_open_loop);
+    }
+    
+    
 }

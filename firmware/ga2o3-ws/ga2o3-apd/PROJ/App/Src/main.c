@@ -6,6 +6,7 @@
 #include "task_scheduler.h"
 #include "math.h"
 #include "board_test.h"
+#include "global_defines.h"
 
 
 
@@ -20,7 +21,7 @@ void SendUartTest(void)
 }
 float sine_wave_test = 0.0f;
 uint32_t sine_wave_index = 0;
-float32_t _delta = PI2 / 10000;
+float32_t _delta = 2.0f*M_PI / 10000;
 
 #pragma CODE_SECTION(CreateSineWaveTest, ".TI.ramfunc");
 void CreateSineWaveTest(void)

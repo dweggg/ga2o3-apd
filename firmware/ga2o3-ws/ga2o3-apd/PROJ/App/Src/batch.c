@@ -50,14 +50,14 @@ static volatile BatchSampleTypeDef results[MODE_COUNT]
                                           [STEP_COUNT];
 
 // State machine position and timer
-static BatchStateTypeDef s_state        = BatchIdle;
-static uint32_t          s_mode         = 0U;
-static uint32_t          s_fi           = 0U;
-static uint32_t          s_di           = 0U;
-static uint32_t          s_ci           = 0U;
-static uint32_t          s_step         = 0U;
-static uint32_t          s_timer        = 0U;
-static uint32_t          s_batch_done   = 0U; // flag polled by IsBatchComplete()
+static BatchStateTypeDef batch_state        = BatchIdle;
+static uint32_t          batch_mode         = 0U;
+static uint32_t          batch_fi           = 0U;
+static uint32_t          batch_di           = 0U;
+static uint32_t          batch_ci           = 0U;
+static uint32_t          batch_step         = 0U;
+static uint32_t          batch_timer        = 0U;
+static uint32_t          batch_batch_done   = 0U; // flag polled by IsBatchComplete()
 
 //@brief Captures a temperature sample from all four MOSFET positions
 //@return BatchSampleTypeDef populated with current ADC readings
@@ -112,77 +112,78 @@ static void ApplyModeSetup(TestModeTypeDef mode)
     {
         DisablePWM(CHANNEL_B);
         EnablePWM(CHANNEL_A);
+        ControlLoop_SetInterleavedMode(0);
     }
     else
     {
         EnablePWM(CHANNEL_A);
         EnablePWM(CHANNEL_B);
-        SetPhaseShift(CHANNEL_A, CHANNEL_B, 0.5F);   // 180 deg
+        ControlLoop_SetInterleavedMode(1);
     }
 }
 
 //@brief Advances the test matrix indices by one step. Wraps inner indices
-//       and increments outer ones as needed. Sets s_state to kBatchDone
+//       and increments outer ones as needed. Sets batch_state to kBatchDone
 //       when the last combination has been processed.
 static void AdvanceIndices(void)
 {
-    s_step++;
-    if (s_step < STEP_COUNT)
+    batch_step++;
+    if (batch_step < STEP_COUNT)
     {
         return;
     }
-    s_step = 0U;
+    batch_step = 0U;
 
-    s_ci++;
-    if (s_ci < MAX_CURRENTS && currents[s_ci] != END_FLOAT)
+    batch_ci++;
+    if (batch_ci < MAX_CURRENTS && currents[batch_ci] != END_FLOAT)
     {
         return;
     }
-    s_ci = 0U;
+    batch_ci = 0U;
 
-    s_di++;
-    if (s_di < MAX_DEADTIMES && deadtimes[s_di] != END_U32)
+    batch_di++;
+    if (batch_di < MAX_DEADTIMES && deadtimes[batch_di] != END_U32)
     {
         return;
     }
-    s_di = 0U;
+    batch_di = 0U;
 
-    s_fi++;
-    if (s_fi < MAX_FREQS && frequencies[s_fi] != END_U32)
+    batch_fi++;
+    if (batch_fi < MAX_FREQS && frequencies[batch_fi] != END_U32)
     {
         return;
     }
-    s_fi = 0U;
+    batch_fi = 0U;
 
-    s_mode++;
-    if (s_mode < MODE_COUNT)
+    batch_mode++;
+    if (batch_mode < MODE_COUNT)
     {
         return;
     }
 
     // All combinations exhausted
-    s_state = BatchDone;
+    batch_state = BatchDone;
 }
 
 void StartBatch(void)
 {
-    s_mode       = 0U;
-    s_fi         = 0U;
-    s_di         = 0U;
-    s_ci         = 0U;
-    s_step       = 0U;
-    s_batch_done = 0U;
-    s_state      = BatchSetup;
+    batch_mode       = 0U;
+    batch_fi         = 0U;
+    batch_di         = 0U;
+    batch_ci         = 0U;
+    batch_step       = 0U;
+    batch_batch_done = 0U;
+    batch_state      = BatchSetup;
 }
 
 uint32_t IsBatchComplete(void)
 {
-    return s_batch_done;
+    return batch_batch_done;
 }
 
 void RunTests(void)
 {
-    switch (s_state)
+    switch (batch_state)
     {
         case BatchIdle:
             break;
@@ -191,42 +192,42 @@ void RunTests(void)
             EnablePWM(CHANNEL_C);
             SetFrequency(CHANNEL_C, FREQUENCY_C);
             SetDeadTime(CHANNEL_C, DEADTIME_C);
-            SetOpenLoopVoltage(VOLTAGE_C, FUNDAMENTAL_FREQUENCY);
+            ControlLoop_SetOpenLoopVoltage(VOLTAGE_C, FUNDAMENTAL_FREQUENCY);
             ControlLoop_Enable();
             ControlLoop_SetIdRef(0.0F);
             ControlLoop_SetIqRef(0.0F);
-            s_state = BatchApply;
+            batch_state = BatchApply;
             break;
 
         case BatchApply:
             // Reconfigure channels at the start of each new mode
-            if (s_fi == 0U && s_di == 0U && s_ci == 0U && s_step == 0U)
+            if (batch_fi == 0U && batch_di == 0U && batch_ci == 0U && batch_step == 0U)
             {
-                ApplyModeSetup((TestModeTypeDef)s_mode);
+                ApplyModeSetup((TestModeTypeDef)batch_mode);
             }
 
-            SetFrequency(CHANNEL_A, frequencies[s_fi]);
-            SetFrequency(CHANNEL_B, frequencies[s_fi]);
-            SetDeadTime(CHANNEL_A, deadtimes[s_di]);
-            SetDeadTime(CHANNEL_B, deadtimes[s_di]);
-            ApplyCurrentStep(currents[s_ci], (CurrentStepTypeDef)s_step);
+            SetFrequency(CHANNEL_A, frequencies[batch_fi]);
+            SetFrequency(CHANNEL_B, frequencies[batch_fi]);
+            SetDeadTime(CHANNEL_A, deadtimes[batch_di]);
+            SetDeadTime(CHANNEL_B, deadtimes[batch_di]);
+            ApplyCurrentStep(currents[batch_ci], (CurrentStepTypeDef)batch_step);
 
-            StartTimer(&s_timer);
-            s_state = BatchWait;
+            StartTimer(&batch_timer);
+            batch_state = BatchWait;
             break;
 
         case BatchWait:
-            if (EvalTimer(s_timer) >= DELAY_BETWEEN_TESTS)
+            if (EvalTimer(batch_timer) >= DELAY_BETWEEN_TESTS)
             {
-                SaveSample((TestModeTypeDef)s_mode,
-                           s_fi, s_di, s_ci,
-                           (CurrentStepTypeDef)s_step);
+                SaveSample((TestModeTypeDef)batch_mode,
+                           batch_fi, batch_di, batch_ci,
+                           (CurrentStepTypeDef)batch_step);
 
-                AdvanceIndices();   // may transition s_state to kBatchDone
+                AdvanceIndices();   // may transition batch_state to kBatchDone
 
-                if (s_state != BatchDone)
+                if (batch_state != BatchDone)
                 {
-                    s_state = BatchApply;
+                    batch_state = BatchApply;
                 }
             }
             break;
@@ -238,8 +239,8 @@ void RunTests(void)
             DisablePWM(CHANNEL_A);
             DisablePWM(CHANNEL_B);
             DisablePWM(CHANNEL_C);
-            s_batch_done = 1U;
-            s_state      = BatchIdle;
+            batch_batch_done = 1U;
+            batch_state      = BatchIdle;
             break;
     }
 }

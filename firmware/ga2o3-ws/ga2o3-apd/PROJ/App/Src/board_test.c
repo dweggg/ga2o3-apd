@@ -50,16 +50,15 @@ void InitGateDriverTest()
 
 }
 
+  
+float voltageA = 0.0f;
+float voltageB = 0.0f;
+float voltageC = 0.0f;
+float voltageDC = 0.0f;
+
 void EnableVoltageSen()
 {
     HAL_StatusTypeDef ADC_Config_Init();
-    
-    float voltageA = 0.0f;
-    float voltageB = 0.0f;
-    float voltageC = 0.0f;
-    float voltageDC = 0.0f;
-    
-
 
     void ADC_TriggerVoltages();
 
@@ -104,16 +103,14 @@ void EnableGateDriver(void)
     return;
 }
 
+
+float CurrentA = 0.0f;
+float CurrentB = 0.0f;
+float CurrentC = 0.0f;
+
 void EnableCurrentSen()
 {
-    float CurrentA = 0.0f;
-    float CurrentB = 0.0f;
-    float CurrentC = 0.0f;
-
-
     CurrentA = GetCurrentA();
     CurrentB = GetCurrentB();
     CurrentC = GetCurrentC();
-
-    
 }

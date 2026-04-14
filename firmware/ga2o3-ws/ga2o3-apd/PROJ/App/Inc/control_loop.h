@@ -12,8 +12,11 @@ typedef struct
     uint16_t reset;//if reset != 0 detected(modified by MCUViewer), do reset and restart
 
     float sampling_time;
+
+    float voltage_open_loop_ac;
+    float voltage_open_loop_pk;
+    float duty_open_loop;
     float omega_rad;
-    
     SogiTypeDef current_sogi;
     float sin_theta;
     float cos_theta;
@@ -32,7 +35,7 @@ typedef struct
     DqTypeDef pi_output_dq_sat;
 
     
-    float output_duty;
+    float duty_closed_loop;
 
 } ControlParamsTypeDef;
 
@@ -58,8 +61,10 @@ void     ControlLoop_Disable(void);
 uint16_t ControlLoop_IsEnabled(void);
 
 /* Reference setpoints ------------------------------------------------------ */
-void     ControlLoop_SetIdRef(float32_t id_amps);
-void     ControlLoop_SetIqRef(float32_t iq_amps);
+void     ControlLoop_SetIdRef(float id_amps);
+void     ControlLoop_SetIqRef(float iq_amps);
+void     ControlLoop_SetOpenLoopVoltage(float voltage, float fundamental_frequency);
+
 
 /* Mode --------------------------------------------------------------------- */
 void     ControlLoop_SetInterleavedMode(uint16_t enabled);

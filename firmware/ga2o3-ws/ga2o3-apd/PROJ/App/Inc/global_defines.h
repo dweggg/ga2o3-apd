@@ -21,14 +21,16 @@ extern "C"
 #define PARAMS_SYS_CLOCK                    (DEVICE_SYSCLK_FREQ)
 #define PARAMS_SCHEDULER_MAX_TASKS_LIMIT    (32) //max 32 tasks are allowed
 
-#define PI2                                 (3.1415926535 * 2)
-#define TR                                  (0.005)
 #define L_H                                 (0.0036)
 #define R_OHM                               (0.05)
-#define VDC                                 (400)
 
 #define MAX_PHASE_CURRENT_AMPS              (20)
 
+
+// PWM channel assignments
+#define CHANNEL_A  1U   // EPWM1
+#define CHANNEL_B  2U   // EPWM2
+#define CHANNEL_C  3U   // EPWM3
 
 #ifdef __cplusplus
 }
