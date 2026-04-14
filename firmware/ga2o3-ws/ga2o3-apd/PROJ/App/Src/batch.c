@@ -10,6 +10,7 @@
 #include "bsp_epwm.h"
 #include "batch.h"
 #include "adc_config.h"
+#include "control_loop.h"
 
 // Frequency sweep values (Hz) — editable at runtime via watch window
 static uint32_t frequencies[MAX_FREQS + 1] = {
@@ -94,10 +95,10 @@ static void ApplyCurrentStep(float current, CurrentStepTypeDef step)
 {
     switch (step)
     {
-        case StepIdPos: SetIdRef( current); SetIqRef(0.0F);     break;
-        case StepIdNeg: SetIdRef(-current); SetIqRef(0.0F);     break;
-        case StepIqPos: SetIdRef(0.0F);     SetIqRef( current); break;
-        case StepIqNeg: SetIdRef(0.0F);     SetIqRef(-current); break;
+        case StepIdPos: ControlLoop_SetIdRef( current); ControlLoop_SetIqRef(0.0F);     break;
+        case StepIdNeg: ControlLoop_SetIdRef(-current); ControlLoop_SetIqRef(0.0F);     break;
+        case StepIqPos: ControlLoop_SetIdRef(0.0F);     ControlLoop_SetIqRef( current); break;
+        case StepIqNeg: ControlLoop_SetIdRef(0.0F);     ControlLoop_SetIqRef(-current); break;
         default:                                                  break;
     }
 }
@@ -191,9 +192,9 @@ void RunTests(void)
             SetFrequency(CHANNEL_C, FREQUENCY_C);
             SetDeadTime(CHANNEL_C, DEADTIME_C);
             SetOpenLoopVoltage(VOLTAGE_C, FUNDAMENTAL_FREQUENCY);
-            EnableCurrentControl();
-            SetIdRef(0.0F);
-            SetIqRef(0.0F);
+            ControlLoop_Enable();
+            ControlLoop_SetIdRef(0.0F);
+            ControlLoop_SetIqRef(0.0F);
             s_state = BatchApply;
             break;
 
@@ -231,9 +232,9 @@ void RunTests(void)
             break;
 
         case BatchDone:
-            SetIdRef(0.0F);
-            SetIqRef(0.0F);
-            DisableCurrentControl();
+            ControlLoop_SetIdRef(0.0F);
+            ControlLoop_SetIqRef(0.0F);
+            ControlLoop_Disable();
             DisablePWM(CHANNEL_A);
             DisablePWM(CHANNEL_B);
             DisablePWM(CHANNEL_C);

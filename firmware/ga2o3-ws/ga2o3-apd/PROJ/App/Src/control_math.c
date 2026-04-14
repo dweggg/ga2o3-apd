@@ -16,7 +16,7 @@
 // @param [in]     limit         integral clamp value, applied as +/- limit
 // @param [in]     sampling_time loop period in seconds
 // @return none
-void InitPiControl(PiTypeDef *pid_var,float kp, float ki,float limit, float sampling_time)
+void InitPiControl(PiTypeDef *pid_var,float kp, float ki, float sampling_time)
 {
     // Initialize outputs and state to zero
     pid_var->error         = 0.0f;
@@ -33,7 +33,7 @@ void InitPiControl(PiTypeDef *pid_var,float kp, float ki,float limit, float samp
     pid_var->sampling_time = sampling_time;
 
     // Apply integral clamp symmetrically around zero
-    pid_var->limit  = limit;
+    pid_var->limit  = 0.0f;
 }
 
 
@@ -42,9 +42,11 @@ void InitPiControl(PiTypeDef *pid_var,float kp, float ki,float limit, float samp
 // @param [in]     set_point        target reference value
 // @param [in]     measured_value  current process measurement
 // @return none
-void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value)
+void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit)
 {    
     pid_var->set_point     = set_point;
+    pid_var->limit     = limit;
+    
     // Calculate error between target and measured
     pid_var->error = pid_var->set_point - measured_value;
 

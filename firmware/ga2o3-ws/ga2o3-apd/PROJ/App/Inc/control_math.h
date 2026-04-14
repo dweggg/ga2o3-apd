@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2026
  *
  */
-#ifndef __CONTROL_H__
-#define __CONTROL_H__
+#ifndef __CONTROL_MATH_H__
+#define __CONTROL_MATH_H__
 
 #include <math.h>
 
@@ -82,10 +82,9 @@ typedef struct
  * @param [in,out] pid_var        PID struct to initialize
  * @param [in]     kp             proportional gain
  * @param [in]     ki             integral gain
- * @param [in]     limit          integral clamp value, applied as +/- limit
  * @param [in]     sampling_time  loop period in seconds
  */
-void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float limit, float sampling_time);
+void InitPiControl(PiTypeDef *pid_var,float kp, float ki, float sampling_time);
 
 /**
  * @brief Run one PID cycle, call at fixed sampling_time interval
@@ -94,7 +93,7 @@ void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float limit, float sa
  * @param [in]     set_point        target reference value
  * @param [in]     measured_value   current process measurement
  */
-void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value);
+void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit);
 
 
 /* -----------------------------------------------------------------------
@@ -185,4 +184,4 @@ void InitAngleGen(AngleGenTypeDef *ag_var, int freq, float sampling_time);
 void GenerateAngle(AngleGenTypeDef *ag_var);
 
 
-#endif /* __CONTROL_H__ */
+#endif /* __CONTROL_MATH_H__ */
