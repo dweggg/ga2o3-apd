@@ -11,6 +11,7 @@
 #include "batch.h"
 #include "adc_config.h"
 #include "control_loop.h"
+#include "task_scheduler.h"
 
 // Frequency sweep values (Hz) — editable at runtime via watch window
 static uint32_t frequencies[MAX_FREQS + 1] = {

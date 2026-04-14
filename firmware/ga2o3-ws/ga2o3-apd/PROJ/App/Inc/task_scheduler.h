@@ -49,6 +49,25 @@ HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t hertz);
  */
 void TaskIdle(void);
 
+/**
+ * @brief Initializes a timer.
+ *
+ * This function sets up and starts a timer instance pointed to by @p timer.
+ *
+ * @param timer Pointer to the timer variable to be initialized/started.
+ */
+void StartTimer(uint32_t *timer);
+
+/**
+ * @brief Evaluates the current state/value of a timer.
+ *
+ * This function retrieves or computes the current value of the given timer.
+ *
+ * @param timer The timer value/identifier to evaluate.
+ * @return Current timer value or status indicator depending on implementation.
+ */
+uint32_t EvalTimer(uint32_t timer);
+
 #ifdef __cplusplus
 }
 #endif

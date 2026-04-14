@@ -130,3 +130,15 @@ void TaskIdle(void)
     scheduler_core.scheduler_idle_count ++;
     return;
 }
+
+void StartTimer(uint32_t *timer)
+{
+    *timer = (uint32_t)bspGetCpuTimerTicks();
+}
+
+uint32_t EvalTimer(uint32_t timer)
+{
+    uint32_t current_tick = bspGetCpuTimerTicks();
+    uint32_t elapsed_ticks = current_tick - timer;
+    return (uint32_t)(elapsed_ticks / (PARAMS_SYS_CLOCK / 1000));
+}
