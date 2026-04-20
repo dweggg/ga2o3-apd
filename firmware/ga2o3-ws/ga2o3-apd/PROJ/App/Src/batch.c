@@ -13,7 +13,7 @@
 #include "control_loop.h"
 #include "task_scheduler.h"
 
-// Frequency sweep values (Hz) — editable at runtime via watch window
+// Frequency sweep values (Hz) - editable at runtime via watch window
 static uint32_t frequencies[MAX_FREQS + 1] = {
     4000U,
     8000U,
@@ -23,7 +23,7 @@ static uint32_t frequencies[MAX_FREQS + 1] = {
     END_U32
 };
 
-// Dead time sweep values (ns) — editable at runtime via watch window
+// Dead time sweep values (ns) - editable at runtime via watch window
 static uint32_t deadtimes[MAX_DEADTIMES + 1] = {
     2000U,
     4000U,
@@ -33,7 +33,7 @@ static uint32_t deadtimes[MAX_DEADTIMES + 1] = {
     END_U32
 };
 
-// Current sweep values (A) — editable at runtime via watch window
+// Current sweep values (A) - editable at runtime via watch window
 static float currents[MAX_CURRENTS + 1] = {
     4.0F,
     8.0F,

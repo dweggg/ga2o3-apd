@@ -31,9 +31,9 @@ static inline uint16_t OverCurrentCheck(void)
     float32_t ia = GetCurrentA();
     float32_t ib = GetCurrentB();
     float32_t ic = GetCurrentC();
-    return (ia <= MAX_PHASE_CURRENT_AMPS &&
-            ib <= MAX_PHASE_CURRENT_AMPS &&
-            ic <= MAX_PHASE_CURRENT_AMPS) ? 1U : 0U;
+    return (ia < MAX_PHASE_CURRENT_AMPS || ia > MAX_PHASE_CURRENT_AMPS || 
+            ib < MAX_PHASE_CURRENT_AMPS || ib > MAX_PHASE_CURRENT_AMPS || 
+            ic < MAX_PHASE_CURRENT_AMPS || ic > MAX_PHASE_CURRENT_AMPS) ? 1U : 0U;
 }
 
 static inline void DisableDrivers(void)
@@ -41,16 +41,6 @@ static inline void DisableDrivers(void)
     GPIO_writePin(25, 0);
 }
 
-/** Returns 1 and clears the flag if an external reset was requested. */
-static inline uint16_t CheckAndClearReset(void)
-{
-    if (control_params.reset)
-    {
-        control_params.reset = 0;
-        return 1U;
-    }
-    return 0U;
-}
 
 /* -------------------------------------------------------------------------- */
 /* Public API                                                                  */
@@ -79,7 +69,7 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_IDLE:
-            if (control_params.output_enabled)
+            if (ControlLoop_IsEnabled())
             {
                 ControlLoop_Enable();
                 state_machine_handle = STATE_RUNNING;
@@ -96,7 +86,7 @@ void TaskStateMachine(void)
                 break;
             }
 
-            if (CheckAndClearReset())
+            if (0/*CheckAndClearReset()*/)
             {
                 ControlLoop_Disable();
                 InitControlLoop();

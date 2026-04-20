@@ -18,6 +18,7 @@
 
 static uint16_t control_enabled     = 0U;
 static uint16_t control_interleaved = 0U;
+static ControlParamsTypeDef control_params;
 
 /* -------------------------------------------------------------------------- */
 /* Private helpers                                                             */
@@ -54,7 +55,6 @@ void InitControlLoop(void)
     control_params.pi_output_dq.y       = 0.0f;
     control_params.pi_output_vs_delta.r      = 0.0f;
     control_params.pi_output_vs_delta.theta  = 0.0f;
-    control_params.reset                  = 0;
 
     CalculateAndInitPI(&control_params.pi_id, L_H, R_OHM, 0.01f, control_params.sampling_time);
     CalculateAndInitPI(&control_params.pi_iq, L_H, R_OHM, 0.01f, control_params.sampling_time);
@@ -78,7 +78,7 @@ void     ControlLoop_SetInterleavedMode(uint16_t enabled){ control_interleaved =
 /* Scheduler task                                                              */
 /* -------------------------------------------------------------------------- */
 
-#pragma CODE_SECTION(TaskControlLoop, ".TI.ramfunc")
+// #pragma CODE_SECTION(TaskControlLoop, ".TI.ramfunc")
 void TaskControlLoop(void)
 {
     if (!control_enabled) { return; }

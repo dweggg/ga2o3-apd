@@ -7,6 +7,7 @@
 #include "math.h"
 #include "board_test.h"
 #include "global_defines.h"
+#include "batch.h"
 
 
 
@@ -61,31 +62,32 @@ void main(void)
     Interrupt_initVectorTable();
     Interrupt_enableMaster();
 
-//
-// Enable global Interrupts and higher priority real-time debug events:
-//
-    //EALLOW;  // This is needed to write to EALLOW protected registers
-    //PieVectTable.TIMER0_INT = &_bspTimerIsr;
-    //EDIS;    // This is needed to disable write to EALLOW protected registers
 
     bspInitCpuTimers();
     bspInitSCI();
-    InitGateDriverTest();
+
+
+    // InitGateDriverTest();
     EINT;
     ERTM;
+
+
     InitStateMachine();
     InitTaskScheduler();
 
-   //CreateTask(ToggleLED, 2);
 
-    CreateTask(EnableGateDriver,1);
-    CreateTask(EnableVoltageSen,1);
+    StartBatch();
+    CreateTask(RunTests, 1);
+
+    CreateTask(ToggleLED, 2);
+
+    // CreateTask(EnableGateDriver,1);
+    // CreateTask(EnableVoltageSen,1);
    
 
     
-    CreateTask(CreateSineWaveTest, 10000);
-    //CreateTask(SendUartTest, 300000);
+    // CreateTask(CreateSineWaveTest, 10000);
+    // CreateTask(SendUartTest, 300000);
     LoopTaskScheduler();
-    EnableVoltageSen();
 }
 

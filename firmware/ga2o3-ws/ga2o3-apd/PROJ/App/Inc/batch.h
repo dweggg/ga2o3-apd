@@ -23,9 +23,9 @@
 // Batch dimension limits
 #define MODE_COUNT      2U  // Number of test modes
 #define STEP_COUNT      4U  // Number of current step types
-#define MAX_FREQS       5U  // Maximum number of frequencies in a batch
-#define MAX_DEADTIMES   5U  // Maximum number of dead times in a batch
-#define MAX_CURRENTS    5U  // Maximum number of current levels in a batch
+#define MAX_FREQS       3U  // Maximum number of frequencies in a batch
+#define MAX_DEADTIMES   3U  // Maximum number of dead times in a batch
+#define MAX_CURRENTS    3U  // Maximum number of current levels in a batch
 
 // @brief Converter operating mode
 typedef enum {

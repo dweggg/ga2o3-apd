@@ -9,7 +9,6 @@ typedef struct
     uint16_t interleaved; //0 -> non-interleaved, else interleaved
     uint16_t output_enabled; //0 -> disabled, else enabled
     uint16_t current_control_enabled; //0 -> disabled, else enabled
-    uint16_t reset;//if reset != 0 detected(modified by MCUViewer), do reset and restart
 
     float sampling_time;
 
@@ -39,7 +38,6 @@ typedef struct
 
 } ControlParamsTypeDef;
 
-extern ControlParamsTypeDef control_params;
 
 /**
  * @brief Initialises PI controllers, SOGI, angle generator and zeroes all
