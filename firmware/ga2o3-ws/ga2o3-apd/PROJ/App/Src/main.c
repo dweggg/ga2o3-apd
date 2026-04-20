@@ -4,38 +4,16 @@
 #include "F2837xD_GlobalPrototypes.h"
 #include "state_machine.h"
 #include "task_scheduler.h"
-#include "math.h"
-#include "board_test.h"
+#include "control_loop.h"
 #include "global_defines.h"
 #include "batch.h"
 
 
+#define BLINKY_LED_GPIO    34
 
 void ToggleLED(void)
 {
     GPIO_togglePin(BLINKY_LED_GPIO);
-}
-
-void SendUartTest(void)
-{
-    SCI_writeCharBlockingFIFO(SCIA_BASE, 0xffff);
-}
-float sine_wave_test = 0.0f;
-uint32_t sine_wave_index = 0;
-float32_t _delta = 2.0f*M_PI / 10000;
-
-#pragma CODE_SECTION(CreateSineWaveTest, ".TI.ramfunc");
-void CreateSineWaveTest(void)
-{
-    
-    
-    if(sine_wave_index >= 10000)
-    {
-        sine_wave_index = 0;        
-    }
-    float32_t _angle = _delta * sine_wave_index;
-    sine_wave_test = (float32_t)__sin(_angle);
-    sine_wave_index++;
 }
 
 void main(void)
@@ -75,19 +53,10 @@ void main(void)
     InitStateMachine();
     InitTaskScheduler();
 
+    CreateTask(ToggleLED, 2);   
+    CreateTask(TaskStateMachine, 1000);   
+    CreateTask(TaskControlLoop, 10000);   
 
-    StartBatch();
-    CreateTask(RunTests, 1);
-
-    CreateTask(ToggleLED, 2);
-
-    // CreateTask(EnableGateDriver,1);
-    // CreateTask(EnableVoltageSen,1);
-   
-
-    
-    // CreateTask(CreateSineWaveTest, 10000);
-    // CreateTask(SendUartTest, 300000);
     LoopTaskScheduler();
 }
 

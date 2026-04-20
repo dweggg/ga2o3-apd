@@ -25,9 +25,6 @@
 #define GD_FLT2     131
 #define GD_FLT3     130
 
-#define BLINKY_LED_GPIO    10
-
-
 void InitGateDriverTest(void);
 void EnableGateDriver(void);
 

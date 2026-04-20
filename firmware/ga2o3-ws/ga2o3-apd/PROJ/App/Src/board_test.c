@@ -7,10 +7,6 @@ int GD_EN_VAL =1;
 
 void InitGateDriverTest()
 {
-    GPIO_setPadConfig(BLINKY_LED_GPIO, GPIO_PIN_TYPE_STD);
-    GPIO_setDirectionMode(BLINKY_LED_GPIO, GPIO_DIR_MODE_OUT);
-    GPIO_writePin(BLINKY_LED_GPIO, 0); // LED off
-
     GPIO_setPadConfig(GD_EN, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(GD_EN, GPIO_DIR_MODE_OUT);
     GPIO_writePin(GD_EN, 0); 
@@ -94,11 +90,6 @@ void EnableGateDriver(void)
     val1 = GPIO_readPin(GD_FLT1);
     val2 = GPIO_readPin(GD_FLT2);
     val3 = GPIO_readPin(GD_FLT3);
-
-    if (val1==1 && val2==1 && val3==1)
-    {
-        GPIO_writePin(BLINKY_LED_GPIO, 0);
-    }
 
     return;
 }
