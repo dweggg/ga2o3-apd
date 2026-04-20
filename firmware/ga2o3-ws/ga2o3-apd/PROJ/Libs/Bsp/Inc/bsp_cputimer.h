@@ -6,8 +6,9 @@ extern "C"
 {
 #endif
 
-#include "main.h"
-#include "params.h"
+#include "bsp_cputimer.h"
+#include "bsp_hal.h"
+#include "stdint.h"
 
 
 HAL_StatusTypeDef bspInitCpuTimers();
@@ -16,7 +17,6 @@ uint32_t bspGetCpuTimerTicks();
 void bspConfigCPUTimer(uint32_t cpuTimer, float freq, float period);
 void bspConfigCPUTimerMax(uint32_t cpuTimer);
 
-__attribute__((weak)) void _bspTimerIsr(void);
 
 
 #ifdef __cplusplus

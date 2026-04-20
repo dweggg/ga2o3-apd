@@ -12,6 +12,4 @@ typedef enum
     __dummy = 0XFFFFU //make sure its 16bit
 } HAL_StatusTypeDef;
 
-
-
 #endif

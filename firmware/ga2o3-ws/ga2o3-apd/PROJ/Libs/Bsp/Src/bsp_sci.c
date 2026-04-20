@@ -1,24 +1,31 @@
 #include "bsp_sci.h"
+#include "stdint.h"
+#include "device.h"
+#include "bsp_hal.h"
+#include "serialDriver.h"
+#include "bsp_cputimer.h"
 
-__interrupt void sciaTXFIFOISR(void)
+#pragma CODE_SECTION(SciaTxFIFOIsr, ".TI.ramfunc");
+#pragma CODE_SECTION(SciaRxFIFOIsr, ".TI.ramfunc");
+uint32_t _tmp;
+uint32_t _t;
+__interrupt void SciaTxFIFOIsr(void)
 {
-    uint16_t i;
-    //SCI_writeCharArray(SCIA_BASE, sDataA, 2);
-
     SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_TXFF);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
 
-__interrupt void sciaRXFIFOISR(void)
+__interrupt void SciaRxFIFOIsr(void)
 {
-    uint16_t i;
-
-    //SCI_readCharArray(SCIA_BASE, rDataA, 2);
-
+    _tmp = bspGetCpuTimerTicks();
+    char rxChar = SCI_readCharBlockingFIFO(SCIA_BASE);
     SCI_clearOverflowStatus(SCIA_BASE);
     SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_RXFF);
 
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
+    
+    serialDriverReceiveByte(rxChar);
+    _t = bspGetCpuTimerTicks() - _tmp;
 }
 
 
@@ -27,31 +34,33 @@ HAL_StatusTypeDef bspInitSCI(void)
     //
     // GPIO28 is the SCI Rx pin.
     //
-    GPIO_setMasterCore(28, GPIO_CORE_CPU1);
-    GPIO_setPinConfig(GPIO_28_SCIRXDA);
-    GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
-    GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
-    GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
+    GPIO_setMasterCore(43, GPIO_CORE_CPU1);
+    GPIO_setPinConfig(GPIO_43_SCIRXDA);
+    GPIO_setDirectionMode(43, GPIO_DIR_MODE_IN);
+    GPIO_setPadConfig(43, GPIO_PIN_TYPE_STD);
+    GPIO_setQualificationMode(43, GPIO_QUAL_ASYNC);
 
     //
     // GPIO29 is the SCI Tx pin.
     //
-    GPIO_setMasterCore(29, GPIO_CORE_CPU1);
-    GPIO_setPinConfig(GPIO_29_SCITXDA);
-    GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
-    GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
-    GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
+    GPIO_setMasterCore(42, GPIO_CORE_CPU1);
+    GPIO_setPinConfig(GPIO_42_SCITXDA);
+    GPIO_setDirectionMode(42, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(42, GPIO_PIN_TYPE_STD);
+    GPIO_setQualificationMode(42, GPIO_QUAL_ASYNC);
 
-    Interrupt_register(INT_SCIA_RX, sciaRXFIFOISR);
-    Interrupt_register(INT_SCIA_TX, sciaTXFIFOISR);
+    Interrupt_register(INT_SCIA_RX, SciaRxFIFOIsr);
+    Interrupt_register(INT_SCIA_TX, SciaTxFIFOIsr);
     //
-    // 8 char bits, 1 stop bit, no parity. Baud rate is 1Mbits.
+    // 8 char bits, 1 stop bit, no parity. Baud rate 115200.
     //
-    SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 1000000, (SCI_CONFIG_WLEN_8 |
+    SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 2000000, (SCI_CONFIG_WLEN_8 |
                                                         SCI_CONFIG_STOP_ONE |
                                                         SCI_CONFIG_PAR_NONE));
+
+    //F28x_usDelay(1000000);
     SCI_enableModule(SCIA_BASE);
-    //SCI_enableLoopback(SCIA_BASE);
+    SCI_disableLoopback(SCIA_BASE);
     SCI_resetChannels(SCIA_BASE);
     SCI_enableFIFO(SCIA_BASE);
 
@@ -61,12 +70,16 @@ HAL_StatusTypeDef bspInitSCI(void)
     SCI_enableInterrupt(SCIA_BASE, (SCI_INT_RXFF | SCI_INT_TXFF));
     SCI_disableInterrupt(SCIA_BASE, SCI_INT_RXERR);
 
-    SCI_setFIFOInterruptLevel(SCIA_BASE, SCI_FIFO_TX16, SCI_FIFO_RX16);
+    SCI_setFIFOInterruptLevel(SCIA_BASE, SCI_FIFO_TX1, SCI_FIFO_RX1);
     SCI_performSoftwareReset(SCIA_BASE);
 
     SCI_resetTxFIFO(SCIA_BASE);
     SCI_resetRxFIFO(SCIA_BASE);
+    
+    Interrupt_enable(INT_SCIA_RX);
+    //Interrupt_enable(INT_SCIA_TX);
+
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 
     return HAL_OK;
 }
-

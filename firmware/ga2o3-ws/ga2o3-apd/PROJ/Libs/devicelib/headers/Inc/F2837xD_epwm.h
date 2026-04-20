@@ -48,6 +48,8 @@ extern "C" {
 #endif
 
 
+#include "device.h"
+
 //---------------------------------------------------------------------------
 // EPWM Individual Register Bit Definitions:
 
