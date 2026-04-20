@@ -68,6 +68,14 @@ void StartTimer(uint32_t *timer);
  */
 uint32_t EvalTimer(uint32_t timer);
 
+/**
+ * @brief Get the period (in ticks/microseconds) of a task
+ *
+ * @param task_handler [in] the task function pointer
+ * @return period in seconds (float), or 0 if task not found
+ */
+float GetTaskPeriod(void (*task_handler)(void));
+
 #ifdef __cplusplus
 }
 #endif

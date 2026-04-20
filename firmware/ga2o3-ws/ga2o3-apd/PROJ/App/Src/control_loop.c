@@ -11,6 +11,7 @@
 #include "global_defines.h"
 #include "adc_config.h"
 #include "control_math.h"
+#include "task_scheduler.h"
 
 /* -------------------------------------------------------------------------- */
 /* Module state                                                                */
@@ -42,7 +43,7 @@ static inline void Clamp(PolarTypeDef *polar, float limit)
 
 void InitControlLoop(void)
 {
-    control_params.sampling_time          = 111111;
+    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoop);
     control_params.current_feedback_amps  = 0.0f;
     control_params.omega_rad              = 0.0f;
     control_params.sin_theta              = 0.0f;

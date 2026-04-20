@@ -142,3 +142,24 @@ uint32_t EvalTimer(uint32_t timer)
     uint32_t elapsed_ticks = current_tick - timer;
     return (uint32_t)(elapsed_ticks / (PARAMS_SYS_CLOCK / 1000));
 }
+
+float GetTaskPeriod(void (*task_handler)(void))
+{
+    if(NULL == task_handler)
+    {
+        return 0;
+    }
+    
+    TaskControlBlockTypeDef *current_task = scheduler_core.task_list_root;
+    
+    for(uint16_t i = 0; i < scheduler_core.tasks_in_list; i++)
+    {
+        if(current_task->callback == task_handler)
+        {
+            return (float)current_task->period_ticks / (float)PARAMS_SYS_CLOCK;
+        }
+        current_task = (TaskControlBlockTypeDef *)current_task->pointer_to_next_task;
+    }
+    
+    return 0;  // task not found
+}
