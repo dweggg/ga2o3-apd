@@ -53,7 +53,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 1.000000
 do_not_interpret_as_enum = false
 
 [var1]
@@ -924,7 +924,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 6.000000
+value_to_write = 60.000000
 do_not_interpret_as_enum = false
 
 [var68]
@@ -937,7 +937,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 9.000000
+value_to_write = 45.000000
 do_not_interpret_as_enum = false
 
 [var69]
@@ -1137,6 +1137,11 @@ format = DEC
 
 [group0-plot1-series2]
 name = control_params.angle_generation.sampling_time
+visibility = true
+format = DEC
+
+[group0-plot1-series3]
+name = control_params.omega_rad
 visibility = true
 format = DEC
 

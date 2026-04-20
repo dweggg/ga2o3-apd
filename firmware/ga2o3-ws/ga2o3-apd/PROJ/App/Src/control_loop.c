@@ -93,7 +93,8 @@ void TaskControlLoop(void)
     
     /* --- Open loop voltage ------------------------------------------------- */
     control_params.voltage_open_loop_ac = control_params.voltage_open_loop_pk*control_params.sin_theta;
-    control_params.duty_open_loop = control_params.voltage_open_loop_ac / (GetVoltageDC() * 0.5f);
+    float v_ol = control_params.voltage_open_loop_ac / (GetVoltageDC() * 0.5f);
+    control_params.duty_open_loop = v_ol < 0.0f ? 0.0f : (v_ol > 1.0f ? 1.0f : v_ol);
 
     /* --- SOGI: single-phase current -> alpha-beta ---------------------------------- */
     float i_fb = GetCurrentC();
@@ -133,8 +134,8 @@ void TaskControlLoop(void)
 
     /* --- dq -> alpha-beta -> normalised duty cycle --------------------------------- */
     control_params.voltage_ab = ConvertDqToAlphabeta(control_params.pi_output_dq_sat, control_params.angle_generation.theta);
-
-    control_params.duty_closed_loop = control_params.voltage_ab.alpha / (GetVoltageDC() * 0.5f);
+    float v_cl = control_params.voltage_ab.alpha / (GetVoltageDC() * 0.5f);
+    control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
     
     
         /* --- Mode-specific PWM modulation placeholder ------------------------- */

@@ -10,6 +10,7 @@ typedef struct { uint16_t raw; float temp_c; } TempLutEntry;
 
 static const TempLutEntry temp_lut[] = {
     /*  raw    degC   */
+    {    0,   200.0f },
     {  250,   100.0f },
     {  400,    90.0f },
     {  600,    80.0f },
