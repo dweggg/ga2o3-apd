@@ -345,12 +345,14 @@
                                     <listOptionValue value="${PROJECT_ROOT}/PROJ/Libs/devicelib/headers/Inc/"/>
                                     <listOptionValue value="${PROJECT_ROOT}/PROJ/Libs/devicelib/common/Inc/"/>
                                     <listOptionValue value="${PROJECT_ROOT}/PROJ/App/Inc/"/>
+                                    <listOptionValue value="${PROJECT_ROOT}/PROJ/Libs/Bsp/Inc/"/>
                                     <listOptionValue value="${PROJECT_ROOT}/PROJ/Libs/driverlib/Inc/"/>
                                 </option>
                                 <option id="com.ti.ccstudio.buildDefinitions.C2000_22.6.compilerID.DEFINE.1136447424" superClass="com.ti.ccstudio.buildDefinitions.C2000_22.6.compilerID.DEFINE" valueType="definedSymbols">
                                     <listOptionValue value="_LAUNCHXL_F28379D"/>
                                     <listOptionValue value="_FLASH"/>
                                     <listOptionValue value="CPU1"/>
+                                    <listOptionValue value="_DUAL_HEADERS"/>
                                 </option>
                                 <option id="com.ti.ccstudio.buildDefinitions.C2000_22.6.compilerID.DEBUGGING_MODEL.389896392" superClass="com.ti.ccstudio.buildDefinitions.C2000_22.6.compilerID.DEBUGGING_MODEL" value="com.ti.ccstudio.buildDefinitions.C2000_22.6.compilerID.DEBUGGING_MODEL.SYMDEBUG__DWARF" valueType="enumerated"/>
                                 <option id="com.ti.ccstudio.buildDefinitions.C2000_22.6.compilerID.DIAG_WARNING.889944859" superClass="com.ti.ccstudio.buildDefinitions.C2000_22.6.compilerID.DIAG_WARNING" valueType="stringList">

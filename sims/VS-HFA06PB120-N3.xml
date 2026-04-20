@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SemiconductorLibrary xmlns="http://www.plexim.com/xml/semiconductors/" version="1.1">
+    <Package class="Diode" vendor="Vishay" partnumber="VS-HFA06PB120-N3">
+        <Variables/>
+        <SemiconductorData type="Diode">
+            <TurnOnLoss>
+                <ComputationMethod>Formula only</ComputationMethod>
+                <Formula>abs(150e-6*(v/600)*(i/15))</Formula>
+                <CurrentAxis> 0</CurrentAxis>
+                <VoltageAxis> 0</VoltageAxis>
+                <TemperatureAxis> 25</TemperatureAxis>
+                <Energy scale="1">
+                    <Temperature>
+                        <Voltage> 0.00015</Voltage>
+                    </Temperature>
+                </Energy>
+            </TurnOnLoss>
+            <TurnOffLoss>
+                <ComputationMethod>Formula only</ComputationMethod>
+                <Formula>abs(40e-6*(-v/600)*(i/15))</Formula>
+                <CurrentAxis> 0</CurrentAxis>
+                <VoltageAxis> 0</VoltageAxis>
+                <TemperatureAxis> 25</TemperatureAxis>
+                <Energy scale="1">
+                    <Temperature>
+                        <Voltage> 0</Voltage>
+                    </Temperature>
+                </Energy>
+            </TurnOffLoss>
+            <ConductionLoss>
+                <ComputationMethod>Formula only</ComputationMethod>
+                <Formula>1+0.27*i</Formula>
+                <CurrentAxis> 0</CurrentAxis>
+                <TemperatureAxis> 25</TemperatureAxis>
+                <VoltageDrop scale="1">
+                    <Temperature> 0</Temperature>
+                </VoltageDrop>
+            </ConductionLoss>
+        </SemiconductorData>
+        <ThermalModel>
+            <Branch type="Foster"/>
+        </ThermalModel>
+        <Comment>
+            <Line></Line>
+        </Comment>
+    </Package>
+</SemiconductorLibrary>

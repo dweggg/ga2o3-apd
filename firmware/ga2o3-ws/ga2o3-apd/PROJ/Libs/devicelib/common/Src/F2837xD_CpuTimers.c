@@ -150,7 +150,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
     //
     // Counter decrements PRD+1 times each period
     //
-    Timer->RegsAddr->PRD.all = temp - 1;
+    //Timer->RegsAddr->PRD.all = temp - 1;
 
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):
