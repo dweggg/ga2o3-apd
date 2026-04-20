@@ -30,99 +30,90 @@ SchedulerCoreTypeDef scheduler_core;
 
 void InitTaskScheduler(void)
 {
-    
-
     TaskControlBlockTypeDef *root_task = malloc(sizeof(TaskControlBlockTypeDef));
     if(root_task != NULL)
     {
-        root_task->pointer_to_next_task = root_task;// make a loop
-        root_task->pointer_to_previous_task = NULL; 
+        root_task->pointer_to_next_task = root_task; // circular: points to itself
+        root_task->pointer_to_previous_task = root_task;
         root_task->callback = TaskIdle;
         root_task->last_tick = 0;
-        root_task->period_ticks = 0;
-        scheduler_core.task_list_pointer = root_task;
+        root_task->period_ticks = UINT32_MAX; // idle always sorts last
         scheduler_core.task_list_root = root_task;
         scheduler_core.task_list_idle = root_task;
+        scheduler_core.task_list_pointer = root_task;
     }
     else
     {
-        while (true);// failed on Ini task scheduler, 
+        while(true);
     }
     scheduler_core.scheduler_enabled = 1;
     scheduler_core.tasks_in_list = 1;
     scheduler_core.scheduler_idle_count = 0;
-    
-    return;
 }
+
 
 void LoopTaskScheduler(void)
 {
     while(1)
     {
         if(!scheduler_core.scheduler_enabled) continue;
-        
+
         uint32_t current_tick = bspGetCpuTimerTicks();
-        
+        TaskControlBlockTypeDef *task = scheduler_core.task_list_root; // always start from root
+
         for(uint16_t i = 0; i < scheduler_core.tasks_in_list; i++)
-        {        
-            if(current_tick - scheduler_core.task_list_pointer->last_tick >= scheduler_core.task_list_pointer->period_ticks )
+        {
+            if(current_tick - task->last_tick >= task->period_ticks)
             {
-                scheduler_core.task_list_pointer->callback();
-                scheduler_core.task_list_pointer->last_tick = current_tick;
+                task->callback();
+                task->last_tick = current_tick;
             }
-            scheduler_core.task_list_pointer = scheduler_core.task_list_pointer->pointer_to_next_task;
+            task = (TaskControlBlockTypeDef *)task->pointer_to_next_task;
         }
     }
 }
 
 HAL_StatusTypeDef CreateTask(void (*task_handler)(void), uint32_t hertz)
 {
-    if(scheduler_core.tasks_in_list > PARAMS_SCHEDULER_MAX_TASKS_LIMIT) //we assume the tasks number will not reach 32 
+    if(scheduler_core.tasks_in_list >= PARAMS_SCHEDULER_MAX_TASKS_LIMIT) return HAL_ERROR;
+    if(NULL == task_handler) return HAL_ERROR;
+
+    uint32_t period_ticks = PARAMS_SYS_CLOCK / hertz;
+
+    TaskControlBlockTypeDef *new_task = malloc(sizeof(TaskControlBlockTypeDef));
+    if(NULL == new_task) return HAL_ERROR;
+
+    new_task->callback = task_handler;
+    new_task->last_tick = 0;
+    new_task->period_ticks = period_ticks;
+
+    // Walk list to find insertion point (sorted ascending by period, idle always last)
+    // Idle has period UINT32_MAX so new tasks always insert before it
+    TaskControlBlockTypeDef *current = scheduler_core.task_list_root;
+    for(uint16_t i = 0; i < scheduler_core.tasks_in_list; i++)
     {
-        return  HAL_ERROR;
-    }
-    if(NULL == task_handler)
-    {
-        return HAL_ERROR;
-    }
-    uint32_t us_period = PARAMS_SYS_CLOCK / hertz;
-    TaskControlBlockTypeDef *this_task = malloc(sizeof(TaskControlBlockTypeDef));
-    this_task->callback = task_handler;
-    this_task->last_tick = 0;
-    this_task->period_ticks = us_period;
-    scheduler_core.task_list_pointer = scheduler_core.task_list_root;
-    if(1 == scheduler_core.tasks_in_list) // if there is only idle task
-    {
-        this_task->pointer_to_previous_task = NULL;
-        this_task->pointer_to_next_task = scheduler_core.task_list_pointer;
-        scheduler_core.task_list_pointer->pointer_to_previous_task = this_task;
-        scheduler_core.task_list_pointer->pointer_to_next_task = this_task;
-        scheduler_core.task_list_root = this_task;
-        scheduler_core.tasks_in_list ++;
-        return HAL_OK;
-    }
-    for(uint16_t i = 0; i < scheduler_core.tasks_in_list - 1; i++)//tasks_in_list - 1 means we always keep the idle task at the end of task list 
-    {        
-        if(scheduler_core.task_list_pointer->period_ticks < us_period) //make sure that task with shorter period gets higher priority
+        if(period_ticks <= current->period_ticks)
         {
-            scheduler_core.task_list_pointer = scheduler_core.task_list_pointer->pointer_to_next_task;
-            continue;
+            break; // insert before current
         }
-        //insert new task
-        this_task->pointer_to_previous_task = scheduler_core.task_list_pointer->pointer_to_previous_task;
-        this_task->pointer_to_next_task = scheduler_core.task_list_pointer;
-        ((TaskControlBlockTypeDef *)this_task->pointer_to_previous_task)->pointer_to_next_task = this_task;
-        scheduler_core.task_list_pointer->pointer_to_previous_task = this_task;
-        scheduler_core.task_list_pointer = this_task;
-        scheduler_core.tasks_in_list ++;
-        if(0 == i)
-        {
-            scheduler_core.task_list_root = this_task;
-            scheduler_core.task_list_idle->pointer_to_next_task = this_task;
-        }
-        return HAL_OK;
+        current = (TaskControlBlockTypeDef *)current->pointer_to_next_task;
     }
-    return HAL_ERROR;
+
+    // Insert new_task before current
+    TaskControlBlockTypeDef *prev = (TaskControlBlockTypeDef *)current->pointer_to_previous_task;
+    new_task->pointer_to_next_task = current;
+    new_task->pointer_to_previous_task = prev;
+    prev->pointer_to_next_task = new_task;
+    current->pointer_to_previous_task = new_task;
+
+    // Update root if inserted at the front
+    if(period_ticks <= scheduler_core.task_list_root->period_ticks)
+    {
+        scheduler_core.task_list_root = new_task;
+    }
+
+    scheduler_core.tasks_in_list++;
+    return HAL_OK;
 }
 
 void TaskIdle(void)

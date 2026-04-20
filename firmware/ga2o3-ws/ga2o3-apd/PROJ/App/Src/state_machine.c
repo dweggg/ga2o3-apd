@@ -10,6 +10,7 @@
 
 #include "state_machine.h"
 #include "control_loop.h"
+#include "user_interface.h"
 #include "adc_config.h"
 #include "global_defines.h"
 
@@ -19,18 +20,15 @@
 
 StateMachineTypeDef state_machine_handle;
 
-/** Shadows control_params.interleaved_mode_switch so we can detect a change. */
-static uint16_t s_interleaved_shadow = 0U;
-
 /* -------------------------------------------------------------------------- */
 /* Private helpers                                                             */
 /* -------------------------------------------------------------------------- */
 
 static inline uint16_t OverCurrentCheck(void)
 {
-    float32_t ia = GetCurrentA();
-    float32_t ib = GetCurrentB();
-    float32_t ic = GetCurrentC();
+    float ia = GetCurrentA();
+    float ib = GetCurrentB();
+    float ic = GetCurrentC();
     return (ia < MAX_PHASE_CURRENT_AMPS || ia > MAX_PHASE_CURRENT_AMPS || 
             ib < MAX_PHASE_CURRENT_AMPS || ib > MAX_PHASE_CURRENT_AMPS || 
             ic < MAX_PHASE_CURRENT_AMPS || ic > MAX_PHASE_CURRENT_AMPS) ? 1U : 0U;
@@ -69,7 +67,7 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_IDLE:
-            if (ControlLoop_IsEnabled())
+            if (g_ui.system_enabled)
             {
                 ControlLoop_Enable();
                 state_machine_handle = STATE_RUNNING;
@@ -78,6 +76,13 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_RUNNING:
+            if (!g_ui.system_enabled)
+            {
+                ControlLoop_Disable();
+                state_machine_handle = STATE_DISCHARGING;
+                break;
+            }
+
             if (!OverCurrentCheck())
             {
                 ControlLoop_Disable();
@@ -96,12 +101,8 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_DISCHARGING:
-            /* TODO: wait for bus voltage to fall below a safe threshold.
-             * For now, immediately re-initialise with the new mode setting. */
-            ControlLoop_SetInterleavedMode(s_interleaved_shadow);
-            InitControlLoop();
-            ControlLoop_Enable();
-            state_machine_handle = STATE_RUNNING;
+            /* TODO: wait for bus voltage to fall below a safe threshold. */
+            state_machine_handle = STATE_IDLE;
             break;
 
         /* ------------------------------------------------------------------ */

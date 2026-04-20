@@ -85,6 +85,7 @@ void TaskControlLoop(void)
     if (!control_enabled) { return; }
 
     /* --- Angle generation ------------------------------------------------- */
+    control_params.angle_generation.omega = control_params.omega_rad;
     GenerateAngle(&control_params.angle_generation);
 
     control_params.cos_theta = cosf(control_params.angle_generation.theta);

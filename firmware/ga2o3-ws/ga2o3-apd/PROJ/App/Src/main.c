@@ -6,7 +6,8 @@
 #include "task_scheduler.h"
 #include "control_loop.h"
 #include "global_defines.h"
-#include "batch.h"
+#include "adc_config.h"
+#include "user_interface.h"
 
 
 #define BLINKY_LED_GPIO    34
@@ -43,7 +44,7 @@ void main(void)
 
     bspInitCpuTimers();
     bspInitSCI();
-
+    ADC_Config_Init();
 
     // InitGateDriverTest();
     EINT;
@@ -51,12 +52,23 @@ void main(void)
 
 
     InitStateMachine();
+    InitUserInterface();
     InitTaskScheduler();
 
-    CreateTask(ToggleLED, 2);   
-    CreateTask(TaskStateMachine, 1000);   
-    CreateTask(TaskControlLoop, 10000);   
 
+
+
+    CreateTask(ADC_TriggerTemps, 100);   
+    CreateTask(ADC_TriggerVoltages, 100);   
+
+    CreateTask(TaskUserInterface, 10);
+
+    CreateTask(TaskControlLoop, 10000);
+    CreateTask(TaskStateMachine, 1000);   
+
+    CreateTask(ToggleLED, 2);
+
+    
     LoopTaskScheduler();
 }
 
