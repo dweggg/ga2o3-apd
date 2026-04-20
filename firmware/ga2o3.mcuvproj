@@ -911,7 +911,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 3
-value_to_write = 2.000000
+value_to_write = 5.000000
 do_not_interpret_as_enum = false
 
 [var67]
@@ -924,7 +924,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 60.000000
+value_to_write = 50.000000
 do_not_interpret_as_enum = false
 
 [var68]
@@ -937,7 +937,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 45.000000
+value_to_write = 5.000000
 do_not_interpret_as_enum = false
 
 [var69]

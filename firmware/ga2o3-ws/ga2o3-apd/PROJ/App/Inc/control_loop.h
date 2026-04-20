@@ -33,8 +33,12 @@ typedef struct
     AlphaBetaTypeDef voltage_ab;
     DqTypeDef pi_output_dq_sat;
 
-    
     float duty_closed_loop;
+
+    RateLimiterTypeDef rl_id;           // ramp on d-axis current reference
+    RateLimiterTypeDef rl_iq;           // ramp on q-axis current reference
+    RateLimiterTypeDef rl_voltage_pk;   // ramp on open-loop peak voltage
+    RateLimiterTypeDef rl_omega;        // ramp on open-loop angular frequency
 
 } ControlParamsTypeDef;
 
@@ -62,7 +66,6 @@ uint16_t ControlLoop_IsEnabled(void);
 void     ControlLoop_SetIdRef(float id_amps);
 void     ControlLoop_SetIqRef(float iq_amps);
 void     ControlLoop_SetOpenLoopVoltage(float voltage, float fundamental_frequency);
-
 
 /* Mode --------------------------------------------------------------------- */
 void     ControlLoop_SetInterleavedMode(uint16_t enabled);
