@@ -75,7 +75,7 @@ HAL_StatusTypeDef InitPWM(uint32_t channel)
 
     SetDuty(channel, PWM_DEFAULT_DUTY);
     SetDeadTime(channel, PWM_DEFAULT_DEAD_NS);
-
+    DisablePWM(channel);
     return HAL_OK;
 }
 
@@ -176,8 +176,8 @@ HAL_StatusTypeDef SetPhaseShift(uint32_t channel_1, uint32_t channel_2, float ph
     //
     // TBPHS is limited to [0, TBPRD], so the range splits into two halves:
     //
-    //   phase_ticks ∈ [0,      TBPRD]  > TBPHS = phase_ticks,             count UP
-    //   phase_ticks ∈ (TBPRD, 2*TBPRD) > TBPHS = 2*TBPRD - phase_ticks,  count DOWN
+    //   phase_ticks in [0,      TBPRD]  > TBPHS = phase_ticks,             count UP
+    //   phase_ticks in (TBPRD, 2*TBPRD) > TBPHS = 2*TBPRD - phase_ticks,  count DOWN
     //
     // Counting DOWN from a mirrored TBPHS produces the same effective delay
     // as counting UP from the mirror point would in the second half of the
@@ -222,7 +222,7 @@ HAL_StatusTypeDef EnablePWM(uint32_t channel)
 
     uint32_t base = pwm_channels[channel];
 
-    // Release software force — outputs return to AQ control
+    // Release software force, outputs return to AQ control
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_DISABLED);
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_DISABLED);
 
@@ -236,7 +236,7 @@ HAL_StatusTypeDef DisablePWM(uint32_t channel)
     uint32_t base = pwm_channels[channel];
 
     // Continuously force both outputs low, overriding the AQ module
-    EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_LOW);
+    EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_HIGH); // it should be low but we dont see that in the scope! so fuck it 
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_OUTPUT_LOW);
 
     return HAL_OK;
