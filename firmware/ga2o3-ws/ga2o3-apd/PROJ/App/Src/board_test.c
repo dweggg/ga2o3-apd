@@ -16,6 +16,18 @@ void EnableGateDriver(void)
     GPIO_setDirectionMode(GD_EN, GPIO_DIR_MODE_OUT);
     GPIO_writePin(GD_EN, 0); // off
     
+    GPIO_setPadConfig(GD_FLT1, GPIO_PIN_TYPE_STD);
+    GPIO_setDirectionMode(GD_FLT1, GPIO_DIR_MODE_IN);
+    GPIO_writePin(GD_FLT1, 0); // off
+    
+    GPIO_setPadConfig(GD_FLT2, GPIO_PIN_TYPE_STD);
+    GPIO_setDirectionMode(GD_FLT2, GPIO_DIR_MODE_IN);
+    GPIO_writePin(GD_FLT2, 0); // off
+    
+    GPIO_setPadConfig(GD_FLT3, GPIO_PIN_TYPE_STD);
+    GPIO_setDirectionMode(GD_FLT3, GPIO_DIR_MODE_IN);
+    GPIO_writePin(GD_FLT3, 0); // off
+    
 
     return;
 }
