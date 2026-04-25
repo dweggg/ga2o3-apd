@@ -44,12 +44,13 @@ static float currents[MAX_CURRENTS + 1] = {
 };
 
 // Results matrix: mode -> frequency -> deadtime -> current -> step
+// stored in a section of RAM of its own
+#pragma DATA_SECTION(results, "batch_results")
 static volatile BatchSampleTypeDef results[MODE_COUNT]
                                           [MAX_FREQS]
                                           [MAX_DEADTIMES]
                                           [MAX_CURRENTS]
                                           [STEP_COUNT];
-
 // State machine position and timer
 static BatchStateTypeDef batch_state        = BatchIdle;
 static uint32_t          batch_mode         = 0U;

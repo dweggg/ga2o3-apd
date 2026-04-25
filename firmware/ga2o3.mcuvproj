@@ -46,7 +46,7 @@ log_directory =
 [var0]
 name = control_enabled
 tracked_name = control_enabled
-address = 53590
+address = 53602
 type = 3
 color = 3991567345
 should_update_from_elf = true
@@ -59,7 +59,7 @@ do_not_interpret_as_enum = false
 [var1]
 name = control_params.angle_generation.freq
 tracked_name = control_params.angle_generation.freq
-address = 44762
+address = 43034
 type = 4
 color = 2399713753
 should_update_from_elf = true
@@ -72,7 +72,7 @@ do_not_interpret_as_enum = false
 [var2]
 name = control_params.angle_generation.omega
 tracked_name = control_params.angle_generation.omega
-address = 44768
+address = 43040
 type = 7
 color = 1167141676
 should_update_from_elf = true
@@ -85,7 +85,7 @@ do_not_interpret_as_enum = false
 [var3]
 name = control_params.angle_generation.sampling_time
 tracked_name = control_params.angle_generation.sampling_time
-address = 44764
+address = 43036
 type = 7
 color = 734763711
 should_update_from_elf = true
@@ -98,7 +98,7 @@ do_not_interpret_as_enum = false
 [var4]
 name = control_params.angle_generation.theta
 tracked_name = control_params.angle_generation.theta
-address = 44766
+address = 43038
 type = 7
 color = 3093062447
 should_update_from_elf = true
@@ -111,7 +111,7 @@ do_not_interpret_as_enum = false
 [var5]
 name = control_params.cos_theta
 tracked_name = control_params.cos_theta
-address = 44760
+address = 43032
 type = 7
 color = 1927422634
 should_update_from_elf = true
@@ -124,7 +124,7 @@ do_not_interpret_as_enum = false
 [var6]
 name = control_params.current_ab_amps.alpha
 tracked_name = control_params.current_ab_amps.alpha
-address = 44772
+address = 43044
 type = 7
 color = 189608328
 should_update_from_elf = true
@@ -137,7 +137,7 @@ do_not_interpret_as_enum = false
 [var7]
 name = control_params.current_ab_amps.beta
 tracked_name = control_params.current_ab_amps.beta
-address = 44774
+address = 43046
 type = 7
 color = 3843517290
 should_update_from_elf = true
@@ -150,7 +150,7 @@ do_not_interpret_as_enum = false
 [var8]
 name = control_params.current_control_enabled
 tracked_name = control_params.current_control_enabled
-address = 44738
+address = 43010
 type = 3
 color = 2303250960
 should_update_from_elf = true
@@ -163,7 +163,7 @@ do_not_interpret_as_enum = false
 [var9]
 name = control_params.current_feedback_amps
 tracked_name = control_params.current_feedback_amps
-address = 44770
+address = 43042
 type = 7
 color = 2091402273
 should_update_from_elf = true
@@ -176,7 +176,7 @@ do_not_interpret_as_enum = false
 [var10]
 name = control_params.current_sogi.alpha
 tracked_name = control_params.current_sogi.alpha
-address = 44750
+address = 43022
 type = 7
 color = 3878755498
 should_update_from_elf = true
@@ -189,7 +189,7 @@ do_not_interpret_as_enum = false
 [var11]
 name = control_params.current_sogi.beta
 tracked_name = control_params.current_sogi.beta
-address = 44752
+address = 43024
 type = 7
 color = 1233262576
 should_update_from_elf = true
@@ -202,7 +202,7 @@ do_not_interpret_as_enum = false
 [var12]
 name = control_params.current_sogi.k
 tracked_name = control_params.current_sogi.k
-address = 44754
+address = 43026
 type = 7
 color = 1495059146
 should_update_from_elf = true
@@ -215,7 +215,7 @@ do_not_interpret_as_enum = false
 [var13]
 name = control_params.current_sogi.sampling_time
 tracked_name = control_params.current_sogi.sampling_time
-address = 44756
+address = 43028
 type = 7
 color = 138430854
 should_update_from_elf = true
@@ -228,7 +228,7 @@ do_not_interpret_as_enum = false
 [var14]
 name = control_params.duty_closed_loop
 tracked_name = control_params.duty_closed_loop
-address = 44832
+address = 43104
 type = 7
 color = 2339947459
 should_update_from_elf = true
@@ -241,7 +241,7 @@ do_not_interpret_as_enum = false
 [var15]
 name = control_params.duty_open_loop
 tracked_name = control_params.duty_open_loop
-address = 44746
+address = 43018
 type = 7
 color = 2197076714
 should_update_from_elf = true
@@ -254,7 +254,7 @@ do_not_interpret_as_enum = false
 [var16]
 name = control_params.idq_meas_amps.d
 tracked_name = control_params.idq_meas_amps.d
-address = 44776
+address = 43048
 type = 7
 color = 4073942742
 should_update_from_elf = true
@@ -267,7 +267,7 @@ do_not_interpret_as_enum = false
 [var17]
 name = control_params.idq_meas_amps.q
 tracked_name = control_params.idq_meas_amps.q
-address = 44778
+address = 43050
 type = 7
 color = 574050469
 should_update_from_elf = true
@@ -280,7 +280,7 @@ do_not_interpret_as_enum = false
 [var18]
 name = control_params.idq_ref_amps.d
 tracked_name = control_params.idq_ref_amps.d
-address = 44780
+address = 43052
 type = 7
 color = 82647444
 should_update_from_elf = true
@@ -293,7 +293,7 @@ do_not_interpret_as_enum = false
 [var19]
 name = control_params.idq_ref_amps.q
 tracked_name = control_params.idq_ref_amps.q
-address = 44782
+address = 43054
 type = 7
 color = 2666253947
 should_update_from_elf = true
@@ -306,7 +306,7 @@ do_not_interpret_as_enum = false
 [var20]
 name = control_params.interleaved
 tracked_name = control_params.interleaved
-address = 44736
+address = 43008
 type = 3
 color = 20954563
 should_update_from_elf = true
@@ -319,7 +319,7 @@ do_not_interpret_as_enum = false
 [var21]
 name = control_params.omega_rad
 tracked_name = control_params.omega_rad
-address = 44748
+address = 43020
 type = 7
 color = 3394286988
 should_update_from_elf = true
@@ -332,7 +332,7 @@ do_not_interpret_as_enum = false
 [var22]
 name = control_params.output_enabled
 tracked_name = control_params.output_enabled
-address = 44737
+address = 43009
 type = 3
 color = 913026298
 should_update_from_elf = true
@@ -345,7 +345,7 @@ do_not_interpret_as_enum = false
 [var23]
 name = control_params.pi_id.error
 tracked_name = control_params.pi_id.error
-address = 44784
+address = 43056
 type = 7
 color = 4093371595
 should_update_from_elf = true
@@ -358,7 +358,7 @@ do_not_interpret_as_enum = false
 [var24]
 name = control_params.pi_id.integral
 tracked_name = control_params.pi_id.integral
-address = 44794
+address = 43066
 type = 7
 color = 1874097001
 should_update_from_elf = true
@@ -371,7 +371,7 @@ do_not_interpret_as_enum = false
 [var25]
 name = control_params.pi_id.ki
 tracked_name = control_params.pi_id.ki
-address = 44792
+address = 43064
 type = 7
 color = 4192113741
 should_update_from_elf = true
@@ -384,7 +384,7 @@ do_not_interpret_as_enum = false
 [var26]
 name = control_params.pi_id.kp
 tracked_name = control_params.pi_id.kp
-address = 44790
+address = 43062
 type = 7
 color = 4144600717
 should_update_from_elf = true
@@ -397,7 +397,7 @@ do_not_interpret_as_enum = false
 [var27]
 name = control_params.pi_id.limit
 tracked_name = control_params.pi_id.limit
-address = 44796
+address = 43068
 type = 7
 color = 3199940653
 should_update_from_elf = true
@@ -410,7 +410,7 @@ do_not_interpret_as_enum = false
 [var28]
 name = control_params.pi_id.output
 tracked_name = control_params.pi_id.output
-address = 44798
+address = 43070
 type = 7
 color = 1135188478
 should_update_from_elf = true
@@ -423,7 +423,7 @@ do_not_interpret_as_enum = false
 [var29]
 name = control_params.pi_id.sampling_time
 tracked_name = control_params.pi_id.sampling_time
-address = 44788
+address = 43060
 type = 7
 color = 1885359646
 should_update_from_elf = true
@@ -436,7 +436,7 @@ do_not_interpret_as_enum = false
 [var30]
 name = control_params.pi_id.set_point
 tracked_name = control_params.pi_id.set_point
-address = 44786
+address = 43058
 type = 7
 color = 1635091366
 should_update_from_elf = true
@@ -449,7 +449,7 @@ do_not_interpret_as_enum = false
 [var31]
 name = control_params.pi_iq.error
 tracked_name = control_params.pi_iq.error
-address = 44800
+address = 43072
 type = 7
 color = 3005482024
 should_update_from_elf = true
@@ -462,7 +462,7 @@ do_not_interpret_as_enum = false
 [var32]
 name = control_params.pi_iq.integral
 tracked_name = control_params.pi_iq.integral
-address = 44810
+address = 43082
 type = 7
 color = 3929808536
 should_update_from_elf = true
@@ -475,7 +475,7 @@ do_not_interpret_as_enum = false
 [var33]
 name = control_params.pi_iq.ki
 tracked_name = control_params.pi_iq.ki
-address = 44808
+address = 43080
 type = 7
 color = 358397840
 should_update_from_elf = true
@@ -488,7 +488,7 @@ do_not_interpret_as_enum = false
 [var34]
 name = control_params.pi_iq.kp
 tracked_name = control_params.pi_iq.kp
-address = 44806
+address = 43078
 type = 7
 color = 721103927
 should_update_from_elf = true
@@ -501,7 +501,7 @@ do_not_interpret_as_enum = false
 [var35]
 name = control_params.pi_iq.limit
 tracked_name = control_params.pi_iq.limit
-address = 44812
+address = 43084
 type = 7
 color = 1867029156
 should_update_from_elf = true
@@ -514,7 +514,7 @@ do_not_interpret_as_enum = false
 [var36]
 name = control_params.pi_iq.output
 tracked_name = control_params.pi_iq.output
-address = 44814
+address = 43086
 type = 7
 color = 168771012
 should_update_from_elf = true
@@ -527,7 +527,7 @@ do_not_interpret_as_enum = false
 [var37]
 name = control_params.pi_iq.sampling_time
 tracked_name = control_params.pi_iq.sampling_time
-address = 44804
+address = 43076
 type = 7
 color = 1261613706
 should_update_from_elf = true
@@ -540,7 +540,7 @@ do_not_interpret_as_enum = false
 [var38]
 name = control_params.pi_iq.set_point
 tracked_name = control_params.pi_iq.set_point
-address = 44802
+address = 43074
 type = 7
 color = 24330035
 should_update_from_elf = true
@@ -553,7 +553,7 @@ do_not_interpret_as_enum = false
 [var39]
 name = control_params.pi_output_dq.x
 tracked_name = control_params.pi_output_dq.x
-address = 44820
+address = 43092
 type = 7
 color = 2258823803
 should_update_from_elf = true
@@ -566,7 +566,7 @@ do_not_interpret_as_enum = false
 [var40]
 name = control_params.pi_output_dq.y
 tracked_name = control_params.pi_output_dq.y
-address = 44822
+address = 43094
 type = 7
 color = 2287957559
 should_update_from_elf = true
@@ -579,7 +579,7 @@ do_not_interpret_as_enum = false
 [var41]
 name = control_params.pi_output_dq_sat.d
 tracked_name = control_params.pi_output_dq_sat.d
-address = 44828
+address = 43100
 type = 7
 color = 2302940764
 should_update_from_elf = true
@@ -592,7 +592,7 @@ do_not_interpret_as_enum = false
 [var42]
 name = control_params.pi_output_dq_sat.q
 tracked_name = control_params.pi_output_dq_sat.q
-address = 44830
+address = 43102
 type = 7
 color = 2816525337
 should_update_from_elf = true
@@ -605,7 +605,7 @@ do_not_interpret_as_enum = false
 [var43]
 name = control_params.pi_output_vs_delta.r
 tracked_name = control_params.pi_output_vs_delta.r
-address = 44816
+address = 43088
 type = 7
 color = 1431537298
 should_update_from_elf = true
@@ -618,7 +618,7 @@ do_not_interpret_as_enum = false
 [var44]
 name = control_params.pi_output_vs_delta.theta
 tracked_name = control_params.pi_output_vs_delta.theta
-address = 44818
+address = 43090
 type = 7
 color = 3846081486
 should_update_from_elf = true
@@ -631,7 +631,7 @@ do_not_interpret_as_enum = false
 [var45]
 name = control_params.sampling_time
 tracked_name = control_params.sampling_time
-address = 44740
+address = 43012
 type = 7
 color = 91237738
 should_update_from_elf = true
@@ -644,7 +644,7 @@ do_not_interpret_as_enum = false
 [var46]
 name = control_params.sin_theta
 tracked_name = control_params.sin_theta
-address = 44758
+address = 43030
 type = 7
 color = 948959843
 should_update_from_elf = true
@@ -657,7 +657,7 @@ do_not_interpret_as_enum = false
 [var47]
 name = control_params.voltage_ab.alpha
 tracked_name = control_params.voltage_ab.alpha
-address = 44824
+address = 43096
 type = 7
 color = 2907826754
 should_update_from_elf = true
@@ -670,7 +670,7 @@ do_not_interpret_as_enum = false
 [var48]
 name = control_params.voltage_ab.beta
 tracked_name = control_params.voltage_ab.beta
-address = 44826
+address = 43098
 type = 7
 color = 1215013305
 should_update_from_elf = true
@@ -683,7 +683,7 @@ do_not_interpret_as_enum = false
 [var49]
 name = control_params.voltage_open_loop_ac
 tracked_name = control_params.voltage_open_loop_ac
-address = 44742
+address = 43014
 type = 7
 color = 3926027205
 should_update_from_elf = true
@@ -696,7 +696,7 @@ do_not_interpret_as_enum = false
 [var50]
 name = control_params.voltage_open_loop_pk
 tracked_name = control_params.voltage_open_loop_pk
-address = 44744
+address = 43016
 type = 7
 color = 2540362492
 should_update_from_elf = true

@@ -71,7 +71,7 @@ void RunTests(void);
 
 //@brief Returns 1 if the last batch run has completed, 0 otherwise.
 //       Resets to 0 as soon as StartBatch() is called again.
-//@return uint32_t — 1 if done, 0 if idle or running
+//@return uint32_t - 1 if done, 0 if idle or running
 uint32_t IsBatchComplete(void);
 
 #endif // __BATCH_H__
