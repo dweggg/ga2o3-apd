@@ -61,15 +61,15 @@ static uint32_t          batch_timer        = 0U;
 static uint32_t          batch_batch_done   = 0U; // flag polled by IsBatchComplete()
 
 //@brief Captures a temperature sample from all four MOSFET positions
-//@return BatchSampleTypeDef populated with current ADC readings
+//@return BatchSampleTypeDef populated with temperature ADC readings (celsius x10)
 static BatchSampleTypeDef CaptureData(void)
 {
     BatchSampleTypeDef sample;
 
-    sample.temp_ah = GetTempAH();
-    sample.temp_al = GetTempAL();
-    sample.temp_bh = GetTempBH();
-    sample.temp_bl = GetTempBL();
+    sample.temp_ah = (uint16_t)(GetTempAH() * 10.0f);
+    sample.temp_al = (uint16_t)(GetTempAL() * 10.0f);
+    sample.temp_bh = (uint16_t)(GetTempBH() * 10.0f);
+    sample.temp_bl = (uint16_t)(GetTempBL() * 10.0f);
 
     return sample;
 }

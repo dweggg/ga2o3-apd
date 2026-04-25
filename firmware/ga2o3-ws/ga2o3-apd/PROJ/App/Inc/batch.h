@@ -23,9 +23,9 @@
 // Batch dimension limits
 #define MODE_COUNT      2U  // Number of test modes
 #define STEP_COUNT      4U  // Number of current step types
-#define MAX_FREQS       3U  // Maximum number of frequencies in a batch
-#define MAX_DEADTIMES   3U  // Maximum number of dead times in a batch
-#define MAX_CURRENTS    3U  // Maximum number of current levels in a batch
+#define MAX_FREQS       5U  // Maximum number of frequencies in a batch
+#define MAX_DEADTIMES   5U  // Maximum number of dead times in a batch
+#define MAX_CURRENTS    5U  // Maximum number of current levels in a batch
 
 // @brief Converter operating mode
 typedef enum {
@@ -41,12 +41,12 @@ typedef enum {
     StepIqNeg = 3   // Negative q-axis step
 } CurrentStepTypeDef;
 
-// @brief Temperature readings from a single batch sample
+// @brief Temperature readings from a single batch sample 
 typedef struct {
-    float temp_ah;  // Phase A high-side temperature (degC)
-    float temp_al;  // Phase A low-side temperature (degC)
-    float temp_bh;  // Phase B high-side temperature (degC)
-    float temp_bl;  // Phase B low-side temperature (degC)
+    uint16_t temp_ah;  // Phase A high-side temperature (degC * 10)
+    uint16_t temp_al;  // Phase A low-side temperature (degC * 10)
+    uint16_t temp_bh;  // Phase B high-side temperature (degC * 10)
+    uint16_t temp_bl;  // Phase B low-side temperature (degC * 10)
 } BatchSampleTypeDef;
 
 // @brief Internal state machine states for the batch runner
