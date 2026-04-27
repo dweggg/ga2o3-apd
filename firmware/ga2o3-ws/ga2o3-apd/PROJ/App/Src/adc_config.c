@@ -6,13 +6,13 @@
 
 #include "adc_config.h"
 
-float VOLTAGE_GAIN = -0.33f;
-float VOLTAGE_OFFSET = 650.1f;
-
-float CURRENT_GAIN = 0.03174603f;
-float CURRENT_OFFSET = -62.5f;
 
 typedef struct { uint16_t raw; float temp_c; } TempLutEntry;
+
+static const float VOLTAGE_GAIN = -1.0f/3.32f;
+static const float VOLTAGE_OFFSET = -1968.0f;
+static const float CURRENT_GAIN = -1.0f/32.6f;
+static const float CURRENT_OFFSET = -2012.0f;
 
 static const TempLutEntry temp_lut[] = {
     /*  raw    degC   */
@@ -34,7 +34,7 @@ static const TempLutEntry temp_lut[] = {
 #define TEMP_LUT_LEN  (sizeof(temp_lut) / sizeof(temp_lut[0]))
 
 /* Mutable current offset for self-calibration */
-static float current_offset[3] = { CURRENT_OFFSET, CURRENT_OFFSET, CURRENT_OFFSET };
+static float current_offsets[3] = { 0.0f, 0.0f, 0.0f };
 
 /* -----------------------------------------------------------------------
  * Private helpers
@@ -75,9 +75,9 @@ HAL_StatusTypeDef CalibrateCurrentOffset(uint16_t num_samples)
     float avg_raw_c = (float)sum_c / (float)num_samples;
 
     // dunno why but consistent 1.4A difference lol
-    current_offset[0] = -avg_raw_a * CURRENT_GAIN - 1.4;
-    current_offset[1] = -avg_raw_b * CURRENT_GAIN - 1.4;
-    current_offset[2] = -avg_raw_c * CURRENT_GAIN - 1.4;
+    current_offsets[0] = -avg_raw_a;
+    current_offsets[1] = -avg_raw_b;
+    current_offsets[2] = -avg_raw_c;
 
     return HAL_OK;
 }
@@ -313,25 +313,25 @@ float GetTempCL(void)
 float GetVoltageA(void)
 {
     uint16_t raw = GetADCResult(V_A_ADC_MODULE, V_A_ADC_SOC);
-    return ((float)raw * VOLTAGE_GAIN) + VOLTAGE_OFFSET;
+    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
 }
 
 float GetVoltageB(void)
 {
     uint16_t raw = GetADCResult(V_B_ADC_MODULE, V_B_ADC_SOC);
-    return ((float)raw * VOLTAGE_GAIN) + VOLTAGE_OFFSET;
+    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
 }
 
 float GetVoltageC(void)
 {
     uint16_t raw = GetADCResult(V_C_ADC_MODULE, V_C_ADC_SOC);
-    return ((float)raw * VOLTAGE_GAIN) + VOLTAGE_OFFSET;
+    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
 }
 
 float GetVoltageDC(void)
 {
     uint16_t raw = GetADCResult(V_DC_ADC_MODULE, V_DC_ADC_SOC);
-    return ((float)raw * VOLTAGE_GAIN) + VOLTAGE_OFFSET;
+    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
 }
 
 
@@ -340,17 +340,17 @@ float GetVoltageDC(void)
 float GetCurrentA(void)
 {
     uint16_t raw = GetADCResult(I_A_ADC_MODULE, I_A_ADC_SOC);
-    return ((float)raw * CURRENT_GAIN) + current_offset[0];
+    return ((float)raw +  current_offsets[0]) * CURRENT_GAIN;
 }
 
 float GetCurrentB(void)
 {
     uint16_t raw = GetADCResult(I_B_ADC_MODULE, I_B_ADC_SOC);
-    return ((float)raw * CURRENT_GAIN) + current_offset[1];
+    return ((float)raw +  current_offsets[1]) * CURRENT_GAIN;
 }
 
 float GetCurrentC(void)
 {
     uint16_t raw = GetADCResult(I_C_ADC_MODULE, I_C_ADC_SOC);
-    return ((float)raw * CURRENT_GAIN) + current_offset[2];
+    return ((float)raw +  current_offsets[2]) * CURRENT_GAIN;
 }

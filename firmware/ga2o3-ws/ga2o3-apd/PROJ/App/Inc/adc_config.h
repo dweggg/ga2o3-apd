@@ -98,13 +98,7 @@
  * ----------------------------------------------------------------------- */
 
 #define TEMP_SAMPLE_WINDOW_NS       20U // ns
-
-#define VOLTAGE_GAIN                -0.33f
-#define VOLTAGE_OFFSET              650.1f
 #define VOLTAGE_SAMPLE_WINDOW_NS    20U // ns
-
-#define CURRENT_GAIN                0.03174603f
-#define CURRENT_OFFSET              -62.5f
 #define CURRENT_SAMPLE_WINDOW_NS    20U // ns
 
 

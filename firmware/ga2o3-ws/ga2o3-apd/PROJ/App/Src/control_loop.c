@@ -53,7 +53,7 @@ static inline void Clamp(PolarTypeDef *polar, float limit)
 
 void InitControlLoop(void)
 {
-    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoop);
+    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoopDC);
     control_params.current_feedback_amps  = 0.0f;
     control_params.omega_rad              = 0.0f;
     control_params.sin_theta              = 0.0f;
@@ -141,12 +141,12 @@ void TaskControlLoop(void)
     RunPiControl(&control_params.pi_id,
                   id_ref,
                   control_params.idq_meas_amps.d,
-                  GetVoltageDC() * 0.5f);
+                  GetVoltageDC() * 0.5f, - GetVoltageDC() * 0.5f);
 
     RunPiControl(&control_params.pi_iq,
                   iq_ref,
                   control_params.idq_meas_amps.q,
-                  GetVoltageDC() * 0.5f);
+                  GetVoltageDC() * 0.5f, - GetVoltageDC() * 0.5f);
 
     /* --- Cartesian -> polar -> clamp -> back to cartesian ------------------ */
     control_params.pi_output_dq.x = control_params.pi_id.output;
@@ -167,15 +167,15 @@ void TaskControlLoop(void)
     /* --- Mode-specific PWM modulation -------------------------------------- */
     if (control_interleaved)
     {
-        SetPhaseShift(CHANNEL_A, CHANNEL_B, 0.5F);   // 180 deg
-        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(CHANNEL_B, control_params.duty_closed_loop);
-        SetDuty(CHANNEL_C, control_params.duty_open_loop);
+        SetPhaseShift(PWM_CHANNEL_A, PWM_CHANNEL_B, 0.5F);   // 180 deg
+        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(PWM_CHANNEL_B, control_params.duty_closed_loop);
+        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
     }
     else
     {
-        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(CHANNEL_C, control_params.duty_open_loop);
+        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
     }
 }
 
@@ -186,23 +186,23 @@ void TaskControlLoop(void)
 /* Buck converter control task                                                 */
 /* -------------------------------------------------------------------------- */
 
-void TaskBuckControlLoopDC(void)
+void TaskControlLoopDC(void)
 {
     if (!control_enabled) { return; }
 
-    /* --- Rate-limit current references ------------------------------------ */
-    float id_ref = RunRateLimiter(&control_params.rl_id, control_params.idq_ref_amps.d);
-    
+    float id_ref = control_params.idq_ref_amps.d;
+    float i_fb;
+
     if (BuckChannel == 1) {
-        float i_fb = GetCurrentA();
+        i_fb = GetCurrentA();
     
     }
     else if (BuckChannel == 2) {
-        float i_fb = GetCurrentB();
+        i_fb = GetCurrentB();
     
     }
     else if (BuckChannel == 3) {
-        float i_fb = GetCurrentB();
+        i_fb = GetCurrentC();
     
     }
     else  {
@@ -210,13 +210,13 @@ void TaskBuckControlLoopDC(void)
     
     }
     
-
+    control_params.idq_meas_amps.d = i_fb;
 
     /* --- PI controllers --------------------------------------------------- */
     RunPiControl(&control_params.pi_id,
                   id_ref,
                   control_params.idq_meas_amps.d,
-                  GetVoltageDC() * 0.5f);
+                  GetVoltageDC() * 0.9f, 0.0f);
 
 
 

@@ -21,8 +21,8 @@ extern "C"
 #define PARAMS_SYS_CLOCK                    (DEVICE_SYSCLK_FREQ)
 #define PARAMS_SCHEDULER_MAX_TASKS_LIMIT    (32) //max 32 tasks are allowed
 
-#define L_H                                 (0.0036)
-#define R_OHM                               (0.05)
+#define L_H                                 (0.001)
+#define R_OHM                               (5.8)
 
 #define MAX_PHASE_CURRENT_AMPS              (20)
 

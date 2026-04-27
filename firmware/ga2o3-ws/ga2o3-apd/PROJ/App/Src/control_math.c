@@ -18,8 +18,10 @@
 void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float sampling_time)
 {
     // Initialize outputs and state to zero
-    pid_var->error         = 0.0f;
-    pid_var->integral      = 0.0f;
+    pid_var->error_k         = 0.0f;
+    pid_var->error_k1         = 0.0f;
+    pid_var->integral_k      = 0.0f;
+    pid_var->integral_k1      = 0.0f;
     pid_var->output        = 0.0f;
     pid_var->set_point     = 0.0f;
 
@@ -31,7 +33,8 @@ void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float sampling_time)
     pid_var->sampling_time = sampling_time;
 
     // Apply integral clamp symmetrically around zero
-    pid_var->limit         = 0.0f;
+    pid_var->limit_p         = 0.0f;
+    pid_var->limit_n         = 0.0f;
 }
 
 
@@ -41,30 +44,34 @@ void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float sampling_time)
 // @param [in]     measured_value current process measurement
 // @param [in]     limit          integral clamp value, applied as +/- limit
 // @return none
-void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit)
+void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit_p, float limit_n)
 {
-    pid_var->set_point = set_point;
-    pid_var->limit     = limit;
+    pid_var->set_point   = set_point;
+    pid_var->limit_p     = limit_p;
+    pid_var->limit_n     = limit_n;
 
     // Calculate error between target and measured
-    pid_var->error = pid_var->set_point - measured_value;
+    pid_var->error_k = pid_var->set_point - measured_value;
 
     // Accumulate error over time — integral term
-    pid_var->integral += pid_var->error * pid_var->sampling_time;
-
-    // Clamp integral to prevent windup
-    if (pid_var->integral > pid_var->limit)
-    {
-        pid_var->integral = pid_var->limit;
-    }
-    else if (pid_var->integral < -(pid_var->limit))
-    {
-        pid_var->integral = -(pid_var->limit);
-    }
+    pid_var->integral_k = pid_var->ki * pid_var->sampling_time * (pid_var->error_k + (pid_var->output - pid_var->output_presat)/pid_var->kp) + pid_var->integral_k1;
 
     // Sum P and I contributions to produce output
-    pid_var->output = (pid_var->kp * pid_var->error) + (pid_var->ki * pid_var->integral);
+    pid_var->output_presat = (pid_var->kp * pid_var->error_k) + pid_var->integral_k;
 
+    // Clamp integral to prevent windup
+    if (pid_var->output_presat > pid_var->limit_p)
+    {
+        pid_var->output = pid_var->limit_p;
+    }
+    else if (pid_var->output_presat < -(pid_var->limit_n))
+    {
+        pid_var->output = pid_var->limit_n;
+    }
+
+    pid_var->error_k1 = pid_var->error_k;
+    pid_var->integral_k1 = pid_var->integral_k;
+    
     return;
 }
 

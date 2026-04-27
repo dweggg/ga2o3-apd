@@ -61,8 +61,9 @@ void main(void)
 
     CreateTask(TaskUserInterface, 10);
 
-    CreateTask(TaskControlLoop, 10000);
-    // CreateTask(TaskStateMachine, 1000);   
+    // CreateTask(TaskControlLoop, 10000);
+    CreateTask(TaskControlLoopDC, 10000);
+    CreateTask(TaskStateMachine, 1000);   
 
     CreateTask(ToggleLED, 2);
 
