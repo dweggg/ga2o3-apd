@@ -112,14 +112,14 @@ static void ApplyModeSetup(TestModeTypeDef mode)
 {
     if (mode == ModeSingle)
     {
-        DisablePWM(CHANNEL_B);
-        EnablePWM(CHANNEL_A);
+        DisablePWM(PWM_CHANNEL_B);
+        EnablePWM(PWM_CHANNEL_A);
         ControlLoop_SetInterleavedMode(0);
     }
     else
     {
-        EnablePWM(CHANNEL_A);
-        EnablePWM(CHANNEL_B);
+        EnablePWM(PWM_CHANNEL_A);
+        EnablePWM(PWM_CHANNEL_B);
         ControlLoop_SetInterleavedMode(1);
     }
 }
@@ -191,9 +191,9 @@ void RunTests(void)
             break;
 
         case BatchSetup:
-            EnablePWM(CHANNEL_C);
-            SetFrequency(CHANNEL_C, FREQUENCY_C);
-            SetDeadTime(CHANNEL_C, DEADTIME_C);
+            EnablePWM(PWM_CHANNEL_C);
+            SetFrequency(PWM_CHANNEL_C, FREQUENCY_C);
+            SetDeadTime(PWM_CHANNEL_C, DEADTIME_C);
             ControlLoop_SetOpenLoopVoltage(VOLTAGE_C, FUNDAMENTAL_FREQUENCY);
             ControlLoop_Enable();
             ControlLoop_SetIdRef(0.0F);
@@ -208,10 +208,10 @@ void RunTests(void)
                 ApplyModeSetup((TestModeTypeDef)batch_mode);
             }
 
-            SetFrequency(CHANNEL_A, frequencies[batch_fi]);
-            SetFrequency(CHANNEL_B, frequencies[batch_fi]);
-            SetDeadTime(CHANNEL_A, deadtimes[batch_di]);
-            SetDeadTime(CHANNEL_B, deadtimes[batch_di]);
+            SetFrequency(PWM_CHANNEL_A, frequencies[batch_fi]);
+            SetFrequency(PWM_CHANNEL_B, frequencies[batch_fi]);
+            SetDeadTime(PWM_CHANNEL_A, deadtimes[batch_di]);
+            SetDeadTime(PWM_CHANNEL_B, deadtimes[batch_di]);
             ApplyCurrentStep(currents[batch_ci], (CurrentStepTypeDef)batch_step);
 
             StartTimer(&batch_timer);
@@ -238,9 +238,9 @@ void RunTests(void)
             ControlLoop_SetIdRef(0.0F);
             ControlLoop_SetIqRef(0.0F);
             ControlLoop_Disable();
-            DisablePWM(CHANNEL_A);
-            DisablePWM(CHANNEL_B);
-            DisablePWM(CHANNEL_C);
+            DisablePWM(PWM_CHANNEL_A);
+            DisablePWM(PWM_CHANNEL_B);
+            DisablePWM(PWM_CHANNEL_C);
             batch_batch_done = 1U;
             batch_state      = BatchIdle;
             break;

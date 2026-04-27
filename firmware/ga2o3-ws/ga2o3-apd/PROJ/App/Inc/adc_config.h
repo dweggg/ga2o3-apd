@@ -79,8 +79,8 @@
 // ---------------------- CURRENTS ----------------------
 // Ia -> ADC Module A, IN0
 #define I_A_ADC_MODULE            1                 // ADC A
-#define I_A_ADC_SOC               0                  // ADCA-SOC2
-#define I_A_ADC_CHANNEL           ADC_CH_ADCIN3     // ADCA pin IN3
+#define I_A_ADC_SOC               0                 // ADCA-SOC2
+#define I_A_ADC_CHANNEL           ADC_CH_ADCIN3     // ADCA pin IN0
 
 // Ib -> ADC Module A, IN2
 #define I_B_ADC_MODULE            1                 // ADC A
@@ -97,14 +97,14 @@
  * Shared ADC settings
  * ----------------------------------------------------------------------- */
 
-#define TEMP_SAMPLE_WINDOW_NS    20U // ns
+#define TEMP_SAMPLE_WINDOW_NS       20U // ns
 
-// #define VOLTAGE_GAIN                210.0f
-// #define VOLTAGE_OFFSET              0.0f
+#define VOLTAGE_GAIN                -0.33f
+#define VOLTAGE_OFFSET              650.1f
 #define VOLTAGE_SAMPLE_WINDOW_NS    20U // ns
 
-//#define CURRENT_GAIN                0.01f
-//#define CURRENT_OFFSET              0.0f
+#define CURRENT_GAIN                0.03174603f
+#define CURRENT_OFFSET              -62.5f
 #define CURRENT_SAMPLE_WINDOW_NS    20U // ns
 
 
@@ -113,11 +113,11 @@
  * ----------------------------------------------------------------------- */
 
 /* Initialise every ADC module and configure every SOC listed above. */
-HAL_StatusTypeDef ADC_Config_Init(void);
+HAL_StatusTypeDef InitConfigADC(void);
+HAL_StatusTypeDef CalibrateCurrentOffset(uint16_t num_samples);
 
-void ADC_TriggerTemps(void);
-void ADC_TriggerVoltages(void);
-void ADC_TriggerCurrents(void);
+void TriggerTempADC(void);
+void TriggerVoltageADC(void);
 
 float GetTempAH(void);
 float GetTempAL(void);

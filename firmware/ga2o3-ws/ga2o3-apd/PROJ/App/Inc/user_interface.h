@@ -2,6 +2,9 @@
 #define __USER_INTERFACE_H__
 
 #include <stdint.h>
+#include "global_defines.h"
+
+#define GD_ENABLE_PIN       25
 
 typedef enum {
     UI_MODE_IDLE = 0,
@@ -11,12 +14,6 @@ typedef enum {
     UI_MODE_CLOSED_LOOP_INTERLEAVED,
     UI_MODE_BATCH_TEST,
 } UiModeTypeDef;
-
-typedef enum {
-    PWM_CHANNEL_A = 1U,
-    PWM_CHANNEL_B = 2U,
-    PWM_CHANNEL_C = 3U,
-} PwmChannelTypeDef;
 
 typedef struct {
     uint32_t frequency_hz;

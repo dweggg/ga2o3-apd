@@ -33,9 +33,54 @@ static const TempLutEntry temp_lut[] = {
 
 #define TEMP_LUT_LEN  (sizeof(temp_lut) / sizeof(temp_lut[0]))
 
+/* Mutable current offset for self-calibration */
+static float current_offset[3] = { CURRENT_OFFSET, CURRENT_OFFSET, CURRENT_OFFSET };
+
 /* -----------------------------------------------------------------------
  * Private helpers
  * ----------------------------------------------------------------------- */
+
+/*
+ * Self-calibration routine for current offset.
+ *
+ * Must be called AFTER InitConfigADC() has configured all current SOCs.
+ *
+ * @param [in] num_samples       Number of samples to average (recommended: 8-16)
+ * @return                       HAL_OK on success, HAL_ERROR if sampling fails
+ */
+HAL_StatusTypeDef CalibrateCurrentOffset(uint16_t num_samples)
+{
+    if (num_samples == 0) return HAL_ERROR;
+
+    uint32_t sum_a = 0, sum_b = 0, sum_c = 0;
+
+    for (uint16_t i = 0; i < num_samples; i++) {
+        /* Trigger current measurements via software */
+        if (SoftwareTriggerSOC(I_A_ADC_MODULE, I_A_ADC_SOC) != HAL_OK)
+            return HAL_ERROR;
+        if (SoftwareTriggerSOC(I_B_ADC_MODULE, I_B_ADC_SOC) != HAL_OK)
+            return HAL_ERROR;
+        if (SoftwareTriggerSOC(I_C_ADC_MODULE, I_C_ADC_SOC) != HAL_OK)
+            return HAL_ERROR;
+
+        /* Accumulate raw readings */
+        sum_a += GetADCResult(I_A_ADC_MODULE, I_A_ADC_SOC);
+        sum_b += GetADCResult(I_B_ADC_MODULE, I_B_ADC_SOC);
+        sum_c += GetADCResult(I_C_ADC_MODULE, I_C_ADC_SOC);
+    }
+
+    /* Compute average raw values and convert to physical offset */
+    float avg_raw_a = (float)sum_a / (float)num_samples;
+    float avg_raw_b = (float)sum_b / (float)num_samples;
+    float avg_raw_c = (float)sum_c / (float)num_samples;
+
+    // dunno why but consistent 1.4A difference lol
+    current_offset[0] = -avg_raw_a * CURRENT_GAIN - 1.4;
+    current_offset[1] = -avg_raw_b * CURRENT_GAIN - 1.4;
+    current_offset[2] = -avg_raw_c * CURRENT_GAIN - 1.4;
+
+    return HAL_OK;
+}
 
 /*
  * Linear interpolation between two LUT points.
@@ -74,7 +119,7 @@ static float raw_to_celsius(uint16_t raw, const TempLutEntry *lut, uint16_t len)
  * Core API
  * ----------------------------------------------------------------------- */
 
-HAL_StatusTypeDef ADC_Config_Init(void)
+HAL_StatusTypeDef InitConfigADC(void)
 {
     HAL_StatusTypeDef status;
 
@@ -189,11 +234,11 @@ HAL_StatusTypeDef ADC_Config_Init(void)
                           CURRENT_SAMPLE_WINDOW_NS);
     if (status != HAL_OK) return status;
 
-
+    CalibrateCurrentOffset(1000);
     return HAL_OK;
 }
 
-void ADC_TriggerTemps(void)
+void TriggerTempADC(void)
 {
     SoftwareTriggerSOC(TEMP_AH_ADC_MODULE,    TEMP_AH_ADC_SOC);
     SoftwareTriggerSOC(TEMP_AL_ADC_MODULE,    TEMP_AL_ADC_SOC);
@@ -204,7 +249,7 @@ void ADC_TriggerTemps(void)
 
 }
 
-void ADC_TriggerVoltages(void)
+void TriggerVoltageADC(void)
 {
     SoftwareTriggerSOC(V_A_ADC_MODULE,    V_A_ADC_SOC);
     SoftwareTriggerSOC(V_B_ADC_MODULE,    V_B_ADC_SOC);
@@ -295,17 +340,17 @@ float GetVoltageDC(void)
 float GetCurrentA(void)
 {
     uint16_t raw = GetADCResult(I_A_ADC_MODULE, I_A_ADC_SOC);
-    return ((float)raw * CURRENT_GAIN) + CURRENT_OFFSET;
+    return ((float)raw * CURRENT_GAIN) + current_offset[0];
 }
 
 float GetCurrentB(void)
 {
     uint16_t raw = GetADCResult(I_B_ADC_MODULE, I_B_ADC_SOC);
-    return ((float)raw * CURRENT_GAIN) + CURRENT_OFFSET;
+    return ((float)raw * CURRENT_GAIN) + current_offset[1];
 }
 
 float GetCurrentC(void)
 {
     uint16_t raw = GetADCResult(I_C_ADC_MODULE, I_C_ADC_SOC);
-    return ((float)raw * CURRENT_GAIN) + CURRENT_OFFSET;
+    return ((float)raw * CURRENT_GAIN) + current_offset[2];
 }

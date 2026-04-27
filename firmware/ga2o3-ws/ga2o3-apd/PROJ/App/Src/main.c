@@ -44,27 +44,25 @@ void main(void)
 
     bspInitCpuTimers();
     bspInitSCI();
-    ADC_Config_Init();
+    InitConfigADC();
 
-    // InitGateDriverTest();
     EINT;
     ERTM;
 
 
     InitStateMachine();
+    InitControlLoop();
     InitUserInterface();
+    
     InitTaskScheduler();
 
-
-
-
-    CreateTask(ADC_TriggerTemps, 100);   
-    CreateTask(ADC_TriggerVoltages, 100);   
+    CreateTask(TriggerTempADC, 100);   
+    CreateTask(TriggerVoltageADC, 100);   
 
     CreateTask(TaskUserInterface, 10);
 
     CreateTask(TaskControlLoop, 10000);
-    CreateTask(TaskStateMachine, 1000);   
+    // CreateTask(TaskStateMachine, 1000);   
 
     CreateTask(ToggleLED, 2);
 
