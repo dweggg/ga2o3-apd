@@ -53,7 +53,6 @@ void main(void)
     InitStateMachine();
     InitControlLoop();
     InitUserInterface();
-    InitConfigADC();
     
     InitTaskScheduler();
 
