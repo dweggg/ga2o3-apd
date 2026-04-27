@@ -6,6 +6,12 @@
 
 #include "adc_config.h"
 
+float VOLTAGE_GAIN = -0.33f;
+float VOLTAGE_OFFSET = 650.1f;
+
+float CURRENT_GAIN = 0.03174603f;
+float CURRENT_OFFSET = -62.5f;
+
 typedef struct { uint16_t raw; float temp_c; } TempLutEntry;
 
 static const TempLutEntry temp_lut[] = {
@@ -204,6 +210,13 @@ void ADC_TriggerVoltages(void)
     SoftwareTriggerSOC(V_B_ADC_MODULE,    V_B_ADC_SOC);
     SoftwareTriggerSOC(V_C_ADC_MODULE,    V_C_ADC_SOC);
     SoftwareTriggerSOC(V_DC_ADC_MODULE,   V_DC_ADC_SOC);
+}
+
+void ADC_TriggerCurrents(void)
+{
+    SoftwareTriggerSOC(I_A_ADC_MODULE,    I_A_ADC_SOC);
+    SoftwareTriggerSOC(I_B_ADC_MODULE,    I_B_ADC_SOC);
+    SoftwareTriggerSOC(I_C_ADC_MODULE,    I_C_ADC_SOC);
 }
 
 /* -----------------------------------------------------------------------

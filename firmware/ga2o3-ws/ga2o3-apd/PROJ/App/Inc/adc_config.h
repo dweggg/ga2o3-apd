@@ -79,8 +79,8 @@
 // ---------------------- CURRENTS ----------------------
 // Ia -> ADC Module A, IN0
 #define I_A_ADC_MODULE            1                 // ADC A
-#define I_A_ADC_SOC               0                 // ADCA-SOC2
-#define I_A_ADC_CHANNEL           ADC_CH_ADCIN0     // ADCA pin IN0
+#define I_A_ADC_SOC               0                  // ADCA-SOC2
+#define I_A_ADC_CHANNEL           ADC_CH_ADCIN3     // ADCA pin IN3
 
 // Ib -> ADC Module A, IN2
 #define I_B_ADC_MODULE            1                 // ADC A
@@ -99,12 +99,12 @@
 
 #define TEMP_SAMPLE_WINDOW_NS    20U // ns
 
-#define VOLTAGE_GAIN                0.01f
-#define VOLTAGE_OFFSET              0.0f
+// #define VOLTAGE_GAIN                210.0f
+// #define VOLTAGE_OFFSET              0.0f
 #define VOLTAGE_SAMPLE_WINDOW_NS    20U // ns
 
-#define CURRENT_GAIN                0.01f
-#define CURRENT_OFFSET              0.0f
+//#define CURRENT_GAIN                0.01f
+//#define CURRENT_OFFSET              0.0f
 #define CURRENT_SAMPLE_WINDOW_NS    20U // ns
 
 
@@ -117,6 +117,7 @@ HAL_StatusTypeDef ADC_Config_Init(void);
 
 void ADC_TriggerTemps(void);
 void ADC_TriggerVoltages(void);
+void ADC_TriggerCurrents(void);
 
 float GetTempAH(void);
 float GetTempAL(void);

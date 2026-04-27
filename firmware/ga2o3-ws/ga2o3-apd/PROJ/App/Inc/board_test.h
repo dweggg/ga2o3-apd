@@ -13,6 +13,7 @@
 #include "bsp_adc.h"
 #include "adc_config.h"
 
+
 #define GD_EN       25
 
 #define GD_FLT1     66
@@ -22,3 +23,8 @@
 void EnableGateDriver(void);
 
 void RunDriver(void);
+void InitVoltageSense(void);
+void RunVoltageSense(void);
+
+void InitCurrentSense(void);
+void RunCurrentSense(void);
