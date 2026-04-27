@@ -68,7 +68,7 @@ static float raw_to_celsius(uint16_t raw, const TempLutEntry *lut, uint16_t len)
  * Core API
  * ----------------------------------------------------------------------- */
 
-HAL_StatusTypeDef ADC_Config_Init(void)
+HAL_StatusTypeDef InitConfigADC(void)
 {
     HAL_StatusTypeDef status;
 
@@ -187,7 +187,7 @@ HAL_StatusTypeDef ADC_Config_Init(void)
     return HAL_OK;
 }
 
-void ADC_TriggerTemps(void)
+void TriggerTempADC(void)
 {
     SoftwareTriggerSOC(TEMP_AH_ADC_MODULE,    TEMP_AH_ADC_SOC);
     SoftwareTriggerSOC(TEMP_AL_ADC_MODULE,    TEMP_AL_ADC_SOC);
@@ -198,7 +198,7 @@ void ADC_TriggerTemps(void)
 
 }
 
-void ADC_TriggerVoltages(void)
+void TriggerVoltageADC(void)
 {
     SoftwareTriggerSOC(V_A_ADC_MODULE,    V_A_ADC_SOC);
     SoftwareTriggerSOC(V_B_ADC_MODULE,    V_B_ADC_SOC);

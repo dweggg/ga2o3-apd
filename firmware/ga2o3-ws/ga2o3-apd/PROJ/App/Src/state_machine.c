@@ -34,11 +34,6 @@ static inline uint16_t OverCurrentCheck(void)
             ic < MAX_PHASE_CURRENT_AMPS || ic > MAX_PHASE_CURRENT_AMPS) ? 1U : 0U;
 }
 
-static inline void DisableDrivers(void)
-{
-    GPIO_writePin(25, 0);
-}
-
 
 /* -------------------------------------------------------------------------- */
 /* Public API                                                                  */
@@ -56,12 +51,6 @@ void TaskStateMachine(void)
     {
         /* ------------------------------------------------------------------ */
         case STATE_INIT:
-            InitControlLoop();
-            if (ADC_Config_Init() != HAL_OK)
-            {
-                state_machine_handle = STATE_ERROR;
-                break;
-            }
             state_machine_handle = STATE_IDLE;
             break;
 
@@ -83,13 +72,13 @@ void TaskStateMachine(void)
                 break;
             }
 
-            if (!OverCurrentCheck())
-            {
-                ControlLoop_Disable();
-                DisableDrivers();
-                state_machine_handle = STATE_OVER_CURRENT;
-                break;
-            }
+            // if (!OverCurrentCheck())
+            // {
+            //     ControlLoop_Disable();
+            //     DisableDrivers();
+            //     state_machine_handle = STATE_OVER_CURRENT;
+            //     break;
+            // }
 
             if (0/*CheckAndClearReset()*/)
             {
@@ -108,7 +97,6 @@ void TaskStateMachine(void)
         /* ------------------------------------------------------------------ */
         case STATE_STOP:
             ControlLoop_Disable();
-            DisableDrivers();
             break;
 
         /* ------------------------------------------------------------------ */
@@ -119,7 +107,6 @@ void TaskStateMachine(void)
         /* ------------------------------------------------------------------ */
         case STATE_ERROR:
             ControlLoop_Disable();
-            DisableDrivers();
             break;
 
         /* ------------------------------------------------------------------ */

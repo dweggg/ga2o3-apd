@@ -167,14 +167,14 @@ void TaskControlLoop(void)
     /* --- Mode-specific PWM modulation -------------------------------------- */
     if (control_interleaved)
     {
-        SetPhaseShift(CHANNEL_A, CHANNEL_B, 0.5F);   // 180 deg
-        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(CHANNEL_B, control_params.duty_closed_loop);
-        SetDuty(CHANNEL_C, control_params.duty_open_loop);
+        SetPhaseShift(PWM_CHANNEL_A, PWM_CHANNEL_B, 0.5F);   // 180 deg
+        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(PWM_CHANNEL_B, control_params.duty_closed_loop);
+        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
     }
     else
     {
-        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(CHANNEL_C, control_params.duty_open_loop);
+        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
     }
 }
