@@ -49,6 +49,10 @@ HAL_StatusTypeDef InitPWM(uint32_t channel)
     EDIS;
 
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
+    // Setup ADC Trigger out
+    EPWM_disableADCTrigger(base, EPWM_SOC_A);
+    EPWM_setADCTriggerSource(base, EPWM_SOC_A, EPWM_SOC_TBCTR_U_CMPA);// Trigger when counter equal to CMPA and timer is incrementing
+    EPWM_setADCTriggerEventPrescale(base, EPWM_SOC_A, 1);
 
     // Time base
     EPWM_setTimeBasePeriod(base, period_ticks);
@@ -226,6 +230,9 @@ HAL_StatusTypeDef EnablePWM(uint32_t channel)
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_DISABLED);
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_DISABLED);
 
+    // Enable the trigger signal for ADC
+    EPWM_enableADCTrigger(base, EPWM_SOC_A);
+
     return HAL_OK;
 }
 
@@ -239,5 +246,8 @@ HAL_StatusTypeDef DisablePWM(uint32_t channel)
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_LOW);
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_OUTPUT_LOW);
 
+    // Disable the trigger signal for ADC
+    EPWM_disableADCTrigger(base, EPWM_SOC_A);
+    
     return HAL_OK;
 }
