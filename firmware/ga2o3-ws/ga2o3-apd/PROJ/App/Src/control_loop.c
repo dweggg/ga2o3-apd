@@ -29,7 +29,7 @@ static const float RL_RATE_OMEGA_R_PER_S   = 1000.0f;   // open-loop freq [rad/s
 static uint16_t control_enabled     = 0U;
 static uint16_t control_interleaved = 0U;
 static ControlParamsTypeDef control_params;
-
+int BuckChannel = 0;
 /* -------------------------------------------------------------------------- */
 /* Private helpers                                                             */
 /* -------------------------------------------------------------------------- */
@@ -167,15 +167,15 @@ void TaskControlLoop(void)
     /* --- Mode-specific PWM modulation -------------------------------------- */
     if (control_interleaved)
     {
-        SetPhaseShift(PWM_CHANNEL_A, PWM_CHANNEL_B, 0.5F);   // 180 deg
-        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(PWM_CHANNEL_B, control_params.duty_closed_loop);
-        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
+        SetPhaseShift(CHANNEL_A, CHANNEL_B, 0.5F);   // 180 deg
+        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(CHANNEL_B, control_params.duty_closed_loop);
+        SetDuty(CHANNEL_C, control_params.duty_open_loop);
     }
     else
     {
-        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
+        SetDuty(CHANNEL_A, control_params.duty_closed_loop);
+        SetDuty(CHANNEL_C, control_params.duty_open_loop);
     }
 }
 
@@ -192,7 +192,24 @@ void TaskBuckControlLoopDC(void)
 
     /* --- Rate-limit current references ------------------------------------ */
     float id_ref = RunRateLimiter(&control_params.rl_id, control_params.idq_ref_amps.d);
-
+    
+    if (BuckChannel == 1) {
+        float i_fb = GetCurrentA();
+    
+    }
+    else if (BuckChannel == 2) {
+        float i_fb = GetCurrentB();
+    
+    }
+    else if (BuckChannel == 3) {
+        float i_fb = GetCurrentB();
+    
+    }
+    else  {
+        return; 
+    
+    }
+    
 
 
     /* --- PI controllers --------------------------------------------------- */
@@ -203,9 +220,11 @@ void TaskBuckControlLoopDC(void)
 
 
 
-    float v_cl = control_params.voltage_ab.alpha / (GetVoltageDC() * 0.5f);
+    float v_cl = control_params.pi_id.output / (GetVoltageDC() * 0.5f);
     control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
 
     /* --- Buck: single channel output -------------------------------------- */
-    SetDuty(CHANNEL_A, control_params.duty_closed_loop);
+    
+    
+    SetDuty(BuckChannel, control_params.duty_closed_loop);
 }
