@@ -178,3 +178,34 @@ void TaskControlLoop(void)
         SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
     }
 }
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* Buck converter control task                                                 */
+/* -------------------------------------------------------------------------- */
+
+void TaskBuckControlLoopDC(void)
+{
+    if (!control_enabled) { return; }
+
+    /* --- Rate-limit current references ------------------------------------ */
+    float id_ref = RunRateLimiter(&control_params.rl_id, control_params.idq_ref_amps.d);
+
+
+
+    /* --- PI controllers --------------------------------------------------- */
+    RunPiControl(&control_params.pi_id,
+                  id_ref,
+                  control_params.idq_meas_amps.d,
+                  GetVoltageDC() * 0.5f);
+
+
+
+    float v_cl = control_params.voltage_ab.alpha / (GetVoltageDC() * 0.5f);
+    control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
+
+    /* --- Buck: single channel output -------------------------------------- */
+    SetDuty(CHANNEL_A, control_params.duty_closed_loop);
+}
