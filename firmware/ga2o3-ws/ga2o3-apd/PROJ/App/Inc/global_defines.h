@@ -27,10 +27,11 @@ extern "C"
 #define MAX_PHASE_CURRENT_AMPS              (20)
 
 
-// PWM channel assignments
-#define CHANNEL_A  1U   // EPWM1
-#define CHANNEL_B  2U   // EPWM2
-#define CHANNEL_C  3U   // EPWM3
+typedef enum {
+    PWM_CHANNEL_A = 1U,
+    PWM_CHANNEL_B = 2U,
+    PWM_CHANNEL_C = 3U,
+} PwmChannelTypeDef;
 
 #ifdef __cplusplus
 }

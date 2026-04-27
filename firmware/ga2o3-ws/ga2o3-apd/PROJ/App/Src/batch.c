@@ -13,7 +13,7 @@
 #include "control_loop.h"
 #include "task_scheduler.h"
 
-// Frequency sweep values (Hz) — editable at runtime via watch window
+// Frequency sweep values (Hz) - editable at runtime via watch window
 static uint32_t frequencies[MAX_FREQS + 1] = {
     4000U,
     8000U,
@@ -23,7 +23,7 @@ static uint32_t frequencies[MAX_FREQS + 1] = {
     END_U32
 };
 
-// Dead time sweep values (ns) — editable at runtime via watch window
+// Dead time sweep values (ns) - editable at runtime via watch window
 static uint32_t deadtimes[MAX_DEADTIMES + 1] = {
     2000U,
     4000U,
@@ -33,7 +33,7 @@ static uint32_t deadtimes[MAX_DEADTIMES + 1] = {
     END_U32
 };
 
-// Current sweep values (A) — editable at runtime via watch window
+// Current sweep values (A) - editable at runtime via watch window
 static float currents[MAX_CURRENTS + 1] = {
     4.0F,
     8.0F,
@@ -44,12 +44,13 @@ static float currents[MAX_CURRENTS + 1] = {
 };
 
 // Results matrix: mode -> frequency -> deadtime -> current -> step
+// stored in a section of RAM of its own
+#pragma DATA_SECTION(results, "batch_results")
 static volatile BatchSampleTypeDef results[MODE_COUNT]
                                           [MAX_FREQS]
                                           [MAX_DEADTIMES]
                                           [MAX_CURRENTS]
                                           [STEP_COUNT];
-
 // State machine position and timer
 static BatchStateTypeDef batch_state        = BatchIdle;
 static uint32_t          batch_mode         = 0U;
@@ -61,15 +62,15 @@ static uint32_t          batch_timer        = 0U;
 static uint32_t          batch_batch_done   = 0U; // flag polled by IsBatchComplete()
 
 //@brief Captures a temperature sample from all four MOSFET positions
-//@return BatchSampleTypeDef populated with current ADC readings
+//@return BatchSampleTypeDef populated with temperature ADC readings (celsius x10)
 static BatchSampleTypeDef CaptureData(void)
 {
     BatchSampleTypeDef sample;
 
-    sample.temp_ah = GetTempAH();
-    sample.temp_al = GetTempAL();
-    sample.temp_bh = GetTempBH();
-    sample.temp_bl = GetTempBL();
+    sample.temp_ah = (uint16_t)(GetTempAH() * 10.0f);
+    sample.temp_al = (uint16_t)(GetTempAL() * 10.0f);
+    sample.temp_bh = (uint16_t)(GetTempBH() * 10.0f);
+    sample.temp_bl = (uint16_t)(GetTempBL() * 10.0f);
 
     return sample;
 }
@@ -111,14 +112,14 @@ static void ApplyModeSetup(TestModeTypeDef mode)
 {
     if (mode == ModeSingle)
     {
-        DisablePWM(CHANNEL_B);
-        EnablePWM(CHANNEL_A);
+        DisablePWM(PWM_CHANNEL_B);
+        EnablePWM(PWM_CHANNEL_A);
         ControlLoop_SetInterleavedMode(0);
     }
     else
     {
-        EnablePWM(CHANNEL_A);
-        EnablePWM(CHANNEL_B);
+        EnablePWM(PWM_CHANNEL_A);
+        EnablePWM(PWM_CHANNEL_B);
         ControlLoop_SetInterleavedMode(1);
     }
 }
@@ -190,9 +191,9 @@ void RunTests(void)
             break;
 
         case BatchSetup:
-            EnablePWM(CHANNEL_C);
-            SetFrequency(CHANNEL_C, FREQUENCY_C);
-            SetDeadTime(CHANNEL_C, DEADTIME_C);
+            EnablePWM(PWM_CHANNEL_C);
+            SetFrequency(PWM_CHANNEL_C, FREQUENCY_C);
+            SetDeadTime(PWM_CHANNEL_C, DEADTIME_C);
             ControlLoop_SetOpenLoopVoltage(VOLTAGE_C, FUNDAMENTAL_FREQUENCY);
             ControlLoop_Enable();
             ControlLoop_SetIdRef(0.0F);
@@ -207,10 +208,10 @@ void RunTests(void)
                 ApplyModeSetup((TestModeTypeDef)batch_mode);
             }
 
-            SetFrequency(CHANNEL_A, frequencies[batch_fi]);
-            SetFrequency(CHANNEL_B, frequencies[batch_fi]);
-            SetDeadTime(CHANNEL_A, deadtimes[batch_di]);
-            SetDeadTime(CHANNEL_B, deadtimes[batch_di]);
+            SetFrequency(PWM_CHANNEL_A, frequencies[batch_fi]);
+            SetFrequency(PWM_CHANNEL_B, frequencies[batch_fi]);
+            SetDeadTime(PWM_CHANNEL_A, deadtimes[batch_di]);
+            SetDeadTime(PWM_CHANNEL_B, deadtimes[batch_di]);
             ApplyCurrentStep(currents[batch_ci], (CurrentStepTypeDef)batch_step);
 
             StartTimer(&batch_timer);
@@ -237,9 +238,9 @@ void RunTests(void)
             ControlLoop_SetIdRef(0.0F);
             ControlLoop_SetIqRef(0.0F);
             ControlLoop_Disable();
-            DisablePWM(CHANNEL_A);
-            DisablePWM(CHANNEL_B);
-            DisablePWM(CHANNEL_C);
+            DisablePWM(PWM_CHANNEL_A);
+            DisablePWM(PWM_CHANNEL_B);
+            DisablePWM(PWM_CHANNEL_C);
             batch_batch_done = 1U;
             batch_state      = BatchIdle;
             break;

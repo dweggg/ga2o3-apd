@@ -113,10 +113,10 @@
  * ----------------------------------------------------------------------- */
 
 /* Initialise every ADC module and configure every SOC listed above. */
-HAL_StatusTypeDef ADC_Config_Init(void);
+HAL_StatusTypeDef InitConfigADC(void);
 
-void ADC_TriggerTemps(void);
-void ADC_TriggerVoltages(void);
+void TriggerTempADC(void);
+void TriggerVoltageADC(void);
 
 float GetTempAH(void);
 float GetTempAL(void);

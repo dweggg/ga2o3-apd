@@ -52,7 +52,7 @@ HAL_StatusTypeDef bspInitSCI(void)
     Interrupt_register(INT_SCIA_RX, SciaRxFIFOIsr);
     Interrupt_register(INT_SCIA_TX, SciaTxFIFOIsr);
     //
-    // 8 char bits, 1 stop bit, no parity. Baud rate 115200.
+    // 8 char bits, 1 stop bit, no parity. Baud rate 2000000.
     //
     SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 2000000, (SCI_CONFIG_WLEN_8 |
                                                         SCI_CONFIG_STOP_ONE |

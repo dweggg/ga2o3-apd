@@ -41,12 +41,12 @@ typedef enum {
     StepIqNeg = 3   // Negative q-axis step
 } CurrentStepTypeDef;
 
-// @brief Temperature readings from a single batch sample
+// @brief Temperature readings from a single batch sample 
 typedef struct {
-    float temp_ah;  // Phase A high-side temperature (degC)
-    float temp_al;  // Phase A low-side temperature (degC)
-    float temp_bh;  // Phase B high-side temperature (degC)
-    float temp_bl;  // Phase B low-side temperature (degC)
+    uint16_t temp_ah;  // Phase A high-side temperature (degC * 10)
+    uint16_t temp_al;  // Phase A low-side temperature (degC * 10)
+    uint16_t temp_bh;  // Phase B high-side temperature (degC * 10)
+    uint16_t temp_bl;  // Phase B low-side temperature (degC * 10)
 } BatchSampleTypeDef;
 
 // @brief Internal state machine states for the batch runner
@@ -71,7 +71,7 @@ void RunTests(void);
 
 //@brief Returns 1 if the last batch run has completed, 0 otherwise.
 //       Resets to 0 as soon as StartBatch() is called again.
-//@return uint32_t — 1 if done, 0 if idle or running
+//@return uint32_t - 1 if done, 0 if idle or running
 uint32_t IsBatchComplete(void);
 
 #endif // __BATCH_H__

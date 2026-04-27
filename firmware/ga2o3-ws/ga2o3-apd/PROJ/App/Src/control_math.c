@@ -13,10 +13,9 @@
 // @param [in,out] pid_var       PID struct to initialize
 // @param [in]     kp            proportional gain
 // @param [in]     ki            integral gain
-// @param [in]     limit         integral clamp value, applied as +/- limit
 // @param [in]     sampling_time loop period in seconds
 // @return none
-void InitPiControl(PiTypeDef *pid_var,float kp, float ki, float sampling_time)
+void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float sampling_time)
 {
     // Initialize outputs and state to zero
     pid_var->error         = 0.0f;
@@ -29,24 +28,24 @@ void InitPiControl(PiTypeDef *pid_var,float kp, float ki, float sampling_time)
     pid_var->ki            = ki;
 
     // Store setpoint and timing
-    
     pid_var->sampling_time = sampling_time;
 
     // Apply integral clamp symmetrically around zero
-    pid_var->limit  = 0.0f;
+    pid_var->limit         = 0.0f;
 }
 
 
 // @brief Run one PID cycle, call at fixed sampling_time interval
-// @param [in,out] pid_var         PID struct
-// @param [in]     set_point        target reference value
-// @param [in]     measured_value  current process measurement
+// @param [in,out] pid_var        PID struct
+// @param [in]     set_point      target reference value
+// @param [in]     measured_value current process measurement
+// @param [in]     limit          integral clamp value, applied as +/- limit
 // @return none
 void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit)
-{    
-    pid_var->set_point     = set_point;
+{
+    pid_var->set_point = set_point;
     pid_var->limit     = limit;
-    
+
     // Calculate error between target and measured
     pid_var->error = pid_var->set_point - measured_value;
 
@@ -65,10 +64,56 @@ void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, flo
 
     // Sum P and I contributions to produce output
     pid_var->output = (pid_var->kp * pid_var->error) + (pid_var->ki * pid_var->integral);
-  
 
     return;
 }
+
+
+/* -----------------------------------------------------------------------
+ * Rate limiter
+ * -------------------------------------------------------------------- */
+
+// @brief Initialize rate limiter to a known output value
+// @param [in,out] rl_var        rate limiter struct to initialize
+// @param [in]     initial_value starting output — set to current plant state
+//                               to avoid a step kick on the first call
+// @param [in]     rate          maximum slew rate in units/second (symmetric ±)
+// @param [in]     sampling_time loop period in seconds
+// @return none
+void InitRateLimiter(RateLimiterTypeDef *rl_var, float initial_value, float rate, float sampling_time)
+{
+    rl_var->output        = initial_value;
+    rl_var->rate          = rate;
+    rl_var->sampling_time = sampling_time;
+}
+
+// @brief Run one rate-limiter cycle
+//        Clamps the per-sample step to ±(rate * sampling_time) so the output
+//        ramps toward the target at most 'rate' units per second in both
+//        directions (symmetric). Drop this in front of any reference inside
+//        your control loop and read rl_var->output.
+//
+// @param [in,out] rl_var    rate limiter struct
+// @param [in]     target    desired value to ramp toward
+// @return                   current rate-limited output (also in rl_var->output)
+float RunRateLimiter(RateLimiterTypeDef *rl_var, float target)
+{
+    float max_step = rl_var->rate * rl_var->sampling_time;
+    float delta    = target - rl_var->output;
+
+    if (delta > max_step)
+    {
+        delta = max_step;
+    }
+    else if (delta < -max_step)
+    {
+        delta = -max_step;
+    }
+
+    rl_var->output += delta;
+    return rl_var->output;
+}
+
 
 /* -----------------------------------------------------------------------
  * Coordinate transforms
@@ -79,12 +124,12 @@ void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, flo
 // @return          cartesian output (x, y)
 CartTypeDef PolarToCartesian(PolarTypeDef p)
 {
-    CartTypeDef c ={0};
+    CartTypeDef c = {0};
 
     // x = r * cos(theta), y = r * sin(theta)
     c.x = p.r * cosf(p.theta);
     c.y = p.r * sinf(p.theta);
-    return c ;
+    return c;
 }
 
 // @brief Convert cartesian coordinates to polar
@@ -116,7 +161,6 @@ DqTypeDef ConvertAlphabetaToDq(AlphaBetaTypeDef alphabeta_var, float theta)
 {
     DqTypeDef dq_var = {0};
 
-    
     dq_var.d =  alphabeta_var.alpha * cosf(theta) + alphabeta_var.beta * sinf(theta);
     dq_var.q = -alphabeta_var.alpha * sinf(theta) + alphabeta_var.beta * cosf(theta);
 
@@ -131,12 +175,12 @@ AlphaBetaTypeDef ConvertDqToAlphabeta(DqTypeDef dq_var, float theta)
 {
     AlphaBetaTypeDef alphabeta_var = {0};
 
-    
     alphabeta_var.alpha = dq_var.d * cosf(theta) - dq_var.q * sinf(theta);
     alphabeta_var.beta  = dq_var.d * sinf(theta) + dq_var.q * cosf(theta);
 
     return alphabeta_var;
 }
+
 
 /* -----------------------------------------------------------------------
  * SOGI
@@ -147,7 +191,7 @@ AlphaBetaTypeDef ConvertDqToAlphabeta(DqTypeDef dq_var, float theta)
 // @param [in]     gain          damping gain k, typically sqrt(2) = 1.414
 // @param [in]     sampling_time loop period in seconds
 // @return none
-void InitSogi(SogiTypeDef *sogi_var,float gain, float sampling_time)
+void InitSogi(SogiTypeDef *sogi_var, float gain, float sampling_time)
 {
     // Initialize integrator states to zero
     sogi_var->alpha         = 0.0f;
@@ -156,7 +200,7 @@ void InitSogi(SogiTypeDef *sogi_var,float gain, float sampling_time)
     // Store damping gain and timing
     sogi_var->k             = gain;
     sogi_var->sampling_time = sampling_time;
-    return ;    
+    return;
 }
 
 // @brief Run one SOGI cycle, generates quadrature alpha and beta signals
@@ -164,16 +208,16 @@ void InitSogi(SogiTypeDef *sogi_var,float gain, float sampling_time)
 // @param [in]     input     single phase AC input sample
 // @param [in]     omega     angular frequency in rad/s
 // @return none
-void RunSogi(SogiTypeDef *sogi_var,float input,float omega)
+void RunSogi(SogiTypeDef *sogi_var, float input, float omega)
 {
-    float err = (input * sogi_var->k)- sogi_var->alpha;
+    float err = (input * sogi_var->k) - sogi_var->alpha;
     // First integrator — alpha tracks the input in-phase
-    sogi_var->alpha += ((err - sogi_var->beta)*omega)*sogi_var->sampling_time;    
-     // Second integrator — beta is 90 degrees shifted version of alpha
-    sogi_var->beta += sogi_var->alpha*omega*sogi_var->sampling_time;                      
+    sogi_var->alpha += ((err - sogi_var->beta) * omega) * sogi_var->sampling_time;
+    // Second integrator — beta is 90 degrees shifted version of alpha
+    sogi_var->beta  += sogi_var->alpha * omega * sogi_var->sampling_time;
     return;
-
 }
+
 
 /* -----------------------------------------------------------------------
  * Angle generation
@@ -213,5 +257,3 @@ void GenerateAngle(AngleGenTypeDef *ag_var)
         ag_var->theta += TWO_PI;
     }
 }
-
-

@@ -15,6 +15,7 @@
 
 #define PI     3.14159265358979f    // pi constant for angle calculations
 #define TWO_PI 6.28318530717959f    // 2*pi used for angle wrapping (0 to 2pi)
+
 /* -----------------------------------------------------------------------
  * Structs
  * -------------------------------------------------------------------- */
@@ -71,6 +72,13 @@ typedef struct
     float omega;
 } AngleGenTypeDef;
 
+typedef struct
+{
+    float output;           // current rate-limited output
+    float rate;             // max slew rate in units/second (symmetric up/down)
+    float sampling_time;    // loop period in seconds
+} RateLimiterTypeDef;
+
 
 /* -----------------------------------------------------------------------
  * PID
@@ -84,7 +92,7 @@ typedef struct
  * @param [in]     ki             integral gain
  * @param [in]     sampling_time  loop period in seconds
  */
-void InitPiControl(PiTypeDef *pid_var,float kp, float ki, float sampling_time);
+void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float sampling_time);
 
 /**
  * @brief Run one PID cycle, call at fixed sampling_time interval
@@ -92,8 +100,35 @@ void InitPiControl(PiTypeDef *pid_var,float kp, float ki, float sampling_time);
  * @param [in,out] pid_var          PID struct
  * @param [in]     set_point        target reference value
  * @param [in]     measured_value   current process measurement
+ * @param [in]     limit            integral clamp value, applied as +/- limit
  */
 void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit);
+
+
+/* -----------------------------------------------------------------------
+ * Rate limiter
+ * -------------------------------------------------------------------- */
+
+/**
+ * @brief Initialize rate limiter to a known output value
+ *
+ * @param [in,out] rl_var        rate limiter struct to initialize
+ * @param [in]     initial_value starting output value (set to current plant state
+ *                               to avoid a kick on first call)
+ * @param [in]     rate          maximum slew rate in units/second (symmetric ±)
+ * @param [in]     sampling_time loop period in seconds
+ */
+void InitRateLimiter(RateLimiterTypeDef *rl_var, float initial_value, float rate, float sampling_time);
+
+/**
+ * @brief Run one rate-limiter cycle — drop this in front of any reference
+ *        inside your control loop and read rl_var->output
+ *
+ * @param [in,out] rl_var    rate limiter struct
+ * @param [in]     target    desired value to ramp toward
+ * @return                   current rate-limited output (also stored in rl_var->output)
+ */
+float RunRateLimiter(RateLimiterTypeDef *rl_var, float target);
 
 
 /* -----------------------------------------------------------------------

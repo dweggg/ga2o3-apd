@@ -41,12 +41,6 @@ void InitStateMachine(void);
  */
 void TaskStateMachine(void);
 
-void SetIdRef(float32_t ref);
-void SetIqRef(float32_t ref);
-void SetOpenLoopVoltage(float32_t voltage_rms, float32_t freq);
-void EnableCurrentContrl(void);
-void EnableCurrentContrl(void);
-
 
 #ifdef __cplusplus
 }

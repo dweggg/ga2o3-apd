@@ -9,7 +9,6 @@ typedef struct
     uint16_t interleaved; //0 -> non-interleaved, else interleaved
     uint16_t output_enabled; //0 -> disabled, else enabled
     uint16_t current_control_enabled; //0 -> disabled, else enabled
-    uint16_t reset;//if reset != 0 detected(modified by MCUViewer), do reset and restart
 
     float sampling_time;
 
@@ -34,12 +33,15 @@ typedef struct
     AlphaBetaTypeDef voltage_ab;
     DqTypeDef pi_output_dq_sat;
 
-    
     float duty_closed_loop;
+
+    RateLimiterTypeDef rl_id;           // ramp on d-axis current reference
+    RateLimiterTypeDef rl_iq;           // ramp on q-axis current reference
+    RateLimiterTypeDef rl_voltage_pk;   // ramp on open-loop peak voltage
+    RateLimiterTypeDef rl_omega;        // ramp on open-loop angular frequency
 
 } ControlParamsTypeDef;
 
-extern ControlParamsTypeDef control_params;
 
 /**
  * @brief Initialises PI controllers, SOGI, angle generator and zeroes all
@@ -64,7 +66,6 @@ uint16_t ControlLoop_IsEnabled(void);
 void     ControlLoop_SetIdRef(float id_amps);
 void     ControlLoop_SetIqRef(float iq_amps);
 void     ControlLoop_SetOpenLoopVoltage(float voltage, float fundamental_frequency);
-
 
 /* Mode --------------------------------------------------------------------- */
 void     ControlLoop_SetInterleavedMode(uint16_t enabled);

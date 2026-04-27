@@ -10,6 +10,7 @@
 
 #include "state_machine.h"
 #include "control_loop.h"
+#include "user_interface.h"
 #include "adc_config.h"
 #include "global_defines.h"
 
@@ -19,38 +20,20 @@
 
 StateMachineTypeDef state_machine_handle;
 
-/** Shadows control_params.interleaved_mode_switch so we can detect a change. */
-static uint16_t s_interleaved_shadow = 0U;
-
 /* -------------------------------------------------------------------------- */
 /* Private helpers                                                             */
 /* -------------------------------------------------------------------------- */
 
 static inline uint16_t OverCurrentCheck(void)
 {
-    float32_t ia = GetCurrentA();
-    float32_t ib = GetCurrentB();
-    float32_t ic = GetCurrentC();
-    return (ia <= MAX_PHASE_CURRENT_AMPS &&
-            ib <= MAX_PHASE_CURRENT_AMPS &&
-            ic <= MAX_PHASE_CURRENT_AMPS) ? 1U : 0U;
+    float ia = GetCurrentA();
+    float ib = GetCurrentB();
+    float ic = GetCurrentC();
+    return (ia < MAX_PHASE_CURRENT_AMPS || ia > MAX_PHASE_CURRENT_AMPS || 
+            ib < MAX_PHASE_CURRENT_AMPS || ib > MAX_PHASE_CURRENT_AMPS || 
+            ic < MAX_PHASE_CURRENT_AMPS || ic > MAX_PHASE_CURRENT_AMPS) ? 1U : 0U;
 }
 
-static inline void DisableDrivers(void)
-{
-    GPIO_writePin(25, 0);
-}
-
-/** Returns 1 and clears the flag if an external reset was requested. */
-static inline uint16_t CheckAndClearReset(void)
-{
-    if (control_params.reset)
-    {
-        control_params.reset = 0;
-        return 1U;
-    }
-    return 0U;
-}
 
 /* -------------------------------------------------------------------------- */
 /* Public API                                                                  */
@@ -68,18 +51,12 @@ void TaskStateMachine(void)
     {
         /* ------------------------------------------------------------------ */
         case STATE_INIT:
-            InitControlLoop();
-            if (ADC_Config_Init() != HAL_OK)
-            {
-                state_machine_handle = STATE_ERROR;
-                break;
-            }
             state_machine_handle = STATE_IDLE;
             break;
 
         /* ------------------------------------------------------------------ */
         case STATE_IDLE:
-            if (control_params.output_enabled)
+            if (g_ui.system_enabled)
             {
                 ControlLoop_Enable();
                 state_machine_handle = STATE_RUNNING;
@@ -88,15 +65,22 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_RUNNING:
-            if (!OverCurrentCheck())
+            if (!g_ui.system_enabled)
             {
                 ControlLoop_Disable();
-                DisableDrivers();
-                state_machine_handle = STATE_OVER_CURRENT;
+                state_machine_handle = STATE_DISCHARGING;
                 break;
             }
 
-            if (CheckAndClearReset())
+            // if (!OverCurrentCheck())
+            // {
+            //     ControlLoop_Disable();
+            //     DisableDrivers();
+            //     state_machine_handle = STATE_OVER_CURRENT;
+            //     break;
+            // }
+
+            if (0/*CheckAndClearReset()*/)
             {
                 ControlLoop_Disable();
                 InitControlLoop();
@@ -106,18 +90,13 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_DISCHARGING:
-            /* TODO: wait for bus voltage to fall below a safe threshold.
-             * For now, immediately re-initialise with the new mode setting. */
-            ControlLoop_SetInterleavedMode(s_interleaved_shadow);
-            InitControlLoop();
-            ControlLoop_Enable();
-            state_machine_handle = STATE_RUNNING;
+            /* TODO: wait for bus voltage to fall below a safe threshold. */
+            state_machine_handle = STATE_IDLE;
             break;
 
         /* ------------------------------------------------------------------ */
         case STATE_STOP:
             ControlLoop_Disable();
-            DisableDrivers();
             break;
 
         /* ------------------------------------------------------------------ */
@@ -128,7 +107,6 @@ void TaskStateMachine(void)
         /* ------------------------------------------------------------------ */
         case STATE_ERROR:
             ControlLoop_Disable();
-            DisableDrivers();
             break;
 
         /* ------------------------------------------------------------------ */
