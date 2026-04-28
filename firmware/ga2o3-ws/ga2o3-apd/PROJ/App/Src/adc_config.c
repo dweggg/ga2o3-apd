@@ -11,30 +11,18 @@ typedef struct { uint16_t raw; float temp_c; } TempLutEntry;
 
 static const float VOLTAGE_GAIN = -1.0f/3.32f;
 static const float VOLTAGE_OFFSET = -1968.0f;
-static const float CURRENT_GAIN = -1.0f/32.6f;
-static const float CURRENT_OFFSET = -2012.0f;
+static const float CURRENT_GAIN = -(1.0f/32.6f) * 0.84f;
+/* Mutable current offset for self-calibration */
+static float current_offsets[3] = { -2055.0f, -1935.0f, -2012.0f };
 
 static const TempLutEntry temp_lut[] = {
     /*  raw    degC   */
-    {    0,   200.0f },
-    {  250,   100.0f },
-    {  400,    90.0f },
-    {  600,    80.0f },
-    {  850,    70.0f },
-    { 1150,    60.0f },
-    { 1500,    50.0f },
-    { 1870,    40.0f },
-    { 2250,    30.0f },
-    { 2620,    20.0f },
-    { 2950,    10.0f },
-    { 3220,     0.0f },
-    { 3800,   -20.0f },
+    {    0,   0.0f },
+    {  4096,  4096.0f },
 };
 
 #define TEMP_LUT_LEN  (sizeof(temp_lut) / sizeof(temp_lut[0]))
 
-/* Mutable current offset for self-calibration */
-static float current_offsets[3] = { 0.0f, 0.0f, 0.0f };
 
 /* -----------------------------------------------------------------------
  * Private helpers
@@ -74,7 +62,6 @@ HAL_StatusTypeDef CalibrateCurrentOffset(uint16_t num_samples)
     float avg_raw_b = (float)sum_b / (float)num_samples;
     float avg_raw_c = (float)sum_c / (float)num_samples;
 
-    // dunno why but consistent 1.4A difference lol
     current_offsets[0] = -avg_raw_a;
     current_offsets[1] = -avg_raw_b;
     current_offsets[2] = -avg_raw_c;
@@ -234,7 +221,7 @@ HAL_StatusTypeDef InitConfigADC(void)
                           CURRENT_SAMPLE_WINDOW_NS);
     if (status != HAL_OK) return status;
 
-    CalibrateCurrentOffset(1000);
+    // CalibrateCurrentOffset(1000);
     return HAL_OK;
 }
 

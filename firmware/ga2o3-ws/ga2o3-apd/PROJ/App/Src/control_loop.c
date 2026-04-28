@@ -183,7 +183,7 @@ void TaskControlLoop(void)
 
 
 /* -------------------------------------------------------------------------- */
-/* Buck converter control task                                                 */
+/* DC current control task                                                 */
 /* -------------------------------------------------------------------------- */
 
 void TaskControlLoopDC(void)
@@ -212,7 +212,7 @@ void TaskControlLoopDC(void)
     
     control_params.idq_meas_amps.d = i_fb;
 
-    /* --- PI controllers --------------------------------------------------- */
+    /* --- PI controller --------------------------------------------------- */
     RunPiControl(&control_params.pi_id,
                   id_ref,
                   control_params.idq_meas_amps.d,
@@ -220,11 +220,9 @@ void TaskControlLoopDC(void)
 
 
 
-    float v_cl = control_params.pi_id.output / (GetVoltageDC() * 0.5f);
+    float v_cl = control_params.pi_id.output / (GetVoltageDC());
     control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
 
-    /* --- Buck: single channel output -------------------------------------- */
-    
-    
+    /* --- Single channel output -------------------------------------- */   
     SetDuty(BuckChannel, control_params.duty_closed_loop);
 }

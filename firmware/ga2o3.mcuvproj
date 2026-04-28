@@ -924,7 +924,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 3
-value_to_write = 3.000000
+value_to_write = 1.000000
 do_not_interpret_as_enum = false
 
 [var68]
@@ -1054,7 +1054,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 0.500000
 do_not_interpret_as_enum = false
 
 [var78]
@@ -1080,7 +1080,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 3
-value_to_write = 0.000000
+value_to_write = 3.000000
 do_not_interpret_as_enum = false
 
 [var80]
@@ -1093,7 +1093,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 1.000000
+value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
 [var81]
@@ -1588,31 +1588,61 @@ visibility = true
 
 [group7-plot0-series0]
 name = g_ui.adc_monitor.temp_ah_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot0-series1]
 name = g_ui.adc_monitor.temp_al_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot0-series2]
 name = g_ui.adc_monitor.temp_bh_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot0-series3]
 name = g_ui.adc_monitor.temp_bl_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot0-series4]
 name = g_ui.adc_monitor.temp_ch_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot0-series5]
 name = g_ui.adc_monitor.temp_cl_celsius
+visibility = true
+format = DEC
+
+[group7-plot0-series6]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group7-plot0-series7]
+name = g_ui.raw_pwm_c.deadtime_ns
+visibility = true
+format = DEC
+
+[group7-plot0-series8]
+name = g_ui.raw_pwm_c.duty_cycle
+visibility = true
+format = DEC
+
+[group7-plot0-series9]
+name = g_ui.raw_pwm_c.frequency_hz
+visibility = true
+format = DEC
+
+[group7-plot0-series10]
+name = g_ui.selected_pwm_channel
+visibility = true
+format = DEC
+
+[group7-plot0-series11]
+name = g_ui.system_enabled
 visibility = true
 format = DEC
 
@@ -1623,32 +1653,37 @@ visibility = true
 
 [group7-plot1-series0]
 name = g_ui.adc_monitor.temp_ah_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot1-series1]
 name = g_ui.adc_monitor.temp_al_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot1-series2]
 name = g_ui.adc_monitor.temp_bh_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot1-series3]
 name = g_ui.adc_monitor.temp_bl_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot1-series4]
 name = g_ui.adc_monitor.temp_ch_celsius
-visibility = true
+visibility = false
 format = DEC
 
 [group7-plot1-series5]
 name = g_ui.adc_monitor.temp_cl_celsius
 visibility = true
+format = DEC
+
+[group7-plot1-series6]
+name = g_ui.system_enabled
+visibility = false
 format = DEC
 
 [group8]

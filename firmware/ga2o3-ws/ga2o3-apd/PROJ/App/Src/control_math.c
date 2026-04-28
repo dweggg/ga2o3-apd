@@ -64,9 +64,13 @@ void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, flo
     {
         pid_var->output = pid_var->limit_p;
     }
-    else if (pid_var->output_presat < -(pid_var->limit_n))
+    else if (pid_var->output_presat < pid_var->limit_n)
     {
         pid_var->output = pid_var->limit_n;
+    }
+    else
+    {
+        pid_var->output = pid_var->output_presat;
     }
 
     pid_var->error_k1 = pid_var->error_k;
