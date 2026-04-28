@@ -1041,7 +1041,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 800.000000
+value_to_write = 2000.000000
 do_not_interpret_as_enum = false
 
 [var77]
@@ -1054,7 +1054,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.500000
+value_to_write = 0.900000
 do_not_interpret_as_enum = false
 
 [var78]
@@ -1093,7 +1093,7 @@ should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 1.000000
 do_not_interpret_as_enum = false
 
 [var81]
@@ -1673,7 +1673,7 @@ format = DEC
 
 [group7-plot1-series4]
 name = g_ui.adc_monitor.temp_ch_celsius
-visibility = false
+visibility = true
 format = DEC
 
 [group7-plot1-series5]

@@ -17,8 +17,16 @@ static float current_offsets[3] = { -2055.0f, -1935.0f, -2012.0f };
 
 static const TempLutEntry temp_lut[] = {
     /*  raw    degC   */
-    {    0,   0.0f },
-    {  4096,  4096.0f },
+    {  735,    20.5f },
+    { 1515,    28.0f },
+    { 1980,    33.0f },
+    { 2510,    42.0f },
+    { 2960,    52.0f },
+    { 3200,    61.0f },
+    { 3400,    70.0f },
+    { 3540,    80.0f },
+    { 3620,    86.0f },
+    { 3650,    90.0f }
 };
 
 #define TEMP_LUT_LEN  (sizeof(temp_lut) / sizeof(temp_lut[0]))
