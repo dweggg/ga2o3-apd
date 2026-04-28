@@ -24,9 +24,6 @@ extern "C"
 #define L_H                                 (0.001)
 #define R_OHM                               (5.8)
 
-#define MAX_PHASE_CURRENT_AMPS              (20)
-
-
 typedef enum {
     PWM_CHANNEL_A = 1U,
     PWM_CHANNEL_B = 2U,

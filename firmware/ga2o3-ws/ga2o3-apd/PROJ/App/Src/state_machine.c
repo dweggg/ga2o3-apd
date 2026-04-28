@@ -5,35 +5,21 @@
  *
  *        This module does NOT implement the control algorithm - it only
  *        decides *when* the control loop should run and *which mode* it
- *        should use, delegating everything else to control_loop.c.
+ *        should use. All safety checks and hardware control are delegated
+ *        to the safety module.
  */
 
 #include "state_machine.h"
 #include "control_loop.h"
-#include "user_interface.h"
-#include "adc_config.h"
+#include "safety.h"
 #include "global_defines.h"
+#include "user_interface.h"
 
 /* -------------------------------------------------------------------------- */
 /* Module state                                                                */
 /* -------------------------------------------------------------------------- */
 
-StateMachineTypeDef state_machine_handle;
-
-/* -------------------------------------------------------------------------- */
-/* Private helpers                                                             */
-/* -------------------------------------------------------------------------- */
-
-static inline uint16_t OverCurrentCheck(void)
-{
-    float ia = GetCurrentA();
-    float ib = GetCurrentB();
-    float ic = GetCurrentC();
-    return (ia < MAX_PHASE_CURRENT_AMPS || ia > MAX_PHASE_CURRENT_AMPS || 
-            ib < MAX_PHASE_CURRENT_AMPS || ib > MAX_PHASE_CURRENT_AMPS || 
-            ic < MAX_PHASE_CURRENT_AMPS || ic > MAX_PHASE_CURRENT_AMPS) ? 1U : 0U;
-}
-
+static StateMachineTypeDef state_machine_handle = STATE_INIT;
 
 /* -------------------------------------------------------------------------- */
 /* Public API                                                                  */
@@ -47,6 +33,9 @@ void InitStateMachine(void)
 #pragma CODE_SECTION(TaskStateMachine, ".TI.ramfunc")
 void TaskStateMachine(void)
 {
+    // Check system health on every cycle (latches faults)
+    TaskCheckSystemHealth();
+
     switch (state_machine_handle)
     {
         /* ------------------------------------------------------------------ */
@@ -56,7 +45,9 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_IDLE:
-            if (g_ui.system_enabled)
+            // System waiting for enable signal
+            // When enabled, transition to RUNNING
+            if (GetUiSystemEnabled())
             {
                 ControlLoop_Enable();
                 state_machine_handle = STATE_RUNNING;
@@ -65,27 +56,21 @@ void TaskStateMachine(void)
 
         /* ------------------------------------------------------------------ */
         case STATE_RUNNING:
-            if (!g_ui.system_enabled)
+            // System actively controlling. Check for disable or fault.
+            if (!GetUiSystemEnabled())
             {
                 ControlLoop_Disable();
                 state_machine_handle = STATE_DISCHARGING;
                 break;
             }
 
-            // if (!OverCurrentCheck())
-            // {
-            //     ControlLoop_Disable();
-            //     DisableDrivers();
-            //     state_machine_handle = STATE_OVER_CURRENT;
-            //     break;
-            // }
-
-            if (0/*CheckAndClearReset()*/)
+            // If a fault occurred, transition to error state
+            if (IsFaulted())
             {
-                ControlLoop_Disable();
-                InitControlLoop();
-                ControlLoop_Enable();
+                state_machine_handle = STATE_ERROR;
+                break;
             }
+
             break;
 
         /* ------------------------------------------------------------------ */
@@ -95,17 +80,13 @@ void TaskStateMachine(void)
             break;
 
         /* ------------------------------------------------------------------ */
-        case STATE_STOP:
+        case STATE_ERROR:
+            // Latched fault - system must be manually reset/re-enabled
             ControlLoop_Disable();
             break;
 
         /* ------------------------------------------------------------------ */
-        case STATE_OVER_CURRENT:
-            /* Latched fault - hardware must be re-enabled externally. */
-            break;
-
-        /* ------------------------------------------------------------------ */
-        case STATE_ERROR:
+        case STATE_STOP:
             ControlLoop_Disable();
             break;
 
@@ -113,4 +94,11 @@ void TaskStateMachine(void)
         default:
             break;
     }
+}
+
+//@brief Get current state (for debugging/monitoring)
+//@return Current state machine state
+StateMachineTypeDef GetStateMachineState(void)
+{
+    return state_machine_handle;
 }

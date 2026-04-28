@@ -3,6 +3,7 @@
 #include "bsp_sci.h"
 #include "F2837xD_GlobalPrototypes.h"
 #include "state_machine.h"
+#include "safety.h"
 #include "task_scheduler.h"
 #include "control_loop.h"
 #include "global_defines.h"
@@ -51,6 +52,7 @@ void main(void)
 
 
     InitStateMachine();
+    InitSafetyChecker();
     InitControlLoop();
     InitUserInterface();
     

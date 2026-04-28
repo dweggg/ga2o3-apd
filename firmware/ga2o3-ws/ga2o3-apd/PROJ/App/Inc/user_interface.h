@@ -4,8 +4,6 @@
 #include <stdint.h>
 #include "global_defines.h"
 
-#define GD_ENABLE_PIN       25
-
 typedef enum {
     UI_MODE_IDLE = 0,
     UI_MODE_RAW_PWM,
@@ -78,6 +76,10 @@ void EnableSystem(void);
 void DisableSystem(void);
 
 void SetUIMode(UiModeTypeDef mode);
+
+//@brief Query system enabled state
+//@return 1 if system is enabled, 0 otherwise
+uint16_t GetUiSystemEnabled(void);
 
 void UpdateRawPwmChannel(PwmChannelTypeDef channel, uint32_t freq_hz, uint32_t deadtime_ns, float duty);
 

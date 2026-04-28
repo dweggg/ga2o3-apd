@@ -1,16 +1,20 @@
 /**
  * @file batch.c
- * @brief Tests in batch
+ * @brief Batch testing state machine: sweeps through test parameters and captures data
  * @author David Redondo
  * @date 2026
+ *
+ * This module manages the batch test sequence only. Hardware configuration
+ * (PWM enable/disable, frequencies, dead times) is applied by the UI layer.
+ * The control loop and other system components are configured through their
+ * public interfaces, not directly manipulated here.
  */
 
 #include <stdint.h>
 #include <stddef.h>
-#include "bsp_epwm.h"
 #include "batch.h"
-#include "adc_config.h"
 #include "control_loop.h"
+#include "adc_config.h"
 #include "task_scheduler.h"
 
 // Frequency sweep values (Hz) - editable at runtime via watch window
@@ -51,6 +55,7 @@ static volatile BatchSampleTypeDef results[MODE_COUNT]
                                           [MAX_DEADTIMES]
                                           [MAX_CURRENTS]
                                           [STEP_COUNT];
+
 // State machine position and timer
 static BatchStateTypeDef batch_state        = BatchIdle;
 static uint32_t          batch_mode         = 0U;
@@ -105,27 +110,43 @@ static void ApplyCurrentStep(float current, CurrentStepTypeDef step)
     }
 }
 
-//@brief Configures PWM channels for the given operating mode.
-//       Called once per mode transition.
-//@param [in] mode  Mode to configure
-static void ApplyModeSetup(TestModeTypeDef mode)
+//@brief Query the current test mode index
+//@return Current mode being tested
+uint32_t BatchGetCurrentMode(void)
 {
-    if (mode == ModeSingle)
-    {
-        DisablePWM(PWM_CHANNEL_B);
-        EnablePWM(PWM_CHANNEL_A);
-        ControlLoop_SetInterleavedMode(0);
-    }
-    else
-    {
-        EnablePWM(PWM_CHANNEL_A);
-        EnablePWM(PWM_CHANNEL_B);
-        ControlLoop_SetInterleavedMode(1);
-    }
+    return batch_mode;
+}
+
+//@brief Query the current frequency index
+//@return Current frequency index
+uint32_t BatchGetCurrentFrequencyIndex(void)
+{
+    return batch_fi;
+}
+
+//@brief Query the current deadtime index
+//@return Current deadtime index
+uint32_t BatchGetCurrentDeadtimeIndex(void)
+{
+    return batch_di;
+}
+
+//@brief Query the current frequency value
+//@return Current frequency in Hz
+uint32_t BatchGetCurrentFrequency(void)
+{
+    return frequencies[batch_fi];
+}
+
+//@brief Query the current deadtime value
+//@return Current deadtime in ns
+uint32_t BatchGetCurrentDeadtime(void)
+{
+    return deadtimes[batch_di];
 }
 
 //@brief Advances the test matrix indices by one step. Wraps inner indices
-//       and increments outer ones as needed. Sets batch_state to kBatchDone
+//       and increments outer ones as needed. Sets batch_state to BatchDone
 //       when the last combination has been processed.
 static void AdvanceIndices(void)
 {
@@ -183,6 +204,9 @@ uint32_t IsBatchComplete(void)
     return batch_batch_done;
 }
 
+//@brief Batch state machine core. Call every scheduler tick while batch is active.
+//       Returns immediately on every call. State transitions happen based on timers
+//       and index progression.
 void RunTests(void)
 {
     switch (batch_state)
@@ -191,9 +215,7 @@ void RunTests(void)
             break;
 
         case BatchSetup:
-            EnablePWM(PWM_CHANNEL_C);
-            SetFrequency(PWM_CHANNEL_C, FREQUENCY_C);
-            SetDeadTime(PWM_CHANNEL_C, DEADTIME_C);
+            // Initial setup: configure control loop and CH for reference
             ControlLoop_SetOpenLoopVoltage(VOLTAGE_C, FUNDAMENTAL_FREQUENCY);
             ControlLoop_Enable();
             ControlLoop_SetIdRef(0.0F);
@@ -202,16 +224,11 @@ void RunTests(void)
             break;
 
         case BatchApply:
-            // Reconfigure channels at the start of each new mode
-            if (batch_fi == 0U && batch_di == 0U && batch_ci == 0U && batch_step == 0U)
-            {
-                ApplyModeSetup((TestModeTypeDef)batch_mode);
-            }
-
-            SetFrequency(PWM_CHANNEL_A, frequencies[batch_fi]);
-            SetFrequency(PWM_CHANNEL_B, frequencies[batch_fi]);
-            SetDeadTime(PWM_CHANNEL_A, deadtimes[batch_di]);
-            SetDeadTime(PWM_CHANNEL_B, deadtimes[batch_di]);
+            // Request UI to apply current frequency/deadtime settings.
+            // Mode and interleaving mode changes happen at mode boundaries (via UI query).
+            // This state just signals what settings to apply; UI handles the actual calls.
+            
+            // Apply current test step's current reference
             ApplyCurrentStep(currents[batch_ci], (CurrentStepTypeDef)batch_step);
 
             StartTimer(&batch_timer);
@@ -225,7 +242,7 @@ void RunTests(void)
                            batch_fi, batch_di, batch_ci,
                            (CurrentStepTypeDef)batch_step);
 
-                AdvanceIndices();   // may transition batch_state to kBatchDone
+                AdvanceIndices();   // may transition batch_state to BatchDone
 
                 if (batch_state != BatchDone)
                 {
@@ -238,9 +255,6 @@ void RunTests(void)
             ControlLoop_SetIdRef(0.0F);
             ControlLoop_SetIqRef(0.0F);
             ControlLoop_Disable();
-            DisablePWM(PWM_CHANNEL_A);
-            DisablePWM(PWM_CHANNEL_B);
-            DisablePWM(PWM_CHANNEL_C);
             batch_batch_done = 1U;
             batch_state      = BatchIdle;
             break;
