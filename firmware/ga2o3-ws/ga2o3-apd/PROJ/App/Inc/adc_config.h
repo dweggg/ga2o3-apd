@@ -80,7 +80,7 @@
 // Ia -> ADC Module A, IN0
 #define I_A_ADC_MODULE            1                 // ADC A
 #define I_A_ADC_SOC               0                 // ADCA-SOC2
-#define I_A_ADC_CHANNEL           ADC_CH_ADCIN0     // ADCA pin IN0
+#define I_A_ADC_CHANNEL           ADC_CH_ADCIN3     // ADCA pin IN0
 
 // Ib -> ADC Module A, IN2
 #define I_B_ADC_MODULE            1                 // ADC A
@@ -97,14 +97,8 @@
  * Shared ADC settings
  * ----------------------------------------------------------------------- */
 
-#define TEMP_SAMPLE_WINDOW_NS    20U // ns
-
-#define VOLTAGE_GAIN                0.01f
-#define VOLTAGE_OFFSET              0.0f
+#define TEMP_SAMPLE_WINDOW_NS       20U // ns
 #define VOLTAGE_SAMPLE_WINDOW_NS    20U // ns
-
-#define CURRENT_GAIN                0.01f
-#define CURRENT_OFFSET              0.0f
 #define CURRENT_SAMPLE_WINDOW_NS    20U // ns
 
 
@@ -114,6 +108,7 @@
 
 /* Initialise every ADC module and configure every SOC listed above. */
 HAL_StatusTypeDef InitConfigADC(void);
+HAL_StatusTypeDef CalibrateCurrentOffset(uint16_t num_samples);
 
 void TriggerTempADC(void);
 void TriggerVoltageADC(void);

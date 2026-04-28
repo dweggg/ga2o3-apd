@@ -22,13 +22,17 @@
 
 typedef struct
 {
-    float error;
+    float error_k;
+    float error_k1;
     float set_point;
     float sampling_time;
     float kp;
     float ki;
-    float integral;
-    float limit;
+    float integral_k;
+    float integral_k1;
+    float limit_p;
+    float limit_n;
+    float output_presat;
     float output;
 } PiTypeDef;
 
@@ -102,8 +106,7 @@ void InitPiControl(PiTypeDef *pid_var, float kp, float ki, float sampling_time);
  * @param [in]     measured_value   current process measurement
  * @param [in]     limit            integral clamp value, applied as +/- limit
  */
-void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit);
-
+void RunPiControl(PiTypeDef *pid_var, float set_point, float measured_value, float limit_p, float limit_n);
 
 /* -----------------------------------------------------------------------
  * Rate limiter

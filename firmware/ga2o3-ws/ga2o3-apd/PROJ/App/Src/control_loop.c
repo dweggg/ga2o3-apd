@@ -29,7 +29,7 @@ static const float RL_RATE_OMEGA_R_PER_S   = 1000.0f;   // open-loop freq [rad/s
 static uint16_t control_enabled     = 0U;
 static uint16_t control_interleaved = 0U;
 static ControlParamsTypeDef control_params;
-
+int BuckChannel = 0;
 /* -------------------------------------------------------------------------- */
 /* Private helpers                                                             */
 /* -------------------------------------------------------------------------- */
@@ -53,7 +53,7 @@ static inline void Clamp(PolarTypeDef *polar, float limit)
 
 void InitControlLoop(void)
 {
-    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoop);
+    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoopDC);
     control_params.current_feedback_amps  = 0.0f;
     control_params.omega_rad              = 0.0f;
     control_params.sin_theta              = 0.0f;
@@ -141,12 +141,12 @@ void TaskControlLoop(void)
     RunPiControl(&control_params.pi_id,
                   id_ref,
                   control_params.idq_meas_amps.d,
-                  GetVoltageDC() * 0.5f);
+                  GetVoltageDC() * 0.5f, - GetVoltageDC() * 0.5f);
 
     RunPiControl(&control_params.pi_iq,
                   iq_ref,
                   control_params.idq_meas_amps.q,
-                  GetVoltageDC() * 0.5f);
+                  GetVoltageDC() * 0.5f, - GetVoltageDC() * 0.5f);
 
     /* --- Cartesian -> polar -> clamp -> back to cartesian ------------------ */
     control_params.pi_output_dq.x = control_params.pi_id.output;
@@ -177,4 +177,52 @@ void TaskControlLoop(void)
         SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
         SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
     }
+}
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* DC current control task                                                 */
+/* -------------------------------------------------------------------------- */
+
+void TaskControlLoopDC(void)
+{
+    if (!control_enabled) { return; }
+
+    float id_ref = control_params.idq_ref_amps.d;
+    float i_fb;
+
+    if (BuckChannel == 1) {
+        i_fb = GetCurrentA();
+    
+    }
+    else if (BuckChannel == 2) {
+        i_fb = GetCurrentB();
+    
+    }
+    else if (BuckChannel == 3) {
+        i_fb = GetCurrentC();
+    
+    }
+    else  {
+        return; 
+    
+    }
+    
+    control_params.idq_meas_amps.d = i_fb;
+
+    /* --- PI controller --------------------------------------------------- */
+    RunPiControl(&control_params.pi_id,
+                  id_ref,
+                  control_params.idq_meas_amps.d,
+                  GetVoltageDC() * 0.9f, 0.0f);
+
+
+
+    float v_cl = control_params.pi_id.output / (GetVoltageDC());
+    control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
+
+    /* --- Single channel output -------------------------------------- */   
+    SetDuty(BuckChannel, control_params.duty_closed_loop);
 }

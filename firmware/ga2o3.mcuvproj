@@ -44,37 +44,24 @@ should_log = false
 log_directory = 
 
 [var0]
-name = batch_state
-tracked_name = batch_state
-address = 53412
-type = 3
-color = 250640303
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 3
-value_to_write = 2.000000
-do_not_interpret_as_enum = false
-
-[var1]
-name = batch_timer
-tracked_name = batch_timer
-address = 53424
-type = 5
-color = 2503055710
+name = BuckChannel
+tracked_name = BuckChannel
+address = 53544
+type = 4
+color = 293924348
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 3.000000
 do_not_interpret_as_enum = false
 
-[var2]
+[var1]
 name = control_enabled
 tracked_name = control_enabled
-address = 53468
+address = 53542
 type = 3
-color = 326156700
+color = 3991567345
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
@@ -82,12 +69,38 @@ high_level_type = 0
 value_to_write = 1.000000
 do_not_interpret_as_enum = false
 
+[var2]
+name = control_params.angle_generation.freq
+tracked_name = control_params.angle_generation.freq
+address = 43034
+type = 4
+color = 2399713753
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 50.000000
+do_not_interpret_as_enum = false
+
 [var3]
-name = control_params.angle_generation.theta
-tracked_name = control_params.angle_generation.theta
-address = 44766
+name = control_params.angle_generation.omega
+tracked_name = control_params.angle_generation.omega
+address = 43040
 type = 7
-color = 2560777445
+color = 1167141676
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 10.000000
+do_not_interpret_as_enum = false
+
+[var4]
+name = control_params.angle_generation.sampling_time
+tracked_name = control_params.angle_generation.sampling_time
+address = 43036
+type = 7
+color = 734763711
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
@@ -95,12 +108,1000 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var4]
-name = results[0][0][0][0][0].temp_ah
-tracked_name = results[0][0][0][0][0].temp_ah
-address = 43008
+[var5]
+name = control_params.angle_generation.theta
+tracked_name = control_params.angle_generation.theta
+address = 43038
 type = 7
-color = 1566339932
+color = 3093062447
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var6]
+name = control_params.cos_theta
+tracked_name = control_params.cos_theta
+address = 43032
+type = 7
+color = 1927422634
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var7]
+name = control_params.current_ab_amps.alpha
+tracked_name = control_params.current_ab_amps.alpha
+address = 43044
+type = 7
+color = 189608328
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var8]
+name = control_params.current_ab_amps.beta
+tracked_name = control_params.current_ab_amps.beta
+address = 43046
+type = 7
+color = 3843517290
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var9]
+name = control_params.current_control_enabled
+tracked_name = control_params.current_control_enabled
+address = 43010
+type = 3
+color = 2303250960
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var10]
+name = control_params.current_feedback_amps
+tracked_name = control_params.current_feedback_amps
+address = 43042
+type = 7
+color = 2091402273
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var11]
+name = control_params.current_sogi.alpha
+tracked_name = control_params.current_sogi.alpha
+address = 43022
+type = 7
+color = 3878755498
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var12]
+name = control_params.current_sogi.beta
+tracked_name = control_params.current_sogi.beta
+address = 43024
+type = 7
+color = 1233262576
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var13]
+name = control_params.current_sogi.k
+tracked_name = control_params.current_sogi.k
+address = 43026
+type = 7
+color = 1495059146
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var14]
+name = control_params.current_sogi.sampling_time
+tracked_name = control_params.current_sogi.sampling_time
+address = 43028
+type = 7
+color = 138430854
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var15]
+name = control_params.duty_closed_loop
+tracked_name = control_params.duty_closed_loop
+address = 43120
+type = 7
+color = 2339947459
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var16]
+name = control_params.duty_open_loop
+tracked_name = control_params.duty_open_loop
+address = 43018
+type = 7
+color = 2197076714
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var17]
+name = control_params.idq_meas_amps.d
+tracked_name = control_params.idq_meas_amps.d
+address = 43048
+type = 7
+color = 4073942742
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var18]
+name = control_params.idq_meas_amps.q
+tracked_name = control_params.idq_meas_amps.q
+address = 43050
+type = 7
+color = 574050469
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var19]
+name = control_params.idq_ref_amps.d
+tracked_name = control_params.idq_ref_amps.d
+address = 43052
+type = 7
+color = 82647444
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 5.000000
+do_not_interpret_as_enum = false
+
+[var20]
+name = control_params.idq_ref_amps.q
+tracked_name = control_params.idq_ref_amps.q
+address = 43054
+type = 7
+color = 2666253947
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var21]
+name = control_params.interleaved
+tracked_name = control_params.interleaved
+address = 43008
+type = 3
+color = 20954563
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var22]
+name = control_params.omega_rad
+tracked_name = control_params.omega_rad
+address = 43020
+type = 7
+color = 3394286988
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 10.000000
+do_not_interpret_as_enum = false
+
+[var23]
+name = control_params.output_enabled
+tracked_name = control_params.output_enabled
+address = 43009
+type = 3
+color = 913026298
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var24]
+name = control_params.pi_id.error
+tracked_name = control_params.pi_id.error
+address = 43056
+type = 7
+color = 4093371595
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var25]
+name = control_params.pi_id.integral
+tracked_name = control_params.pi_id.integral
+address = 43066
+type = 7
+color = 1874097001
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var26]
+name = control_params.pi_id.ki
+tracked_name = control_params.pi_id.ki
+address = 43066
+type = 7
+color = 4192113741
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var27]
+name = control_params.pi_id.kp
+tracked_name = control_params.pi_id.kp
+address = 43064
+type = 7
+color = 4144600717
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var28]
+name = control_params.pi_id.limit
+tracked_name = control_params.pi_id.limit
+address = 43068
+type = 7
+color = 3199940653
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var29]
+name = control_params.pi_id.output
+tracked_name = control_params.pi_id.output
+address = 43078
+type = 7
+color = 1135188478
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var30]
+name = control_params.pi_id.sampling_time
+tracked_name = control_params.pi_id.sampling_time
+address = 43062
+type = 7
+color = 1885359646
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var31]
+name = control_params.pi_id.set_point
+tracked_name = control_params.pi_id.set_point
+address = 43060
+type = 7
+color = 1635091366
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var32]
+name = control_params.pi_iq.error
+tracked_name = control_params.pi_iq.error
+address = 43072
+type = 7
+color = 3005482024
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var33]
+name = control_params.pi_iq.integral
+tracked_name = control_params.pi_iq.integral
+address = 43082
+type = 7
+color = 3929808536
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var34]
+name = control_params.pi_iq.ki
+tracked_name = control_params.pi_iq.ki
+address = 43090
+type = 7
+color = 358397840
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var35]
+name = control_params.pi_iq.kp
+tracked_name = control_params.pi_iq.kp
+address = 43088
+type = 7
+color = 721103927
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var36]
+name = control_params.pi_iq.limit
+tracked_name = control_params.pi_iq.limit
+address = 43084
+type = 7
+color = 1867029156
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var37]
+name = control_params.pi_iq.output
+tracked_name = control_params.pi_iq.output
+address = 43102
+type = 7
+color = 168771012
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var38]
+name = control_params.pi_iq.sampling_time
+tracked_name = control_params.pi_iq.sampling_time
+address = 43086
+type = 7
+color = 1261613706
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var39]
+name = control_params.pi_iq.set_point
+tracked_name = control_params.pi_iq.set_point
+address = 43084
+type = 7
+color = 24330035
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var40]
+name = control_params.pi_output_dq.x
+tracked_name = control_params.pi_output_dq.x
+address = 43108
+type = 7
+color = 2258823803
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var41]
+name = control_params.pi_output_dq.y
+tracked_name = control_params.pi_output_dq.y
+address = 43110
+type = 7
+color = 2287957559
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var42]
+name = control_params.pi_output_dq_sat.d
+tracked_name = control_params.pi_output_dq_sat.d
+address = 43116
+type = 7
+color = 2302940764
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var43]
+name = control_params.pi_output_dq_sat.q
+tracked_name = control_params.pi_output_dq_sat.q
+address = 43118
+type = 7
+color = 2816525337
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var44]
+name = control_params.pi_output_vs_delta.r
+tracked_name = control_params.pi_output_vs_delta.r
+address = 43104
+type = 7
+color = 1431537298
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var45]
+name = control_params.pi_output_vs_delta.theta
+tracked_name = control_params.pi_output_vs_delta.theta
+address = 43106
+type = 7
+color = 3846081486
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var46]
+name = control_params.sampling_time
+tracked_name = control_params.sampling_time
+address = 43012
+type = 7
+color = 91237738
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var47]
+name = control_params.sin_theta
+tracked_name = control_params.sin_theta
+address = 43030
+type = 7
+color = 948959843
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var48]
+name = control_params.voltage_ab.alpha
+tracked_name = control_params.voltage_ab.alpha
+address = 43112
+type = 7
+color = 2907826754
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var49]
+name = control_params.voltage_ab.beta
+tracked_name = control_params.voltage_ab.beta
+address = 43114
+type = 7
+color = 1215013305
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var50]
+name = control_params.voltage_open_loop_ac
+tracked_name = control_params.voltage_open_loop_ac
+address = 43014
+type = 7
+color = 3926027205
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var51]
+name = control_params.voltage_open_loop_pk
+tracked_name = control_params.voltage_open_loop_pk
+address = 43016
+type = 7
+color = 2540362492
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var52]
+name = g_ui.adc_monitor.current_a_amps
+tracked_name = g_ui.adc_monitor.current_a_amps
+address = 53474
+type = 7
+color = 255
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var53]
+name = g_ui.adc_monitor.current_b_amps
+tracked_name = g_ui.adc_monitor.current_b_amps
+address = 53476
+type = 7
+color = 65280
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var54]
+name = g_ui.adc_monitor.current_c_amps
+tracked_name = g_ui.adc_monitor.current_c_amps
+address = 53478
+type = 7
+color = 16711680
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var55]
+name = g_ui.adc_monitor.temp_ah_celsius
+tracked_name = g_ui.adc_monitor.temp_ah_celsius
+address = 53488
+type = 7
+color = 16711935
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var56]
+name = g_ui.adc_monitor.temp_al_celsius
+tracked_name = g_ui.adc_monitor.temp_al_celsius
+address = 53490
+type = 7
+color = 16711935
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var57]
+name = g_ui.adc_monitor.temp_bh_celsius
+tracked_name = g_ui.adc_monitor.temp_bh_celsius
+address = 53492
+type = 7
+color = 16711935
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var58]
+name = g_ui.adc_monitor.temp_bl_celsius
+tracked_name = g_ui.adc_monitor.temp_bl_celsius
+address = 53494
+type = 7
+color = 16711935
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var59]
+name = g_ui.adc_monitor.temp_ch_celsius
+tracked_name = g_ui.adc_monitor.temp_ch_celsius
+address = 53496
+type = 7
+color = 16711935
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var60]
+name = g_ui.adc_monitor.temp_cl_celsius
+tracked_name = g_ui.adc_monitor.temp_cl_celsius
+address = 53498
+type = 7
+color = 16711935
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var61]
+name = g_ui.adc_monitor.voltage_a_volts
+tracked_name = g_ui.adc_monitor.voltage_a_volts
+address = 53480
+type = 7
+color = 255
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var62]
+name = g_ui.adc_monitor.voltage_b_volts
+tracked_name = g_ui.adc_monitor.voltage_b_volts
+address = 53482
+type = 7
+color = 65280
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var63]
+name = g_ui.adc_monitor.voltage_c_volts
+tracked_name = g_ui.adc_monitor.voltage_c_volts
+address = 53484
+type = 7
+color = 16711680
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var64]
+name = g_ui.adc_monitor.voltage_dc_volts
+tracked_name = g_ui.adc_monitor.voltage_dc_volts
+address = 53486
+type = 7
+color = 16776960
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var65]
+name = g_ui.closed_loop.id_reference_amps
+tracked_name = g_ui.closed_loop.id_reference_amps
+address = 53468
+type = 7
+color = 3878433698
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var66]
+name = g_ui.closed_loop.iq_reference_amps
+tracked_name = g_ui.closed_loop.iq_reference_amps
+address = 53470
+type = 7
+color = 1251282939
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var67]
+name = g_ui.current_mode
+tracked_name = g_ui.current_mode
+address = 53442
+type = 3
+color = 620224127
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 3
+value_to_write = 1.000000
+do_not_interpret_as_enum = false
+
+[var68]
+name = g_ui.open_loop.fundamental_frequency_hz
+tracked_name = g_ui.open_loop.fundamental_frequency_hz
+address = 53466
+type = 7
+color = 669858052
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 5.000000
+do_not_interpret_as_enum = false
+
+[var69]
+name = g_ui.open_loop.voltage_amplitude_volts
+tracked_name = g_ui.open_loop.voltage_amplitude_volts
+address = 53464
+type = 7
+color = 1127535454
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 5.000000
+do_not_interpret_as_enum = false
+
+[var70]
+name = g_ui.raw_pwm_a.deadtime_ns
+tracked_name = g_ui.raw_pwm_a.deadtime_ns
+address = 53446
+type = 5
+color = 1397238774
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 1000.000000
+do_not_interpret_as_enum = false
+
+[var71]
+name = g_ui.raw_pwm_a.duty_cycle
+tracked_name = g_ui.raw_pwm_a.duty_cycle
+address = 53448
+type = 7
+color = 2634359976
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.500000
+do_not_interpret_as_enum = false
+
+[var72]
+name = g_ui.raw_pwm_a.frequency_hz
+tracked_name = g_ui.raw_pwm_a.frequency_hz
+address = 53444
+type = 5
+color = 1260771888
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 10000.000000
+do_not_interpret_as_enum = false
+
+[var73]
+name = g_ui.raw_pwm_b.deadtime_ns
+tracked_name = g_ui.raw_pwm_b.deadtime_ns
+address = 53452
+type = 5
+color = 2268269307
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var74]
+name = g_ui.raw_pwm_b.duty_cycle
+tracked_name = g_ui.raw_pwm_b.duty_cycle
+address = 53454
+type = 7
+color = 2049002641
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.500000
+do_not_interpret_as_enum = false
+
+[var75]
+name = g_ui.raw_pwm_b.frequency_hz
+tracked_name = g_ui.raw_pwm_b.frequency_hz
+address = 53450
+type = 5
+color = 2572161289
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var76]
+name = g_ui.raw_pwm_c.deadtime_ns
+tracked_name = g_ui.raw_pwm_c.deadtime_ns
+address = 53458
+type = 5
+color = 1547960457
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 800.000000
+do_not_interpret_as_enum = false
+
+[var77]
+name = g_ui.raw_pwm_c.duty_cycle
+tracked_name = g_ui.raw_pwm_c.duty_cycle
+address = 53460
+type = 7
+color = 4009527663
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.500000
+do_not_interpret_as_enum = false
+
+[var78]
+name = g_ui.raw_pwm_c.frequency_hz
+tracked_name = g_ui.raw_pwm_c.frequency_hz
+address = 53456
+type = 5
+color = 3417705096
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 10000.000000
+do_not_interpret_as_enum = false
+
+[var79]
+name = g_ui.selected_pwm_channel
+tracked_name = g_ui.selected_pwm_channel
+address = 53462
+type = 4
+color = 1993035435
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 3
+value_to_write = 3.000000
+do_not_interpret_as_enum = false
+
+[var80]
+name = g_ui.system_enabled
+tracked_name = g_ui.system_enabled
+address = 53473
+type = 3
+color = 2115757881
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var81]
+name = g_ui.use_interleaved_mode
+tracked_name = g_ui.use_interleaved_mode
+address = 53472
+type = 3
+color = 2290122679
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
@@ -109,48 +1110,624 @@ value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
 [group0]
-name = new group0
+name = Angle_Generation
 acquisition_type = 0
 
 [group0-plot0]
-name = new plot0
-type = 2
+name = Angle_Tracking
+type = 0
 visibility = true
 
 [group0-plot0-series0]
-name = batch_state
+name = control_params.angle_generation.theta
 visibility = true
 format = DEC
 
 [group0-plot0-series1]
-name = control_enabled
+name = control_params.cos_theta
 visibility = true
 format = DEC
 
 [group0-plot0-series2]
-name = results[0][0][0][0][0].temp_ah
+name = control_params.sin_theta
 visibility = true
 format = DEC
 
 [group0-plot1]
-name = new plot1
-type = 0
+name = Frequency_Monitoring
+type = 2
 visibility = true
 
 [group0-plot1-series0]
-name = batch_timer
+name = control_params.angle_generation.freq
 visibility = true
 format = DEC
 
-[group0-plot2]
-name = new plot2
+[group0-plot1-series1]
+name = control_params.angle_generation.omega
+visibility = true
+format = DEC
+
+[group0-plot1-series2]
+name = control_params.angle_generation.sampling_time
+visibility = true
+format = DEC
+
+[group0-plot1-series3]
+name = control_params.omega_rad
+visibility = true
+format = DEC
+
+[group1]
+name = Current_Waveforms
+acquisition_type = 0
+
+[group1-plot0]
+name = All_Phase_Currents
 type = 0
 visibility = true
 
-[group0-plot2-series0]
+[group1-plot0-series0]
+name = control_params.idq_meas_amps.d
+visibility = true
+format = DEC
+
+[group1-plot0-series1]
+name = control_params.idq_ref_amps.d
+visibility = true
+format = DEC
+
+[group1-plot0-series2]
+name = g_ui.adc_monitor.current_c_amps
+visibility = true
+format = DEC
+
+[group1-plot1]
+name = Control
+type = 2
+visibility = true
+
+[group1-plot1-series0]
+name = BuckChannel
+visibility = true
+format = DEC
+
+[group1-plot1-series1]
+name = g_ui.closed_loop.id_reference_amps
+visibility = true
+format = DEC
+
+[group1-plot1-series2]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group1-plot1-series3]
+name = g_ui.system_enabled
+visibility = true
+format = DEC
+
+[group1-plot2]
+name = DQ_Currents
+type = 0
+visibility = false
+
+[group1-plot2-series0]
+name = control_params.idq_meas_amps.d
+visibility = true
+format = DEC
+
+[group1-plot2-series1]
+name = control_params.idq_meas_amps.q
+visibility = true
+format = DEC
+
+[group1-plot2-series2]
+name = control_params.idq_ref_amps.d
+visibility = true
+format = DEC
+
+[group1-plot2-series3]
+name = control_params.idq_ref_amps.q
+visibility = true
+format = DEC
+
+[group1-plot3]
+name = PI
+type = 0
+visibility = true
+
+[group1-plot3-series0]
+name = control_params.pi_id.output
+visibility = true
+format = DEC
+
+[group1-plot3-series1]
+name = g_ui.adc_monitor.voltage_dc_volts
+visibility = true
+format = DEC
+
+[group2]
+name = OpenLoop_AC_Generation
+acquisition_type = 0
+
+[group2-plot0]
+name = OpenLoop_AC_Waveform
+type = 0
+visibility = true
+
+[group2-plot0-series0]
 name = control_params.angle_generation.theta
 visibility = true
 format = DEC
+
+[group2-plot0-series1]
+name = control_params.duty_open_loop
+visibility = true
+format = DEC
+
+[group2-plot0-series2]
+name = control_params.voltage_open_loop_ac
+visibility = true
+format = DEC
+
+[group2-plot1]
+name = OpenLoop_Settings
+type = 2
+visibility = true
+
+[group2-plot1-series0]
+name = control_enabled
+visibility = true
+format = DEC
+
+[group2-plot1-series1]
+name = control_params.voltage_open_loop_ac
+visibility = true
+format = DEC
+
+[group2-plot1-series2]
+name = control_params.voltage_open_loop_pk
+visibility = true
+format = DEC
+
+[group2-plot1-series3]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group2-plot1-series4]
+name = g_ui.open_loop.fundamental_frequency_hz
+visibility = true
+format = DEC
+
+[group2-plot1-series5]
+name = g_ui.open_loop.voltage_amplitude_volts
+visibility = true
+format = DEC
+
+[group2-plot1-series6]
+name = g_ui.system_enabled
+visibility = true
+format = DEC
+
+[group3]
+name = PI_D_Axis_Tuning
+acquisition_type = 0
+
+[group3-plot0]
+name = PID_Control_Table
+type = 2
+visibility = true
+
+[group3-plot0-series0]
+name = control_params.pi_id.error
+visibility = true
+format = DEC
+
+[group3-plot0-series1]
+name = control_params.pi_id.integral
+visibility = true
+format = DEC
+
+[group3-plot0-series2]
+name = control_params.pi_id.ki
+visibility = true
+format = DEC
+
+[group3-plot0-series3]
+name = control_params.pi_id.kp
+visibility = true
+format = DEC
+
+[group3-plot0-series4]
+name = control_params.pi_id.output
+visibility = true
+format = DEC
+
+[group3-plot0-series5]
+name = control_params.pi_id.set_point
+visibility = true
+format = DEC
+
+[group3-plot1]
+name = PID_Response
+type = 0
+visibility = true
+
+[group3-plot1-series0]
+name = control_params.idq_meas_amps.d
+visibility = true
+format = DEC
+
+[group3-plot1-series1]
+name = control_params.idq_ref_amps.d
+visibility = true
+format = DEC
+
+[group3-plot1-series2]
+name = control_params.pi_id.output
+visibility = true
+format = DEC
+
+[group4]
+name = PI_Q_Axis_Tuning
+acquisition_type = 0
+
+[group4-plot0]
+name = PIQ_Control_Table
+type = 2
+visibility = true
+
+[group4-plot0-series0]
+name = control_params.pi_iq.error
+visibility = true
+format = DEC
+
+[group4-plot0-series1]
+name = control_params.pi_iq.integral
+visibility = true
+format = DEC
+
+[group4-plot0-series2]
+name = control_params.pi_iq.ki
+visibility = true
+format = DEC
+
+[group4-plot0-series3]
+name = control_params.pi_iq.kp
+visibility = true
+format = DEC
+
+[group4-plot0-series4]
+name = control_params.pi_iq.output
+visibility = true
+format = DEC
+
+[group4-plot0-series5]
+name = control_params.pi_iq.set_point
+visibility = true
+format = DEC
+
+[group4-plot1]
+name = PIQ_Response
+type = 0
+visibility = true
+
+[group4-plot1-series0]
+name = control_params.idq_meas_amps.q
+visibility = true
+format = DEC
+
+[group4-plot1-series1]
+name = control_params.idq_ref_amps.q
+visibility = true
+format = DEC
+
+[group4-plot1-series2]
+name = control_params.pi_iq.output
+visibility = true
+format = DEC
+
+[group5]
+name = Raw_PWM_Control
+acquisition_type = 0
+
+[group5-plot0]
+name = Channel_A_PWM
+type = 2
+visibility = false
+
+[group5-plot0-series0]
+name = g_ui.raw_pwm_a.deadtime_ns
+visibility = true
+format = DEC
+
+[group5-plot0-series1]
+name = g_ui.raw_pwm_a.duty_cycle
+visibility = true
+format = DEC
+
+[group5-plot0-series2]
+name = g_ui.raw_pwm_a.frequency_hz
+visibility = true
+format = DEC
+
+[group5-plot1]
+name = Channel_B_PWM
+type = 2
+visibility = false
+
+[group5-plot1-series0]
+name = g_ui.raw_pwm_b.deadtime_ns
+visibility = true
+format = DEC
+
+[group5-plot1-series1]
+name = g_ui.raw_pwm_b.duty_cycle
+visibility = true
+format = DEC
+
+[group5-plot1-series2]
+name = g_ui.raw_pwm_b.frequency_hz
+visibility = true
+format = DEC
+
+[group5-plot2]
+name = Channel_C_PWM
+type = 2
+visibility = true
+
+[group5-plot2-series0]
+name = g_ui.raw_pwm_c.deadtime_ns
+visibility = true
+format = DEC
+
+[group5-plot2-series1]
+name = g_ui.raw_pwm_c.duty_cycle
+visibility = true
+format = DEC
+
+[group5-plot2-series2]
+name = g_ui.raw_pwm_c.frequency_hz
+visibility = true
+format = DEC
+
+[group5-plot3]
+name = Control
+type = 2
+visibility = true
+
+[group5-plot3-series0]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group5-plot3-series1]
+name = g_ui.system_enabled
+visibility = true
+format = DEC
+
+[group5-plot4]
+name = current
+type = 0
+visibility = true
+
+[group5-plot4-series0]
+name = g_ui.adc_monitor.current_a_amps
+visibility = true
+format = DEC
+
+[group5-plot4-series1]
+name = g_ui.adc_monitor.current_b_amps
+visibility = true
+format = DEC
+
+[group5-plot4-series2]
+name = g_ui.adc_monitor.current_c_amps
+visibility = true
+format = DEC
+
+[group5-plot4-series3]
+name = g_ui.adc_monitor.voltage_dc_volts
+visibility = true
+format = DEC
+
+[group6]
+name = System_Control
+acquisition_type = 0
+
+[group6-plot0]
+name = Control_Settings
+type = 2
+visibility = true
+
+[group6-plot0-series0]
+name = g_ui.closed_loop.id_reference_amps
+visibility = true
+format = DEC
+
+[group6-plot0-series1]
+name = g_ui.closed_loop.iq_reference_amps
+visibility = true
+format = DEC
+
+[group6-plot0-series2]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group6-plot0-series3]
+name = g_ui.open_loop.fundamental_frequency_hz
+visibility = true
+format = DEC
+
+[group6-plot0-series4]
+name = g_ui.open_loop.voltage_amplitude_volts
+visibility = true
+format = DEC
+
+[group6-plot0-series5]
+name = g_ui.system_enabled
+visibility = true
+format = DEC
+
+[group6-plot0-series6]
+name = g_ui.use_interleaved_mode
+visibility = true
+format = DEC
+
+[group7]
+name = Temperature_Monitoring
+acquisition_type = 0
+
+[group7-plot0]
+name = All_Temperatures
+type = 2
+visibility = true
+
+[group7-plot0-series0]
+name = g_ui.adc_monitor.temp_ah_celsius
+visibility = false
+format = DEC
+
+[group7-plot0-series1]
+name = g_ui.adc_monitor.temp_al_celsius
+visibility = false
+format = DEC
+
+[group7-plot0-series2]
+name = g_ui.adc_monitor.temp_bh_celsius
+visibility = false
+format = DEC
+
+[group7-plot0-series3]
+name = g_ui.adc_monitor.temp_bl_celsius
+visibility = false
+format = DEC
+
+[group7-plot0-series4]
+name = g_ui.adc_monitor.temp_ch_celsius
+visibility = false
+format = DEC
+
+[group7-plot0-series5]
+name = g_ui.adc_monitor.temp_cl_celsius
+visibility = true
+format = DEC
+
+[group7-plot0-series6]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group7-plot0-series7]
+name = g_ui.raw_pwm_c.deadtime_ns
+visibility = true
+format = DEC
+
+[group7-plot0-series8]
+name = g_ui.raw_pwm_c.duty_cycle
+visibility = true
+format = DEC
+
+[group7-plot0-series9]
+name = g_ui.raw_pwm_c.frequency_hz
+visibility = true
+format = DEC
+
+[group7-plot0-series10]
+name = g_ui.selected_pwm_channel
+visibility = true
+format = DEC
+
+[group7-plot0-series11]
+name = g_ui.system_enabled
+visibility = true
+format = DEC
+
+[group7-plot1]
+name = Temperature_Trends
+type = 0
+visibility = true
+
+[group7-plot1-series0]
+name = g_ui.adc_monitor.temp_ah_celsius
+visibility = false
+format = DEC
+
+[group7-plot1-series1]
+name = g_ui.adc_monitor.temp_al_celsius
+visibility = false
+format = DEC
+
+[group7-plot1-series2]
+name = g_ui.adc_monitor.temp_bh_celsius
+visibility = false
+format = DEC
+
+[group7-plot1-series3]
+name = g_ui.adc_monitor.temp_bl_celsius
+visibility = false
+format = DEC
+
+[group7-plot1-series4]
+name = g_ui.adc_monitor.temp_ch_celsius
+visibility = false
+format = DEC
+
+[group7-plot1-series5]
+name = g_ui.adc_monitor.temp_cl_celsius
+visibility = true
+format = DEC
+
+[group7-plot1-series6]
+name = g_ui.system_enabled
+visibility = false
+format = DEC
+
+[group8]
+name = Voltage_Monitoring
+acquisition_type = 0
+
+[group8-plot0]
+name = All_Voltages
+type = 0
+visibility = true
+
+[group8-plot0-series0]
+name = g_ui.adc_monitor.voltage_a_volts
+visibility = true
+format = DEC
+
+[group8-plot0-series1]
+name = g_ui.adc_monitor.voltage_b_volts
+visibility = true
+format = DEC
+
+[group8-plot0-series2]
+name = g_ui.adc_monitor.voltage_c_volts
+visibility = true
+format = DEC
+
+[group8-plot1]
+name = DC_Link
+type = 0
+visibility = true
+
+[group8-plot1-series0]
+name = g_ui.adc_monitor.voltage_dc_volts
+visibility = true
+format = DEC
+
+[group9]
+name = new sampling group0
+acquisition_type = 0
+
+[group9-plot0]
+name = new plot0
+type = 0
+visibility = true
 
 [trace_plot0]
 name = CH0
