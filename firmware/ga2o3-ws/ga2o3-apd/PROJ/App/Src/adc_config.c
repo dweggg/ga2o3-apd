@@ -6,6 +6,7 @@
 
 #include "adc_config.h"
 
+static AdcTypeDef adc = {0};
 
 typedef struct { uint16_t raw; float temp_c; } TempLutEntry;
 
@@ -108,6 +109,36 @@ static float raw_to_celsius(uint16_t raw, const TempLutEntry *lut, uint16_t len)
     }
 
     return lut_interpolate(&lut[lo], &lut[hi], raw);
+}
+
+
+
+
+static MovingAvgU16TypeDef temp_ma[6];
+static MovingAvgU16TypeDef volt_ma[4];
+
+static uint16_t MovingAvgU16_Push(uint16_t window, MovingAvgU16TypeDef *ma, uint16_t sample)
+{
+    if (window == 0U || window > (uint16_t)(sizeof(ma->buf) / sizeof(ma->buf[0]))) {
+        return sample;   // or 0U, or assert(false)
+    }
+
+    if (ma->count < window) {
+        ma->buf[ma->idx] = sample;
+        ma->sum += sample;
+        ma->count++;
+    } else {
+        ma->sum -= ma->buf[ma->idx];
+        ma->buf[ma->idx] = sample;
+        ma->sum += sample;
+    }
+
+    ma->idx++;
+    if (ma->idx >= window) {
+        ma->idx = 0U;
+    }
+
+    return (uint16_t)(ma->sum / ma->count);
 }
 
 /* -----------------------------------------------------------------------
@@ -269,66 +300,84 @@ void ADC_TriggerCurrents(void)
 float GetTempAH(void)
 {
     uint16_t raw = GetADCResult(TEMP_AH_ADC_MODULE, TEMP_AH_ADC_SOC);
-    return raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    raw = MovingAvgU16_Push(TEMP_MA_WINDOW, &temp_ma[0], raw);
+    adc.tempAH = raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    return adc.tempAH;
 }
 
 float GetTempAL(void)
 {
     uint16_t raw = GetADCResult(TEMP_AL_ADC_MODULE, TEMP_AL_ADC_SOC);
-    return raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    raw = MovingAvgU16_Push(TEMP_MA_WINDOW, &temp_ma[1], raw);
+    adc.tempAL = raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    return adc.tempAL;
 }
 
 float GetTempBH(void)
 {
     uint16_t raw = GetADCResult(TEMP_BH_ADC_MODULE, TEMP_BH_ADC_SOC);
-    return raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    raw = MovingAvgU16_Push(TEMP_MA_WINDOW, &temp_ma[2], raw);
+    adc.tempBH = raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    return adc.tempBH;
 }
 
 float GetTempBL(void)
 {
     uint16_t raw = GetADCResult(TEMP_BL_ADC_MODULE, TEMP_BL_ADC_SOC);
-    return raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    raw = MovingAvgU16_Push(TEMP_MA_WINDOW, &temp_ma[3], raw);
+    adc.tempBL = raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    return adc.tempBL;
 }
 
 float GetTempCH(void)
 {
     uint16_t raw = GetADCResult(TEMP_CH_ADC_MODULE, TEMP_CH_ADC_SOC);
-    return raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    raw = MovingAvgU16_Push(TEMP_MA_WINDOW, &temp_ma[4], raw);
+    adc.tempCH = raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    return adc.tempCH;
 }
 
 float GetTempCL(void)
 {
     uint16_t raw = GetADCResult(TEMP_CL_ADC_MODULE, TEMP_CL_ADC_SOC);
-    return raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    raw = MovingAvgU16_Push(TEMP_MA_WINDOW, &temp_ma[5], raw);
+    adc.tempCL = raw_to_celsius(raw, temp_lut, TEMP_LUT_LEN);
+    return adc.tempCL;
 }
-
 
 /* --- Voltages (gain + offset) ----------------------------------------- */
 
 float GetVoltageA(void)
 {
     uint16_t raw = GetADCResult(V_A_ADC_MODULE, V_A_ADC_SOC);
-    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    raw = MovingAvgU16_Push(VOLT_MA_WINDOW, &volt_ma[0], raw);
+    adc.voltageA = ((float)raw + VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    return adc.voltageA;
 }
 
 float GetVoltageB(void)
 {
     uint16_t raw = GetADCResult(V_B_ADC_MODULE, V_B_ADC_SOC);
-    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    raw = MovingAvgU16_Push(VOLT_MA_WINDOW, &volt_ma[1], raw);
+    adc.voltageB = ((float)raw + VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    return adc.voltageB;
 }
 
 float GetVoltageC(void)
 {
     uint16_t raw = GetADCResult(V_C_ADC_MODULE, V_C_ADC_SOC);
-    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    raw = MovingAvgU16_Push(VOLT_MA_WINDOW, &volt_ma[2], raw);
+    adc.voltageC = ((float)raw + VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    return adc.voltageC;
 }
 
 float GetVoltageDC(void)
 {
     uint16_t raw = GetADCResult(V_DC_ADC_MODULE, V_DC_ADC_SOC);
-    return ((float)raw +  VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    raw = MovingAvgU16_Push(VOLT_MA_WINDOW, &volt_ma[3], raw);
+    adc.voltageDC = ((float)raw + VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    return adc.voltageDC;
 }
-
 
 /* --- Currents (gain + offset) ----------------------------------------- */
 

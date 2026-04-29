@@ -66,7 +66,7 @@ static uint32_t          batch_step         = 0U;
 static uint32_t          batch_timer        = 0U;
 static uint32_t          batch_batch_done   = 0U; // flag polled by IsBatchComplete()
 
-//@brief Captures a temperature sample from all four MOSFET positions
+//@brief Captures a temperature sample from all four diode positions
 //@return BatchSampleTypeDef populated with temperature ADC readings (celsius x10)
 static BatchSampleTypeDef CaptureData(void)
 {

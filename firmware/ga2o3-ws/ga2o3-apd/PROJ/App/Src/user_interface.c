@@ -28,12 +28,10 @@ UserInterfaceTypeDef g_ui = {
     .raw_pwm_a = {0},
     .raw_pwm_b = {0},
     .raw_pwm_c = {0},
-    .selected_pwm_channel = (PwmChannelTypeDef)0,
     .open_loop = {0},
     .closed_loop = {0},
     .use_interleaved_mode = 0,
     .system_enabled = 0,
-    .adc_monitor = {0}
 };
 
 static uint16_t s_batch_test_running = 0U;
@@ -58,8 +56,6 @@ void InitUserInterface(void)
     g_ui.raw_pwm_c.frequency_hz = 10000U;
     g_ui.raw_pwm_c.deadtime_ns  = 1000U;
     g_ui.raw_pwm_c.duty_cycle   = 0.0f;
-
-    g_ui.selected_pwm_channel = PWM_CHANNEL_A;
 
     g_ui.open_loop.voltage_amplitude_volts = 48.0f;
     g_ui.open_loop.fundamental_frequency_hz = 50.0f;
@@ -129,9 +125,9 @@ void SetUIMode(UiModeTypeDef mode)
             break;
 
         case UI_MODE_RAW_PWM:
-        case UI_MODE_OPEN_LOOP_VOLTAGE:
-        case UI_MODE_CLOSED_LOOP_SINGLE:
-        case UI_MODE_CLOSED_LOOP_INTERLEAVED:
+        case UI_MODE_OPEN_LOOP_AC:
+        case UI_MODE_POWER_CYCLING:
+        case UI_MODE_POWER_CYCLING_INTERLEAVED:
             // Hardware will be configured by PollAndApplyParameterUpdates
             break;
 
@@ -195,10 +191,6 @@ void UpdateClosedLoopSetpoints(float id_amps, float iq_amps)
     g_ui.closed_loop.iq_reference_amps = iq_amps;
 }
 
-void UpdateInterleaving(uint16_t enable)
-{
-    g_ui.use_interleaved_mode = enable ? 1U : 0U;
-}
 
 /* -------------------------------------------------------------------------- */
 /* Batch test coordination                                                     */
@@ -284,7 +276,7 @@ static void PollAndApplyParameterUpdates(void)
             break;
         }
 
-        case UI_MODE_OPEN_LOOP_VOLTAGE: {
+        case UI_MODE_OPEN_LOOP_AC: {
             /* Open-loop voltage mode: set voltage magnitude and frequency */
             EnableSystem();
             ControlLoop_SetOpenLoopVoltage(
@@ -294,21 +286,26 @@ static void PollAndApplyParameterUpdates(void)
             break;
         }
 
-        case UI_MODE_CLOSED_LOOP_SINGLE:
-        case UI_MODE_CLOSED_LOOP_INTERLEAVED: {
-            /* Closed-loop current control with optional interleaving */
+        case UI_MODE_CLOSED_LOOP_BUCK:
+            /* Closed-loop current control (DC) */
+            ControlLoop_SetInterleavedMode(0);
+            ControlLoop_SetBuckMode(1);
             EnableSystem();
-            
-            /* Interleaving change requires a reinit */
-            static uint16_t s_last_interleaved_mode = 0xFFFFU;
-            if (g_ui.use_interleaved_mode != s_last_interleaved_mode) {
-                DisableSystem();
-                ControlLoop_SetInterleavedMode(g_ui.use_interleaved_mode);
-                InitControlLoop();
-                s_last_interleaved_mode = g_ui.use_interleaved_mode;
-                EnableSystem();
-            }
-
+            ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
+            ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
+            break;
+        case UI_MODE_POWER_CYCLING:
+            /* Closed-loop current control and power cycling */
+            ControlLoop_SetInterleavedMode(0);
+            ControlLoop_SetBuckMode(0);
+            EnableSystem();
+            ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
+            ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
+            break;
+        case UI_MODE_POWER_CYCLING_INTERLEAVED: {
+            /* Closed-loop current control and power cycling with interleaving */
+            ControlLoop_SetInterleavedMode(1);
+            EnableSystem();
             ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
             ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
             break;
@@ -329,36 +326,11 @@ static void PollAndApplyParameterUpdates(void)
 }
 
 /* -------------------------------------------------------------------------- */
-/* ADC monitoring                                                              */
-/* -------------------------------------------------------------------------- */
-
-void UpdateAdcMonitoring(void)
-{
-    g_ui.adc_monitor.current_a_amps = GetCurrentA();
-    g_ui.adc_monitor.current_b_amps = GetCurrentB();
-    g_ui.adc_monitor.current_c_amps = GetCurrentC();
-
-    g_ui.adc_monitor.voltage_a_volts  = GetVoltageA();
-    g_ui.adc_monitor.voltage_b_volts  = GetVoltageB();
-    g_ui.adc_monitor.voltage_c_volts  = GetVoltageC();
-    g_ui.adc_monitor.voltage_dc_volts = GetVoltageDC();
-
-    g_ui.adc_monitor.temp_ah_celsius = GetTempAH();
-    g_ui.adc_monitor.temp_al_celsius = GetTempAL();
-    g_ui.adc_monitor.temp_bh_celsius = GetTempBH();
-    g_ui.adc_monitor.temp_bl_celsius = GetTempBL();
-    g_ui.adc_monitor.temp_ch_celsius = GetTempCH();
-    g_ui.adc_monitor.temp_cl_celsius = GetTempCL();
-}
-
-/* -------------------------------------------------------------------------- */
 /* Main task - called every control cycle                                     */
 /* -------------------------------------------------------------------------- */
 
 void TaskUserInterface(void)
 {
-    // Update ADC monitoring (read current values)
-    UpdateAdcMonitoring();
 
     // Apply current mode's parameter settings
     PollAndApplyParameterUpdates();

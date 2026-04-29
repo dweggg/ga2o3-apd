@@ -7,9 +7,10 @@
 typedef enum {
     UI_MODE_IDLE = 0,
     UI_MODE_RAW_PWM,
-    UI_MODE_OPEN_LOOP_VOLTAGE,
-    UI_MODE_CLOSED_LOOP_SINGLE,
-    UI_MODE_CLOSED_LOOP_INTERLEAVED,
+    UI_MODE_OPEN_LOOP_AC,
+    UI_MODE_CLOSED_LOOP_BUCK,
+    UI_MODE_POWER_CYCLING,
+    UI_MODE_POWER_CYCLING_INTERLEAVED,
     UI_MODE_BATCH_TEST,
 } UiModeTypeDef;
 
@@ -51,8 +52,7 @@ typedef struct {
     RawPwmSettingsTypeDef raw_pwm_a;
     RawPwmSettingsTypeDef raw_pwm_b;
     RawPwmSettingsTypeDef raw_pwm_c;
-    PwmChannelTypeDef selected_pwm_channel;
-    
+   
     OpenLoopVoltageSettingsTypeDef open_loop;
     
     ClosedLoopSettingsTypeDef closed_loop;
@@ -61,7 +61,6 @@ typedef struct {
     
     uint16_t system_enabled;
     
-    AdcMonitoringTypeDef adc_monitor;
 } UserInterfaceTypeDef;
 
 extern UserInterfaceTypeDef g_ui;

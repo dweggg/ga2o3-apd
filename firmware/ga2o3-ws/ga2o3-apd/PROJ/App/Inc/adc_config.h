@@ -103,6 +103,34 @@
 
 
 /* -----------------------------------------------------------------------
+ * Moving average
+ * ----------------------------------------------------------------------- */
+
+#define TEMP_MA_WINDOW              8U
+#define VOLT_MA_WINDOW              8U
+
+typedef struct {
+    uint16_t buf[8];
+    uint32_t sum;
+    uint16_t idx;
+    uint16_t count;
+} MovingAvgU16TypeDef;
+
+typedef struct {
+    float tempAH;
+    float tempAL;
+    float tempBH;
+    float tempBL;
+    float tempCH;
+    float tempCL;
+    float voltageA;
+    float voltageB;
+    float voltageC;
+    float voltageDC;
+
+} AdcTypeDef;
+
+/* -----------------------------------------------------------------------
  * Public API
  * ----------------------------------------------------------------------- */
 
