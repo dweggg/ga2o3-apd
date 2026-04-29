@@ -152,6 +152,9 @@ void TaskControlLoop(void)
             control_params.angle_generation.theta);
 
         /* --- PI controllers --------------------------------------------------- */
+
+        // if we're feedforwarding the open loop voltage, we should limit the PIs to only the remaining headroom. i think. but not sure how exactly
+
         RunPiControl(&control_params.pi_id,
                     id_ref,
                     control_params.idq_meas_amps.d,
