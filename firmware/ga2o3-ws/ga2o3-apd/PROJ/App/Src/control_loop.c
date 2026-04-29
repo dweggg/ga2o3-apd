@@ -131,10 +131,10 @@ void TaskControlLoop(void)
 
         /* --- Open loop voltage ------------------------------------------------- */
 
-        float v_dc = GetVoltageDC();
+        float v_dc_half = GetVoltageDC() * 0.5f;
 
         control_params.voltage_open_loop_ac = voltage_pk * control_params.sin_theta;
-        float v_ol = control_params.voltage_open_loop_ac / (v_dc);
+        float v_ol = control_params.voltage_open_loop_ac / (v_dc_half);
         control_params.duty_open_loop = v_ol < 0.0f ? 0.0f : (v_ol > 1.0f ? 1.0f : v_ol);
 
         /* --- SOGI: single-phase current -> alpha-beta -------------------------- */
@@ -153,19 +153,19 @@ void TaskControlLoop(void)
         RunPiControl(&control_params.pi_id,
                     id_ref,
                     control_params.idq_meas_amps.d,
-                    v_dc, - v_dc);
+                    v_dc_half, - v_dc_half);
 
         RunPiControl(&control_params.pi_iq,
                     iq_ref,
                     control_params.idq_meas_amps.q,
-                    v_dc, - v_dc);
+                    v_dc_half, - v_dc_half);
 
         /* --- Cartesian -> polar -> clamp -> back to cartesian ------------------ */
         control_params.pi_output_dq.x = control_params.pi_id.output;
         control_params.pi_output_dq.y = control_params.pi_iq.output;
 
         control_params.pi_output_vs_delta = CartesianToPolar(control_params.pi_output_dq);
-        Clamp(&control_params.pi_output_vs_delta, v_dc);
+        Clamp(&control_params.pi_output_vs_delta, v_dc_half);
         control_params.pi_output_dq       = PolarToCartesian(control_params.pi_output_vs_delta);
 
         control_params.pi_output_dq_sat.d = control_params.pi_output_dq.x;
@@ -173,7 +173,7 @@ void TaskControlLoop(void)
 
         /* --- dq -> alpha-beta -> normalised duty cycle ------------------------- */
         control_params.voltage_ab = ConvertDqToAlphabeta(control_params.pi_output_dq_sat, control_params.angle_generation.theta);
-        float v_cl = control_params.voltage_ab.alpha / (v_dc);
+        float v_cl = control_params.voltage_ab.alpha / (v_dc_half);
         control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
 
         /* --- Mode-specific PWM modulation -------------------------------------- */
