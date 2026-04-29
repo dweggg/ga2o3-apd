@@ -56,7 +56,6 @@ void     InitControlLoop(void);
  *        enabled, otherwise returns immediately.
  */
 void     TaskControlLoop(void);
-void     TaskControlLoopDC(void);
 
 /* Enable / disable -------------------------------------------------------- */
 void     ControlLoop_Enable(void);

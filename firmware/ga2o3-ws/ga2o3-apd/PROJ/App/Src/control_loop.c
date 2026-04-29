@@ -54,7 +54,7 @@ static inline void Clamp(PolarTypeDef *polar, float limit)
 
 void InitControlLoop(void)
 {
-    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoopDC);
+    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoop);
     control_params.current_feedback_amps  = 0.0f;
     control_params.omega_rad              = 0.0f;
     control_params.sin_theta              = 0.0f;
@@ -134,7 +134,9 @@ void TaskControlLoop(void)
         float v_dc_half = GetVoltageDC() * 0.5f;
 
         control_params.voltage_open_loop_ac = voltage_pk * control_params.sin_theta;
-        float v_ol = control_params.voltage_open_loop_ac / (v_dc_half);
+        float v_ol = 0.5f + control_params.voltage_open_loop_ac / (v_dc_half * 2.0f);
+        // v_ol is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
+
         control_params.duty_open_loop = v_ol < 0.0f ? 0.0f : (v_ol > 1.0f ? 1.0f : v_ol);
 
         /* --- SOGI: single-phase current -> alpha-beta -------------------------- */
@@ -171,15 +173,22 @@ void TaskControlLoop(void)
         control_params.pi_output_dq_sat.d = control_params.pi_output_dq.x;
         control_params.pi_output_dq_sat.q = control_params.pi_output_dq.y;
 
+        // if for some reason both PIs are saturating to vdc/2 the magnitude (vs) would be maximum sqrt2 * vdc/2. 
+        // so in this scenario the PIs only have to deal with a 41% unsaturated output to wind down. 
+        // i dont think its too dramatic and probably implementing the fancy external saturation antiwindup would cause more trouble than help
+
+
         /* --- dq -> alpha-beta -> normalised duty cycle ------------------------- */
         control_params.voltage_ab = ConvertDqToAlphabeta(control_params.pi_output_dq_sat, control_params.angle_generation.theta);
-        float v_cl = control_params.voltage_ab.alpha / (v_dc_half);
+        float v_cl = 0.5f + control_params.voltage_ab.alpha / (v_dc_half * 2.0f); // yeah we only take alpha bc we're alpha males. awoooo fuck beta
+        // now for real. alpha is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
+
         control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
 
         /* --- Mode-specific PWM modulation -------------------------------------- */
         if (control_interleaved)
         {
-            SetPhaseShift(PWM_CHANNEL_A, PWM_CHANNEL_B, 0.5F);   // 180 deg
+            SetPhaseShift(PWM_CHANNEL_A, PWM_CHANNEL_B, 0.5f);   // 180 deg
             SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
             SetDuty(PWM_CHANNEL_B, control_params.duty_closed_loop);
             SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
@@ -198,35 +207,22 @@ void TaskControlLoop(void)
 
 
         float id_ref = control_params.idq_ref_amps.d;
-
+        float v_dc = GetVoltageDC();
         control_params.idq_meas_amps.d =  GetCurrentC();
 
         /* --- PI controller --------------------------------------------------- */
         RunPiControl(&control_params.pi_id,
                     id_ref,
                     control_params.idq_meas_amps.d,
-                    GetVoltageDC() * 0.9f, 0.0f);
+                    v_dc * 0.9f, 0.0f);
 
 
 
-        float v_cl = control_params.pi_id.output / (GetVoltageDC());
+        float v_cl = control_params.pi_id.output / (v_dc);
         control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
 
         /* --- Single channel output -------------------------------------- */   
         SetDuty(PWM_CHANNEL_C, control_params.duty_closed_loop);
 
     }
-}
-
-
-
-
-/* -------------------------------------------------------------------------- */
-/* DC current control task                                                 */
-/* -------------------------------------------------------------------------- */
-
-void TaskControlLoopDC(void)
-{
-    if (!control_enabled) { return; }
-
 }
