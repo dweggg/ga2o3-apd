@@ -179,9 +179,14 @@ void TaskControlLoop(void)
 
 
         /* --- dq -> alpha-beta -> normalised duty cycle ------------------------- */
+
         control_params.voltage_ab = ConvertDqToAlphabeta(control_params.pi_output_dq_sat, control_params.angle_generation.theta);
+
+        // watch out. we are literally adding the open loop voltage to the output of the PIs, so that the PIs only have to provide the (magnitude or phase) DIFFERENCE required for whatever current we want
+        // i think this is the best way to implement this sort of "soft start" feature because doing it in dq causes trouble in the simulation already. that or im not smart enough to know how to do it properly. probably the latter.
+        control_params.voltage_ab.alpha += control_params.voltage_open_loop_ac;
         float v_cl = 0.5f + control_params.voltage_ab.alpha / (v_dc_half * 2.0f); // yeah we only take alpha bc we're alpha males. awoooo fuck beta
-        // now for real. alpha is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
+        // alpha is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
 
         control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
 
