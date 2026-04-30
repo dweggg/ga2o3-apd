@@ -51,7 +51,7 @@ HAL_StatusTypeDef InitPWM(uint32_t channel)
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
     // Setup ADC Trigger out
     EPWM_disableADCTrigger(base, EPWM_SOC_A);
-    EPWM_setADCTriggerSource(base, EPWM_SOC_A, EPWM_SOC_TBCTR_U_CMPA);// Trigger when counter equal to CMPA and timer is incrementing
+    EPWM_setADCTriggerSource(base, EPWM_SOC_A, EPWM_SOC_TBCTR_PERIOD);// Trigger when counter equal to CMPA and timer is equal to period
     EPWM_setADCTriggerEventPrescale(base, EPWM_SOC_A, 1);
 
     // Time base
