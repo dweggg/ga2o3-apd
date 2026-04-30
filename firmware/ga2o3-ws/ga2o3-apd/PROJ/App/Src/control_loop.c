@@ -133,7 +133,8 @@ void TaskControlLoop(void)
 
         float v_dc_half = GetVoltageDC() * 0.5f;
 
-        control_params.voltage_open_loop_ac = voltage_pk * control_params.sin_theta;
+        control_params.voltage_open_loop_ac = voltage_pk * control_params.cos_theta; // we take cos(theta) so that d produces active. in before it was sin(theta) but that was inconsistent with the transforms and was there by pure intuition and no actual reason.
+
         float v_ol = 0.5f + control_params.voltage_open_loop_ac / (v_dc_half * 2.0f);
         // v_ol is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
 

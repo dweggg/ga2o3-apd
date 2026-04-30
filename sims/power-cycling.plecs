@@ -68,8 +68,8 @@ Plecs {
   IncompatibleInitialConditionMsg "2"
   Schematic {
     Location      [0, 28; 1536, 820]
-    ZoomFactor    2.24843
-    SliderPosition [1043, 987]
+    ZoomFactor    0.925393
+    SliderPosition [0, 0]
     ShowBrowser   on
     BrowserWidth  158
     Component {
@@ -8685,6 +8685,40 @@ Plecs {
         Show          off
       }
     }
+    Component {
+      Type          Gain
+      Name          "Gain5"
+      Show          off
+      Position      [1250, 435]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "K"
+        Value         "-1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Multiplication"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "OutputDataType"
+        Value         "11"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataTypeOverflowMode"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "GainDataType"
+        Value         "11"
+        Show          off
+      }
+    }
     Connection {
       Type          Wire
       SrcComponent  "IGBT2"
@@ -9815,13 +9849,6 @@ Plecs {
     }
     Connection {
       Type          Signal
-      SrcComponent  "Demux3"
-      SrcTerminal   2
-      DstComponent  "Gain"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Signal
       SrcComponent  "From20"
       SrcTerminal   1
       Points        [820, 590]
@@ -10067,13 +10094,6 @@ Plecs {
       SrcTerminal   1
       DstComponent  "Gain3"
       DstTerminal   1
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "From37"
-      SrcTerminal   1
-      DstComponent  "Mux15"
-      DstTerminal   3
     }
     Connection {
       Type          Signal
@@ -10325,6 +10345,28 @@ Plecs {
       SrcTerminal   1
       Points        [780, 695]
       DstComponent  "Sum6"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux3"
+      SrcTerminal   3
+      Points        [110, 980; 110, 970]
+      DstComponent  "Gain"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "From37"
+      SrcTerminal   1
+      DstComponent  "Gain5"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Gain5"
+      SrcTerminal   2
+      DstComponent  "Mux15"
       DstTerminal   3
     }
     RectangleAnnotation {
