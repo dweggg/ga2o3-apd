@@ -97,9 +97,9 @@
  * Shared ADC settings
  * ----------------------------------------------------------------------- */
 
-#define TEMP_SAMPLE_WINDOW_NS       20U // ns
-#define VOLTAGE_SAMPLE_WINDOW_NS    20U // ns
-#define CURRENT_SAMPLE_WINDOW_NS    20U // ns
+#define TEMP_SAMPLE_WINDOW_NS       300U // ns
+#define VOLTAGE_SAMPLE_WINDOW_NS    300U // ns
+#define CURRENT_SAMPLE_WINDOW_NS    300U // ns
 
 
 /* -----------------------------------------------------------------------

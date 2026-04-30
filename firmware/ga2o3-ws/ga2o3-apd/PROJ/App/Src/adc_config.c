@@ -6,15 +6,15 @@
 
 #include "adc_config.h"
 
-static AdcTypeDef adc = {0};
+AdcTypeDef adc = {0};
 
 typedef struct { uint16_t raw; float temp_c; } TempLutEntry;
 
 static const float VOLTAGE_GAIN = -1.0f/3.32f;
 static const float VOLTAGE_OFFSET = -1968.0f;
-static const float CURRENT_GAIN = -(1.0f/32.6f) * 0.84f;
+static const float CURRENT_GAIN = -(1.0f / 36.0448f);
 /* Mutable current offset for self-calibration */
-static float current_offsets[3] = { -2055.0f, -1935.0f, -2012.0f };
+static float current_offsets[3] = { -2055.0f, -1935.0f, -2250.0f };
 
 static const TempLutEntry temp_lut[] = {
     /*  raw    degC   */
