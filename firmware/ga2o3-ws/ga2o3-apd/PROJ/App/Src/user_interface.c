@@ -18,6 +18,7 @@
 #include "adc_config.h"
 #include "bsp_epwm.h"
 #include <string.h>
+#include "open_loop.h"
 
 /* -------------------------------------------------------------------------- */
 /* Module state                                                                */
@@ -84,9 +85,10 @@ void EnableSystem(void)
 
     g_ui.system_enabled = 1U;
     EnableDrivers();
-    ControlLoop_Enable();
+    //ControlLoop_Enable();
+    OpenLoop_Enable();
     EnablePWM(PWM_CHANNEL_A);
-    EnablePWM(PWM_CHANNEL_B);
+    //EnablePWM(PWM_CHANNEL_B);
     EnablePWM(PWM_CHANNEL_C);
 }
 
@@ -253,8 +255,8 @@ uint16_t IsBatchTestRunning(void)
 /* -------------------------------------------------------------------------- */
 /* Parameter application - mode-specific hardware configuration               */
 /* -------------------------------------------------------------------------- */
-
-static void PollAndApplyParameterUpdates(void)
+#pragma CODE_SECTION(PollAndApplyParameterUpdates, ".TI.ramfunc");
+void PollAndApplyParameterUpdates(void)
 {
     if (!g_ui.system_enabled) {
         DisableSystem();
@@ -279,7 +281,9 @@ static void PollAndApplyParameterUpdates(void)
         case UI_MODE_OPEN_LOOP_AC: {
             /* Open-loop voltage mode: set voltage magnitude and frequency */
             EnableSystem();
-            ControlLoop_SetOpenLoopVoltage(
+            SetPhaseShift(PWM_CHANNEL_C, PWM_CHANNEL_A, 0.5f);
+            //SetOutputInvert(PWM_CHANNEL_A);
+            OpenLoop_SetPeakVoltage(
                 g_ui.open_loop.voltage_amplitude_volts,
                 g_ui.open_loop.fundamental_frequency_hz
             );
