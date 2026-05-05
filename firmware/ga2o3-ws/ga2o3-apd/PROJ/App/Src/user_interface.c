@@ -85,7 +85,7 @@ void EnableSystem(void)
 
     g_ui.system_enabled = 1U;
     EnableDrivers();
-    //ControlLoop_Enable();
+    ControlLoop_Enable();
     OpenLoop_Enable();
     EnablePWM(PWM_CHANNEL_A);
     //EnablePWM(PWM_CHANNEL_B);
@@ -281,7 +281,7 @@ void PollAndApplyParameterUpdates(void)
         case UI_MODE_OPEN_LOOP_AC: {
             /* Open-loop voltage mode: set voltage magnitude and frequency */
             EnableSystem();
-            SetPhaseShift(PWM_CHANNEL_C, PWM_CHANNEL_A, 0.5f);
+            
             //SetOutputInvert(PWM_CHANNEL_A);
             OpenLoop_SetPeakVoltage(
                 g_ui.open_loop.voltage_amplitude_volts,

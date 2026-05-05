@@ -213,6 +213,7 @@ HAL_StatusTypeDef SetPhaseShift(uint32_t channel_1, uint32_t channel_2, float ph
     }
 
     // Configure slave
+    EPWM_selectPeriodLoadEvent(base_slave, EPWM_SHADOW_LOAD_MODE_SYNC);
     EPWM_setPhaseShift(base_slave, tbphs);
     EPWM_setCountModeAfterSync(base_slave, count_mode);
     EPWM_enablePhaseShiftLoad(base_slave);   // arm the load-on-SYNCI latch

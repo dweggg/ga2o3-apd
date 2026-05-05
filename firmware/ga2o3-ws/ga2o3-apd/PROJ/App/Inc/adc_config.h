@@ -127,6 +127,10 @@ typedef struct {
     float voltageB;
     float voltageC;
     float voltageDC;
+    float currentA;
+    float currentB;
+    float currentC;
+
 
 } AdcTypeDef;
 

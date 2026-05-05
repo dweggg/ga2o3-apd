@@ -22,6 +22,8 @@ typedef struct
     float sampling_time;
     float v_ol;
 
+    float phase_shift;
+
     SogiTypeDef current_sogi;
     AlphaBetaTypeDef current_ab_amps;
 

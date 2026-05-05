@@ -54,8 +54,8 @@ void main(void)
 
     InitStateMachine();
     InitSafetyChecker();
-    //InitControlLoop();
-    InitOpenLoop();
+    InitControlLoop();
+    //InitOpenLoop();
     InitUserInterface();
     
     InitTaskScheduler();
@@ -65,8 +65,8 @@ void main(void)
 
     CreateTask(TaskUserInterface, 10);
 
-    //CreateTask(TaskControlLoop, 10000);
-    CreateTask(TaskOpenLoop, 10000);
+    CreateTask(TaskControlLoop, 10000);
+    //CreateTask(TaskOpenLoop, 10000);
     CreateTask(TaskStateMachine, 1000);   
 
     CreateTask(ToggleLED, 2);

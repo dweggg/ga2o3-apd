@@ -384,17 +384,20 @@ float GetVoltageDC(void)
 float GetCurrentA(void)
 {
     uint16_t raw = GetADCResult(I_A_ADC_MODULE, I_A_ADC_SOC);
-    return ((float)raw +  current_offsets[0]) * CURRENT_GAIN;
+    adc.currentA =((float)raw +  current_offsets[0]) * CURRENT_GAIN;
+    return adc.currentA ;
 }
 
 float GetCurrentB(void)
 {
     uint16_t raw = GetADCResult(I_B_ADC_MODULE, I_B_ADC_SOC);
-    return ((float)raw +  current_offsets[1]) * CURRENT_GAIN;
+    adc.currentB = ((float)raw +  current_offsets[1]) * CURRENT_GAIN;
+    return adc.currentB;
 }
 
 float GetCurrentC(void)
 {
     uint16_t raw = GetADCResult(I_C_ADC_MODULE, I_C_ADC_SOC);
-    return ((float)raw +  current_offsets[2]) * CURRENT_GAIN;
+    adc.currentC = ((float)raw +  current_offsets[2]) * CURRENT_GAIN;
+    return adc.currentC ;
 }

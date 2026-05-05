@@ -59,6 +59,9 @@ void     InitOpenLoop(void)
     openloop_params.omega_rad = 0.0f;
     openloop_params.sin_theta = 0.0f;
     openloop_params.cos_theta = 0.0f;
+    
+    openloop_params.phase_shift = 0.0f;
+
 
     
     InitRateLimiter(&openloop_params.rl_omega, 0.0f, RL_RATE_OMEGA_R_PER_S,  openloop_params.sampling_time);
@@ -67,6 +70,7 @@ void     InitOpenLoop(void)
     InitAngleGen(&openloop_params.angle_generation, 50.0f, openloop_params.sampling_time);
 
     InitSogi(&openloop_params.current_sogi, 1.0f, openloop_params.sampling_time);
+    SetPhaseShift(PWM_CHANNEL_C, PWM_CHANNEL_A, 0.0f);
 }
 
 void     TaskOpenLoop(void)
@@ -106,6 +110,7 @@ void     TaskOpenLoop(void)
     openloop_params.idq_meas_amps = ConvertAlphabetaToDq(openloop_params.current_ab_amps,openloop_params.angle_generation.theta);
     
     
+    //SetDuty(PWM_CHANNEL_C, 1);
     SetDuty(PWM_CHANNEL_C, openloop_params.duty_open_loop);
-    SetDuty(PWM_CHANNEL_A, (1-openloop_params.duty_open_loop));
+    //SetPhaseShift(PWM_CHANNEL_C, PWM_CHANNEL_A, openloop_params.phase_shift *0.5f);
 }

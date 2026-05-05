@@ -23,6 +23,7 @@ typedef struct {
 typedef struct {
     float voltage_amplitude_volts;
     float fundamental_frequency_hz;
+    float duty_cycle;
 } OpenLoopVoltageSettingsTypeDef;
 
 typedef struct {
