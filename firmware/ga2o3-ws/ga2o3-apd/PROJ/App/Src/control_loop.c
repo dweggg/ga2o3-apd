@@ -54,7 +54,7 @@ static inline void Clamp(PolarTypeDef *polar, float limit)
 
 void InitControlLoop(void)
 {
-    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoop);
+    control_params.sampling_time          = 0.0001;
     control_params.current_feedback_amps  = 0.0f;
     control_params.omega_rad              = 0.0f;
     control_params.sin_theta              = 0.0f;
@@ -132,12 +132,12 @@ void TaskControlLoop(void)
         /* --- Open loop voltage ------------------------------------------------- */
 
         float v_dc_half = GetVoltageDC() * 0.5f;
-
+        
         control_params.voltage_open_loop_ac = voltage_pk * control_params.cos_theta; // we take cos(theta) so that d produces active. in before it was sin(theta) but that was inconsistent with the transforms and was there by pure intuition and no actual reason.
 
-        float v_ol = 0.5f + control_params.voltage_open_loop_ac / (v_dc_half * 2.0f);
-        // v_ol is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
 
+        float v_ol = (v_dc_half + control_params.voltage_open_loop_ac) / (v_dc_half * 2.0f);
+        // v_ol is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
         control_params.duty_open_loop = v_ol < 0.0f ? 0.0f : (v_ol > 1.0f ? 1.0f : v_ol);
 
         /* --- SOGI: single-phase current -> alpha-beta -------------------------- */

@@ -82,7 +82,7 @@ void TaskStateMachine(void)
         /* ------------------------------------------------------------------ */
         case STATE_ERROR:
             // Latched fault - system must be manually reset/re-enabled
-            ControlLoop_Disable();
+            //ControlLoop_Disable();
             break;
 
         /* ------------------------------------------------------------------ */
