@@ -78,7 +78,7 @@ HAL_StatusTypeDef InitPWM(uint32_t channel)
 
     SetDuty(channel, PWM_DEFAULT_DUTY);
     SetDeadTime(channel, PWM_DEFAULT_DEAD_NS);
-    DisablePWM(channel);
+    EnablePWM(channel);
     return HAL_OK;
 }
 
@@ -247,7 +247,7 @@ HAL_StatusTypeDef DisablePWM(uint32_t channel)
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_OUTPUT_LOW);
 
     // Disable the trigger signal for ADC
-    EPWM_disableADCTrigger(base, EPWM_SOC_A);
+    //EPWM_disableADCTrigger(base, EPWM_SOC_A);
     
     return HAL_OK;
 }

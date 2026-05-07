@@ -65,7 +65,7 @@ void main(void)
 
     CreateTask(TaskUserInterface, 20);
 
-    CreateTask(TaskControlLoop, 10000);
+    //CreateTask(TaskControlLoop, 10000);
     //CreateTask(TaskOpenLoop, 10000);
     CreateTask(TaskStateMachine, 1000);   
 

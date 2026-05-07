@@ -7,7 +7,7 @@
 #include "F2837xD_device.h"
 #include "driverlib.h"
 #include "bsp_adc.h"
-
+#include "interrupt.h"
 /* -----------------------------------------------------------------------
  * Constants
  * ----------------------------------------------------------------------- */
@@ -111,21 +111,51 @@ HAL_StatusTypeDef ConfigureSOC(uint32_t module, uint32_t soc,
     return HAL_OK;
 }
 
-HAL_StatusTypeDef ConfigureADCInterrupt(uint32_t module, ADC_IntNumber int_num,
-                                         uint32_t soc)
+interrupt void AdcIdr(void)
+{
+    //
+    // Clear the interrupt flag
+    //
+    ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
+
+    //
+    // Check if overflow has occurred
+    //
+    if(true == ADC_getInterruptOverflowStatus(ADCA_BASE, ADC_INT_NUMBER1))
+    {
+        ADC_clearInterruptOverflowStatus(ADCA_BASE, ADC_INT_NUMBER1);
+        ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
+    }
+
+    //
+    // Acknowledge the interrupt
+    //
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
+    AdcInterrupt();
+    
+    return;
+}
+
+HAL_StatusTypeDef ConfigureADCInterrupt(uint32_t module, uint32_t soc)
 {
     if (!module_valid(module)) return HAL_ERROR;
     if (!soc_valid(soc))       return HAL_ERROR;
 
     uint32_t base = adc_base[module];
 
-    ADC_setInterruptSource(base, int_num, (ADC_SOCNumber)soc);
+    Interrupt_register(INT_ADCA1, &AdcIdr);
+
+    ADC_setInterruptPulseMode(base, ADC_PULSE_END_OF_CONV);
+
+    ADC_setInterruptSource(base, ADC_INT_NUMBER1, soc);
+    //ADC_disableContinuousMode(base, ADC_INT_NUMBER1);
 
     /* Clear before arming - if a conversion already completed the flag
      * would fire the ISR immediately on the first enable otherwise. */
-    ADC_clearInterruptStatus(base, int_num);
+    ADC_clearInterruptStatus(base, ADC_INT_NUMBER1);
 
-    ADC_enableInterrupt(base, int_num);
+    ADC_enableInterrupt(base, ADC_INT_NUMBER1);
+    Interrupt_enable(INT_ADCA1);
 
     return HAL_OK;
 }

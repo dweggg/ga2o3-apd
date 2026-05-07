@@ -275,6 +275,7 @@ HAL_StatusTypeDef InitConfigADC(void)
     if (status != HAL_OK) return status;
 
     // CalibrateCurrentOffset(1000);
+    ConfigureADCInterrupt(I_C_ADC_MODULE, ADC_SOC_NUMBER2);
 
     InitLPF(&voltage_lpf, 0.0005f, 0.0f);
     return HAL_OK;
