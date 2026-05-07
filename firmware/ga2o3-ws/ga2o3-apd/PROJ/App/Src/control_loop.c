@@ -54,7 +54,7 @@ static inline void Clamp(PolarTypeDef *polar, float limit)
 
 void InitControlLoop(void)
 {
-    control_params.sampling_time          = 0.0001;
+    control_params.sampling_time          =  0.001f;
     control_params.current_feedback_amps  = 0.0f;
     control_params.omega_rad              = 0.0f;
     control_params.sin_theta              = 0.0f;
@@ -141,13 +141,13 @@ void TaskControlLoop(void)
         control_params.duty_open_loop = v_ol < 0.0f ? 0.0f : (v_ol > 1.0f ? 1.0f : v_ol);
 
         /* --- SOGI: single-phase current -> alpha-beta -------------------------- */
-        float i_fb = GetCurrentC();
+        float i_fb = -GetCurrentC();
         RunSogi(&control_params.current_sogi, i_fb, omega);
 
         control_params.current_ab_amps.alpha = control_params.current_sogi.alpha;
         control_params.current_ab_amps.beta  = control_params.current_sogi.beta;
 
-        /* --- alpha-beta -> dq -------------------------------------------------- */
+        /* --- alpha-beta -> dq --------------------------------------------------- */
         control_params.idq_meas_amps = ConvertAlphabetaToDq(
             control_params.current_ab_amps,
             control_params.angle_generation.theta);

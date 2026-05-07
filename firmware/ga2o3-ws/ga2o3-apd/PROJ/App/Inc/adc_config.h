@@ -106,15 +106,21 @@
  * Moving average
  * ----------------------------------------------------------------------- */
 
-#define TEMP_MA_WINDOW              8U
-#define VOLT_MA_WINDOW              8U
+#define TEMP_MA_WINDOW              32U
+#define VOLT_MA_WINDOW              32U
 
 typedef struct {
-    uint16_t buf[8];
+    uint16_t buf[VOLT_MA_WINDOW];
     uint32_t sum;
     uint16_t idx;
     uint16_t count;
 } MovingAvgU16TypeDef;
+
+typedef struct {
+    float alpha;
+    float y_prev;
+} LowPassFilterTypeDef;
+
 
 typedef struct {
     float tempAH;

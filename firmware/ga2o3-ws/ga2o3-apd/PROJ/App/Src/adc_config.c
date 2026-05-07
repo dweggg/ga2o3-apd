@@ -141,6 +141,20 @@ static uint16_t MovingAvgU16_Push(uint16_t window, MovingAvgU16TypeDef *ma, uint
     return (uint16_t)(ma->sum / ma->count);
 }
 
+LowPassFilterTypeDef voltage_lpf;
+
+void InitLPF(LowPassFilterTypeDef *f, float alpha, float initial_value) {
+    f->alpha = alpha;
+    f->y_prev = initial_value;
+}
+
+float UpdateLPF(LowPassFilterTypeDef *f, float x) {
+    float y = f->y_prev + f->alpha * (x - f->y_prev);
+    f->y_prev = y;
+    return y;
+}
+
+
 /* -----------------------------------------------------------------------
  * Core API
  * ----------------------------------------------------------------------- */
@@ -261,6 +275,8 @@ HAL_StatusTypeDef InitConfigADC(void)
     if (status != HAL_OK) return status;
 
     // CalibrateCurrentOffset(1000);
+
+    InitLPF(&voltage_lpf, 0.0005f, 0.0f);
     return HAL_OK;
 }
 
@@ -374,9 +390,10 @@ float GetVoltageC(void)
 float GetVoltageDC(void)
 {
     uint16_t raw = GetADCResult(V_DC_ADC_MODULE, V_DC_ADC_SOC);
-    raw = MovingAvgU16_Push(VOLT_MA_WINDOW, &volt_ma[3], raw);
-    adc.voltageDC = ((float)raw + VOLTAGE_OFFSET) * VOLTAGE_GAIN;
-    return adc.voltageDC;
+    float voltage = ((float)raw + VOLTAGE_OFFSET) * VOLTAGE_GAIN;
+    voltage = UpdateLPF(&voltage_lpf, voltage);
+    adc.voltageDC = voltage;
+    return voltage;
 }
 
 /* --- Currents (gain + offset) ----------------------------------------- */

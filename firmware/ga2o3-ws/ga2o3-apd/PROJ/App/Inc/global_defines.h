@@ -21,8 +21,8 @@ extern "C"
 #define PARAMS_SYS_CLOCK                    (DEVICE_SYSCLK_FREQ)
 #define PARAMS_SCHEDULER_MAX_TASKS_LIMIT    (32) //max 32 tasks are allowed
 
-#define L_H                                 (0.001)
-#define R_OHM                               (5.8)
+#define L_H                                 (0.003)
+#define R_OHM                               (0.6)
 
 typedef enum {
     PWM_CHANNEL_A = 1U,

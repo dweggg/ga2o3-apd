@@ -63,7 +63,7 @@ void main(void)
     CreateTask(TriggerTempADC, 100);   
     CreateTask(TriggerVoltageADC, 100);   
 
-    CreateTask(TaskUserInterface, 10);
+    CreateTask(TaskUserInterface, 20);
 
     CreateTask(TaskControlLoop, 10000);
     //CreateTask(TaskOpenLoop, 10000);

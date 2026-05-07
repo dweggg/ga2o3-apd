@@ -118,11 +118,11 @@ void SetUIMode(UiModeTypeDef mode)
 {
     DisableSystem();
     g_ui.current_mode = mode;
+    //InitControlLoop();
 
     switch (mode) {
         case UI_MODE_BATCH_TEST:
             s_batch_test_running = 0U;
-            InitControlLoop();
             ControlLoop_SetInterleavedMode(0U);
             break;
 
@@ -303,6 +303,7 @@ void PollAndApplyParameterUpdates(void)
             ControlLoop_SetInterleavedMode(0);
             ControlLoop_SetBuckMode(0);
             EnableSystem();
+            ControlLoop_SetOpenLoopVoltage(g_ui.open_loop.voltage_amplitude_volts,g_ui.open_loop.fundamental_frequency_hz);
             ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
             ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
             break;
@@ -310,6 +311,7 @@ void PollAndApplyParameterUpdates(void)
             /* Closed-loop current control and power cycling with interleaving */
             ControlLoop_SetInterleavedMode(1);
             EnableSystem();
+            ControlLoop_SetOpenLoopVoltage(g_ui.open_loop.voltage_amplitude_volts,g_ui.open_loop.fundamental_frequency_hz);
             ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
             ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
             break;
