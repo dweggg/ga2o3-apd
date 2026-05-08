@@ -290,6 +290,14 @@ void TriggerTempADC(void)
     SoftwareTriggerSOC(TEMP_CH_ADC_MODULE,    TEMP_CH_ADC_SOC);
     SoftwareTriggerSOC(TEMP_CL_ADC_MODULE,    TEMP_CL_ADC_SOC);
 
+    GetTempAH();
+    GetTempAL();
+    GetTempBH();
+    GetTempBL();
+    GetTempCH();
+    GetTempCL();
+    
+
 }
 
 void TriggerVoltageADC(void)
