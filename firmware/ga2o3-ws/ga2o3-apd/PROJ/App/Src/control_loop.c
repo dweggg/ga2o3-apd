@@ -17,10 +17,10 @@
 /* Rate limiter slew rates                                                     */
 /* -------------------------------------------------------------------------- */
 
-static const float RL_RATE_ID_A_PER_S      = 1000.0f;   // d-axis current [A/s]
-static const float RL_RATE_IQ_A_PER_S      = 1000.0f;   // q-axis current [A/s]
-static const float RL_RATE_VOLTAGE_V_PER_S = 500.0f;    // open-loop voltage [V/s]
-static const float RL_RATE_OMEGA_R_PER_S   = 1000.0f;   // open-loop freq [rad/s/s]
+static const float RL_RATE_ID_A_PER_S      = 1.0f;   // d-axis current [A/s]
+static const float RL_RATE_IQ_A_PER_S      = 1.0f;   // q-axis current [A/s]
+static const float RL_RATE_VOLTAGE_V_PER_S = 10.0f;    // open-loop voltage [V/s]
+static const float RL_RATE_OMEGA_R_PER_S   = 100.0f;   // open-loop freq [rad/s/s]
 
 /* -------------------------------------------------------------------------- */
 /* Module state                                                                */

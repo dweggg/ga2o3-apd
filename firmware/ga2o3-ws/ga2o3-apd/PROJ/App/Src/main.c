@@ -24,7 +24,8 @@ void main(void)
 //
 // Step 1. Initialize System Control:
 // PLL, WatchDog, enable Peripheral Clocks
-// This example function is found in the F2837xD_SysCtrl.c file.
+// This example function is found in the F2837xD_SysCtrl.c file1
+// 1.
 //
     Device_init();
 

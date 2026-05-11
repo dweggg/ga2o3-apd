@@ -17,19 +17,28 @@ static const float CURRENT_GAIN = -(1.0f / 36.0448f);
 static float current_offsets[3] = { -2055.0f, -1935.0f, -2250.0f };
 
 static const TempLutEntry temp_lut[] = {
-    /*  raw    degC   */
-    {  735,    20.5f },
-    { 1515,    28.0f },
-    { 1980,    33.0f },
-    { 2510,    42.0f },
-    { 2960,    52.0f },
-    { 3200,    61.0f },
-    { 3400,    70.0f },
-    { 3540,    80.0f },
-    { 3620,    86.0f },
-    { 3650,    90.0f }
-};
+    //  raw     degC
 
+    // --- extrapolated (reciprocal-power fit) ---
+    {   405,   20.0f   },   // extrapolated
+    // --- original / preserved data ---
+    {  1250,   25.0f   },
+    {  1880,   30.0f   },
+    {  2540,   40.0f   },
+    {  3070,   50.0f   },
+    {  3385,   60.0f   },
+    {  3580,   70.0f   },
+    {  3710,   80.0f   },
+    {  3820,   90.0f   },
+    {  3867,  100.0f   },
+    {  3915,  110.0f   },
+    {  3960,  120.0f   },
+    {  3985,  130.0f   },
+
+    // --- extrapolated (reciprocal-power fit) ---
+    {  4006,  140.0f   },   // extrapolated
+    {  4023,  150.0f   }    // extrapolated
+};
 #define TEMP_LUT_LEN  (sizeof(temp_lut) / sizeof(temp_lut[0]))
 
 
