@@ -62,6 +62,8 @@ typedef struct {
     
     uint16_t system_enabled;
     
+    uint32_t switching_frequency_hz;  // Runtime-configurable frequency for all channels
+    
 } UserInterfaceTypeDef;
 
 extern UserInterfaceTypeDef g_ui;
@@ -91,5 +93,8 @@ void UpdateInterleaving(uint16_t enable);
 
 void StartBatchTest(void);
 uint16_t IsBatchTestRunning(void);
+
+void SetSwitchingFrequency(uint32_t frequency_hz);
+uint32_t GetSwitchingFrequency(void);
 
 #endif

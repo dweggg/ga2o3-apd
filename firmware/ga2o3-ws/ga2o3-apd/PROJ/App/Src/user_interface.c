@@ -33,9 +33,11 @@ UserInterfaceTypeDef g_ui = {
     .closed_loop = {0},
     .use_interleaved_mode = 0,
     .system_enabled = 0,
+    .switching_frequency_hz = 10000U,
 };
 
 static uint16_t s_batch_test_running = 0U;
+static uint32_t s_last_applied_frequency_hz = 10000U;
 
 /* -------------------------------------------------------------------------- */
 /* Initialization                                                              */
@@ -45,6 +47,7 @@ void InitUserInterface(void)
 {
     g_ui.current_mode = UI_MODE_IDLE;
     g_ui.system_enabled = 0U;
+    g_ui.switching_frequency_hz = 10000U;
 
     g_ui.raw_pwm_a.frequency_hz = 10000U;
     g_ui.raw_pwm_a.deadtime_ns  = 1000U;
@@ -58,7 +61,7 @@ void InitUserInterface(void)
     g_ui.raw_pwm_c.deadtime_ns  = 1000U;
     g_ui.raw_pwm_c.duty_cycle   = 0.0f;
 
-    g_ui.open_loop.voltage_amplitude_volts = 48.0f;
+    g_ui.open_loop.voltage_amplitude_volts = 0.0f;
     g_ui.open_loop.fundamental_frequency_hz = 50.0f;
 
     g_ui.closed_loop.id_reference_amps = 0.0f;
@@ -263,6 +266,16 @@ void PollAndApplyParameterUpdates(void)
         return;
     }
 
+    // Apply frequency changes if user modified it via debugger
+    if (g_ui.switching_frequency_hz != s_last_applied_frequency_hz) {
+        if (g_ui.switching_frequency_hz > 0) {
+            SetFrequency(PWM_CHANNEL_A, g_ui.switching_frequency_hz);
+            SetFrequency(PWM_CHANNEL_B, g_ui.switching_frequency_hz);
+            SetFrequency(PWM_CHANNEL_C, g_ui.switching_frequency_hz);
+            s_last_applied_frequency_hz = g_ui.switching_frequency_hz;
+        }
+    }
+
     switch (g_ui.current_mode) {
 
         case UI_MODE_RAW_PWM: {
@@ -351,4 +364,20 @@ void TaskUserInterface(void)
             }
         }
     }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Switching frequency runtime control                                        */
+/* -------------------------------------------------------------------------- */
+
+void SetSwitchingFrequency(uint32_t frequency_hz)
+{
+    if (frequency_hz > 0) {
+        g_ui.switching_frequency_hz = frequency_hz;
+    }
+}
+
+uint32_t GetSwitchingFrequency(void)
+{
+    return g_ui.switching_frequency_hz;
 }
