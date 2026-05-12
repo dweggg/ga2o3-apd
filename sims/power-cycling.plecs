@@ -28,8 +28,8 @@ Plecs {
   AlgebraicLoopWithStateMachineMsg "3"
   AssertionAction "1"
   FixedPointDatatypeOverride "1"
-  InitializationCommands "fsw = 10e3;\ndt = 1e-6;\ntr = 0.005;\nL1 = 3000e-6;"
-"\nR1 = 0.05;\nVDC = 400;\niRef = 15;"
+  InitializationCommands "fsw = 10e3;\ndt = 1e-6;\ntr = 0.005;\nL1 = 4000e-6;"
+"\nR1 = 0.2;\nVDC = 400;\niRef = 5;\nvref = 120;"
   InitialState  "1"
   SystemState   ""
   JacobianComputation "2"
@@ -67,9 +67,9 @@ Plecs {
   InvalidNetlistFunctionEvaluationMsg "1"
   IncompatibleInitialConditionMsg "2"
   Schematic {
-    Location      [0, 28; 1536, 820]
+    Location      [4, 28; 1540, 820]
     ZoomFactor    0.925393
-    SliderPosition [0, 0]
+    SliderPosition [373, 0]
     ShowBrowser   on
     BrowserWidth  158
     Component {
@@ -6953,11 +6953,11 @@ Plecs {
       Flipped       off
       LabelPosition south
       Frame         [-15, -15; 15, 15]
-      Location      [0, 28; 1536, 842]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACqPwCAAAAA/sAAAAQAFoAbwBvA"
+      Location      [4, 28; 1540, 850]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACsPwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAFkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAAqgAAABjAP///wAAAAMAAAYAAAAAYfw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAKoAAAA"
+"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAANQAAArAAAABjAP///wAAAAMAAAYAAAAAYfw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABEAP///wAABUYAAAKwAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -6969,7 +6969,7 @@ Plecs {
       TimeRange     "0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-      Open          "1"
+      Open          "0"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    "Time / s"
@@ -7734,7 +7734,7 @@ Plecs {
       }
       Parameter {
         Variable      "XFinal"
-        Value         "180"
+        Value         "vref"
         Show          on
       }
       Terminal {

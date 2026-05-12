@@ -117,6 +117,20 @@ HAL_StatusTypeDef SetFrequency(uint32_t channel, uint32_t frequency_Hz)
     return SetDuty(channel, duty);
 }
 
+float GetPeriod(uint32_t channel)
+{
+    if (channel < 1 || channel > 8) return HAL_ERROR;
+
+    uint32_t base = pwm_channels[channel];
+
+    uint16_t counts = EPWM_getTimeBasePeriod(base);
+
+    float period = 4.0f*(float)counts/(float)DEVICE_SYSCLK_FREQ;
+    
+    return period;
+}
+
+
 HAL_StatusTypeDef SetDeadTime(uint32_t channel, uint32_t dead_time_ns)
 {
     if (channel < 1 || channel > 8) return HAL_ERROR;

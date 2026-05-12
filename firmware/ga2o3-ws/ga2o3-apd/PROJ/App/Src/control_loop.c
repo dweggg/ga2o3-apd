@@ -71,7 +71,7 @@ void InitControlLoop(void)
     CalculateAndInitPI(&control_params.pi_id, L_H, R_OHM, 0.01f, control_params.sampling_time);
     CalculateAndInitPI(&control_params.pi_iq, L_H, R_OHM, 0.01f, control_params.sampling_time);
 
-    InitAngleGen(&control_params.angle_generation, 50.0f, control_params.sampling_time);
+    InitAngleGen(&control_params.angle_generation, 0.0f, control_params.sampling_time);
     InitSogi(&control_params.current_sogi, 1.0f, control_params.sampling_time);
 
     // Rate limiters — all start from zero, consistent with the zeroed refs above
@@ -108,6 +108,16 @@ void     ControlLoop_SetBuckMode(uint16_t enabled){ control_buck = enabled; }
 void TaskControlLoop(void)
 {
     if (!control_enabled) { return; }
+
+    control_params.sampling_time = GetPeriod(PWM_CHANNEL_C);
+    control_params.angle_generation.sampling_time = control_params.sampling_time;
+    control_params.current_sogi.sampling_time = control_params.sampling_time;
+    control_params.pi_id.sampling_time = control_params.sampling_time;
+    control_params.pi_iq.sampling_time = control_params.sampling_time;
+    control_params.rl_id.sampling_time = control_params.sampling_time;
+    control_params.rl_iq.sampling_time = control_params.sampling_time;
+    control_params.rl_voltage_pk.sampling_time = control_params.sampling_time;
+    control_params.rl_omega.sampling_time = control_params.sampling_time;
     
     if (!control_buck) {
 

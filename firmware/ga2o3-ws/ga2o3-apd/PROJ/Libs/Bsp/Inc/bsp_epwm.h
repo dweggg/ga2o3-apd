@@ -55,6 +55,9 @@ HAL_StatusTypeDef SetDeadTime(uint32_t channel, uint32_t dead_time);
 */
 HAL_StatusTypeDef SetFrequency(uint32_t channel, uint32_t frequency);
 
+
+float GetPeriod(uint32_t channel);
+
 /**
  * @brief Sets a new duty cycle for a specific PWM channel.
  * @param[in] channel The generic channel to apply the duty cycle to (1-8).
