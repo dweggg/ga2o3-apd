@@ -236,16 +236,22 @@ HAL_StatusTypeDef SetPhaseShift(uint32_t channel_1, uint32_t channel_2, float ph
 
 HAL_StatusTypeDef EnablePWM(uint32_t channel)
 {
-    if (channel < 1 || channel > 8) return HAL_ERROR;
+    if (channel < 1 || channel > 8)
+        return HAL_ERROR;
 
     uint32_t base = pwm_channels[channel];
 
-    // Release software force, outputs return to AQ control
+    // Return TZ actions to normal operation
+    EPWM_setTripZoneAction(base, EPWM_TZ_ACTION_EVENT_TZA, EPWM_TZ_ACTION_DISABLE);
+    EPWM_setTripZoneAction(base,EPWM_TZ_ACTION_EVENT_TZB, EPWM_TZ_ACTION_DISABLE);
+
+    // Clear one-shot trip latch
+    EPWM_clearTripZoneFlag(base, EPWM_TZ_FLAG_OST);
+
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_DISABLED);
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_DISABLED);
-
-    // Enable the trigger signal for ADC
     EPWM_enableADCTrigger(base, EPWM_SOC_A);
+
 
     return HAL_OK;
 }
@@ -256,12 +262,11 @@ HAL_StatusTypeDef DisablePWM(uint32_t channel)
 
     uint32_t base = pwm_channels[channel];
 
-    // Continuously force both outputs low, overriding the AQ module
-    EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_HIGH); // it should be low but we dont see that in the scope! so fuck it 
+    EPWM_setTripZoneAction(base, EPWM_TZ_ACTION_EVENT_TZA, EPWM_TZ_ACTION_LOW);
+    EPWM_setTripZoneAction(base, EPWM_TZ_ACTION_EVENT_TZB, EPWM_TZ_ACTION_LOW);
+    EPWM_forceTripZoneEvent(base, EPWM_TZ_FORCE_EVENT_OST);
+    EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_LOW);
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_OUTPUT_LOW);
 
-    // Disable the trigger signal for ADC
-    //EPWM_disableADCTrigger(base, EPWM_SOC_A);
-    
     return HAL_OK;
 }

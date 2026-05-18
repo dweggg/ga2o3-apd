@@ -80,6 +80,23 @@ void InitUserInterface(void)
     DisableSystem();
 }
 
+
+static uint16_t IsInterleavedMode(UiModeTypeDef mode)
+{
+    return (mode == UI_MODE_POWER_CYCLING_INTERLEAVED);
+}
+
+static void ApplyInterleavedChannelState(UiModeTypeDef mode)
+{
+    if (IsInterleavedMode(mode)) {
+        EnablePWM(PWM_CHANNEL_B);
+        ControlLoop_SetInterleavedMode(1U);
+    } else {
+        DisablePWM(PWM_CHANNEL_B);
+        ControlLoop_SetInterleavedMode(0U);
+    }
+}
+
 void EnableSystem(void)
 {
     if (g_ui.current_mode == UI_MODE_IDLE) {
@@ -90,9 +107,15 @@ void EnableSystem(void)
     EnableDrivers();
     ControlLoop_Enable();
     OpenLoop_Enable();
+
     EnablePWM(PWM_CHANNEL_A);
-    //EnablePWM(PWM_CHANNEL_B);
     EnablePWM(PWM_CHANNEL_C);
+
+    if (IsInterleavedMode(g_ui.current_mode)) {
+        EnablePWM(PWM_CHANNEL_B);
+    } else {
+        DisablePWM(PWM_CHANNEL_B);
+    }
 }
 
 void DisableSystem(void)
@@ -119,9 +142,15 @@ uint16_t GetUiSystemEnabled(void)
 
 void SetUIMode(UiModeTypeDef mode)
 {
+    UiModeTypeDef prev_mode = g_ui.current_mode;
+
     DisableSystem();
+
+    if (IsInterleavedMode(prev_mode) != IsInterleavedMode(mode)) {
+        ApplyInterleavedChannelState(mode);
+    }
+
     g_ui.current_mode = mode;
-    //InitControlLoop();
 
     switch (mode) {
         case UI_MODE_BATCH_TEST:
@@ -132,8 +161,10 @@ void SetUIMode(UiModeTypeDef mode)
         case UI_MODE_RAW_PWM:
         case UI_MODE_OPEN_LOOP_AC:
         case UI_MODE_POWER_CYCLING:
+            break;
+
         case UI_MODE_POWER_CYCLING_INTERLEAVED:
-            // Hardware will be configured by PollAndApplyParameterUpdates
+            ControlLoop_SetInterleavedMode(1U);
             break;
 
         case UI_MODE_IDLE:
