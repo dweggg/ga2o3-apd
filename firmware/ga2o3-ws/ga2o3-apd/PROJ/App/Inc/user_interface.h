@@ -4,14 +4,13 @@
 #include <stdint.h>
 #include "global_defines.h"
 
-#define GD_ENABLE_PIN       25
-
 typedef enum {
     UI_MODE_IDLE = 0,
     UI_MODE_RAW_PWM,
-    UI_MODE_OPEN_LOOP_VOLTAGE,
-    UI_MODE_CLOSED_LOOP_SINGLE,
-    UI_MODE_CLOSED_LOOP_INTERLEAVED,
+    UI_MODE_OPEN_LOOP_AC,
+    UI_MODE_CLOSED_LOOP_BUCK,
+    UI_MODE_POWER_CYCLING,
+    UI_MODE_POWER_CYCLING_INTERLEAVED,
     UI_MODE_BATCH_TEST,
 } UiModeTypeDef;
 
@@ -24,6 +23,7 @@ typedef struct {
 typedef struct {
     float voltage_amplitude_volts;
     float fundamental_frequency_hz;
+    float duty_cycle;
 } OpenLoopVoltageSettingsTypeDef;
 
 typedef struct {
@@ -53,8 +53,7 @@ typedef struct {
     RawPwmSettingsTypeDef raw_pwm_a;
     RawPwmSettingsTypeDef raw_pwm_b;
     RawPwmSettingsTypeDef raw_pwm_c;
-    PwmChannelTypeDef selected_pwm_channel;
-    
+   
     OpenLoopVoltageSettingsTypeDef open_loop;
     
     ClosedLoopSettingsTypeDef closed_loop;
@@ -63,7 +62,8 @@ typedef struct {
     
     uint16_t system_enabled;
     
-    AdcMonitoringTypeDef adc_monitor;
+    uint32_t switching_frequency_hz;  // Runtime-configurable frequency for all channels
+    
 } UserInterfaceTypeDef;
 
 extern UserInterfaceTypeDef g_ui;
@@ -79,6 +79,10 @@ void DisableSystem(void);
 
 void SetUIMode(UiModeTypeDef mode);
 
+//@brief Query system enabled state
+//@return 1 if system is enabled, 0 otherwise
+uint16_t GetUiSystemEnabled(void);
+
 void UpdateRawPwmChannel(PwmChannelTypeDef channel, uint32_t freq_hz, uint32_t deadtime_ns, float duty);
 
 void UpdateOpenLoopVoltage(float voltage_amplitude, float fundamental_frequency);
@@ -89,5 +93,8 @@ void UpdateInterleaving(uint16_t enable);
 
 void StartBatchTest(void);
 uint16_t IsBatchTestRunning(void);
+
+void SetSwitchingFrequency(uint32_t frequency_hz);
+uint32_t GetSwitchingFrequency(void);
 
 #endif

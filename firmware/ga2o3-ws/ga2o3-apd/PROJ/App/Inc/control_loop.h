@@ -56,7 +56,6 @@ void     InitControlLoop(void);
  *        enabled, otherwise returns immediately.
  */
 void     TaskControlLoop(void);
-void     TaskControlLoopDC(void);
 
 /* Enable / disable -------------------------------------------------------- */
 void     ControlLoop_Enable(void);
@@ -70,5 +69,6 @@ void     ControlLoop_SetOpenLoopVoltage(float voltage, float fundamental_frequen
 
 /* Mode --------------------------------------------------------------------- */
 void     ControlLoop_SetInterleavedMode(uint16_t enabled);
+void     ControlLoop_SetBuckMode(uint16_t enabled);
 
 #endif /* __CONTROL_LOOP_H__ */

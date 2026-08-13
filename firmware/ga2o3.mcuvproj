@@ -6,10 +6,10 @@ relative_path = true
 version = 2
 
 [settings]
-sample_frequency_hz = 1000
+sample_frequency_hz = 200
 max_points = 100000
 max_viewport_points = 5000
-viewport_width_ms = 5000.000000
+viewport_width_ms = 600000.000000
 refresh_on_elf_change = true
 stop_acq_on_elf_change = true
 probe_type = 3
@@ -44,22 +44,113 @@ should_log = false
 log_directory = 
 
 [var0]
-name = BuckChannel
-tracked_name = BuckChannel
-address = 53544
-type = 4
-color = 293924348
+name = adc.currentC
+tracked_name = adc.currentC
+address = 89084
+type = 7
+color = 980443334
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 3.000000
+value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
 [var1]
+name = adc.tempAH
+tracked_name = adc.tempAH
+address = 89060
+type = 7
+color = 3564631235
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var2]
+name = adc.tempAL
+tracked_name = adc.tempAL
+address = 89062
+type = 7
+color = 1080946018
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var3]
+name = adc.tempBH
+tracked_name = adc.tempBH
+address = 89064
+type = 7
+color = 414561864
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var4]
+name = adc.tempBL
+tracked_name = adc.tempBL
+address = 89066
+type = 7
+color = 3218768659
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var5]
+name = adc.tempCH
+tracked_name = adc.tempCH
+address = 89068
+type = 7
+color = 3882422223
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var6]
+name = adc.tempCL
+tracked_name = adc.tempCL
+address = 89070
+type = 7
+color = 1833913451
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var7]
+name = adc.voltageDC
+tracked_name = adc.voltageDC
+address = 89078
+type = 7
+color = 14880048
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var8]
 name = control_enabled
 tracked_name = control_enabled
-address = 53542
+address = 88892
 type = 3
 color = 3991567345
 should_update_from_elf = true
@@ -69,10 +160,10 @@ high_level_type = 0
 value_to_write = 1.000000
 do_not_interpret_as_enum = false
 
-[var2]
+[var9]
 name = control_params.angle_generation.freq
 tracked_name = control_params.angle_generation.freq
-address = 43034
+address = 43418
 type = 4
 color = 2399713753
 should_update_from_elf = true
@@ -82,10 +173,10 @@ high_level_type = 0
 value_to_write = 50.000000
 do_not_interpret_as_enum = false
 
-[var3]
+[var10]
 name = control_params.angle_generation.omega
 tracked_name = control_params.angle_generation.omega
-address = 43040
+address = 43424
 type = 7
 color = 1167141676
 should_update_from_elf = true
@@ -95,10 +186,10 @@ high_level_type = 0
 value_to_write = 10.000000
 do_not_interpret_as_enum = false
 
-[var4]
+[var11]
 name = control_params.angle_generation.sampling_time
 tracked_name = control_params.angle_generation.sampling_time
-address = 43036
+address = 43420
 type = 7
 color = 734763711
 should_update_from_elf = true
@@ -108,10 +199,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var5]
+[var12]
 name = control_params.angle_generation.theta
 tracked_name = control_params.angle_generation.theta
-address = 43038
+address = 43422
 type = 7
 color = 3093062447
 should_update_from_elf = true
@@ -121,10 +212,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var6]
+[var13]
 name = control_params.cos_theta
 tracked_name = control_params.cos_theta
-address = 43032
+address = 43416
 type = 7
 color = 1927422634
 should_update_from_elf = true
@@ -134,10 +225,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var7]
+[var14]
 name = control_params.current_ab_amps.alpha
 tracked_name = control_params.current_ab_amps.alpha
-address = 43044
+address = 43428
 type = 7
 color = 189608328
 should_update_from_elf = true
@@ -147,10 +238,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var8]
+[var15]
 name = control_params.current_ab_amps.beta
 tracked_name = control_params.current_ab_amps.beta
-address = 43046
+address = 43430
 type = 7
 color = 3843517290
 should_update_from_elf = true
@@ -160,10 +251,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var9]
+[var16]
 name = control_params.current_control_enabled
 tracked_name = control_params.current_control_enabled
-address = 43010
+address = 43394
 type = 3
 color = 2303250960
 should_update_from_elf = true
@@ -173,10 +264,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var10]
+[var17]
 name = control_params.current_feedback_amps
 tracked_name = control_params.current_feedback_amps
-address = 43042
+address = 43426
 type = 7
 color = 2091402273
 should_update_from_elf = true
@@ -186,10 +277,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var11]
+[var18]
 name = control_params.current_sogi.alpha
 tracked_name = control_params.current_sogi.alpha
-address = 43022
+address = 43406
 type = 7
 color = 3878755498
 should_update_from_elf = true
@@ -199,10 +290,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var12]
+[var19]
 name = control_params.current_sogi.beta
 tracked_name = control_params.current_sogi.beta
-address = 43024
+address = 43408
 type = 7
 color = 1233262576
 should_update_from_elf = true
@@ -212,10 +303,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var13]
+[var20]
 name = control_params.current_sogi.k
 tracked_name = control_params.current_sogi.k
-address = 43026
+address = 43410
 type = 7
 color = 1495059146
 should_update_from_elf = true
@@ -225,10 +316,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var14]
+[var21]
 name = control_params.current_sogi.sampling_time
 tracked_name = control_params.current_sogi.sampling_time
-address = 43028
+address = 43412
 type = 7
 color = 138430854
 should_update_from_elf = true
@@ -238,10 +329,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var15]
+[var22]
 name = control_params.duty_closed_loop
 tracked_name = control_params.duty_closed_loop
-address = 43120
+address = 43504
 type = 7
 color = 2339947459
 should_update_from_elf = true
@@ -251,10 +342,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var16]
+[var23]
 name = control_params.duty_open_loop
 tracked_name = control_params.duty_open_loop
-address = 43018
+address = 43402
 type = 7
 color = 2197076714
 should_update_from_elf = true
@@ -264,10 +355,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var17]
+[var24]
 name = control_params.idq_meas_amps.d
 tracked_name = control_params.idq_meas_amps.d
-address = 43048
+address = 43432
 type = 7
 color = 4073942742
 should_update_from_elf = true
@@ -277,10 +368,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var18]
+[var25]
 name = control_params.idq_meas_amps.q
 tracked_name = control_params.idq_meas_amps.q
-address = 43050
+address = 43434
 type = 7
 color = 574050469
 should_update_from_elf = true
@@ -290,23 +381,23 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var19]
+[var26]
 name = control_params.idq_ref_amps.d
 tracked_name = control_params.idq_ref_amps.d
-address = 43052
+address = 43436
 type = 7
 color = 82647444
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 5.000000
+value_to_write = 2.000000
 do_not_interpret_as_enum = false
 
-[var20]
+[var27]
 name = control_params.idq_ref_amps.q
 tracked_name = control_params.idq_ref_amps.q
-address = 43054
+address = 43438
 type = 7
 color = 2666253947
 should_update_from_elf = true
@@ -316,10 +407,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var21]
+[var28]
 name = control_params.interleaved
 tracked_name = control_params.interleaved
-address = 43008
+address = 43392
 type = 3
 color = 20954563
 should_update_from_elf = true
@@ -329,23 +420,23 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var22]
+[var29]
 name = control_params.omega_rad
 tracked_name = control_params.omega_rad
-address = 43020
+address = 43404
 type = 7
 color = 3394286988
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 10.000000
+value_to_write = 31.400000
 do_not_interpret_as_enum = false
 
-[var23]
+[var30]
 name = control_params.output_enabled
 tracked_name = control_params.output_enabled
-address = 43009
+address = 43393
 type = 3
 color = 913026298
 should_update_from_elf = true
@@ -355,12 +446,12 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var24]
-name = control_params.pi_id.error
-tracked_name = control_params.pi_id.error
-address = 43056
+[var31]
+name = control_params.pi_id.error_k
+tracked_name = control_params.pi_id.error_k
+address = 43440
 type = 7
-color = 4093371595
+color = 1950429409
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
@@ -368,12 +459,12 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var25]
-name = control_params.pi_id.integral
-tracked_name = control_params.pi_id.integral
-address = 43066
+[var32]
+name = control_params.pi_id.integral_k
+tracked_name = control_params.pi_id.integral_k
+address = 43452
 type = 7
-color = 1874097001
+color = 1910403469
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
@@ -381,49 +472,36 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var26]
+[var33]
 name = control_params.pi_id.ki
 tracked_name = control_params.pi_id.ki
-address = 43066
+address = 43450
 type = 7
 color = 4192113741
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 20.000000
 do_not_interpret_as_enum = false
 
-[var27]
+[var34]
 name = control_params.pi_id.kp
 tracked_name = control_params.pi_id.kp
-address = 43064
+address = 43448
 type = 7
 color = 4144600717
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 0.800000
 do_not_interpret_as_enum = false
 
-[var28]
-name = control_params.pi_id.limit
-tracked_name = control_params.pi_id.limit
-address = 43068
-type = 7
-color = 3199940653
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var29]
+[var35]
 name = control_params.pi_id.output
 tracked_name = control_params.pi_id.output
-address = 43078
+address = 43462
 type = 7
 color = 1135188478
 should_update_from_elf = true
@@ -433,10 +511,23 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var30]
+[var36]
+name = control_params.pi_id.output_presat
+tracked_name = control_params.pi_id.output_presat
+address = 43460
+type = 7
+color = 2955999653
+should_update_from_elf = true
+shift = 0
+mask = 4294967295
+high_level_type = 0
+value_to_write = 0.000000
+do_not_interpret_as_enum = false
+
+[var37]
 name = control_params.pi_id.sampling_time
 tracked_name = control_params.pi_id.sampling_time
-address = 43062
+address = 43446
 type = 7
 color = 1885359646
 should_update_from_elf = true
@@ -446,10 +537,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var31]
+[var38]
 name = control_params.pi_id.set_point
 tracked_name = control_params.pi_id.set_point
-address = 43060
+address = 43444
 type = 7
 color = 1635091366
 should_update_from_elf = true
@@ -459,75 +550,36 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var32]
-name = control_params.pi_iq.error
-tracked_name = control_params.pi_iq.error
-address = 43072
-type = 7
-color = 3005482024
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var33]
-name = control_params.pi_iq.integral
-tracked_name = control_params.pi_iq.integral
-address = 43082
-type = 7
-color = 3929808536
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var34]
+[var39]
 name = control_params.pi_iq.ki
 tracked_name = control_params.pi_iq.ki
-address = 43090
+address = 43474
 type = 7
 color = 358397840
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 20.000000
 do_not_interpret_as_enum = false
 
-[var35]
+[var40]
 name = control_params.pi_iq.kp
 tracked_name = control_params.pi_iq.kp
-address = 43088
+address = 43472
 type = 7
 color = 721103927
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 0.800000
 do_not_interpret_as_enum = false
 
-[var36]
-name = control_params.pi_iq.limit
-tracked_name = control_params.pi_iq.limit
-address = 43084
-type = 7
-color = 1867029156
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var37]
+[var41]
 name = control_params.pi_iq.output
 tracked_name = control_params.pi_iq.output
-address = 43102
+address = 43486
 type = 7
 color = 168771012
 should_update_from_elf = true
@@ -537,10 +589,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var38]
+[var42]
 name = control_params.pi_iq.sampling_time
 tracked_name = control_params.pi_iq.sampling_time
-address = 43086
+address = 43470
 type = 7
 color = 1261613706
 should_update_from_elf = true
@@ -550,10 +602,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var39]
+[var43]
 name = control_params.pi_iq.set_point
 tracked_name = control_params.pi_iq.set_point
-address = 43084
+address = 43468
 type = 7
 color = 24330035
 should_update_from_elf = true
@@ -563,10 +615,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var40]
+[var44]
 name = control_params.pi_output_dq.x
 tracked_name = control_params.pi_output_dq.x
-address = 43108
+address = 43492
 type = 7
 color = 2258823803
 should_update_from_elf = true
@@ -576,10 +628,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var41]
+[var45]
 name = control_params.pi_output_dq.y
 tracked_name = control_params.pi_output_dq.y
-address = 43110
+address = 43494
 type = 7
 color = 2287957559
 should_update_from_elf = true
@@ -589,10 +641,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var42]
+[var46]
 name = control_params.pi_output_dq_sat.d
 tracked_name = control_params.pi_output_dq_sat.d
-address = 43116
+address = 43500
 type = 7
 color = 2302940764
 should_update_from_elf = true
@@ -602,10 +654,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var43]
+[var47]
 name = control_params.pi_output_dq_sat.q
 tracked_name = control_params.pi_output_dq_sat.q
-address = 43118
+address = 43502
 type = 7
 color = 2816525337
 should_update_from_elf = true
@@ -615,10 +667,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var44]
+[var48]
 name = control_params.pi_output_vs_delta.r
 tracked_name = control_params.pi_output_vs_delta.r
-address = 43104
+address = 43488
 type = 7
 color = 1431537298
 should_update_from_elf = true
@@ -628,10 +680,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var45]
+[var49]
 name = control_params.pi_output_vs_delta.theta
 tracked_name = control_params.pi_output_vs_delta.theta
-address = 43106
+address = 43490
 type = 7
 color = 3846081486
 should_update_from_elf = true
@@ -641,10 +693,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var46]
+[var50]
 name = control_params.sampling_time
 tracked_name = control_params.sampling_time
-address = 43012
+address = 43396
 type = 7
 color = 91237738
 should_update_from_elf = true
@@ -654,10 +706,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var47]
+[var51]
 name = control_params.sin_theta
 tracked_name = control_params.sin_theta
-address = 43030
+address = 43414
 type = 7
 color = 948959843
 should_update_from_elf = true
@@ -667,10 +719,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var48]
+[var52]
 name = control_params.voltage_ab.alpha
 tracked_name = control_params.voltage_ab.alpha
-address = 43112
+address = 43496
 type = 7
 color = 2907826754
 should_update_from_elf = true
@@ -680,10 +732,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var49]
+[var53]
 name = control_params.voltage_ab.beta
 tracked_name = control_params.voltage_ab.beta
-address = 43114
+address = 43498
 type = 7
 color = 1215013305
 should_update_from_elf = true
@@ -693,10 +745,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var50]
+[var54]
 name = control_params.voltage_open_loop_ac
 tracked_name = control_params.voltage_open_loop_ac
-address = 43014
+address = 43398
 type = 7
 color = 3926027205
 should_update_from_elf = true
@@ -706,192 +758,23 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var51]
+[var55]
 name = control_params.voltage_open_loop_pk
 tracked_name = control_params.voltage_open_loop_pk
-address = 43016
+address = 43400
 type = 7
 color = 2540362492
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var52]
-name = g_ui.adc_monitor.current_a_amps
-tracked_name = g_ui.adc_monitor.current_a_amps
-address = 53474
-type = 7
-color = 255
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var53]
-name = g_ui.adc_monitor.current_b_amps
-tracked_name = g_ui.adc_monitor.current_b_amps
-address = 53476
-type = 7
-color = 65280
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var54]
-name = g_ui.adc_monitor.current_c_amps
-tracked_name = g_ui.adc_monitor.current_c_amps
-address = 53478
-type = 7
-color = 16711680
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var55]
-name = g_ui.adc_monitor.temp_ah_celsius
-tracked_name = g_ui.adc_monitor.temp_ah_celsius
-address = 53488
-type = 7
-color = 16711935
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
+value_to_write = 5.000000
 do_not_interpret_as_enum = false
 
 [var56]
-name = g_ui.adc_monitor.temp_al_celsius
-tracked_name = g_ui.adc_monitor.temp_al_celsius
-address = 53490
-type = 7
-color = 16711935
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var57]
-name = g_ui.adc_monitor.temp_bh_celsius
-tracked_name = g_ui.adc_monitor.temp_bh_celsius
-address = 53492
-type = 7
-color = 16711935
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var58]
-name = g_ui.adc_monitor.temp_bl_celsius
-tracked_name = g_ui.adc_monitor.temp_bl_celsius
-address = 53494
-type = 7
-color = 16711935
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var59]
-name = g_ui.adc_monitor.temp_ch_celsius
-tracked_name = g_ui.adc_monitor.temp_ch_celsius
-address = 53496
-type = 7
-color = 16711935
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var60]
-name = g_ui.adc_monitor.temp_cl_celsius
-tracked_name = g_ui.adc_monitor.temp_cl_celsius
-address = 53498
-type = 7
-color = 16711935
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var61]
-name = g_ui.adc_monitor.voltage_a_volts
-tracked_name = g_ui.adc_monitor.voltage_a_volts
-address = 53480
-type = 7
-color = 255
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var62]
-name = g_ui.adc_monitor.voltage_b_volts
-tracked_name = g_ui.adc_monitor.voltage_b_volts
-address = 53482
-type = 7
-color = 65280
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var63]
-name = g_ui.adc_monitor.voltage_c_volts
-tracked_name = g_ui.adc_monitor.voltage_c_volts
-address = 53484
-type = 7
-color = 16711680
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var64]
-name = g_ui.adc_monitor.voltage_dc_volts
-tracked_name = g_ui.adc_monitor.voltage_dc_volts
-address = 53486
-type = 7
-color = 16776960
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 0
-value_to_write = 0.000000
-do_not_interpret_as_enum = false
-
-[var65]
 name = g_ui.closed_loop.id_reference_amps
 tracked_name = g_ui.closed_loop.id_reference_amps
-address = 53468
+address = 89118
 type = 7
 color = 3878433698
 should_update_from_elf = true
@@ -901,10 +784,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var66]
+[var57]
 name = g_ui.closed_loop.iq_reference_amps
 tracked_name = g_ui.closed_loop.iq_reference_amps
-address = 53470
+address = 89120
 type = 7
 color = 1251282939
 should_update_from_elf = true
@@ -914,49 +797,49 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var67]
+[var58]
 name = g_ui.current_mode
 tracked_name = g_ui.current_mode
-address = 53442
+address = 89092
 type = 3
 color = 620224127
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 3
-value_to_write = 1.000000
+value_to_write = 4.000000
 do_not_interpret_as_enum = false
 
-[var68]
+[var59]
 name = g_ui.open_loop.fundamental_frequency_hz
 tracked_name = g_ui.open_loop.fundamental_frequency_hz
-address = 53466
+address = 89114
 type = 7
 color = 669858052
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 5.000000
+value_to_write = 50.000000
 do_not_interpret_as_enum = false
 
-[var69]
+[var60]
 name = g_ui.open_loop.voltage_amplitude_volts
 tracked_name = g_ui.open_loop.voltage_amplitude_volts
-address = 53464
+address = 89112
 type = 7
 color = 1127535454
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 5.000000
+value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var70]
+[var61]
 name = g_ui.raw_pwm_a.deadtime_ns
 tracked_name = g_ui.raw_pwm_a.deadtime_ns
-address = 53446
+address = 89096
 type = 5
 color = 1397238774
 should_update_from_elf = true
@@ -966,23 +849,23 @@ high_level_type = 0
 value_to_write = 1000.000000
 do_not_interpret_as_enum = false
 
-[var71]
+[var62]
 name = g_ui.raw_pwm_a.duty_cycle
 tracked_name = g_ui.raw_pwm_a.duty_cycle
-address = 53448
+address = 89098
 type = 7
 color = 2634359976
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.500000
+value_to_write = 0.300000
 do_not_interpret_as_enum = false
 
-[var72]
+[var63]
 name = g_ui.raw_pwm_a.frequency_hz
 tracked_name = g_ui.raw_pwm_a.frequency_hz
-address = 53444
+address = 89094
 type = 5
 color = 1260771888
 should_update_from_elf = true
@@ -992,10 +875,10 @@ high_level_type = 0
 value_to_write = 10000.000000
 do_not_interpret_as_enum = false
 
-[var73]
+[var64]
 name = g_ui.raw_pwm_b.deadtime_ns
 tracked_name = g_ui.raw_pwm_b.deadtime_ns
-address = 53452
+address = 89102
 type = 5
 color = 2268269307
 should_update_from_elf = true
@@ -1005,23 +888,23 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var74]
+[var65]
 name = g_ui.raw_pwm_b.duty_cycle
 tracked_name = g_ui.raw_pwm_b.duty_cycle
-address = 53454
+address = 89104
 type = 7
 color = 2049002641
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.500000
+value_to_write = 0.300000
 do_not_interpret_as_enum = false
 
-[var75]
+[var66]
 name = g_ui.raw_pwm_b.frequency_hz
 tracked_name = g_ui.raw_pwm_b.frequency_hz
-address = 53450
+address = 89100
 type = 5
 color = 2572161289
 should_update_from_elf = true
@@ -1031,36 +914,36 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var76]
+[var67]
 name = g_ui.raw_pwm_c.deadtime_ns
 tracked_name = g_ui.raw_pwm_c.deadtime_ns
-address = 53458
+address = 89108
 type = 5
 color = 1547960457
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 800.000000
+value_to_write = 1000.000000
 do_not_interpret_as_enum = false
 
-[var77]
+[var68]
 name = g_ui.raw_pwm_c.duty_cycle
 tracked_name = g_ui.raw_pwm_c.duty_cycle
-address = 53460
+address = 89110
 type = 7
 color = 4009527663
 should_update_from_elf = true
 shift = 0
 mask = 4294967295
 high_level_type = 0
-value_to_write = 0.500000
+value_to_write = 0.300000
 do_not_interpret_as_enum = false
 
-[var78]
+[var69]
 name = g_ui.raw_pwm_c.frequency_hz
 tracked_name = g_ui.raw_pwm_c.frequency_hz
-address = 53456
+address = 89106
 type = 5
 color = 3417705096
 should_update_from_elf = true
@@ -1070,23 +953,10 @@ high_level_type = 0
 value_to_write = 10000.000000
 do_not_interpret_as_enum = false
 
-[var79]
-name = g_ui.selected_pwm_channel
-tracked_name = g_ui.selected_pwm_channel
-address = 53462
-type = 4
-color = 1993035435
-should_update_from_elf = true
-shift = 0
-mask = 4294967295
-high_level_type = 3
-value_to_write = 3.000000
-do_not_interpret_as_enum = false
-
-[var80]
+[var70]
 name = g_ui.system_enabled
 tracked_name = g_ui.system_enabled
-address = 53473
+address = 89123
 type = 3
 color = 2115757881
 should_update_from_elf = true
@@ -1096,10 +966,10 @@ high_level_type = 0
 value_to_write = 0.000000
 do_not_interpret_as_enum = false
 
-[var81]
+[var71]
 name = g_ui.use_interleaved_mode
 tracked_name = g_ui.use_interleaved_mode
-address = 53472
+address = 89122
 type = 3
 color = 2290122679
 should_update_from_elf = true
@@ -1159,575 +1029,294 @@ visibility = true
 format = DEC
 
 [group1]
-name = Current_Waveforms
+name = KpKi
 acquisition_type = 0
 
 [group1-plot0]
-name = All_Phase_Currents
-type = 0
+name = KpKi
+type = 2
 visibility = true
 
 [group1-plot0-series0]
-name = control_params.idq_meas_amps.d
-visibility = true
-format = DEC
-
-[group1-plot0-series1]
-name = control_params.idq_ref_amps.d
-visibility = true
-format = DEC
-
-[group1-plot0-series2]
-name = g_ui.adc_monitor.current_c_amps
-visibility = true
-format = DEC
-
-[group1-plot1]
-name = Control
-type = 2
-visibility = true
-
-[group1-plot1-series0]
-name = BuckChannel
-visibility = true
-format = DEC
-
-[group1-plot1-series1]
-name = g_ui.closed_loop.id_reference_amps
-visibility = true
-format = DEC
-
-[group1-plot1-series2]
-name = g_ui.current_mode
-visibility = true
-format = DEC
-
-[group1-plot1-series3]
-name = g_ui.system_enabled
-visibility = true
-format = DEC
-
-[group1-plot2]
-name = DQ_Currents
-type = 0
-visibility = false
-
-[group1-plot2-series0]
-name = control_params.idq_meas_amps.d
-visibility = true
-format = DEC
-
-[group1-plot2-series1]
-name = control_params.idq_meas_amps.q
-visibility = true
-format = DEC
-
-[group1-plot2-series2]
-name = control_params.idq_ref_amps.d
-visibility = true
-format = DEC
-
-[group1-plot2-series3]
-name = control_params.idq_ref_amps.q
-visibility = true
-format = DEC
-
-[group1-plot3]
-name = PI
-type = 0
-visibility = true
-
-[group1-plot3-series0]
-name = control_params.pi_id.output
-visibility = true
-format = DEC
-
-[group1-plot3-series1]
-name = g_ui.adc_monitor.voltage_dc_volts
-visibility = true
-format = DEC
-
-[group2]
-name = OpenLoop_AC_Generation
-acquisition_type = 0
-
-[group2-plot0]
-name = OpenLoop_AC_Waveform
-type = 0
-visibility = true
-
-[group2-plot0-series0]
-name = control_params.angle_generation.theta
-visibility = true
-format = DEC
-
-[group2-plot0-series1]
-name = control_params.duty_open_loop
-visibility = true
-format = DEC
-
-[group2-plot0-series2]
-name = control_params.voltage_open_loop_ac
-visibility = true
-format = DEC
-
-[group2-plot1]
-name = OpenLoop_Settings
-type = 2
-visibility = true
-
-[group2-plot1-series0]
-name = control_enabled
-visibility = true
-format = DEC
-
-[group2-plot1-series1]
-name = control_params.voltage_open_loop_ac
-visibility = true
-format = DEC
-
-[group2-plot1-series2]
-name = control_params.voltage_open_loop_pk
-visibility = true
-format = DEC
-
-[group2-plot1-series3]
-name = g_ui.current_mode
-visibility = true
-format = DEC
-
-[group2-plot1-series4]
-name = g_ui.open_loop.fundamental_frequency_hz
-visibility = true
-format = DEC
-
-[group2-plot1-series5]
-name = g_ui.open_loop.voltage_amplitude_volts
-visibility = true
-format = DEC
-
-[group2-plot1-series6]
-name = g_ui.system_enabled
-visibility = true
-format = DEC
-
-[group3]
-name = PI_D_Axis_Tuning
-acquisition_type = 0
-
-[group3-plot0]
-name = PID_Control_Table
-type = 2
-visibility = true
-
-[group3-plot0-series0]
-name = control_params.pi_id.error
-visibility = true
-format = DEC
-
-[group3-plot0-series1]
-name = control_params.pi_id.integral
-visibility = true
-format = DEC
-
-[group3-plot0-series2]
 name = control_params.pi_id.ki
 visibility = true
 format = DEC
 
-[group3-plot0-series3]
+[group1-plot0-series1]
 name = control_params.pi_id.kp
 visibility = true
 format = DEC
 
-[group3-plot0-series4]
-name = control_params.pi_id.output
-visibility = true
-format = DEC
-
-[group3-plot0-series5]
-name = control_params.pi_id.set_point
-visibility = true
-format = DEC
-
-[group3-plot1]
-name = PID_Response
-type = 0
-visibility = true
-
-[group3-plot1-series0]
-name = control_params.idq_meas_amps.d
-visibility = true
-format = DEC
-
-[group3-plot1-series1]
-name = control_params.idq_ref_amps.d
-visibility = true
-format = DEC
-
-[group3-plot1-series2]
-name = control_params.pi_id.output
-visibility = true
-format = DEC
-
-[group4]
-name = PI_Q_Axis_Tuning
-acquisition_type = 0
-
-[group4-plot0]
-name = PIQ_Control_Table
-type = 2
-visibility = true
-
-[group4-plot0-series0]
-name = control_params.pi_iq.error
-visibility = true
-format = DEC
-
-[group4-plot0-series1]
-name = control_params.pi_iq.integral
-visibility = true
-format = DEC
-
-[group4-plot0-series2]
+[group1-plot0-series2]
 name = control_params.pi_iq.ki
 visibility = true
 format = DEC
 
-[group4-plot0-series3]
+[group1-plot0-series3]
 name = control_params.pi_iq.kp
 visibility = true
 format = DEC
 
-[group4-plot0-series4]
-name = control_params.pi_iq.output
-visibility = true
-format = DEC
-
-[group4-plot0-series5]
-name = control_params.pi_iq.set_point
-visibility = true
-format = DEC
-
-[group4-plot1]
-name = PIQ_Response
-type = 0
-visibility = true
-
-[group4-plot1-series0]
-name = control_params.idq_meas_amps.q
-visibility = true
-format = DEC
-
-[group4-plot1-series1]
-name = control_params.idq_ref_amps.q
-visibility = true
-format = DEC
-
-[group4-plot1-series2]
-name = control_params.pi_iq.output
-visibility = true
-format = DEC
-
-[group5]
-name = Raw_PWM_Control
+[group2]
+name = PWM
 acquisition_type = 0
 
-[group5-plot0]
-name = Channel_A_PWM
-type = 2
-visibility = false
-
-[group5-plot0-series0]
-name = g_ui.raw_pwm_a.deadtime_ns
-visibility = true
-format = DEC
-
-[group5-plot0-series1]
-name = g_ui.raw_pwm_a.duty_cycle
-visibility = true
-format = DEC
-
-[group5-plot0-series2]
-name = g_ui.raw_pwm_a.frequency_hz
-visibility = true
-format = DEC
-
-[group5-plot1]
-name = Channel_B_PWM
-type = 2
-visibility = false
-
-[group5-plot1-series0]
-name = g_ui.raw_pwm_b.deadtime_ns
-visibility = true
-format = DEC
-
-[group5-plot1-series1]
-name = g_ui.raw_pwm_b.duty_cycle
-visibility = true
-format = DEC
-
-[group5-plot1-series2]
-name = g_ui.raw_pwm_b.frequency_hz
-visibility = true
-format = DEC
-
-[group5-plot2]
-name = Channel_C_PWM
-type = 2
-visibility = true
-
-[group5-plot2-series0]
-name = g_ui.raw_pwm_c.deadtime_ns
-visibility = true
-format = DEC
-
-[group5-plot2-series1]
-name = g_ui.raw_pwm_c.duty_cycle
-visibility = true
-format = DEC
-
-[group5-plot2-series2]
-name = g_ui.raw_pwm_c.frequency_hz
-visibility = true
-format = DEC
-
-[group5-plot3]
+[group2-plot0]
 name = Control
 type = 2
 visibility = true
 
-[group5-plot3-series0]
+[group2-plot0-series0]
 name = g_ui.current_mode
 visibility = true
 format = DEC
 
-[group5-plot3-series1]
-name = g_ui.system_enabled
-visibility = true
-format = DEC
-
-[group5-plot4]
-name = current
-type = 0
-visibility = true
-
-[group5-plot4-series0]
-name = g_ui.adc_monitor.current_a_amps
-visibility = true
-format = DEC
-
-[group5-plot4-series1]
-name = g_ui.adc_monitor.current_b_amps
-visibility = true
-format = DEC
-
-[group5-plot4-series2]
-name = g_ui.adc_monitor.current_c_amps
-visibility = true
-format = DEC
-
-[group5-plot4-series3]
-name = g_ui.adc_monitor.voltage_dc_volts
-visibility = true
-format = DEC
-
-[group6]
-name = System_Control
-acquisition_type = 0
-
-[group6-plot0]
-name = Control_Settings
-type = 2
-visibility = true
-
-[group6-plot0-series0]
-name = g_ui.closed_loop.id_reference_amps
-visibility = true
-format = DEC
-
-[group6-plot0-series1]
-name = g_ui.closed_loop.iq_reference_amps
-visibility = true
-format = DEC
-
-[group6-plot0-series2]
-name = g_ui.current_mode
-visibility = true
-format = DEC
-
-[group6-plot0-series3]
-name = g_ui.open_loop.fundamental_frequency_hz
-visibility = true
-format = DEC
-
-[group6-plot0-series4]
-name = g_ui.open_loop.voltage_amplitude_volts
-visibility = true
-format = DEC
-
-[group6-plot0-series5]
-name = g_ui.system_enabled
-visibility = true
-format = DEC
-
-[group6-plot0-series6]
-name = g_ui.use_interleaved_mode
-visibility = true
-format = DEC
-
-[group7]
-name = Temperature_Monitoring
-acquisition_type = 0
-
-[group7-plot0]
-name = All_Temperatures
-type = 2
-visibility = true
-
-[group7-plot0-series0]
-name = g_ui.adc_monitor.temp_ah_celsius
+[group2-plot0-series1]
+name = g_ui.raw_pwm_a.deadtime_ns
 visibility = false
 format = DEC
 
-[group7-plot0-series1]
-name = g_ui.adc_monitor.temp_al_celsius
-visibility = false
-format = DEC
-
-[group7-plot0-series2]
-name = g_ui.adc_monitor.temp_bh_celsius
-visibility = false
-format = DEC
-
-[group7-plot0-series3]
-name = g_ui.adc_monitor.temp_bl_celsius
-visibility = false
-format = DEC
-
-[group7-plot0-series4]
-name = g_ui.adc_monitor.temp_ch_celsius
-visibility = false
-format = DEC
-
-[group7-plot0-series5]
-name = g_ui.adc_monitor.temp_cl_celsius
+[group2-plot0-series2]
+name = g_ui.raw_pwm_a.duty_cycle
 visibility = true
 format = DEC
 
-[group7-plot0-series6]
-name = g_ui.current_mode
+[group2-plot0-series3]
+name = g_ui.raw_pwm_a.frequency_hz
 visibility = true
 format = DEC
 
-[group7-plot0-series7]
+[group2-plot0-series4]
+name = g_ui.raw_pwm_b.deadtime_ns
+visibility = false
+format = DEC
+
+[group2-plot0-series5]
+name = g_ui.raw_pwm_b.duty_cycle
+visibility = false
+format = DEC
+
+[group2-plot0-series6]
+name = g_ui.raw_pwm_b.frequency_hz
+visibility = false
+format = DEC
+
+[group2-plot0-series7]
 name = g_ui.raw_pwm_c.deadtime_ns
 visibility = true
 format = DEC
 
-[group7-plot0-series8]
+[group2-plot0-series8]
 name = g_ui.raw_pwm_c.duty_cycle
 visibility = true
 format = DEC
 
-[group7-plot0-series9]
+[group2-plot0-series9]
 name = g_ui.raw_pwm_c.frequency_hz
 visibility = true
 format = DEC
 
-[group7-plot0-series10]
-name = g_ui.selected_pwm_channel
-visibility = true
-format = DEC
-
-[group7-plot0-series11]
+[group2-plot0-series10]
 name = g_ui.system_enabled
 visibility = true
 format = DEC
 
-[group7-plot1]
+[group2-plot1]
+name = Current
+type = 0
+visibility = true
+
+[group2-plot1-series0]
+name = adc.currentC
+visibility = true
+format = DEC
+
+[group3]
+name = Power Cycling
+acquisition_type = 0
+
+[group3-plot0]
+name = Channel_C_PWM
+type = 2
+visibility = true
+
+[group3-plot0-series0]
+name = control_params.omega_rad
+visibility = false
+format = DEC
+
+[group3-plot0-series1]
+name = control_params.pi_id.ki
+visibility = false
+format = DEC
+
+[group3-plot0-series2]
+name = control_params.pi_iq.ki
+visibility = false
+format = DEC
+
+[group3-plot0-series3]
+name = control_params.voltage_open_loop_pk
+visibility = false
+format = DEC
+
+[group3-plot0-series4]
+name = g_ui.closed_loop.id_reference_amps
+visibility = true
+format = DEC
+
+[group3-plot0-series5]
+name = g_ui.closed_loop.iq_reference_amps
+visibility = true
+format = DEC
+
+[group3-plot0-series6]
+name = g_ui.open_loop.fundamental_frequency_hz
+visibility = true
+format = DEC
+
+[group3-plot0-series7]
+name = g_ui.open_loop.voltage_amplitude_volts
+visibility = true
+format = DEC
+
+[group3-plot1]
+name = Control
+type = 2
+visibility = true
+
+[group3-plot1-series0]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group3-plot1-series1]
+name = g_ui.system_enabled
+visibility = true
+format = DEC
+
+[group3-plot2]
+name = current
+type = 0
+visibility = true
+
+[group3-plot2-series0]
+name = adc.currentC
+visibility = false
+format = DEC
+
+[group3-plot2-series1]
+name = control_params.duty_closed_loop
+visibility = true
+format = DEC
+
+[group3-plot2-series2]
+name = control_params.duty_open_loop
+visibility = true
+format = DEC
+
+[group3-plot2-series3]
+name = control_params.idq_meas_amps.d
+visibility = true
+format = DEC
+
+[group3-plot2-series4]
+name = control_params.idq_meas_amps.q
+visibility = true
+format = DEC
+
+[group3-plot2-series5]
+name = control_params.pi_id.error_k
+visibility = false
+format = DEC
+
+[group3-plot2-series6]
+name = control_params.pi_id.integral_k
+visibility = false
+format = DEC
+
+[group3-plot2-series7]
+name = control_params.pi_output_vs_delta.r
+visibility = false
+format = DEC
+
+[group4]
+name = Temperature_Monitoring
+acquisition_type = 0
+
+[group4-plot0]
+name = All_Temperatures
+type = 2
+visibility = true
+
+[group4-plot0-series0]
+name = adc.tempCH
+visibility = true
+format = DEC
+
+[group4-plot0-series1]
+name = adc.tempCL
+visibility = true
+format = DEC
+
+[group4-plot0-series2]
+name = g_ui.current_mode
+visibility = true
+format = DEC
+
+[group4-plot0-series3]
+name = g_ui.system_enabled
+visibility = true
+format = DEC
+
+[group4-plot1]
 name = Temperature_Trends
 type = 0
 visibility = true
 
-[group7-plot1-series0]
-name = g_ui.adc_monitor.temp_ah_celsius
-visibility = false
-format = DEC
-
-[group7-plot1-series1]
-name = g_ui.adc_monitor.temp_al_celsius
-visibility = false
-format = DEC
-
-[group7-plot1-series2]
-name = g_ui.adc_monitor.temp_bh_celsius
-visibility = false
-format = DEC
-
-[group7-plot1-series3]
-name = g_ui.adc_monitor.temp_bl_celsius
-visibility = false
-format = DEC
-
-[group7-plot1-series4]
-name = g_ui.adc_monitor.temp_ch_celsius
-visibility = false
-format = DEC
-
-[group7-plot1-series5]
-name = g_ui.adc_monitor.temp_cl_celsius
+[group4-plot1-series0]
+name = adc.tempAH
 visibility = true
 format = DEC
 
-[group7-plot1-series6]
-name = g_ui.system_enabled
-visibility = false
+[group4-plot1-series1]
+name = adc.tempAL
+visibility = true
 format = DEC
 
-[group8]
+[group4-plot1-series2]
+name = adc.tempBH
+visibility = true
+format = DEC
+
+[group4-plot1-series3]
+name = adc.tempBL
+visibility = true
+format = DEC
+
+[group4-plot1-series4]
+name = adc.tempCH
+visibility = true
+format = DEC
+
+[group4-plot1-series5]
+name = adc.tempCL
+visibility = true
+format = DEC
+
+[group5]
 name = Voltage_Monitoring
 acquisition_type = 0
 
-[group8-plot0]
-name = All_Voltages
-type = 0
-visibility = true
-
-[group8-plot0-series0]
-name = g_ui.adc_monitor.voltage_a_volts
-visibility = true
-format = DEC
-
-[group8-plot0-series1]
-name = g_ui.adc_monitor.voltage_b_volts
-visibility = true
-format = DEC
-
-[group8-plot0-series2]
-name = g_ui.adc_monitor.voltage_c_volts
-visibility = true
-format = DEC
-
-[group8-plot1]
+[group5-plot0]
 name = DC_Link
 type = 0
 visibility = true
 
-[group8-plot1-series0]
-name = g_ui.adc_monitor.voltage_dc_volts
+[group5-plot0-series0]
+name = adc.voltageDC
 visibility = true
 format = DEC
-
-[group9]
-name = new sampling group0
-acquisition_type = 0
-
-[group9-plot0]
-name = new plot0
-type = 0
-visibility = true
 
 [trace_plot0]
 name = CH0

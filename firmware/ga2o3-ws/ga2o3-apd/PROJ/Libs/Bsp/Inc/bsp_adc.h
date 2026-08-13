@@ -46,7 +46,7 @@ HAL_StatusTypeDef ConfigureSOC(uint32_t module, uint32_t soc,
  *
  * int_num : ADC_INT_NUMBER1 .. ADC_INT_NUMBER4
  */
-HAL_StatusTypeDef ConfigureADCInterrupt(uint32_t module, ADC_IntNumber int_num,
+HAL_StatusTypeDef ConfigureADCInterrupt(uint32_t module,
                                          uint32_t soc);
 
 /* -----------------------------------------------------------------------

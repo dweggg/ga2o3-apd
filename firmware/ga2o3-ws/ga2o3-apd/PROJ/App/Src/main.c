@@ -3,11 +3,13 @@
 #include "bsp_sci.h"
 #include "F2837xD_GlobalPrototypes.h"
 #include "state_machine.h"
+#include "safety.h"
 #include "task_scheduler.h"
 #include "control_loop.h"
 #include "global_defines.h"
 #include "adc_config.h"
 #include "user_interface.h"
+#include "open_loop.h"
 
 
 #define BLINKY_LED_GPIO    34
@@ -22,7 +24,8 @@ void main(void)
 //
 // Step 1. Initialize System Control:
 // PLL, WatchDog, enable Peripheral Clocks
-// This example function is found in the F2837xD_SysCtrl.c file.
+// This example function is found in the F2837xD_SysCtrl.c file1
+// 1.
 //
     Device_init();
 
@@ -51,7 +54,9 @@ void main(void)
 
 
     InitStateMachine();
+    InitSafetyChecker();
     InitControlLoop();
+    //InitOpenLoop();
     InitUserInterface();
     
     InitTaskScheduler();
@@ -59,10 +64,10 @@ void main(void)
     CreateTask(TriggerTempADC, 100);   
     CreateTask(TriggerVoltageADC, 100);   
 
-    CreateTask(TaskUserInterface, 10);
+    CreateTask(TaskUserInterface, 20);
 
-    // CreateTask(TaskControlLoop, 10000);
-    CreateTask(TaskControlLoopDC, 10000);
+    //CreateTask(TaskControlLoop, 10000);
+    //CreateTask(TaskOpenLoop, 10000);
     CreateTask(TaskStateMachine, 1000);   
 
     CreateTask(ToggleLED, 2);

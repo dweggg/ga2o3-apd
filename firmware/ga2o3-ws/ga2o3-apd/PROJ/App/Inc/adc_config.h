@@ -97,10 +97,48 @@
  * Shared ADC settings
  * ----------------------------------------------------------------------- */
 
-#define TEMP_SAMPLE_WINDOW_NS       20U // ns
-#define VOLTAGE_SAMPLE_WINDOW_NS    20U // ns
-#define CURRENT_SAMPLE_WINDOW_NS    20U // ns
+#define TEMP_SAMPLE_WINDOW_NS       300U // ns
+#define VOLTAGE_SAMPLE_WINDOW_NS    300U // ns
+#define CURRENT_SAMPLE_WINDOW_NS    300U // ns
 
+
+/* -----------------------------------------------------------------------
+ * Moving average
+ * ----------------------------------------------------------------------- */
+
+#define TEMP_MA_WINDOW              32U
+#define VOLT_MA_WINDOW              32U
+
+typedef struct {
+    uint16_t buf[VOLT_MA_WINDOW];
+    uint32_t sum;
+    uint16_t idx;
+    uint16_t count;
+} MovingAvgU16TypeDef;
+
+typedef struct {
+    float alpha;
+    float y_prev;
+} LowPassFilterTypeDef;
+
+
+typedef struct {
+    float tempAH;
+    float tempAL;
+    float tempBH;
+    float tempBL;
+    float tempCH;
+    float tempCL;
+    float voltageA;
+    float voltageB;
+    float voltageC;
+    float voltageDC;
+    float currentA;
+    float currentB;
+    float currentC;
+
+
+} AdcTypeDef;
 
 /* -----------------------------------------------------------------------
  * Public API

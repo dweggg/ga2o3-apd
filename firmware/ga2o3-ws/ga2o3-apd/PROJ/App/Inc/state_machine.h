@@ -1,9 +1,8 @@
 /**
  * @file state_machine.h
+ * @brief System state machine: manages startup, running, and fault states
  * @author lan
- * @brief state machine
- * @version 0.1
- * @date 2026-03-09
+ * @date 2026
  * 
  * @copyright Copyright (c) 2026
  * 
@@ -29,19 +28,23 @@ typedef enum
 
 /**
  * @brief Initialize the state machine
- * 
- * @return none
  */
 void InitStateMachine(void);
 
 /**
- * @brief The state machine core, needs to be executed every control period or faster
- * 
- *@return none
+ * @brief The state machine core task - performs health checks and state transitions
+ *        Call every control period or faster. Safety checks are run unconditionally
+ *        on every cycle to catch faults immediately.
  */
 void TaskStateMachine(void);
 
+/**
+ * @brief Get current state machine state (for debugging/monitoring)
+ * @return Current state machine state
+ */
+StateMachineTypeDef GetStateMachineState(void);
 
 #ifdef __cplusplus
 }
 #endif
+

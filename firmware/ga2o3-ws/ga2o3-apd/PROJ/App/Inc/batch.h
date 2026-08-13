@@ -59,19 +59,35 @@ typedef enum {
 } BatchStateTypeDef;
 
 //@brief Arms the batch runner. Call once before the scheduler starts ticking RunTests().
-//@return none
 void StartBatch(void);
 
 //@brief Non-blocking batch tick. Call from the scheduler on every cycle.
 //       Internally drives the state machine: applies settings, waits for
 //       DELAY_BETWEEN_TESTS ms, captures a sample, then advances to the
 //       next index combination. Returns immediately on every call.
-//@return none
 void RunTests(void);
 
 //@brief Returns 1 if the last batch run has completed, 0 otherwise.
-//       Resets to 0 as soon as StartBatch() is called again.
-//@return uint32_t - 1 if done, 0 if idle or running
 uint32_t IsBatchComplete(void);
+
+//@brief Query current test mode index
+//@return Current mode (0 or 1)
+uint32_t BatchGetCurrentMode(void);
+
+//@brief Query current frequency index
+//@return Current frequency index
+uint32_t BatchGetCurrentFrequencyIndex(void);
+
+//@brief Query current deadtime index
+//@return Current deadtime index
+uint32_t BatchGetCurrentDeadtimeIndex(void);
+
+//@brief Query current frequency value being tested
+//@return Current frequency in Hz
+uint32_t BatchGetCurrentFrequency(void);
+
+//@brief Query current deadtime value being tested
+//@return Current deadtime in ns
+uint32_t BatchGetCurrentDeadtime(void);
 
 #endif // __BATCH_H__

@@ -51,7 +51,7 @@ HAL_StatusTypeDef InitPWM(uint32_t channel)
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
     // Setup ADC Trigger out
     EPWM_disableADCTrigger(base, EPWM_SOC_A);
-    EPWM_setADCTriggerSource(base, EPWM_SOC_A, EPWM_SOC_TBCTR_U_CMPA);// Trigger when counter equal to CMPA and timer is incrementing
+    EPWM_setADCTriggerSource(base, EPWM_SOC_A, EPWM_SOC_TBCTR_PERIOD);// Trigger when counter equal to CMPA and timer is equal to period
     EPWM_setADCTriggerEventPrescale(base, EPWM_SOC_A, 1);
 
     // Time base
@@ -72,14 +72,13 @@ HAL_StatusTypeDef InitPWM(uint32_t channel)
     EPWM_setActionQualifierAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW,       EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
     EPWM_setActionQualifierAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);
     EPWM_setActionQualifierAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);
-
     EPWM_disableChopper(base);
 
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 
     SetDuty(channel, PWM_DEFAULT_DUTY);
     SetDeadTime(channel, PWM_DEFAULT_DEAD_NS);
-    DisablePWM(channel);
+    EnablePWM(channel);
     return HAL_OK;
 }
 
@@ -117,6 +116,20 @@ HAL_StatusTypeDef SetFrequency(uint32_t channel, uint32_t frequency_Hz)
     // Update CMPA with old duty before leaving
     return SetDuty(channel, duty);
 }
+
+float GetPeriod(uint32_t channel)
+{
+    if (channel < 1 || channel > 8) return HAL_ERROR;
+
+    uint32_t base = pwm_channels[channel];
+
+    uint16_t counts = EPWM_getTimeBasePeriod(base);
+
+    float period = 4.0f*(float)counts/(float)DEVICE_SYSCLK_FREQ;
+    
+    return period;
+}
+
 
 HAL_StatusTypeDef SetDeadTime(uint32_t channel, uint32_t dead_time_ns)
 {
@@ -213,6 +226,7 @@ HAL_StatusTypeDef SetPhaseShift(uint32_t channel_1, uint32_t channel_2, float ph
     }
 
     // Configure slave
+    EPWM_selectPeriodLoadEvent(base_slave, EPWM_SHADOW_LOAD_MODE_SYNC);
     EPWM_setPhaseShift(base_slave, tbphs);
     EPWM_setCountModeAfterSync(base_slave, count_mode);
     EPWM_enablePhaseShiftLoad(base_slave);   // arm the load-on-SYNCI latch
@@ -222,16 +236,22 @@ HAL_StatusTypeDef SetPhaseShift(uint32_t channel_1, uint32_t channel_2, float ph
 
 HAL_StatusTypeDef EnablePWM(uint32_t channel)
 {
-    if (channel < 1 || channel > 8) return HAL_ERROR;
+    if (channel < 1 || channel > 8)
+        return HAL_ERROR;
 
     uint32_t base = pwm_channels[channel];
 
-    // Release software force, outputs return to AQ control
+    // Return TZ actions to normal operation
+    EPWM_setTripZoneAction(base, EPWM_TZ_ACTION_EVENT_TZA, EPWM_TZ_ACTION_DISABLE);
+    EPWM_setTripZoneAction(base,EPWM_TZ_ACTION_EVENT_TZB, EPWM_TZ_ACTION_DISABLE);
+
+    // Clear one-shot trip latch
+    EPWM_clearTripZoneFlag(base, EPWM_TZ_FLAG_OST);
+
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_DISABLED);
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_DISABLED);
-
-    // Enable the trigger signal for ADC
     EPWM_enableADCTrigger(base, EPWM_SOC_A);
+
 
     return HAL_OK;
 }
@@ -242,12 +262,11 @@ HAL_StatusTypeDef DisablePWM(uint32_t channel)
 
     uint32_t base = pwm_channels[channel];
 
-    // Continuously force both outputs low, overriding the AQ module
-    EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_HIGH); // it should be low but we dont see that in the scope! so fuck it 
+    EPWM_setTripZoneAction(base, EPWM_TZ_ACTION_EVENT_TZA, EPWM_TZ_ACTION_LOW);
+    EPWM_setTripZoneAction(base, EPWM_TZ_ACTION_EVENT_TZB, EPWM_TZ_ACTION_LOW);
+    EPWM_forceTripZoneEvent(base, EPWM_TZ_FORCE_EVENT_OST);
+    EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_LOW);
     EPWM_setActionQualifierContSWForceAction(base, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_OUTPUT_LOW);
 
-    // Disable the trigger signal for ADC
-    EPWM_disableADCTrigger(base, EPWM_SOC_A);
-    
     return HAL_OK;
 }

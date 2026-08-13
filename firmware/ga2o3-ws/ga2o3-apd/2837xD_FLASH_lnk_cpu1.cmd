@@ -54,8 +54,8 @@ PAGE 1 : /* Data Memory */
    RAMGS3      : origin = 0x00F000, length = 0x001000
    RAMGS4      : origin = 0x010000, length = 0x001000
    RAMGS5      : origin = 0x011000, length = 0x001000
-   RAMGS6789    : origin = 0x012000, length = 0x004000   /* merged for batch results */
-   RAMGS10     : origin = 0x016000, length = 0x001000
+   RAMGS678910    : origin = 0x012000, length = 0x005000   /* merged for batch results */
+   //RAMGS10     : origin = 0x016000, length = 0x001000
 
 //   RAMGS11     : origin = 0x017000, length = 0x000FF8   /* Uncomment for F28374D, F28376D devices */
 
@@ -85,9 +85,9 @@ SECTIONS
    .bss                : > RAMLS5,       PAGE = 1
    .bss:output         : > RAMLS3,       PAGE = 0
    .bss:cio            : > RAMLS5,       PAGE = 1
-   .data               : > RAMGS1,       PAGE = 1
+   .data               : > RAMGS678910,    PAGE = 1
    .sysmem             : > RAMGS0,       PAGE = 1
-   batch_results       : > RAMGS6789, PAGE = 1
+   batch_results       : > RAMGS678910, PAGE = 1
    /* Initalized sections go in Flash */
    .const              : > FLASHF,       PAGE = 0,       ALIGN(8)
 #else
@@ -111,7 +111,7 @@ SECTIONS
     #if __TI_COMPILER_VERSION__ >= 15009000
         #if defined(__TI_EABI__)
             .TI.ramfunc : {} LOAD = FLASHD,
-                                 RUN = RAMLS0,
+                                 RUN = RAMGS14,
                                  LOAD_START(RamfuncsLoadStart),
                                  LOAD_SIZE(RamfuncsLoadSize),
                                  LOAD_END(RamfuncsLoadEnd),

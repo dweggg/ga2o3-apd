@@ -1,32 +1,53 @@
+/**
+ * @file user_interface.c
+ * @brief User interface layer: coordinates mode management, parameter updates, and task execution
+ * 
+ * Responsibilities:
+ * - Manage UI modes (raw PWM, open-loop, closed-loop, batch test)
+ * - Apply mode-specific parameters to hardware
+ * - Route and coordinate batch test operations
+ * - Call state machine and safety tasks on each cycle
+ * - Monitor ADC values
+ */
+
 #include "user_interface.h"
 #include "control_loop.h"
 #include "state_machine.h"
+#include "safety.h"
+#include "batch.h"
 #include "adc_config.h"
 #include "bsp_epwm.h"
-#include "batch.h"
 #include <string.h>
+#include "open_loop.h"
+
+/* -------------------------------------------------------------------------- */
+/* Module state                                                                */
+/* -------------------------------------------------------------------------- */
 
 UserInterfaceTypeDef g_ui = {
     .current_mode = (UiModeTypeDef)0,
     .raw_pwm_a = {0},
     .raw_pwm_b = {0},
     .raw_pwm_c = {0},
-    .selected_pwm_channel = (PwmChannelTypeDef)0,
     .open_loop = {0},
     .closed_loop = {0},
     .use_interleaved_mode = 0,
     .system_enabled = 0,
-    .adc_monitor = {0}
+    .switching_frequency_hz = 10000U,
 };
 
 static uint16_t s_batch_test_running = 0U;
+static uint32_t s_last_applied_frequency_hz = 10000U;
 
-
+/* -------------------------------------------------------------------------- */
+/* Initialization                                                              */
+/* -------------------------------------------------------------------------- */
 
 void InitUserInterface(void)
 {
     g_ui.current_mode = UI_MODE_IDLE;
     g_ui.system_enabled = 0U;
+    g_ui.switching_frequency_hz = 10000U;
 
     g_ui.raw_pwm_a.frequency_hz = 10000U;
     g_ui.raw_pwm_a.deadtime_ns  = 1000U;
@@ -40,9 +61,7 @@ void InitUserInterface(void)
     g_ui.raw_pwm_c.deadtime_ns  = 1000U;
     g_ui.raw_pwm_c.duty_cycle   = 0.0f;
 
-    g_ui.selected_pwm_channel = PWM_CHANNEL_A;
-
-    g_ui.open_loop.voltage_amplitude_volts = 48.0f;
+    g_ui.open_loop.voltage_amplitude_volts = 0.0f;
     g_ui.open_loop.fundamental_frequency_hz = 50.0f;
 
     g_ui.closed_loop.id_reference_amps = 0.0f;
@@ -61,12 +80,21 @@ void InitUserInterface(void)
     DisableSystem();
 }
 
-void EnableDrivers(){
-    GPIO_writePin(GD_ENABLE_PIN,1);
+
+static uint16_t IsInterleavedMode(UiModeTypeDef mode)
+{
+    return (mode == UI_MODE_POWER_CYCLING_INTERLEAVED);
 }
 
-void DisableDrivers(){
-    GPIO_writePin(GD_ENABLE_PIN,0);
+static void ApplyInterleavedChannelState(UiModeTypeDef mode)
+{
+    if (IsInterleavedMode(mode)) {
+        EnablePWM(PWM_CHANNEL_B);
+        ControlLoop_SetInterleavedMode(1U);
+    } else {
+        DisablePWM(PWM_CHANNEL_B);
+        ControlLoop_SetInterleavedMode(0U);
+    }
 }
 
 void EnableSystem(void)
@@ -78,9 +106,16 @@ void EnableSystem(void)
     g_ui.system_enabled = 1U;
     EnableDrivers();
     ControlLoop_Enable();
+    OpenLoop_Enable();
+
     EnablePWM(PWM_CHANNEL_A);
-    EnablePWM(PWM_CHANNEL_B);
     EnablePWM(PWM_CHANNEL_C);
+
+    if (IsInterleavedMode(g_ui.current_mode)) {
+        EnablePWM(PWM_CHANNEL_B);
+    } else {
+        DisablePWM(PWM_CHANNEL_B);
+    }
 }
 
 void DisableSystem(void)
@@ -94,27 +129,42 @@ void DisableSystem(void)
     DisablePWM(PWM_CHANNEL_C);
 }
 
+//@brief Query system enabled state
+//@return 1 if system is enabled, 0 otherwise
+uint16_t GetUiSystemEnabled(void)
+{
+    return g_ui.system_enabled;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mode management                                                             */
+/* -------------------------------------------------------------------------- */
 
 void SetUIMode(UiModeTypeDef mode)
 {
+    UiModeTypeDef prev_mode = g_ui.current_mode;
+
     DisableSystem();
+
+    if (IsInterleavedMode(prev_mode) != IsInterleavedMode(mode)) {
+        ApplyInterleavedChannelState(mode);
+    }
+
     g_ui.current_mode = mode;
 
     switch (mode) {
         case UI_MODE_BATCH_TEST:
             s_batch_test_running = 0U;
-            InitControlLoop();
             ControlLoop_SetInterleavedMode(0U);
             break;
 
         case UI_MODE_RAW_PWM:
-        case UI_MODE_OPEN_LOOP_VOLTAGE:
-        case UI_MODE_CLOSED_LOOP_SINGLE:
-        case UI_MODE_CLOSED_LOOP_INTERLEAVED:
-            /*
-             * Hardware will be configured by PollAndApplyParameterUpdates on
-             * the next tick. No need to duplicate the logic here.
-             */
+        case UI_MODE_OPEN_LOOP_AC:
+        case UI_MODE_POWER_CYCLING:
+            break;
+
+        case UI_MODE_POWER_CYCLING_INTERLEAVED:
+            ControlLoop_SetInterleavedMode(1U);
             break;
 
         case UI_MODE_IDLE:
@@ -123,37 +173,22 @@ void SetUIMode(UiModeTypeDef mode)
     }
 }
 
-/* --------------------------------------------------------------------------
- * Raw hardware application helpers - no mode guards, no enable guards.
- * These apply values unconditionally; callers are responsible for context.
- * -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* Raw PWM parameter application                                              */
+/* -------------------------------------------------------------------------- */
 
 static void ApplyRawPwmChannelToHW(PwmChannelTypeDef channel,
                                     const RawPwmSettingsTypeDef *s)
 {
-    SetFrequency(channel, s->frequency_hz);
-    SetDeadTime(channel, s->deadtime_ns);
-    SetDuty(channel, s->duty_cycle);
-}
+    // Extract all values before calling hardware functions to prevent register clobbering
+    uint32_t freq_hz = s->frequency_hz;
+    uint32_t deadtime_ns = s->deadtime_ns;
+    float duty_cycle = s->duty_cycle;
 
-static void ApplyOpenLoopToHW(void)
-{
-    ControlLoop_SetOpenLoopVoltage(
-        g_ui.open_loop.voltage_amplitude_volts,
-        g_ui.open_loop.fundamental_frequency_hz
-    );
+    SetFrequency(channel, freq_hz);
+    SetDeadTime(channel, deadtime_ns);
+    SetDuty(channel, duty_cycle);
 }
-
-static void ApplyClosedLoopSetpointsToHW(void)
-{
-    ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
-    ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
-}
-
-/* --------------------------------------------------------------------------
- * Public update functions - update g_ui state only.
- * Hardware application is handled exclusively by PollAndApplyParameterUpdates.
- * -------------------------------------------------------------------------- */
 
 void UpdateRawPwmChannel(PwmChannelTypeDef channel,
                           uint32_t freq_hz, uint32_t deadtime_ns, float duty)
@@ -177,7 +212,7 @@ void UpdateRawPwmChannel(PwmChannelTypeDef channel,
         default:
             break;
     }
-    /* Hardware will be updated by PollAndApplyParameterUpdates on next tick */
+    // Hardware will be updated by PollAndApplyParameterUpdates on next tick
 }
 
 void UpdateOpenLoopVoltage(float voltage_amplitude, float fundamental_frequency)
@@ -192,68 +227,44 @@ void UpdateClosedLoopSetpoints(float id_amps, float iq_amps)
     g_ui.closed_loop.iq_reference_amps = iq_amps;
 }
 
-void UpdateInterleaving(uint16_t enable)
+
+/* -------------------------------------------------------------------------- */
+/* Batch test coordination                                                     */
+/* -------------------------------------------------------------------------- */
+
+//@brief Apply batch test's current frequency and deadtime settings to hardware
+static void ApplyBatchTestSettings(void)
 {
-    g_ui.use_interleaved_mode = enable ? 1U : 0U;
-}
-
-/* --------------------------------------------------------------------------
- * Parameter application - unconditional raw application on each poll cycle.
- * -------------------------------------------------------------------------- */
-
-static void PollAndApplyParameterUpdates(void)
-{
-    if (!g_ui.system_enabled) {
-        DisableSystem();
-        return;
-    }
-
-    switch (g_ui.current_mode) {
-
-        case UI_MODE_RAW_PWM: {
-            /*
-             * Raw PWM drives the switches directly - the control loop must
-             * stay disabled so it cannot interfere with the manual duty cycles.
-             */
-            ControlLoop_Disable();
-            EnableDrivers();
+    static uint32_t last_mode = 0xFFFFFFFFU;
+    uint32_t current_mode = BatchGetCurrentMode();
+    
+    // Reconfigure interleaving and PWM enable on mode transitions
+    if (current_mode != last_mode)
+    {
+        // Mode changed - reconfigure channel setup
+        if (current_mode == 0U)  // ModeSingle
+        {
+            DisablePWM(PWM_CHANNEL_B);
+            EnablePWM(PWM_CHANNEL_A);
+            ControlLoop_SetInterleavedMode(0);
+        }
+        else  // ModeInterleaved
+        {
             EnablePWM(PWM_CHANNEL_A);
             EnablePWM(PWM_CHANNEL_B);
-            EnablePWM(PWM_CHANNEL_C);
-            ApplyRawPwmChannelToHW(PWM_CHANNEL_A, &g_ui.raw_pwm_a);
-            ApplyRawPwmChannelToHW(PWM_CHANNEL_B, &g_ui.raw_pwm_b);
-            ApplyRawPwmChannelToHW(PWM_CHANNEL_C, &g_ui.raw_pwm_c);
-            break;
+            ControlLoop_SetInterleavedMode(1);
         }
-
-        case UI_MODE_OPEN_LOOP_VOLTAGE: {
-            EnableSystem();
-            ApplyOpenLoopToHW();
-            break;
-        }
-
-        case UI_MODE_CLOSED_LOOP_SINGLE:
-        case UI_MODE_CLOSED_LOOP_INTERLEAVED: {
-            EnableSystem();
-            /* Interleaving change requires a controlled reinit */
-            static uint16_t s_last_interleaved_mode = 0xFFFFU;
-            if (g_ui.use_interleaved_mode != s_last_interleaved_mode) {
-                DisableSystem();
-                ControlLoop_SetInterleavedMode(g_ui.use_interleaved_mode);
-                InitControlLoop();
-                s_last_interleaved_mode = g_ui.use_interleaved_mode;
-                EnableSystem();
-            }
-
-            ApplyClosedLoopSetpointsToHW();
-            break;
-        }
-
-        case UI_MODE_BATCH_TEST:
-        case UI_MODE_IDLE:
-        default:
-            break;
+        last_mode = current_mode;
     }
+
+    // Apply frequency and deadtime for current index
+    uint32_t freq = BatchGetCurrentFrequency();
+    uint32_t deadtime = BatchGetCurrentDeadtime();
+    
+    SetFrequency(PWM_CHANNEL_A, freq);
+    SetFrequency(PWM_CHANNEL_B, freq);
+    SetDeadTime(PWM_CHANNEL_A, deadtime);
+    SetDeadTime(PWM_CHANNEL_B, deadtime);
 }
 
 void StartBatchTest(void)
@@ -275,47 +286,129 @@ uint16_t IsBatchTestRunning(void)
     return (s_batch_test_running && !IsBatchComplete()) ? 1U : 0U;
 }
 
-void TaskUserInterface(void)
+/* -------------------------------------------------------------------------- */
+/* Parameter application - mode-specific hardware configuration               */
+/* -------------------------------------------------------------------------- */
+#pragma CODE_SECTION(PollAndApplyParameterUpdates, ".TI.ramfunc");
+void PollAndApplyParameterUpdates(void)
 {
-    UpdateAdcMonitoring();
-    PollAndApplyParameterUpdates();
+    if (!g_ui.system_enabled) {
+        DisableSystem();
+        return;
+    }
+
+    // Apply frequency changes if user modified it via debugger
+    if (g_ui.switching_frequency_hz != s_last_applied_frequency_hz) {
+        if (g_ui.switching_frequency_hz > 0) {
+            SetFrequency(PWM_CHANNEL_A, g_ui.switching_frequency_hz);
+            SetFrequency(PWM_CHANNEL_B, g_ui.switching_frequency_hz);
+            SetFrequency(PWM_CHANNEL_C, g_ui.switching_frequency_hz);
+            s_last_applied_frequency_hz = g_ui.switching_frequency_hz;
+        }
+    }
 
     switch (g_ui.current_mode) {
-        case UI_MODE_BATCH_TEST:
-            if (s_batch_test_running) {
-                RunTests();
-                if (IsBatchComplete()) {
-                    s_batch_test_running = 0U;
-                    DisableSystem();
-                }
+
+        case UI_MODE_RAW_PWM: {
+            /* Raw PWM mode: direct duty cycle control, control loop disabled */
+            ControlLoop_Disable();
+            EnableDrivers();
+            EnablePWM(PWM_CHANNEL_A);
+            EnablePWM(PWM_CHANNEL_B);
+            EnablePWM(PWM_CHANNEL_C);
+            ApplyRawPwmChannelToHW(PWM_CHANNEL_A, &g_ui.raw_pwm_a);
+            ApplyRawPwmChannelToHW(PWM_CHANNEL_B, &g_ui.raw_pwm_b);
+            ApplyRawPwmChannelToHW(PWM_CHANNEL_C, &g_ui.raw_pwm_c);
+            break;
+        }
+
+        case UI_MODE_OPEN_LOOP_AC: {
+            /* Open-loop voltage mode: set voltage magnitude and frequency */
+            EnableSystem();
+            
+            //SetOutputInvert(PWM_CHANNEL_A);
+            OpenLoop_SetPeakVoltage(
+                g_ui.open_loop.voltage_amplitude_volts,
+                g_ui.open_loop.fundamental_frequency_hz
+            );
+            break;
+        }
+
+        case UI_MODE_CLOSED_LOOP_BUCK:
+            /* Closed-loop current control (DC) */
+            ControlLoop_SetInterleavedMode(0);
+            ControlLoop_SetBuckMode(1);
+            EnableSystem();
+            ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
+            ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
+            break;
+        case UI_MODE_POWER_CYCLING:
+            /* Closed-loop current control and power cycling */
+            ControlLoop_SetInterleavedMode(0);
+            ControlLoop_SetBuckMode(0);
+            EnableSystem();
+            ControlLoop_SetOpenLoopVoltage(g_ui.open_loop.voltage_amplitude_volts,g_ui.open_loop.fundamental_frequency_hz);
+            ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
+            ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
+            break;
+        case UI_MODE_POWER_CYCLING_INTERLEAVED: {
+            /* Closed-loop current control and power cycling with interleaving */
+            ControlLoop_SetInterleavedMode(1);
+            EnableSystem();
+            ControlLoop_SetOpenLoopVoltage(g_ui.open_loop.voltage_amplitude_volts,g_ui.open_loop.fundamental_frequency_hz);
+            ControlLoop_SetIdRef(g_ui.closed_loop.id_reference_amps);
+            ControlLoop_SetIqRef(g_ui.closed_loop.iq_reference_amps);
+            break;
+        }
+
+        case UI_MODE_BATCH_TEST: {
+            /* Batch test: apply frequency/deadtime from batch state */
+            if (s_batch_test_running && !IsBatchComplete()) {
+                ApplyBatchTestSettings();
             }
             break;
+        }
 
-        case UI_MODE_RAW_PWM:
-        case UI_MODE_OPEN_LOOP_VOLTAGE:
-        case UI_MODE_CLOSED_LOOP_SINGLE:
-        case UI_MODE_CLOSED_LOOP_INTERLEAVED:
         case UI_MODE_IDLE:
         default:
             break;
     }
 }
 
-void UpdateAdcMonitoring(void)
+/* -------------------------------------------------------------------------- */
+/* Main task - called every control cycle                                     */
+/* -------------------------------------------------------------------------- */
+
+void TaskUserInterface(void)
 {
-    g_ui.adc_monitor.current_a_amps = GetCurrentA();
-    g_ui.adc_monitor.current_b_amps = GetCurrentB();
-    g_ui.adc_monitor.current_c_amps = GetCurrentC();
 
-    g_ui.adc_monitor.voltage_a_volts  = GetVoltageA();
-    g_ui.adc_monitor.voltage_b_volts  = GetVoltageB();
-    g_ui.adc_monitor.voltage_c_volts  = GetVoltageC();
-    g_ui.adc_monitor.voltage_dc_volts = GetVoltageDC();
+    // Apply current mode's parameter settings
+    PollAndApplyParameterUpdates();
 
-    g_ui.adc_monitor.temp_ah_celsius = GetTempAH();
-    g_ui.adc_monitor.temp_al_celsius = GetTempAL();
-    g_ui.adc_monitor.temp_bh_celsius = GetTempBH();
-    g_ui.adc_monitor.temp_bl_celsius = GetTempBL();
-    g_ui.adc_monitor.temp_ch_celsius = GetTempCH();
-    g_ui.adc_monitor.temp_cl_celsius = GetTempCL();
+    // Execute batch test state machine if running
+    if (g_ui.current_mode == UI_MODE_BATCH_TEST) {
+        if (s_batch_test_running) {
+            RunTests();
+            if (IsBatchComplete()) {
+                s_batch_test_running = 0U;
+                DisableSystem();
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Switching frequency runtime control                                        */
+/* -------------------------------------------------------------------------- */
+
+void SetSwitchingFrequency(uint32_t frequency_hz)
+{
+    if (frequency_hz > 0) {
+        g_ui.switching_frequency_hz = frequency_hz;
+    }
+}
+
+uint32_t GetSwitchingFrequency(void)
+{
+    return g_ui.switching_frequency_hz;
 }

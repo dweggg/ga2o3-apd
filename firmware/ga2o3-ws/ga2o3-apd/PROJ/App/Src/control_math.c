@@ -221,7 +221,7 @@ void InitSogi(SogiTypeDef *sogi_var, float gain, float sampling_time)
 // @return none
 void RunSogi(SogiTypeDef *sogi_var, float input, float omega)
 {
-    float err = (input * sogi_var->k) - sogi_var->alpha;
+    float err = (input * sogi_var->k) - sogi_var->alpha * sogi_var->k;
     // First integrator — alpha tracks the input in-phase
     sogi_var->alpha += ((err - sogi_var->beta) * omega) * sogi_var->sampling_time;
     // Second integrator — beta is 90 degrees shifted version of alpha

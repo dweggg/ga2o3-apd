@@ -17,10 +17,10 @@
 /* Rate limiter slew rates                                                     */
 /* -------------------------------------------------------------------------- */
 
-static const float RL_RATE_ID_A_PER_S      = 1000.0f;   // d-axis current [A/s]
-static const float RL_RATE_IQ_A_PER_S      = 1000.0f;   // q-axis current [A/s]
-static const float RL_RATE_VOLTAGE_V_PER_S = 500.0f;    // open-loop voltage [V/s]
-static const float RL_RATE_OMEGA_R_PER_S   = 1000.0f;   // open-loop freq [rad/s/s]
+static const float RL_RATE_ID_A_PER_S      = 1.0f;   // d-axis current [A/s]
+static const float RL_RATE_IQ_A_PER_S      = 1.0f;   // q-axis current [A/s]
+static const float RL_RATE_VOLTAGE_V_PER_S = 10.0f;    // open-loop voltage [V/s]
+static const float RL_RATE_OMEGA_R_PER_S   = 100.0f;   // open-loop freq [rad/s/s]
 
 /* -------------------------------------------------------------------------- */
 /* Module state                                                                */
@@ -28,8 +28,9 @@ static const float RL_RATE_OMEGA_R_PER_S   = 1000.0f;   // open-loop freq [rad/s
 
 static uint16_t control_enabled     = 0U;
 static uint16_t control_interleaved = 0U;
+static uint16_t control_buck = 0U;
+
 static ControlParamsTypeDef control_params;
-int BuckChannel = 0;
 /* -------------------------------------------------------------------------- */
 /* Private helpers                                                             */
 /* -------------------------------------------------------------------------- */
@@ -53,7 +54,7 @@ static inline void Clamp(PolarTypeDef *polar, float limit)
 
 void InitControlLoop(void)
 {
-    control_params.sampling_time          = (float)GetTaskPeriod(TaskControlLoopDC);
+    control_params.sampling_time          =  0.001f;
     control_params.current_feedback_amps  = 0.0f;
     control_params.omega_rad              = 0.0f;
     control_params.sin_theta              = 0.0f;
@@ -70,7 +71,7 @@ void InitControlLoop(void)
     CalculateAndInitPI(&control_params.pi_id, L_H, R_OHM, 0.01f, control_params.sampling_time);
     CalculateAndInitPI(&control_params.pi_iq, L_H, R_OHM, 0.01f, control_params.sampling_time);
 
-    InitAngleGen(&control_params.angle_generation, 50.0f, control_params.sampling_time);
+    InitAngleGen(&control_params.angle_generation, 0.0f, control_params.sampling_time);
     InitSogi(&control_params.current_sogi, 1.0f, control_params.sampling_time);
 
     // Rate limiters — all start from zero, consistent with the zeroed refs above
@@ -97,132 +98,150 @@ void     ControlLoop_SetOpenLoopVoltage(float voltage, float fundamental_frequen
     control_params.omega_rad            = TWO_PI * fundamental_frequency;
 }
 void     ControlLoop_SetInterleavedMode(uint16_t enabled){ control_interleaved = enabled; }
+void     ControlLoop_SetBuckMode(uint16_t enabled){ control_buck = enabled; }
 
 /* -------------------------------------------------------------------------- */
 /* Scheduler task                                                              */
 /* -------------------------------------------------------------------------- */
 
-// #pragma CODE_SECTION(TaskControlLoop, ".TI.ramfunc")
+#pragma CODE_SECTION(TaskControlLoop, ".TI.ramfunc")
 void TaskControlLoop(void)
 {
     if (!control_enabled) { return; }
 
-    /* --- Rate-limit all external references -------------------------------- */
-    float id_ref      = RunRateLimiter(&control_params.rl_id,         control_params.idq_ref_amps.d);
-    float iq_ref      = RunRateLimiter(&control_params.rl_iq,         control_params.idq_ref_amps.q);
-    float voltage_pk  = RunRateLimiter(&control_params.rl_voltage_pk, control_params.voltage_open_loop_pk);
-    float omega       = RunRateLimiter(&control_params.rl_omega,      control_params.omega_rad);
-
-    /* --- Angle generation ------------------------------------------------- */
-    control_params.angle_generation.omega = omega;
-    GenerateAngle(&control_params.angle_generation);
-
-    control_params.cos_theta = cosf(control_params.angle_generation.theta);
-    control_params.sin_theta = sinf(control_params.angle_generation.theta);
-
-    /* --- Open loop voltage ------------------------------------------------- */
-    control_params.voltage_open_loop_ac = voltage_pk * control_params.sin_theta;
-    float v_ol = control_params.voltage_open_loop_ac / (GetVoltageDC() * 0.5f);
-    control_params.duty_open_loop = v_ol < 0.0f ? 0.0f : (v_ol > 1.0f ? 1.0f : v_ol);
-
-    /* --- SOGI: single-phase current -> alpha-beta -------------------------- */
-    float i_fb = GetCurrentC();
-    RunSogi(&control_params.current_sogi, i_fb, omega);
-
-    control_params.current_ab_amps.alpha = control_params.current_sogi.alpha;
-    control_params.current_ab_amps.beta  = control_params.current_sogi.beta;
-
-    /* --- alpha-beta -> dq -------------------------------------------------- */
-    control_params.idq_meas_amps = ConvertAlphabetaToDq(
-        control_params.current_ab_amps,
-        control_params.angle_generation.theta);
-
-    /* --- PI controllers --------------------------------------------------- */
-    RunPiControl(&control_params.pi_id,
-                  id_ref,
-                  control_params.idq_meas_amps.d,
-                  GetVoltageDC() * 0.5f, - GetVoltageDC() * 0.5f);
-
-    RunPiControl(&control_params.pi_iq,
-                  iq_ref,
-                  control_params.idq_meas_amps.q,
-                  GetVoltageDC() * 0.5f, - GetVoltageDC() * 0.5f);
-
-    /* --- Cartesian -> polar -> clamp -> back to cartesian ------------------ */
-    control_params.pi_output_dq.x = control_params.pi_id.output;
-    control_params.pi_output_dq.y = control_params.pi_iq.output;
-
-    control_params.pi_output_vs_delta = CartesianToPolar(control_params.pi_output_dq);
-    Clamp(&control_params.pi_output_vs_delta, GetVoltageDC() * 0.5f);
-    control_params.pi_output_dq       = PolarToCartesian(control_params.pi_output_vs_delta);
-
-    control_params.pi_output_dq_sat.d = control_params.pi_output_dq.x;
-    control_params.pi_output_dq_sat.q = control_params.pi_output_dq.y;
-
-    /* --- dq -> alpha-beta -> normalised duty cycle ------------------------- */
-    control_params.voltage_ab = ConvertDqToAlphabeta(control_params.pi_output_dq_sat, control_params.angle_generation.theta);
-    float v_cl = control_params.voltage_ab.alpha / (GetVoltageDC() * 0.5f);
-    control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
-
-    /* --- Mode-specific PWM modulation -------------------------------------- */
-    if (control_interleaved)
-    {
-        SetPhaseShift(PWM_CHANNEL_A, PWM_CHANNEL_B, 0.5F);   // 180 deg
-        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(PWM_CHANNEL_B, control_params.duty_closed_loop);
-        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
-    }
-    else
-    {
-        SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
-        SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
-    }
-}
-
-
-
-
-/* -------------------------------------------------------------------------- */
-/* DC current control task                                                 */
-/* -------------------------------------------------------------------------- */
-
-void TaskControlLoopDC(void)
-{
-    if (!control_enabled) { return; }
-
-    float id_ref = control_params.idq_ref_amps.d;
-    float i_fb;
-
-    if (BuckChannel == 1) {
-        i_fb = GetCurrentA();
+    control_params.sampling_time = GetPeriod(PWM_CHANNEL_C);
+    control_params.angle_generation.sampling_time = control_params.sampling_time;
+    control_params.current_sogi.sampling_time = control_params.sampling_time;
+    control_params.pi_id.sampling_time = control_params.sampling_time;
+    control_params.pi_iq.sampling_time = control_params.sampling_time;
+    control_params.rl_id.sampling_time = control_params.sampling_time;
+    control_params.rl_iq.sampling_time = control_params.sampling_time;
+    control_params.rl_voltage_pk.sampling_time = control_params.sampling_time;
+    control_params.rl_omega.sampling_time = control_params.sampling_time;
     
+    if (!control_buck) {
+
+        /* -------------------------------------------------------------------------- */
+        /* Power Cycling!                                                             */
+        /* -------------------------------------------------------------------------- */
+
+
+        /* --- Rate-limit all external references -------------------------------- */
+        float id_ref      = RunRateLimiter(&control_params.rl_id,         control_params.idq_ref_amps.d);
+        float iq_ref      = RunRateLimiter(&control_params.rl_iq,         control_params.idq_ref_amps.q);
+        float voltage_pk  = RunRateLimiter(&control_params.rl_voltage_pk, control_params.voltage_open_loop_pk);
+        float omega       = RunRateLimiter(&control_params.rl_omega,      control_params.omega_rad);
+
+        /* --- Angle generation ------------------------------------------------- */
+        control_params.angle_generation.omega = omega;
+        GenerateAngle(&control_params.angle_generation);
+
+        control_params.cos_theta = cosf(control_params.angle_generation.theta);
+        control_params.sin_theta = sinf(control_params.angle_generation.theta);
+
+        /* --- Open loop voltage ------------------------------------------------- */
+
+        float v_dc_half = GetVoltageDC() * 0.5f;
+        
+        control_params.voltage_open_loop_ac = voltage_pk * control_params.cos_theta; // we take cos(theta) so that d produces active. in before it was sin(theta) but that was inconsistent with the transforms and was there by pure intuition and no actual reason.
+
+
+        float v_ol = (v_dc_half + control_params.voltage_open_loop_ac) / (v_dc_half * 2.0f);
+        // v_ol is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
+        control_params.duty_open_loop = v_ol < 0.0f ? 0.0f : (v_ol > 1.0f ? 1.0f : v_ol);
+
+        /* --- SOGI: single-phase current -> alpha-beta -------------------------- */
+        float i_fb = -GetCurrentC();
+        RunSogi(&control_params.current_sogi, i_fb, omega);
+
+        control_params.current_ab_amps.alpha = control_params.current_sogi.alpha;
+        control_params.current_ab_amps.beta  = control_params.current_sogi.beta;
+
+        /* --- alpha-beta -> dq --------------------------------------------------- */
+        control_params.idq_meas_amps = ConvertAlphabetaToDq(
+            control_params.current_ab_amps,
+            control_params.angle_generation.theta);
+
+        /* --- PI controllers --------------------------------------------------- */
+
+        // if we're feedforwarding the open loop voltage, we should limit the PIs to only the remaining headroom. i think. but not sure how exactly
+
+        RunPiControl(&control_params.pi_id,
+                    id_ref,
+                    control_params.idq_meas_amps.d,
+                    v_dc_half, - v_dc_half);
+
+        RunPiControl(&control_params.pi_iq,
+                    iq_ref,
+                    control_params.idq_meas_amps.q,
+                    v_dc_half, - v_dc_half);
+
+        /* --- Cartesian -> polar -> clamp -> back to cartesian ------------------ */
+        control_params.pi_output_dq.x = control_params.pi_id.output;
+        control_params.pi_output_dq.y = control_params.pi_iq.output;
+
+        control_params.pi_output_vs_delta = CartesianToPolar(control_params.pi_output_dq);
+        Clamp(&control_params.pi_output_vs_delta, v_dc_half);
+        control_params.pi_output_dq       = PolarToCartesian(control_params.pi_output_vs_delta);
+
+        control_params.pi_output_dq_sat.d = control_params.pi_output_dq.x;
+        control_params.pi_output_dq_sat.q = control_params.pi_output_dq.y;
+
+        // if for some reason both PIs are saturating to vdc/2 the magnitude (vs) would be maximum sqrt2 * vdc/2. 
+        // so in this scenario the PIs only have to deal with a 41% unsaturated output to wind down. 
+        // i dont think its too dramatic and probably implementing the fancy external saturation antiwindup would cause more trouble than help
+
+
+        /* --- dq -> alpha-beta -> normalised duty cycle ------------------------- */
+
+        control_params.voltage_ab = ConvertDqToAlphabeta(control_params.pi_output_dq_sat, control_params.angle_generation.theta);
+
+        // watch out. we are literally adding the open loop voltage to the output of the PIs, so that the PIs only have to provide the (magnitude or phase) DIFFERENCE required for whatever current we want
+        // i think this is the best way to implement this sort of "soft start" feature because doing it in dq causes trouble in the simulation already. that or im not smart enough to know how to do it properly. probably the latter.
+        control_params.voltage_ab.alpha += control_params.voltage_open_loop_ac;
+        float v_cl = 0.5f + control_params.voltage_ab.alpha / (v_dc_half * 2.0f); // yeah we only take alpha bc we're alpha males. awoooo fuck beta
+        // alpha is between +vdc/2 and -vdc/2, so dividing by v_dc gives a duty between -0.5 to 0.5, thats why we add 0.5, to turn it into 0 to 1
+
+        control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
+
+        /* --- Mode-specific PWM modulation -------------------------------------- */
+        if (control_interleaved)
+        {
+            SetPhaseShift(PWM_CHANNEL_A, PWM_CHANNEL_B, 0.5f);   // 180 deg
+            SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
+            SetDuty(PWM_CHANNEL_B, control_params.duty_closed_loop);
+            SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
+        }
+        else
+        {
+            SetDuty(PWM_CHANNEL_A, control_params.duty_closed_loop);
+            SetDuty(PWM_CHANNEL_C, control_params.duty_open_loop);
+        }
+
+    } else {
+
+        /* -------------------------------------------------------------------------- */
+        /* Current Controlled Buck                                                    */
+        /* -------------------------------------------------------------------------- */
+
+
+        float id_ref = control_params.idq_ref_amps.d;
+        float v_dc = GetVoltageDC();
+        control_params.idq_meas_amps.d =  GetCurrentC();
+
+        /* --- PI controller --------------------------------------------------- */
+        RunPiControl(&control_params.pi_id,
+                    id_ref,
+                    control_params.idq_meas_amps.d,
+                    v_dc * 0.9f, 0.0f);
+
+
+
+        float v_cl = control_params.pi_id.output / (v_dc);
+        control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
+
+        /* --- Single channel output -------------------------------------- */   
+        SetDuty(PWM_CHANNEL_C, control_params.duty_closed_loop);
+
     }
-    else if (BuckChannel == 2) {
-        i_fb = GetCurrentB();
-    
-    }
-    else if (BuckChannel == 3) {
-        i_fb = GetCurrentC();
-    
-    }
-    else  {
-        return; 
-    
-    }
-    
-    control_params.idq_meas_amps.d = i_fb;
-
-    /* --- PI controller --------------------------------------------------- */
-    RunPiControl(&control_params.pi_id,
-                  id_ref,
-                  control_params.idq_meas_amps.d,
-                  GetVoltageDC() * 0.9f, 0.0f);
-
-
-
-    float v_cl = control_params.pi_id.output / (GetVoltageDC());
-    control_params.duty_closed_loop = v_cl < 0.0f ? 0.0f : (v_cl > 1.0f ? 1.0f : v_cl);
-
-    /* --- Single channel output -------------------------------------- */   
-    SetDuty(BuckChannel, control_params.duty_closed_loop);
 }
